@@ -1,0 +1,82 @@
+\ProvidesPackage{hirostyle}
+\usepackage[utf8]{inputenc} % load early
+\usepackage[T1]{fontenc}
+% load early
+\usepackage[english]{babel}
+\usepackage{physics}
+\usepackage{graphicx, booktabs, float}
+\usepackage[tbtags]{mathtools}
+\usepackage{amssymb}
+\usepackage[backend=biber, language=english, style=phys]{biblatex}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage[list=true, font=small,
+labelformat=brace, position=top]{subcaption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{ifdraft}
+\usepackage[protrusion=true,expansion=true,tracking=true]{microtype}
+\usepackage{fancyvrb}
+\usepackage[autostyle=true]{csquotes}
+\usepackage{setspace}
+\usepackage{newunicodechar}
+\usepackage[pdfencoding=auto,hidelinks,colorlinks=true,
+linkcolor=blue,
+     filecolor=blue,
+     citecolor = black,
+     urlcolor=cyan,]{hyperref} % load late
+\usepackage[capitalize]{cleveref}
+\usepackage{multirow,tabularx}
+\usepackage{bbold}
+\usepackage{scrhack}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+  ]
+\setmathfont{texgyrepagella-math.otf}
+\KOMAoptions{DIV=last}
+\usepackage[autooneside]{scrlayer-scrpage}
+
+%% use the current pgfplots
+\pgfplotsset{compat=1.16}
+
+
+%% Tikz
+\usetikzlibrary{arrows,shapes,angles,quotes,arrows.meta,external}
+\tikzexternalize[prefix=tikz/]
+
+%% Including plots
+\newcommand{\plot}[1]{%
+  \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
+\newcommand{\rivethist}[2][,]{%
+  \includegraphics[draft=false,width=\textwidth,#1]{./figs/rivet/#2.pdf}}
+
+%% Including Results
+\newcommand{\result}[1]{\input{./results/#1}\!}
+
+%% SI units
+\sisetup{separate-uncertainty = true}
+
+%% Captions
+\captionsetup{justification=centering}
+
+%% Labels
+% \labelformat{chapter}{chapter~#1}
+% \labelformat{section}{section~#1}
+% \labelformat{figure}{figure~#1}
+% \labelformat{table}{table~#1}
+
+%% Cleverref
+\crefname{equation}{}{}
+\creflabelformat{equation}{(#2#1#3)}
+
+%% Font for headings
+\addtokomafont{disposition}{\rmfamily}
+
+%% Minus Sign for Matplotlib
+\newunicodechar{−}{-}

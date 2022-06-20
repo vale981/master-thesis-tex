@@ -1,0 +1,800 @@
+\section{Linear NMQSD, Zero Temperature}
+As in~\cite{Hartmann2017Dec} we choose
+\begin{equation}
+  \label{eq:totalH}
+  H = H_\sys + \underbrace{LB^† + L^† B}_{H_\inter} + H_\bath
+\end{equation}
+with the system hamiltonian \(H_\sys\), the bath hamiltonian
+\begin{equation}
+  \label{eq:bathh}
+  H_\bath = ∑_\lambda ω_\lambda a^† a,
+\end{equation}
+the bath coupling system operator \(L\) and the bath coupling bath
+operator
+\begin{equation}
+  \label{eq:bop}
+  B=∑_{\lambda} g_{\lambda} a_{\lambda}
+\end{equation}
+which define the interaction hamiltonian \(H_\inter\).
+
+We define the heat flow out of the system as in~\cite{Kato2015Aug}
+through
+\begin{equation}
+  \label{eq:heatflowdef}
+  J = - \dv{\ev{H_\bath}}{t}.
+\end{equation}
+Working, for now, in the Schr\"odinger picture the Ehrenfest theorem
+can be employed to find
+\begin{equation}
+  \label{eq:ehrenfest}
+  \i∂_t\ev{H_\bath} = \ev{[H_\bath,H]} = \ev{[H_\bath,H_\inter]}.
+\end{equation}
+Thus, we need to calculate
+\begin{eqnarray}
+  \label{eq:calccomm}
+  \begin{aligned}
+    [H_\bath,H_\inter] &= [H_\bath, LB^† + L^† B] \\
+    &= L[H_\bath, B^† ] + L^† [H_\bath, B] \\
+    &= L[H_\bath, B^† ] - \hc.
+  \end{aligned}
+\end{eqnarray}
+This checks out as the commutator has to be anti-hermitian due to
+\cref{eq:ehrenfest}.
+Using \([H_\bath, B^† ]=∑_\lambda ω_\lambda g^\ast_\lambda
+a^†_\lambda\) it follows that
+\begin{equation}
+  \label{eq:expcomm}
+  \begin{aligned}
+    \ev{[H_\bath,H_\inter]} &= ∑_\lambda ω_\lambda g^\ast_\lambda
+    \ev{La^†_\lambda} - \cc
+    = ∑_\lambda ω_\lambda g^\ast_\lambda
+    \ev{La^†_\lambda \eu^{\i ω t}}_\inter - \cc\\
+    &= \frac{1}{\i}\ev{L∂_t{∑_\lambda
+        g^\ast_\lambda a^†_\lambda \eu^{\i ω t}}}_\inter - \cc
+    =\frac{1}{\i}\qty(\ev{L\dot{B}^†}_\inter  + \cc)
+  \end{aligned}
+\end{equation}
+where we switched to the interaction picture with respect to \(H_\bath\)
+in keeping with the standard NMQSD formalism.
+In essence this is just the Heisenberg equation for \(H_\inter\). The
+expression for \(J\) follows
+\begin{equation}
+  \label{eq:final_flow}
+  J(t) = \ev{L^†∂_t B(t) + L∂_t B^†(t)}_\inter.
+\end{equation}
+
+From this point on, we will assume the interaction picture and drop the
+\(I\) subscript.
+
+The two summands yield different expressions in terms of the NMQSD.
+For use with HOPS with the final goal of utilizing the auxiliary
+states the expression \(\ev{L^†∂_t B(t)}\) should be evaluated. When
+considering the complex conjugate of this expression, we find a
+formula involving the derivative of the driving stochastic
+process. This is undesirable as it does not exist for all bath
+correlation functions\footnote{Only for BCFs that are smooth at
+  \(τ=0\).} and expressions involving the process directly are alleged
+to converge slower. The last fact may be explained by the fact, that
+one needs quite a lot of sample paths of the process for the mean of
+those sample paths to converge to zero. On the other hand, the first
+hierarchy states do contain an integral of-sorts of the sample paths
+and are not as sensitive to fluctuations.
+
+We calculate
+\begin{equation}
+  \label{eq:interactev}
+  \ev{L^†∂_t B(t)}=\ev{L^†∂_t B(t)}{\psi(t)} =
+  ∫ \braket{\psi(t)}{z}\mel{z}{L^†∂_tB(t)}{\psi(t)}\frac{\dd[2]{z}}{\pi^N},
+\end{equation}
+where \(N\) is the total number of environment oscillators and
+\(z=\qty(z_{\lambda_1}, z_{\lambda_2}, \ldots)\).
+To that end,
+\begin{equation}
+  \label{eq:nmqsdficate}
+  \begin{aligned}
+    \mel{z}{∂_tB(t)}{\psi(t)} &= ∑_\lambda g_\lambda
+  \qty(∂_t \eu^{-\iω_\lambda
+    t})∂_{z^\ast_\lambda}\ket{\psi(z^\ast,t)} \\
+  &= ∫_0^t ∑_\lambda g_\lambda
+  \qty(∂_t \eu^{-\iω_\lambda
+    t})\pdv{η_s^\ast}{z^\ast_\lambda}\fdv{\ket{\psi(z^\ast,t)}}{η^\ast_s}\dd{s}\\
+  &= -\i∫_0^t\dot{\alpha}(t-s)\fdv{\ket{\psi(z^\ast,t)}}{η^\ast_s}\dd{s},
+  \end{aligned}
+\end{equation}
+where \(η^\ast_t\equiv -\i ∑_\lambda g^\ast_\lambda
+z^\ast_\lambda \eu^{\iω_\lambda t}\).
+With this we can write
+\begin{equation}
+  \label{eq:steptoproc}
+  \ev{L^†∂_t B(t)} = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
+    t)}L^†∫_0^t\dd{s} \dot{\alpha}(t-s)\fdv{η^\ast_s} \ket{\psi(η^\ast,t)}.
+\end{equation}
+Defining
+\begin{equation}
+  \label{eq:defdop}
+D_t = ∫_0^t\dd{s} \alpha(t-s)\fdv{η^\ast_s}
+\end{equation}
+as in~\cite{Suess2014Oct} we can write
+\begin{equation}
+  \label{eq:final_flow_nmqsd}
+  J(t) = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
+    t)}L^†\dot{D}_t\ket{\psi(η^\ast,t)} + \cc,
+\end{equation}
+where we've used that the integral in \(D_t\) can be expanded over the
+whole real axis. If we assume \(\alpha = \exp(-w t)\) then
+\begin{equation}
+  \label{eq:hopsj}
+  J(t) = \i \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
+    t)}wL^†\ket{\psi^{(1)}(η^\ast,t)} + \cc.,
+\end{equation}
+where \(\ket{\psi^{(1)}(η^\ast,t)}\) is the first HOPS hierarchy
+state. This can be generalized to any BCF that is a sum of exponentials.
+
+Interestingly one finds that
+\begin{equation}
+  \label{eq:alternative}
+  \ev{L∂_t B^†(t)} = \i∫\frac{\dd[2]{z}}{\pi^N}
+  \dot{η}_t^\ast \mel{\psi(η,t)}{L}{\psi(η^\ast,t)}.
+\end{equation}
+However, this approach becomes more complicated in the nonlinear
+method.
+The previous expression has the advantage
+that we utilize the first hierarchy states that are already being
+calculated as a byproduct.
+
+In the language of~\cite{Hartmann2021Aug} we can generalize to
+\(\alpha(t) = ∑_i G_i \eu^{-W_i t}\) and thus
+\begin{equation}
+  \label{eq:hopsflowrich}
+  J(t) = ∑_\mu\frac{G_\mu W_\mu}{\bar{g}_\mu} \i\mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
+    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc,
+\end{equation}
+where \(\psi^{\vb{e}_\mu}\) is the \(\mu\)-th state of the first
+hierarchy and \(\bar{g}_\mu\) is an arbitrary scaling introduced in
+the definition of the hierarchy in~\cite{Hartmann2021Aug} to help with
+the scaling of the norm.
+
+With the new ``fock-space'' normalization however the expression
+becomes
+\begin{equation}
+  \label{eq:hopsflowfock}
+  J(t) = - ∑_\mu\sqrt{G_\mu}W_\mu
+  \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
+    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
+\end{equation}
+
+
+
+
+\section{Nonlinear NMQSD, Zero Temperature}
+\label{sec:nonlin}
+In the spirit of the usual derivation of the nonlinear NMQSD we write
+\begin{equation}
+  \label{eq:newb}
+  \begin{aligned}
+  \ev{L^†\dot{B}(t)} &= ∫ \frac{\dd[2]{z}}{\pi^N} \eu^{-\abs{z}^2}
+  \braket{\psi}{z}\!\braket{z}{\psi}
+  \frac{\braket{\psi(t)}{z}\!\mel{z}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{z}\!\braket{z}{\psi}}
+  \\
+  &= ∫ \frac{\dd[2]{z}}{\pi^N} \eu^{-\abs{z}^2}
+  \frac{\mel{z(t)}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{z(t)}\!\braket{z(t)}{\psi}},
+  \end{aligned}
+\end{equation}
+where \(z_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
+\dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\).
+We find that next steps are the same as in \cref{sec:nonlin} by noting
+\begin{equation}
+  \label{eq:deriv_trick}
+  \eval{∂_{z^\ast_\lambda}}_{z^\ast=z_\lambda^\ast(t)} =
+  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast_\lambda(t)}
+  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} =
+  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast(0)}
+  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))},
+\end{equation}
+which does alter the definition of \(D_t\) but results in the same
+HOPS equations.
+The shifted process \(\tilde{η}^\ast=
+η^\ast(z^\ast(t),t)=η^\ast(t) +
+∫_0^t\dd{s}\alpha^\ast(t-s)\ev{L^†}_{\psi_s}\) appears directly
+in the NMQSD equation but results only in a slight change in the
+functional derivative. Note however that
+\begin{equation}
+  \label{eq:fdvclarification}
+  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \neq \fdv{}{\tilde{η}^\ast_s}
+\end{equation}
+which is not problematic as we have (implicit in~\cite{Diosi1998Mar})
+\begin{equation}
+  \label{eq:fdvhops}
+  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \ket{\psi(z^\ast)} = \fdv{}{η^\ast_s}\ket{\psi(z^\ast(t, z^\ast_0), t)}
+\end{equation}
+so that the usual HOPS hierarchy follows. Note \(z^\ast_0 = z^\ast(0)\).
+
+Therefore,
+\begin{equation}
+  \label{eq:newbcontin}
+  J(t) =
+  -\i
+  \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\dot{\tilde{D}}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
+  + \cc,
+\end{equation}
+where the dependence on \(\tilde{η}\) is symbolic and to be
+understood in the context of \cref{eq:fdvhops}.
+
+Again we express the result in the language of~\cite{Hartmann2021Aug}
+to obtain
+\begin{equation}
+  \label{eq:nonlinhopsflowrich}
+  J(t) = ∑_\mu\frac{G_\mu W_\mu}{\bar{g}_\mu}
+  \i\mathcal{M}_{η^\ast}\frac{\bra{\psi^{(0)}(η,
+      t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}}{\bra{\psi^{(0)}(η,
+      t)}\ket{\psi^{0}(η^\ast,t)}} + \cc.
+\end{equation}
+
+With the new ``fock-space'' normalization however the expression
+becomes
+\begin{equation}
+  \label{eq:nonlinhopsflowfock}
+  J(t) = - ∑_\mu\sqrt{G_\mu}W_\mu
+  \mathcal{M}_{η^\ast}\frac{\bra{\psi^{(0)}(η,
+      t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}}{\bra{\psi^{(0)}(η,
+      t)}\ket{\psi^{0}(η^\ast,t)}} + \cc.
+\end{equation}
+
+\section{Linear Theory, Finite Temperature}
+The finite temperature case needs some additional considerations as
+the previous sections dealt explicitly with mean values in a pure
+state. The Ehrenfest theorem still holds in mixed states, but we would
+like to recover the usual pure state zero temperature formalism. There
+are multiple methods for dealing with a thermal initial such as the
+thermofield method (see~\cite{Diosi1998Mar}), but because the results
+discussed here are to be applied with the HOPS method we shall use the
+method described in~\cite{Hartmann2017Dec}.
+
+The shift operator
+\begin{equation}
+  \label{eq:shiftop}
+  \vb{D}(y) = \bigotimes_\lambda \eu^{y_\lambda a_\lambda^†-y^\ast_\lambda a_\lambda}
+\end{equation}
+the ground state of the environment into an arbitrary
+coherent state
+\begin{equation}
+  \label{eq:shiftwork}
+  \vb{D}(y)\ket{0} = \ket{y}
+\end{equation}
+where \(y=(y_1,y_2,\ldots)\) as usual.
+
+This allows us to write the density matrix of the system with a
+thermal initial bath as
+\begin{equation}
+  \label{eq:shiftbath}
+  \rho =
+  \prod_\lambda\qty(∫\dd[2]{y_\lambda}
+  \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})
+  U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†.
+\end{equation}
+The usual step is now to insert \(\id =\vb{D}(y)\vb{D}^†(y)\) to
+arrive at a new time translation operator
+\begin{equation}
+  \label{eq:utilde}
+  \tilde{U}(t) = \vb{D}^†(y)U(t)\vb{D}(y)
+\end{equation}
+and to interpret the integral in \cref{eq:shiftbath} in a monte-carlo
+sense which leads to a stochastic contribution to the system Hamiltonian
+\begin{equation}
+  \label{eq:thermalh}
+  H_{\mathrm{sys}}^{\mathrm{shift}}=L ξ^{*}(t)+L^{†} ξ(t)
+\end{equation}
+with the stochastic process
+\begin{equation}
+  \label{eq:xiproc}
+  ξ(t):=∑_{\lambda} g_{\lambda} y_{\lambda} \eu^{-\mathrm{i} ω_{\lambda} t}
+\end{equation}
+with corresponding moments \(\mathcal{M}(ξ(t))=0=\mathcal{M}(ξ(t) ξ(s))\) and
+\[
+\mathcal{M}\left(ξ(t) ξ^{*}(s)\right)=\frac{1}{\pi} ∫_{0}^{∞} \mathrm{d} ω \bar{n}(\beta ω) J(ω) e^{-\mathrm{i} ω(t-s)}.
+\]
+Remember that we want to calculate
+\begin{equation}
+  \label{eq:whatreallymatters}
+  \begin{aligned}
+    \ev{L^†\dot{B}(t)} &= \tr[L^†\dot{B}(t)\rho(t)] \\
+    &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
+  \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\tr[L^†\dot{B}(t)
+  U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†] .
+  \end{aligned}
+\end{equation}
+
+To recover the zero temperature formulation of this expectation value we
+again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
+\(\dot{B}(t)\). This leads to the expression
+\begin{equation}
+  \label{eq:pureagain}
+  \begin{aligned}
+    \ev{L^†\dot{B}(t)} &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
+    \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
+    &\qquad\times\tr[L^†(\dot{B}(t) + \dot{ξ}(t))
+    \vb{D}^†(y) U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}^†(y)U(t)^†\vb{D}(y)] \\
+    &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
+    \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\tr[L^†\qty{\dot{B}(t) + \dot{ξ}(t)}
+    \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†].
+  \end{aligned}
+\end{equation}
+which returns us to the zero temperature formalism with a transformed
+Hamiltonian and the replacement
+\begin{eqnarray}
+  \label{eq:breplacement}
+  B(t) \rightarrow B(t) + ξ(t)
+\end{eqnarray}
+which plausibly corresponds to the \(L^†\) part of \(H_\inter + H_{\mathrm{sys}}^{\mathrm{shift}}\).
+
+The appearance of \(\dot{ξ}(t)\) may cause concern. However, for
+twice differentiable \(\mathcal{M}(ξ(t)ξ^\ast(s))\) the sample
+trajectories are smooth.
+
+Alternatively we can calculate
+\begin{equation}
+  \label{eq:gettingarounddot}
+  \begin{aligned}
+    \ev{\dot{H}_{\mathrm{sys}}^{\mathrm{shift}}} &=
+    \dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
+    \frac{1}{\iu}\qty(\ev{H_{\mathrm{sys}}^{\mathrm{shift}}H} -\ev{H
+      H_{\mathrm{sys}}^{\mathrm{shift}}}) \\
+    &=\dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
+    \frac{1}{\iu}\ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H]} \\
+    &=\dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
+    \frac{1}{\iu}\ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter]}.
+  \end{aligned}
+\end{equation}
+
+
+Now,
+\begin{equation}
+  \label{eq:hshcomm}
+  [H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter] = ξ(t) [L^†, L]
+  B(t)^† + ξ^\ast(t) [L, L^†] B
+\end{equation}
+and therefore
+\begin{equation}
+  \label{eq:finalex}
+  \ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter]} = -i \mathcal{M}_{η^\ast}\mel{\psi}{ξ(t)^\ast[L,L^†]D_t}{\psi}.
+\end{equation}
+This is an expression that we can easily evaluate with the HOPS
+method.
+
+\section{Interaction Energy}
+\label{sec:intener}
+
+By replacing the \(B(t)\) operators in \(H_\inter\) with derivatives as in
+the above considerations we obtain an expression for the expectation
+value of the interaction energy.
+
+We have to find an expression for \(\ev{L^†B(t)}\)
+or its complex conjugate which would lead to an expression involving
+the driving stochastic process which is undesirable as discussed above.
+This is easily done by following the arguments in the previous
+chapters but omitting the time derivative.
+
+For the most general case at zero temperature and for the nonlinear
+method we arrive at
+\begin{equation}
+  \label{eq:intexp}
+  \ev{H_\inter} =
+  -\i
+  \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\tilde{D}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
+  + \cc.
+\end{equation}
+See \cref{eq:newbcontin} for an explanation of the constituents of
+that equation. The expression for the linear method is obtained by
+simply leaving out the normalization.
+
+For nonzero temperature an extra term
+\begin{equation}
+  \label{eq:interexptherm}
+  \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†ξ(t)}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
+  + \cc
+\end{equation}
+has to be added to \cref{eq:intexp}, where \(ξ\) is the thermal
+stochastic process.
+
+
+\section{Multiple Baths}
+\label{sec:multibath}
+
+For the models we consider in \fixme{citation,reference}, we have
+\([H_\bath^{(i)}, H_\bath^{(j)}] = 0\), where \(i,j\) are the bath
+indices. Therefore, we can apply the formalism of the previous
+sections almost unchanged, by just taking care that all quantities
+involved in the expression of \(J_n=-\dv{\ev{H_B^{(n)}}}{t}\) refer to
+the \(n\)th bath.
+
+This essentially boils down to the replacement
+\begin{equation}
+  \label{eq:replacements}
+  \begin{aligned}
+    D_t &\rightarrow D_t^{(n)} \equiv
+    ∫_0^t\dd{s}α_n(t-s)\fdv{η^\ast_n(s)} \\
+    ξ(t) &\rightarrow ξ_n(t)\equiv∑_{\lambda} g^{(n)}_{\lambda}
+    y_{\lambda} \eu^{-\mathrm{i} ω^{(n)}_{\lambda} t},
+  \end{aligned}
+\end{equation}
+where the quantities involved are as in \fixme{reference} and
+\cref{eq:xiproc}.
+
+\section{Pure Dephasing: The initial Slip}
+\label{sec:pure_deph}
+As seen in \fixme{include plots}, the short time behavior of the bath
+energy flow is dominated by characteristic peak at short
+times. Because this peak occurs at very short time scales, it may in
+part be explained by a simple calculation which neglects the system
+dynamics, setting \(H_\sys=0\).
+
+We solve the model with the Hamiltonian (Schr\"odinger picture)
+\begin{equation}
+  \label{eq:puredeph}
+  H = L^†(t) B + L(t) B^† + H_\bath
+\end{equation}
+with \(L(t)=L(t)^†\), \([L(t), L(s)] = 0\;\forall t,s\) (so that
+Heisenberg Hamiltonian matches \cref{eq:puredeph}) and \(B,H_\bath\)
+as in \cref{eq:bop}.
+
+Because \([L,H]=0\) we can immediately solve \(L_H(t)=L_S(t)\), where
+the subscript signify the Heisenberg and Schr\"odinger pictures
+respectively. The Heisenberg equations for the \(a_λ\) yield
+\begin{equation}
+  \label{eq:alapuredeph}
+  a_λ(t) = a_λ(0) \eu^{-\iu ω_λ  t} - \iu g_λ^\ast∫_0^t\dd{s} L(s)
+  \eu^{-\iu ω_λ  (t-s)}.
+\end{equation}
+
+This allows us to calculate
+\begin{equation}
+  \label{eq:pureflow}
+  \dot{H}_\bath = - ∑_λ g_λ L(t) \qty[∂_t a_λ(0) \eu^{\iu ω_λ t} - \iu
+  g_λ^\ast∫_0^t\dd{s} L(s) ∂_t \eu^{-\iu ω_λ (t-s)}] + \hc,
+\end{equation}
+which gives with a state of the form \(ρ=\ketbra{ψ} \otimes ρ_β\)
+(\(ρ_β\) being a thermal state)
+\begin{equation}
+  \label{eq:pureflowexpectation}
+  \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)].
+\end{equation}
+
+For time independent \(L\) this becomes
+\begin{equation}
+  \label{eq:pureflowtimeindep}
+  \ev{\dot{H}_\bath } = 2 \ev{L^2} \Im[\dot{α}(t)].
+\end{equation}
+
+The proportionality to the imaginary BCF \(α\) does explain the
+initial peak in the bath energy flow. The imaginary part of the BCF is
+zero for \(t=0\) and then usually features a peak at rather short
+times (assuming finite correlation times). For the ohmic BCF used
+here, this feature is very prominent.
+\fixme{insert graph}
+
+Interestingly, \cref{eq:pureflowexpectation} does not contain any
+reference to the temperature of the bath. Therefore, the bath energy
+can only surpass its initial value in this model, as the dynamics
+match the zero temperature case in which the bath has minimal energy
+in the initial state. A thermodynamically useful model should
+therefore feature an significant system dynamics that do not commute
+with the interaction or fast modulation so that the Hamiltonian does
+not commute with itself at different times. The latter may induce
+deviations from the pure-dephasing behavior at very short time scales
+and thus be useful for finite power output. \fixme{here the plot with
+  energy extraction would be good.} Coupling that is not self-adjoint
+\fixme{plot} may also have this effect, but may be harder to
+physically motivate. For the spin-boson system it is the result of the
+random wave approximation, which however does not imply weak
+coupling~\cite{Irish2007Oct}.
+
+For completeness, the interaction energy is given by
+\begin{equation}
+  \label{eq:pureinter}
+  H_\inter = L(t)\qty[∑_λg_λ\qty(a_λ(0)\eu^{-\i ω_λ t} - \i
+  g^\ast_λ∫_0^t\dd{s} L(s) \eu^{\i ω_λ (t-s)})] + \hc,
+\end{equation}
+yielding
+\begin{equation}
+  \label{eq:pureinterexp}
+  \ev{H_\inter} = 2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[α(t-s)].
+\end{equation}
+\fixme{plots}
+
+It is useful to normalize the BCF based on \cref{eq:pureinterexp}, so
+that the pure interaction energy build-up in the initial slip is
+canceled. To make the normalization independent of \(L(t)\),
+we choose the normalization to be
+\begin{equation}
+  \label{eq:bcfnorm}
+  \begin{aligned}
+  \mathcal{N} &= 2 \abs{\frac{\max_t\norm{L(t)L^\dag(t)+\hc}}{\max_t{\norm{H(t)}}} ∫_0^∞ \Im[α_u(τ)]\dd{τ}}\\
+    α(τ) &= α_u(τ)/\mathcal{N},
+  \end{aligned}
+\end{equation}
+where \(α_u\) is some unnormalized BCF. This normalization has the
+useful property, that it neutralizes any scaling in \(L\). Note that
+here the convention in which \(α\) is dimensionless is used.
+
+% this is not true
+% imaginary part becomes proportional to the Dirac delta in the limit
+% where typical cutoff frequency \(ω_c\rightarrow ∞\). The integral over
+% the real part of \(α\) always gives zero if the spectral density obeys
+% \(J(0) = 0\) and tends to exhibit fast oscillations and fast decay in
+% the large-cutoff limit. For weak coupling, it may therefore be
+% neglected. This constitutes the Markov limit mentioned in
+% \cite{Strunz2001Habil}.
+
+The Ohmic-type BCF is
+\begin{equation}
+  \label{eq:normohmic}
+  α(τ)=\frac{ω_c  s }{ (\max_t\norm{H})(1+\iu ω_c τ)^{s+1}},
+\end{equation}
+in this normalization. Note however, that the norm of the Hamiltonian
+is assumed to be unity in the simulations referred to in this
+thesis. \fixme{maybe change}
+
+\section{Ergotropy and Basic Thermodynamics of Open Systems}
+The ergotropy of a \emph{} quantum system is defined
+as~\cite{Binder2018}
+\begin{equation}
+  \label{eq:ergo_def}
+  \ergo{ρ} = \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag) H],
+\end{equation}
+which is the maximal energy that can be extracted from a system through
+cyclic modulation of the Hamiltonian \(H\). A state is called passive
+iff the maximizing \(U\) \cref{eq:ergo_def} is the identity \(\id\).
+
+A passive state \(ρ_P\) is always diagonal in the eigenbasis of \(H\) and its
+eigenvalues satisfy the following ordering condition~\cite{Lenard1978Dec}
+\begin{equation}
+  \label{eq:passive_diag}
+  ρ_{p}=∑_{j=1}^{n} \lambda_{j}|j\rangle\langle j|, \quad E_{j} \leq E_{j+1}, \quad \lambda_{j+1} \leq \lambda_{j},
+\end{equation}
+where \(n<∞\) is the Hilbert space dimension. This condition is both
+necessary and sufficient. Examples of passive states are the state of
+the micro-canonical ensemble or a Gibbs state. Gibbs are further
+distinguished by additional features as described
+in~\cite{Lenard1978Dec}, which can be connected to formulations of the
+zeroth and second laws of thermodynamics.
+
+One of these properties is complete passivity. Completely passive
+states remain passive under the transformation \(ρ\to\otimes^Nρ\) (and
+an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore no
+energy can be extracted from multiple identical systems at the same
+temperature. For finite dimensional systems, the complete passivity
+implies the form of the Gibbs state. The open-systems case differs as
+here a ``small'' system is coupled to a bath of infinite size. If the
+system state is not a Gibbs state, the whole system becomes
+non-passive, even if the system state is passive with respect to the
+system Hamiltonian\footnote{for example being the ground state}.
+
+For systems of infinite size, states fulfilling the
+Kubo–Martin–Schwinger (KMS) condition have been proposed as the
+generalizations of Gibbs states, having similar properties as
+Gibbs states. Under some conditions passivity implies the KMS
+condition. These conditions are related to the fact that KMS states
+are not necessarily unique~\cite{Binder2018,Pusz1978Oct}.
+
+The KMS condition is stated for two arbitrary observables \(A,B\) and
+\(F_{AB}(t)=\tr[ρ_βA(t)B(0)]\) (Heisenberg picture,
+\(A(t)=\eu^{\iu H t}H\eu^{-\iu H t}\)) as
+\begin{equation}
+  \label{eq:kmscond}
+  F_{AB}(-t) = F_{BA}(t-\iu β)
+\end{equation}
+by virtue of analytic continuation.
+
+For two initially uncorrelated KMS states, of different
+temperature, the Carnot efficiency bound can be
+proven~\cite{Pusz1978Oct}.
+
+A simple application of ergotropy is an explanation for quantum
+friction. The buildup of coherence\footnote{Meaning a state which is
+  non-diagonal in the energy basis.} in a quantum system makes the
+state non-passive and thus requires additional energy which cannot be
+extracted by modulating of the energy level gaps of the
+system\footnote{This is the usual mechanism of energy extraction in a
+  quantum Otto cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec}.  The
+reduction of efficiency in through quantum coherence general has been
+termed quantum friction. However, the occurrence of coherence does not
+have to lead to a reduction in efficiency\fixme{do more research on
+  that.refer to simulations}, if a diagonal state is restored \footnote{Shortcuts to
+  adiabaticity, see for example~\cite{Chen2010Feb}.}.
+
+Let us consider models with the Hamiltonians
+\begin{equation}
+  \label{eq:simple_bath_models}
+  H = \id_\sys\otimes H_\bath + H_\sys\otimes \id_\bath,
+\end{equation}
+where the system \(\sys\) is finite dimensional and \(H_\bath\) may
+chosen arbitrarily. Let the initial state of the system be
+\begin{equation}
+  \label{eq:simple_initial_state}
+  ρ=ρ_\sys\otimes τ_β,
+\end{equation}
+where \(τ_β=\eu^{-β H_\bath}/Z\) and \(ρ_\sys\) is arbitrary.
+
+An interesting question is whether the ergotropy of such a state is
+finite. This amounts to the formulation of the second law: ``No energy
+may be extracted from a single bath in a cyclical manner''.
+
+For systems obeying GKSL dynamics connected to a KMS state heat bath,
+thermodynamic laws can be derived in certain situations\footnote{very
+  slow or very fast modulation of the system
+  hamiltonian}\cite{Binder2018}, which imply the answer ``yes'' for the
+above questions. In the non-Markovian case, those arguments do not
+hold anymore.
+
+For finite dimensional baths, we always have finite ergotropies, as
+their Hamiltonians are bounded. In the infinite dimensional case, we
+may expect that the ergotropy is still finite for some models, as long
+as the energies of the thermal states for those models is finite. This
+assumption breaks down when we consider infinite baths, whose thermal
+energy is unbounded even for finite temperatures.
+
+Nevertheless, \fixme{graphics} the ergotropy appears to be
+bounded. Further, the system as if it was in a passive state as soon
+as the limit cycle is reached. In fact, there is a simple and general
+argument that provides and upper bound on the ergotropy of states of
+the form~\cref{eq:simple_initial_state} based on the special form of
+Gibbs states and relative entropy. The latter quantity allows the
+application of quantum informational tools, even in the presence of
+infinite baths if we are careful in taking limits.
+
+The following is adapted
+from~\cite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb} and we limit
+ourselves to finite dimensional problems for now.  As unitary
+transformations leave the entropy invariant
+(\(\tr[ρ\ln(ρ)] = \tr[ρ_P\ln(ρ_P)]\)), we have for an arbitrary
+\(β > 0\) and \(ρ_β=\exp(-βH)/Z\)
+\begin{equation}
+  \label{eq:ergo_entro}
+  \begin{aligned}
+    \ergo{ρ} &= E(ρ) - E(ρ_P) = \tr[(ρ-ρ_P) H] = -\frac{1}{β}\tr[(ρ-ρ_P)
+               \qty(\ln(ρ_β) + \ln(Z))] \\
+             &= -\frac{1}{β}\tr[(ρ-ρ_P) \ln(ρ_β)] =
+               -\frac{1}{β}\tr[(ρ-ρ_P) \qty(\ln(ρ_β))]\\
+             &=\frac{1}{β}\qty[\tr[ρ(\ln(ρ) - \ln(ρ_β))] -
+               \tr[ρ_P(\ln(ρ_p) - \ln(ρ_β))]]\\
+             &\equiv\frac{1}{β}\qty[\qrelent{ρ}{ρ_β} - \qrelent{ρ_P}{ρ_β}],
+  \end{aligned}
+\end{equation}
+where we have used \(\tr[ρ]=\tr[ρ_P]=1\). The relative entropies
+appearing in \cref{eq:ergo_entro} are always finite, as \(ρ\) is
+finite-dimensional and \(ρ_β\) has full rank.  As energy is minimized
+by a Gibbs state when keeping the entropy fixed, we find an upper
+bound on the ergotropy by replacing \(ρ_P\to ρ_{β^\ast}\) in
+\cref{eq:ergo_entro} where
+\(S(ρ_{β^\ast})=S(ρ)\)~\cite{Alicki2013Apr}.
+
+By choosing the temperature in \cref{eq:ergo_entro} accordingly, we
+arrive at
+\begin{equation}
+  \label{eq:ergo_bound_single}
+  \ergo{ρ} \leq \frac{1}{β^\ast}\qrelent{ρ}{ρ_{β^\ast}}.
+\end{equation}
+This bound can be saturated for states which are a permutation of a
+thermal state, as their corresponding passive states is the thermal
+state.
+
+For our setting in
+\cref{eq:simple_bath_models,eq:simple_initial_state} we find a still
+better way to bound the ergotropy and fix the
+temperature~\cite{Lobejko2021Feb}. Substituting \(ρ\to ρ \otimes τ_β\)
+in \cref{eq:ergo_entro} we obtain
+\begin{equation}
+  \label{eq:thermo_ergo_bound}
+  \begin{aligned}
+  \ergo{ρ\otimes τ_β} &= \frac{1}{β}
+  \qty[\qrelent{ρ\otimes τ_β}{ρ_β\otimes τ_β} - \qrelent{(ρ_β\otimes
+                        τ_β)_P}{ρ_β\otimes τ_β}]\\
+    &=\frac{1}{β}
+  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ_β\otimes τ_β)_P}{ρ_β\otimes
+      τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β}.
+  \end{aligned}
+\end{equation}
+
+Remarkably, the bound \cref{eq:thermo_ergo_bound} only depends on the
+system state and ``inherits'' the temperature of the bath. For any
+\(\dim[τ_β] = N\gg 1\) the bound stays valid. It is therefore
+reasonable to expected that it is also valid for an infinite bath. On
+the basis of physical intuition, a very large but finitely sized bath
+may be an arbitrarily good substitute for a continuous one. One might
+even argue, that the continuous bath is a mathematically convenient
+construct and the finite bath is the physical one.  The objection to
+taking the limit outright is that the state \(τ_β\) does not exist as
+trace class operator for an infinite bath.
+
+Interestingly, a saturation of \cref{eq:thermo_ergo_bound} is achieved
+in~\cite{Skrzypczyk2014Jun} with a continuous qubit
+bath. In~\cite{Lobejko2021Feb} a more generic argument is made in a
+similar setting. Both propose concrete protocols within the bounds of
+thermal operations and by considering explicit work reservoirs.
+
+A corollary of \cref{eq:thermo_ergo_bound} is the Clausius form of the
+second law. By setting the system Hamiltonian to \(α \id\) in the
+above discussion the ergotropy becomes the change of bath energy
+\begin{equation}
+  \label{eq:ergo_bath_change}
+  \begin{aligned}
+    \ergo{ρ} &= \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag)
+               (α\id\otimes H_\bath)] =
+               \max_{U\,\text{unitary}}\tr_\bath[\qty(\tr_\sys[ρ-UρU^\dag])
+               H_B]\\
+             &\equiv\max_{U\,\text{unitary}}ΔE_B\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
+  \end{aligned}
+\end{equation}
+where \(N\) is the system dimension.
+
+
+Requiring a periodically modulated Hamiltonian with \(H(t+τ) = H(t)\)
+for \(τ>0\) we denote by \(U_{m,n}\) the propagator from \(mτ\) to
+\(nτ\) with \(m<n\). Assuming the system's reduced state
+\(ρ_\sys=\tr_\bath[ρ]\) reaches a limit cycle so that
+\(ρ_\sys(t+τ)=ρ_\sys(t)\) for all \(t > n_0τ\), we
+
+
+
+
+
+\subsection{Explicit Ergotropy Caluclation for a Bath of Identical
+  Oscillators}
+\label{sec:explicitergo}
+Here, we explicitly calculate the ergotropy of a finite dimensional
+system connected to a bath of identical oscillators. This doesn't
+
+
+Let us choose \(H_S=α\id_N\)  for simplicity,
+where \(α\) is an arbitrary energy scale. The ergotropy is then equal
+to the maximal energy reduction of the bath under arbitrary cyclic
+modulation.
+
+The bound \cref{eq:thermo_ergo_bound} further simplifies to
+\begin{equation}
+  \label{eq:thermo_ergo_bound_specific}
+  \ergo{ρ\otimes τ_β} \leq \frac{1}{β} \qty[\ln(N) - S(ρ)],
+\end{equation}
+where \(S(ρ)=-\tr[ρ\ln(ρ)]\).
+For a pure state \cref{eq:thermo_ergo_bound_specific} is maximal. We
+therefore choose \(ρ=\ketbra{0}\).
+
+
+\subsection{Multiple Baths}
+As in the single bath case, some statement about the amount of energy
+that can be expected to be extracted in a cyclic manner. An argument
+based on entropy may be made for the periodic steady state as was
+shown in~\cite{Kato2016Dec} and is reproduced here. We will find the
+Clausius form of the second law.
+
+We consider the situation given by the Hamiltonian for a system
+coupled to multiple baths under periodic driving
+\begin{equation}
+  \label{eq:katoineqsys}
+  H(t) = H_\sys(t) + ∑_i \qty(H_\bath^i + H_\inter^i(t)).
+\end{equation}
+Here, \(H_\sys(t)\) is the system Hamiltonian, \(H_\bath^i\) is the
+Hamiltonian of the \(i\)-th bath and \(H_\inter^i(t)\) is the coupling
+to the same. We demand periodic driving, that is \(H(t+τ) = H(t)\) for
+some \(τ\geq 0\).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../index.tex"
+%%% End:
+
+% LocalWords:  ergotropy

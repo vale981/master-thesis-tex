@@ -1,0 +1,32 @@
+\documentclass[fontsize=10pt,paper=b5,open=any,
+,twoside=true,toc=listof,toc=bibliography,headings=optiontohead,
+captions=nooneline,captions=tableabove,english,DIV=calc,numbers=noenddot,final,parskip=half,
+headinclude=true,footinclude=false,BCOR=1cm]{scrbook}
+
+\pdfvariable suppressoptionalinfo 512\relax
+
+\usepackage{hirostyle}
+\usepackage{hiromacros}
+
+
+
+\addbibresource{references.bib}
+\synctex=1
+\title{Calculating heat flows with HOPS}
+\author{Valentin Boettcher}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+
+% Chapters
+\include{src/index.tex}
+
+\printbibliography{}
+\end{document}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

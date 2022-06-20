@@ -1,0 +1,108 @@
+\ProvidesPackage{hiromacros}
+
+% Macros
+
+%% qqgg
+\newcommand{\qqgg}[0]{q\bar{q}\rightarrow\gamma\gamma}
+
+%% ppgg
+\newcommand{\ppgg}[0]{pp\rightarrow\gamma\gamma}
+
+%% Momenta and Polarization Vectors convenience
+\DeclareMathOperator{\ps}{\slashed{p}}
+
+\DeclareMathOperator{\pe}{\varepsilon}
+\DeclareMathOperator{\pes}{\slashed{\pe}}
+
+\DeclareMathOperator{\pse}{\varepsilon^{*}}
+\DeclareMathOperator{\pses}{\slashed{\pe}^{*}}
+
+%% Spinor convenience
+\DeclareMathOperator{\us}{u}
+\DeclareMathOperator{\usb}{\bar{u}}
+
+\DeclareMathOperator{\vs}{v}
+\DeclareMathOperator*{\vsb}{\overline{v}}
+
+%% Center of Mass energy
+\DeclareMathOperator{\ecm}{E_{\text{CM}}}
+
+%% area hyperbolicus
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcosh}{arcosh}
+
+%% Fast Slash
+\let\sl\slashed
+
+%% hermitian/complex conjugate
+\DeclareMathOperator{\hc}{h.c.}
+\DeclareMathOperator{\cc}{c.c.}
+
+%% eulers number
+\def\eu{\ensuremath{\mathrm{e}}}
+
+%% Notes on Equations
+\newcommand{\shorteqnote}[1]{ &  & \text{\small\llap{#1}}}
+
+%% Typewriter Macros
+\newcommand{\sherpa}{\texttt{Sherpa}}
+\newcommand{\rivet}{\texttt{Rivet}}
+\newcommand{\vegas}{\texttt{VEGAS}}
+\newcommand{\lhapdf}{\texttt{LHAPDF6}}
+\newcommand{\scipy}{\texttt{scipy}}
+
+%% Sherpa Versions
+\newcommand{\oldsherpa}{\texttt{2.2.10}}
+\newcommand{\newsherpa}{\texttt{3.0.0} (unreleased)}
+
+%% Special Names
+\newcommand{\lhc}{\emph{LHC}}
+
+%% Expected Value and Variance
+\newcommand{\EX}[1]{\operatorname{E}\qty[#1]}
+\newcommand{\VAR}[1]{\operatorname{VAR}\qty[#1]}
+
+%% Uppercase Rho
+\newcommand{\Rho}{P}
+
+%% Transverse Momentum
+\newcommand{\pt}[0]{p_\mathrm{T}}
+
+%% Sign Function
+\DeclareMathOperator{\sign}{sgn}
+
+%% Stages
+\newcommand{\stone}{\texttt{LO}}
+\newcommand{\sttwo}{\texttt{LO+PS}}
+\newcommand{\stthree}{\texttt{LO+PS+pT}}
+\newcommand{\stfour}{\texttt{LO+PS+pT+Hadr.}}
+\newcommand{\stfive}{\texttt{LO+PS+pT+Hadr.+MI}}
+
+%% GeV
+\newcommand{\gev}[1]{\SI{#1}{\giga\electronvolt}}
+
+\def\iu{\ensuremath{\mathrm{i}}}
+\def\i{\iu}
+\def\id{\ensuremath{\mathbb{1}}}
+\def\NN{\ensuremath{\mathbb{N}}}
+\def\RR{\ensuremath{\mathbb{R}}}
+\def\CC{\ensuremath{\mathbb{C}}}
+\def\dim{\ensuremath{\mathrm{dim}}}
+\def\hilb{\ensuremath{\mathcal{H}}}
+
+% fixme
+\newcommand{\fixme}[1]{\textbf{\textcolor{red}{FIXME:~#1}}}
+
+% HOPS/NMQSD
+\def\sys{\ensuremath{\mathrm{S}}}
+\def\bath{\ensuremath{\mathrm{B}}}
+\def\inter{\ensuremath{\mathrm{I}}}
+\def\nth{\ensuremath{^{(n)}}}
+
+\newcommand{\mat}[1]{\ensuremath{{\underline{\vb{#1}}}}}
+\def\kmat{{\mat{k}}}
+
+
+% Thermo
+\newcommand{\ergo}[1]{\ensuremath{\mathcal{W}\qty[#1]}}
+\newcommand{\qrelent}[2]{\ensuremath{S\qty(#1\,\middle|\middle|\,#2)}}
