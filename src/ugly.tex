@@ -63,16 +63,14 @@ expression for \(J\) follows
   J(t) = \ev{L^†∂_t B(t) + L∂_t B^†(t)}_\inter.
 \end{equation}
 
-From this point on, we will assume the interaction picture and drop the
-\(I\) subscript.
-
-The two summands yield different expressions in terms of the NMQSD.
-For use with HOPS with the final goal of utilizing the auxiliary
-states the expression \(\ev{L^†∂_t B(t)}\) should be evaluated. When
-considering the complex conjugate of this expression, we find a
-formula involving the derivative of the driving stochastic
-process. This is undesirable as it does not exist for all bath
-correlation functions\footnote{Only for BCFs that are smooth at
+From this point on, we will assume the interaction picture and drop
+the \(I\) subscript. The two summands yield different expressions in
+terms of the NMQSD.  For use with HOPS with the final goal of
+utilizing the auxiliary states the expression \(\ev{L^†∂_t B(t)}\)
+should be evaluated. When considering the complex conjugate of this
+expression, we find a formula involving the derivative of the driving
+stochastic process. This is undesirable as it does not exist for all
+bath correlation functions\footnote{Only for BCFs that are smooth at
   \(τ=0\).} and expressions involving the process directly are alleged
 to converge slower. The last fact may be explained by the fact, that
 one needs quite a lot of sample paths of the process for the mean of
@@ -185,11 +183,14 @@ where \(z_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
 We find that next steps are the same as in \cref{sec:nonlin} by noting
 \begin{equation}
   \label{eq:deriv_trick}
-  \eval{∂_{z^\ast_\lambda}}_{z^\ast=z_\lambda^\ast(t)} =
+  \begin{aligned}
+  \eval{∂_{z^\ast_\lambda}}_{z^\ast=z_\lambda^\ast(t)} &=
   ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast_\lambda(t)}
-  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} =
+                                                         \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \\
+    &=
   ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast(0)}
   \fdv{}{η^\ast_s(z^\ast=z^\ast(t))},
+  \end{aligned}
 \end{equation}
 which does alter the definition of \(D_t\) but results in the same
 HOPS equations.
@@ -298,12 +299,15 @@ Remember that we want to calculate
   \label{eq:whatreallymatters}
   \begin{aligned}
     \ev{L^†\dot{B}(t)} &= \tr[L^†\dot{B}(t)\rho(t)] \\
-    &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
-  \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\tr[L^†\dot{B}(t)
-  U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†] .
+                       &=
+                         \begin{split}
+                           \prod_\lambda&\qty(∫\dd[2]{y_\lambda}
+                                          \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
+                                        &\tr[L^†\dot{B}(t)
+                                          U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†].
+                         \end{split}
   \end{aligned}
 \end{equation}
-
 To recover the zero temperature formulation of this expectation value we
 again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
 \(\dot{B}(t)\). This leads to the expression
@@ -311,12 +315,19 @@ again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
   \label{eq:pureagain}
   \begin{aligned}
     \ev{L^†\dot{B}(t)} &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
-    \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
-    &\qquad\times\tr[L^†(\dot{B}(t) + \dot{ξ}(t))
-    \vb{D}^†(y) U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}^†(y)U(t)^†\vb{D}(y)] \\
-    &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
-    \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\tr[L^†\qty{\dot{B}(t) + \dot{ξ}(t)}
-    \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†].
+                         \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
+                       &\qquad\times\tr[
+                         \begin{split}
+                           L^†(\dot{B}(t) + \dot{ξ}(t))
+                           \vb{D}^†(y) &U(t)\vb{D}(y)\ketbra{\psi}\\
+                                       &\otimes\ketbra{0}\vb{D}^†(y)U(t)^†\vb{D}(y)
+                         \end{split}
+                         ] \\
+                       &=\prod_\lambda
+                       \qty(∫\dd[2]{y_\lambda}
+                         \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
+                       &\qquad\times\tr[L^†\qty{\dot{B}(t) + \dot{ξ}(t)}
+                         \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†].
   \end{aligned}
 \end{equation}
 which returns us to the zero temperature formalism with a transformed
@@ -779,15 +790,5 @@ to the same. We demand periodic driving, that is \(H(t+τ) = H(t)\) for
 some \(τ\geq 0\).
 
 
-
-
-
-
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "../index.tex"
-%%% End:
 
 % LocalWords:  ergotropy
