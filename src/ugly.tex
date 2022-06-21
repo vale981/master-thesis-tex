@@ -1,3 +1,4 @@
+\chapter{Calculating Bath Obeservables with HOPS}
 \section{Linear NMQSD, Zero Temperature}
 As in~\cite{Hartmann2017Dec} we choose
 \begin{equation}
@@ -152,17 +153,14 @@ hierarchy and \(\bar{g}_\mu\) is an arbitrary scaling introduced in
 the definition of the hierarchy in~\cite{Hartmann2021Aug} to help with
 the scaling of the norm.
 
-With the new ``fock-space'' normalization however the expression
-becomes
+With the new ``fock-space'' normalization (see \cref{eq:dops_full})
+however the expression becomes
 \begin{equation}
   \label{eq:hopsflowfock}
   J(t) = - ∑_\mu\sqrt{G_\mu}W_\mu
   \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
     t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
 \end{equation}
-
-
-
 
 \section{Nonlinear NMQSD, Zero Temperature}
 \label{sec:nonlin}
@@ -300,12 +298,12 @@ Remember that we want to calculate
   \begin{aligned}
     \ev{L^†\dot{B}(t)} &= \tr[L^†\dot{B}(t)\rho(t)] \\
                        &=
-                         \begin{split}
+                         \begin{aligned}
                            \prod_\lambda&\qty(∫\dd[2]{y_\lambda}
                                           \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
                                         &\tr[L^†\dot{B}(t)
                                           U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†].
-                         \end{split}
+                         \end{aligned}
   \end{aligned}
 \end{equation}
 To recover the zero temperature formulation of this expectation value we
@@ -317,11 +315,11 @@ again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
     \ev{L^†\dot{B}(t)} &=\prod_\lambda\qty(∫\dd[2]{y_\lambda}
                          \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
                        &\qquad\times\tr[
-                         \begin{split}
+                         \begin{aligned}
                            L^†(\dot{B}(t) + \dot{ξ}(t))
                            \vb{D}^†(y) &U(t)\vb{D}(y)\ketbra{\psi}\\
                                        &\otimes\ketbra{0}\vb{D}^†(y)U(t)^†\vb{D}(y)
-                         \end{split}
+                         \end{aligned}
                          ] \\
                        &=\prod_\lambda
                        \qty(∫\dd[2]{y_\lambda}
