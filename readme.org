@@ -1,0 +1,15 @@
+* Valentin Boettcher's Masters Thesis
+This is the $\LaTeX$ source of my master's thesis.
+
+The main code of the project can be found [[https://github.com/vale981/master-thesis][in a separate repo]].
+Results and graphics will be synchronized from there.
+
+You can view the project on [[https://www.overleaf.com/read/vvrxtcdxtfdx][overleaf]].
+
+** Building
+Because of ~Microtype~ it is recommended that you use *LuaLaTeX*.  A
+basic ~TeXLive~ install along with the packages listed in ~flake.nix~
+should suffice to build the thesis.
+
+You can either invoke ~latexmv~ (the ~pdf~ will be in the ~output~
+folder) or ~nix build~ if you're on nix.
