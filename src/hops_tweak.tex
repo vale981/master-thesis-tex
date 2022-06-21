@@ -1,0 +1,364 @@
+\chapter{Some Notes on HOPS}
+\section{Normalized HOPS}%
+\label{sec:norm}
+
+We introduce full HOPS vector \(Ψ = \qty(ψ, φ)\) which can be
+decomposed into the zeroth hierarchy order state \(ψ\) and the
+non-zero order states \(φ\).
+
+The HOPS equations can then be written in an abstract manner as
+\begin{equation}
+  \label{eq:HOPS}
+  \begin{aligned}
+    \dot{ψ} &= F(ψ, φ), & \dot{φ} &= G(ψ, φ),
+  \end{aligned}
+\end{equation}
+where \(c\cdot F(ψ, φ) = F(c\cdot ψ, c\cdot φ)\) and
+\(c\cdot G(ψ, φ) = G(c\cdot ψ, c\cdot φ)\) for \(c\in\CC\)
+
+
+The goal is to transform \(ψ \rightarrow \tilde{ψ}\) so that
+\begin{equation}
+  \label{eq:goal}
+  \norm{\tilde{ψ}} = 1
+\end{equation}
+in a numerically stable manner.
+
+Introducing the definitions \(\tilde{ψ} = \eu^{f(t)}ψ\) and
+\(\tilde{φ} = \eu^{f(t)}φ\) with an
+arbitrary\(f\colon \RR \rightarrow \CC\) we can begin to calculate
+\begin{equation}
+  \label{eq:normdgl}
+  ∂_t\norm{\tilde{ψ}}^2 = \tilde{ψ}^† \qty(\dot{f}\tilde{ψ} +
+  F(\tilde{ψ}, \tilde{φ})) + \cc = \dot{f} \abs{\tilde{ψ}}^2 +
+  \tilde{ψ}^†F(\tilde{ψ}, \tilde{φ}) + \cc.
+\end{equation}
+
+We would now like to obtain \(∂_t\norm{\tilde{ψ}}^2 = 0\) as well as
+\(\dot{f} > 0\) for \(\norm{\tilde{ψ}} < 0\) and \(\dot{f} < 0\) for
+\(\norm{\tilde{ψ}} > 0\), so that \(\norm{\tilde{ψ}} = 1\) becomes a
+stable fix-point.
+
+Observing \cref{eq:normdgl}, we conclude that our goals can be
+achieved by demanding
+\begin{equation}
+  \label{eq:fdgl}
+  \dot{f} = \frac{\tilde{ψ}^†F(\tilde{ψ},
+    \tilde{φ})}{\norm{\tilde{ψ}}^2} + g\qty(\norm{ψ}^2).
+\end{equation}
+The first summand on its own would lead to \(∂_t\norm{\tilde{ψ}}^2 =
+0\) norm conservation. The latter of our goals may be achieved by
+choosing \(g(x) = \qty(1-x)\).
+
+These choices lead to an altered HOPS equation
+\begin{equation}
+  \label{eq:normedhops}
+  \dot{\tilde{Ψ}} = \qty[\frac{\tilde{ψ}^†F(\tilde{ψ},
+    \tilde{φ})}{\norm{\tilde{ψ}}^2}+\qty(1-\norm{\tilde{ψ}}^2)]\mqty(\tilde{ψ}\\
+  \tilde{φ}) + \mqty(F(\tilde{ψ},\tilde{φ}) \\ G(\tilde{ψ},\tilde{φ})).
+\end{equation}
+
+\section{Multiple Baths}
+\label{sec:multibath}
+
+We generalize the NMQSD and HOPS to \(N\) baths for Hamiltonians of
+the form
+\begin{equation}
+  \label{eq:multimodel}
+  H = H_\sys + ∑_{n=1}^N \qty[H_\bath\nth + \qty(L_n^†B_n + \hc)],
+\end{equation}
+where \(H_\sys\) is the (possibly time dependent) system Hamiltonian,
+\(H_B\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
+\(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
+arbitrary operators in the system Hilbert space. This models a
+situation where each bath couples with the system through exactly one
+spectral density and is therefore not fully general.
+
+\subsection{NMQSD}
+\label{sec:nmqsd}
+
+Following the usual derivation of the NMQSD \cite{Diosi1998Mar}, we
+switch to an interaction picture with respect to the \(H_\bath\)
+leading to
+\begin{equation}
+  \label{eq:multimodelint}
+  H(t) = H_\sys + ∑_{n=1}^N \qty[L_n^†B_n(t) + \hc],
+\end{equation}
+with \(B_n=∑_{λ}L_n^† g_λ\nth a_λ\nth\eu^{-\iu ω_λ\nth t}\).
+
+We will discuss the zero temperature case. The finite temperature
+methods generalize straight forwardly to multiple baths.  Projecting
+on a Bargmann (unnormalized) coherent state basis
+\(\qty{\ket{\vb{z}^{(1)},\vb{z}^{(2)},\ldots}=
+  \ket{\underline{\vb{z}}}}\) of the baths
+\begin{equation}
+  \label{eq:projected}
+  \ket{ψ(t)} = ∫∏_{n=1}^N{\qty(\frac{\dd{\vb{z}\nth}}{π^{N_n}}\eu^{-\abs{\vb{z}}^2})}\ket{ψ(t,\underline{\vb{z}}^\ast)}\ket{\underline{\vb{z}}},
+\end{equation}
+where \(N_n\) are the number of oscillators in each bath.
+
+
+We define
+\begin{equation}
+  \label{eq:processes}
+  η^\ast_n(t) = {\qty(\vb{η}^\ast_t)}_n= -\iu ∑_λg_λ^{(n),\ast} z_λ^{(n),\ast}\eu^{\iu ω_λ\nth t}
+\end{equation}
+and using
+\(\pdv{z_λ^{(n),\ast}}=∫\dd{s}\pdv{η^\ast_n(s)}{z_λ^{(n),\ast}}\fdv{η^\ast_n(s)}\)
+we arrive at
+\begin{equation}
+  \label{eq:multinmqsd}
+  ∂_tψ_t(\vb{η}^\ast_t) = -\iu H ψ_t(\vb{η}^\ast_t) +
+  \vb{L}\cdot\vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)},
+\end{equation}
+where \(α_n(t-s)= {\qty(\vb{α}(t-s))}_n=∑_λ\abs{g_λ\nth}^2\eu^{-\iu ω_λ\nth(t-s)}\) are the
+zero temperature bath correlation functions. The equation
+\cref{eq:multinmqsd} becomes the NMQSD by reinterpreting the
+\(\vb{z}\nth\) as normal distributed complex random variables by
+virtue of monte-carlo integration of \cref{eq:projected}. The
+\(η^\ast_n(t)\) become homogeneous gaussian stochastic processes
+defined through
+\begin{equation}
+  \label{eq:processescorr}
+  \begin{aligned}
+      \mathcal{M}(η^\ast_n(t)) &=0, & \mathcal{M}(η_n(t)η_m(s)) &= 0,
+      & \mathcal{M}(η_n(t)η_m(s)^\ast) &= δ_{nm}α_n(t-s).
+  \end{aligned}
+\end{equation}
+
+\subsection{Nonlinear NMQSD}
+\label{sec:nonlin}
+
+For the derivation of the lonlinear theory, the characteristic
+trajectories of the partial differential equation of motion of
+the Husimi-function
+\begin{equation}
+  \label{eq:husimi}
+  Q_t(\underline{\vb{z}}, \underline{\vb{z}}^\ast) =
+  \frac{\eu^{-\abs{{\underline{\vb{z}}}}^2}}{π^{∑_n N_n}}
+  \braket{ψ(t, {\underline{\vb{z}}})}{ψ(t, {\underline{\vb{z}}}^\ast)}
+\end{equation}
+have to be determined.
+
+Using \(∂_{\underline{\vb{z}}}\ket{ψ(t, {\underline{\vb{z}}}^\ast)} =
+0\) and \(∂_{\underline{\vb{z}}^\ast}\bra{ψ(t, {\underline{\vb{z}}})} =
+0\) because \(\ket{ψ(t, {\underline{\vb{z}}}^\ast)}\) is holomorphic
+we derive
+\begin{equation}
+  \label{eq:husimimotion}
+  ∂_tQ_t(\underline{\vb{z}}, \underline{\vb{z}}^\ast) = -i
+  ∑_{n=1}^N\qty[∂_{z_λ^{(n), \ast}}\eu^{-\iu ω_λ\nth
+    t}\ev{L^†_n}_tQ_t(\underline{\vb{z}}, \underline{\vb{z}}^\ast) - \cc],
+\end{equation}
+where \(\ev{L^†_n}_t = \mel{ψ(t, {\underline{\vb{z}}})}{L^†_n}{ψ(t,
+  {\underline{\vb{z}}}^\ast)} / \braket{ψ(t, {\underline{\vb{z}}})}{ψ(t, {\underline{\vb{z}}}^\ast)}\).
+
+The characteristics of \cref{eq:husimimotion} obey the equations of
+motion
+\begin{equation}
+  \label{eq:characteristics}
+  \dot{z}^{(n),\ast}_λ = \iu g_λ\nth \eu^{-\iu ω_λ\nth t} \ev{L^†_n}_t
+\end{equation}
+for the stochastic state labels.
+
+The microscopic dynamics can in-turn be gathered into a shift of the
+stochastic processes
+\begin{equation}
+  \label{eq:procshift}
+  \tilde{η}_n^\ast(t) = η_n^\ast(t) + ∫_0^t\dd{s}α_n^\ast(t-s)\ev{L^†_n}_s
+\end{equation}
+and we obtain the nonlinear NMQSD equation
+\begin{multline}
+  \label{eq:multinmqsdnonlin}
+  ∂_tψ_t(\tilde{\vb{η}}^\ast_t) = -\iu H ψ_t(\tilde{\vb{η}}^\ast_t) +
+  \vb{L}\cdot\tilde{\vb{η}}^\ast_tψ_t(\tilde{\vb{η}}^\ast_t) \\-
+  ∑_{n=1}^N
+  \qty(L_n^†-\ev{L^†_n}_t)∫_0^t\dd{s}α_n(t-s)\eval{\fdv{ψ_t(\tilde{\vb{η}}^\ast_t)}{η^\ast_n(s)}}_{\vb{η}^\ast(s)
+  = \vb{η}(\underline{\vb{z}}^\ast(t), s)}.
+\end{multline}
+
+The notation
+\({\vb{η}^\ast(s) = \vb{η}(\underline{\vb{z}}^\ast(t), s)}\) means
+that we replace the microscopic \(z_λ^{(n),\ast}\) in
+\cref{eq:processes} with the shifted ones obeying
+\cref{eq:characteristics} and evaluate the resulting function at \(s\).
+This awkward construction can be remedied by the convolutionless
+formulation. It plays no great role in the HOPS formalism.
+
+\subsection{Multi Bath HOPS in Fock-Space Formulation}
+\label{sec:multihops}
+
+Following the usual derivation~\cite{RichardDiss} (but with a
+different normalization) and using an exponential expansion of the
+BCFs \(α_n(τ)=∑_{\mu}^{M_n}=G_μ\nth\eu^{-W_μ\nth τ}\), we define
+\begin{equation}
+  \label{eq:dops}
+  D_μ\nth(t) \equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth (t-s)}\fdv{η^\ast_n(s)}
+\end{equation}
+and
+\begin{equation}
+  \label{eq:dops_full}
+  D^{\underline{\vb{k}}} \equiv
+  ∏_{n=1}^N∏_{μ=1}^{M_n}
+  {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
+  \frac{1}{i^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}},
+\end{equation}
+as well as
+\begin{equation}
+  \label{eq:hierdef}
+  ψ^{\underline{\vb{k}}} \equiv D^{\underline{\vb{k}}}ψ.
+\end{equation}
+
+Using
+\begin{equation}
+  \label{eq:commrelation}
+  [D^\kmat(t),η_n^\ast(t)] =  \iu∑_{μ=1}^{M_n}
+  \sqrt{\kmat_{n,μ}G\nth_μ} D^{\kmat -
+    \mat{e}_{n,μ}}
+\end{equation}
+where \({\qty(\mat{e}_{n,μ})}_{ij}=δ_{ni}δ_{μj}\) we find after some algebra
+\begin{multline}
+  \label{eq:multihops}
+  \dot{ψ}^\kmat = \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
+  ∑_{n=1}^N∑_{μ=1}^{M_n}\kmat_{n,μ}W\nth_μ]ψ^\kmat \\+
+  \iu ∑_{n=1}^N∑_{μ=1}^{M_n}\sqrt{G\nth_μ}\qty[\sqrt{\kmat_{n,μ}}  L_nψ^{\kmat -
+    \mat{e}_{n,μ}} + \sqrt{\qty(\kmat_{n,μ} + 1)}  L^†_nψ^{\kmat +
+    \mat{e}_{n,μ}} ].
+\end{multline}
+
+The HOPS equations \cref{eq:multihops} can also be rewritten in an
+especially appealing form \cite{Gao2021Sep} if we embed the hierarchy
+states into a larger Hilbert space using
+\begin{equation}
+  \label{eq:fockpsi}
+  \ket{Ψ} = \sum_\kmat\ket{\psi^\kmat}\otimes \ket{\kmat}
+\end{equation}
+where
+\(\ket{\kmat}=\bigotimes_{n=1}^N\bigotimes_{μ=1}^{N_n}\ket{\kmat_{n,μ}}\)
+are bosonic Fock-states.
+
+Now \cref{eq:multihops} becomes
+\begin{equation}
+  \label{eq:fockhops}
+  \begin{aligned}
+    ∂_t\ket{Ψ} &= \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
+                 ∑_{n=1}^N∑_{μ=1}^{M_n}b_{n,μ}^\dag b_{n,μ} W\nth_μ +
+                 \iu ∑_{n=1}^N∑_{μ=1}^{M_n} \sqrt{G_{n,μ}} \qty(b^†_{n,μ}L_n +
+                 b_{n,μ}L^†_n)] \ket{Ψ}\\
+               &= \tilde{H}\ket{Ψ}
+  \end{aligned}
+\end{equation}
+
+\section{Estimating the Norms of the Auxiliary States}
+\label{sec:normest}
+
+It is possible to find an (semi-rigorous) upper bound to the norms of
+the auxiliary states. We will limit ourselves to one bath. The
+generalization to multiple baths is straight forward.
+
+Using \cref{eq:fockhops}, we can calculate
+\begin{equation}
+  \label{eq:normdiff}
+  \begin{aligned}
+    \iu ∂_t \norm{ψ^{\vb{k}}}^2
+    &= \bra{Ψ}\ket{k}\bra{k}\tilde{H}\ket{Ψ} - \cc\\
+    &= \qty(ψ^{\vb{k}})^†\bra{k}
+      \qty[-\iu L η^\ast -\iu ∑_{μ=1}^{M}b_{μ}^\dag b_{μ} W_μ
+      +∑_{μ=1}^{M} \sqrt{G_{μ}} \qty(b^†_{μ}L +
+      b_μ L^†)]\ket{Ψ}- \cc\\
+    &= \Bigg[-\iu \qty(ψ^{\vb{k}})^†L η^\ast ψ^{\vb{k}}
+        -\iu ∑_{μ=1}^{M}k_μ W_μ \norm{ψ^{\vb{k}}}^2\\
+        &\phantom{=}\quad -∑_{μ=1}^{M}\qty[\qty(ψ^{\vb{k}})^†\sqrt{G_{μ}k_μ}Lψ^{\vb{k}-\vb{e}_μ} +
+        \qty(ψ^{\vb{k}})^†\sqrt{G_{μ}(k_μ+1)}Lψ^{\vb{k}+\vb{e}_μ} ]\Bigg]  - \cc.
+  \end{aligned}
+\end{equation}
+
+We can now further treat the this expression to find the steady state
+norms of the states.
+
+Assuming generically that the term containing the stochastic process
+\(η\) vanishes in the time average (as is the case for the steady
+state) we will drop it in the following.
+
+Terms of the form \(\Im(ψ^† O φ)\) may be estimated as follows
+\begin{equation}
+  \label{eq:genericest}
+  \abs{\Im(ψ^† O φ)} \leq \norm{ψ} \norm{O φ} \leq \norm{ψ}\norm{O}\norm{φ},
+\end{equation}
+where the norm on the operator is the standard linear operator norm
+\(\norm{O} = \max_{x\in \mathcal{H}}\frac{\ev{O}{x}}{\braket{x}}\).
+
+We now endeavor to find from \cref{eq:normdiff} an estimate of the
+steady state norm of \(ψ^{\vb{k}}\). To this end we assume that the
+coupling to higher hierarchy states generically lowers the norm and is
+therefore neglected. Using \cref{eq:genericest} we can estimate the
+influence of the coupling to lower states, choosing the sign
+so that the contribution to the norm is positive.
+
+With this we obtain
+\begin{equation}
+  \label{eq:finalest}
+  ∂_t \norm{ψ^{\vb{k}}}^2 = 0 = -∑_{μ=1}^{M}k_μ \Re[W_μ]
+  \norm{ψ^{\vb{k}}}^2 +
+  ∑_{μ=1}^{M}\abs{\sqrt{G_{μ}k_μ}}\norm{ψ^{\vb{k}}}\norm{ψ^{\vb{k}-\vb{e}_μ}}\norm{L}
+\end{equation}
+and therefore
+\begin{equation}
+  \label{eq:steadynorm}
+  \norm{ψ^{\vb{k}}} =
+  \frac{∑_{μ=1}^{M}\abs{\sqrt{G_{μ}k_μ}}\norm{ψ^{\vb{k}-\vb{e}_μ}}\norm{L}}{∑_{μ=1}^{M}k_μ \Re[W_μ]}.
+\end{equation}
+
+
+For the nonlinear method, the stochastic process obtains a shift whose
+magnitude can be estimated as follows
+\begin{equation}
+  \label{eq:shiftestimate}
+  \abs{η_{\mathrm{sh}}} \leq \norm{L} ∫_0^∞\dd{s}\abs{α^\ast(t-s)} \leq
+  \norm{L} \sum_{μ=1}^M \frac{\abs{G_μ}}{\Re[W_μ]}.
+\end{equation}
+
+Assuming the contribution of the shift is norm enhancing, we arrive at
+the expression
+\begin{equation}
+  \label{eq:steadynorm_nonlin}
+  \norm{ψ^{\vb{k}}} =
+  \frac{∑_{μ=1}^{M}\abs{\sqrt{G_{μ}k_μ}}\norm{ψ^{\vb{k}-\vb{e}_μ}}\norm{L}}{∑_{μ=1}^{M}k_μ
+    \Re[W_μ] - \norm{L}^2 \sum_{μ=1}^M \frac{\abs{G_μ}}{\Re[W_μ]}}.
+\end{equation}
+
+This indicates, that we trade hierarchy depth for sample count in the
+nonlinear method. Interestingly the divisor in
+\cref{eq:steadynorm_nonlin} may vanish, leading to a breakdown of the
+estimate. An interpretation would be, that for very strong coupling or
+long bath correlation times the interaction \fixme{reference} with the
+bath diverges and the method fails.  On the other hand, the estimate
+may simply be wrong and should account for the coupling to the lower
+orders as well.
+
+The relations \cref{eq:steadynorm,eq:steadynorm_nonlin} are recursive
+and break off at \(ψ^0\), the norm of which can be assumed to be \(1\)
+in the nonlinear method.
+
+These ideas remain to be verified. Especially the assumptions should
+be checked. For time dependent coupling, one may maximize the estimate
+over all \(L(t)\).
+
+\subsection{Truncation Scheme}
+\label{sec:truncsch}
+The norm of the \(\vb{k}\)th hierarchy state scales like
+\({1} / {\sqrt{\max_μk_μ}}\). This fact in itself, however, is not
+too meaningful as the magnitude of the coupling to the lower hierarchy
+states is
+\begin{equation}
+  \label{eq:couplingmag}
+  M_{\vb{k}} = \norm{L} \norm{ψ^{\vb{k}}} \max_μ \abs{\sqrt{G_μk_μ}},
+\end{equation}
+which balances out the scaling.
+
+Calculating \(M_{\vb{k}}\) explicitly and demanding it to be small
+(compared to some energy scale) nevertheless gives a convergent
+truncation scheme below a certain coupling strength.
+
+Some basic experimentation has shown, that the cutoff parameter has to
+be tuned and is not universally valid.
