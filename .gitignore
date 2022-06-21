@@ -303,3 +303,5 @@ TSWLatexianTemp*
 .direnv/
 /index.pdf
 /result
+/output/
+/ltximg/
