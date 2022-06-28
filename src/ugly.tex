@@ -1,5 +1,6 @@
 \chapter{Calculating Bath Obeservables with HOPS}
 \section{Linear NMQSD, Zero Temperature}
+\label{sec:flow_lin}
 As in~\cite{Hartmann2017Dec} we choose
 \begin{equation}
   \label{eq:totalH}
@@ -86,8 +87,10 @@ We calculate
   ∫ \braket{\psi(t)}{z}\mel{z}{L^†∂_tB(t)}{\psi(t)}\frac{\dd[2]{z}}{\pi^N},
 \end{equation}
 where \(N\) is the total number of environment oscillators and
-\(z=\qty(z_{\lambda_1}, z_{\lambda_2}, \ldots)\).
-To that end,
+\(z=\qty(z_{\lambda_1}, z_{\lambda_2}, \ldots)\).  Using
+\(\mel{z}{a_λ}{ψ}= ∂_{z^\ast_λ}\braket{z}{ψ}=
+∂_{z^\ast_λ}\ket{ψ(z^\ast,t)}\) and
+\(\mel{z}{a_λ^\dag}{ψ}= z_λ^\ast\braket{z}{ψ}\) we find,
 \begin{equation}
   \label{eq:nmqsdficate}
   \begin{aligned}
@@ -97,12 +100,14 @@ To that end,
   &= ∫_0^t ∑_\lambda g_\lambda
   \qty(∂_t \eu^{-\iω_\lambda
     t})\pdv{η_s^\ast}{z^\ast_\lambda}\fdv{\ket{\psi(z^\ast,t)}}{η^\ast_s}\dd{s}\\
-  &= -\i∫_0^t\dot{\alpha}(t-s)\fdv{\ket{\psi(z^\ast,t)}}{η^\ast_s}\dd{s},
+  &= -\i∫_0^t\dot{\alpha}(t-s)\fdv{\ket{\psi(η^\ast,t)}}{η^\ast_s}\dd{s},
   \end{aligned}
 \end{equation}
-where \(η^\ast_t\equiv -\i ∑_\lambda g^\ast_\lambda
-z^\ast_\lambda \eu^{\iω_\lambda t}\).
-With this we can write
+where
+\(η^\ast_t\equiv -\i ∑_\lambda g^\ast_\lambda z^\ast_\lambda
+\eu^{\iω_\lambda t}\) which led to the chain rule
+\(∂_{z^\ast_λ}=∫\dd{s}\pdv{η_s^\ast}{z^\ast_λ}\fdv{}{η_s^\ast}\). With
+this we obtain
 \begin{equation}
   \label{eq:steptoproc}
   \ev{L^†∂_t B(t)} = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
@@ -113,7 +118,7 @@ Defining
   \label{eq:defdop}
 D_t = ∫_0^t\dd{s} \alpha(t-s)\fdv{η^\ast_s}
 \end{equation}
-as in~\cite{Suess2014Oct} we can write
+as in~\cite{Suess2014Oct} we find
 \begin{equation}
   \label{eq:final_flow_nmqsd}
   J(t) = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
@@ -163,7 +168,7 @@ however the expression becomes
 \end{equation}
 
 \section{Nonlinear NMQSD, Zero Temperature}
-\label{sec:nonlin}
+\label{sec:nonlin_flow}
 In the spirit of the usual derivation of the nonlinear NMQSD we write
 \begin{equation}
   \label{eq:newb}
@@ -240,6 +245,7 @@ becomes
 \end{equation}
 
 \section{Linear Theory, Finite Temperature}
+\label{sec:lin_finite}
 The finite temperature case needs some additional considerations as
 the previous sections dealt explicitly with mean values in a pure
 state. The Ehrenfest theorem still holds in mixed states, but we would
@@ -370,21 +376,102 @@ and therefore
 This is an expression that we can easily evaluate with the HOPS
 method.
 
-\section{Interaction Energy}
+\section{General Collective Bath Observables}
+\label{sec:general_obs}
+The results obtained in \cref{sec:flow_lin,sec:nonlin_flow,sec:lin_finite}
+can be generalized to calculate expectation values (and thus moments)
+of arbitrary observables of the form
+\begin{equation}
+  \label{eq:collective_obs}
+  O = f(B^†, B) = ∑_{α}F_α\qty(B^†)^{α_1}B^{α_2}
+\end{equation}
+where \(α\) is a multi-index, \(B\) is as in~\cref{eq:totalH} and the
+\(F_α\) are general observables acting on the system only. Note that
+\(f\) is already normal-ordered. We will restrict the discussion to
+the case of a single bath, as the generalization to multiple baths is
+straight-forward.
+
+To evaluate \(\ev{O}\) we have to find the value of
+\(\ev{\qty(B^†)^a B^b}\). This can be achieved by interjecting the
+overcomplete coherent state basis as in \cref{eq:interactev} which
+leads us to expressions in the form of
+\(\mel{ψ}{\qty(B^†)^a}{z}\mel{z}{B^b}{ψ}\).
+
+For zero temperature, we find following the procedures of
+\cref{sec:flow_lin},
+\begin{align}
+    \label{eq:bmel}\mel{z}{B^b}{ψ} &= (-\iu D_t)^b\ket{ψ(η^\ast,t)}
+                      = (-\iu)^b
+                      ∑_{\abs{\vb{k}}=b}\binom{b}{\vb{k}} \iu^{\vb{k}}
+                      \sqrt{\frac{G^{\vb{k}}}{\vb{k}!}}ψ^{\vb{k}}\\
+    \label{eq:bdagmel}\mel{ψ}{\qty(B^†)^a}{z} &=
+                              \begin{aligned}[t]
+                                \qty(\mel{z}{B^a}{ψ})^†&= \qty((-\iu D_t)^b\ket{ψ(η^\ast,t)})^\dag\\
+                                                   &= (\iu)^a∑_{\abs{\vb{k}}=a}\binom{a}{\vb{k}} (-\iu)^{\vb{k}}
+                                                     \sqrt{\frac{\qty(G^{\vb{k}})^\ast}{\vb{k}!}}\qty(ψ^{\vb{k}})^\dag
+                              \end{aligned}
+\end{align}
+in ``fock-space'' normalization where \(\vb{k}! = k_1!k_2!\ldots\) and
+\(G^{\vb{k}}=G_1^{k_1}G_2^{k_2}\ldots\) following the usual
+conventions of multi-indices. Thus, expressions involving the bath
+operator \(B\) to the \(b\)th power lead to expressions involving the
+hierarchy states of depth \(b\). The truncation of the hierarchy
+corresponds to neglecting the expectation value of all powers of \(B\)
+greater than the cutoff depth.
+
+Returning to \cref{eq:collective_obs}, we find
+\begin{equation}
+  \label{eq:f_ex_zero}
+  \begin{aligned}
+  \ev{O} &= \mathcal{M}_{η^\ast}∑_{α} ∑_{\substack{\abs{γ}=α_1\\\abs{δ}=α_2}}
+           \binom{α_1}{γ}\binom{α_2}{δ}(\iu)^{δ+α_1}(-\iu)^{γ+α_2}
+           \sqrt{\frac{\qty(G^γ)^\ast G^δ}{γ!δ!}} \qty(ψ^γ)^\dag F_α ψ^δ.
+  \end{aligned}
+\end{equation}
+
+For finite temperatures we substitute \(B(t)\to B(t)+ξ(t)\)
+(interaction picture) as in
+\cref{sec:lin_finite} to obtain
+\begin{equation}
+  \label{eq:finite_arb}
+  \mel{z}{\qty(B(t)+ξ(t))^b}{ψ} = ∑_{m=0}^b \binom{b}{m} ξ^{b-m}(t)(-\iu D_t)^m\ket{ψ(η^\ast,t)}
+\end{equation}
+which may be substituted into the above.
+
+The nonlinear method can be accommodated as in
+\cref{sec:nonlin_flow}. For the expressions like~\cref{eq:f_ex_zero}
+involving the HOPS hierarchy states this reduces to dividing by the
+norm of the zeroth hierarchy state.
+
+The generalization to multiple baths may be performed in the same
+manner as will be discussed in \cref{sec:multibath}. This allows to
+calculate the expectation value involving multiple bath operators
+\(B^{(n)}\).
+
+By anti-normal ordering the \(B, B^\dag\) in~\cref{eq:collective_obs}
+and inserting the coherent state resolution of unity we find terms of
+the form
+\begin{equation}
+  \label{eq:with_process}
+  \mel{z}{\qty(B^\dag)^b}{ψ} \sim \qty(η^\ast(t))^b\ket{ψ(η^\ast,t)}.
+\end{equation}
+The corresponding version of~\cref{eq:f_ex_zero} would only depend on
+the zeroth order state and the stochastic processes. It has been
+observed that expressions involving the stochastic process directly
+tend to converge slower. However this statement comes without
+empirical proof and its verification may be left to future
+study. Also, this alternative method could be used convergence and
+consistency check, as expressions of the form~\cref{eq:with_process}
+only involve the HOPS cutoff and the exponential expansion of the BCF
+in an indirect manner.
+
+\subsection{Interaction Energy}
 \label{sec:intener}
+A simple application of the formalism discussed
+in~\cref{sec:general_obs} is the expectation value of the interaction
+Hamiltonian.
 
-By replacing the \(B(t)\) operators in \(H_\inter\) with derivatives as in
-the above considerations we obtain an expression for the expectation
-value of the interaction energy.
-
-We have to find an expression for \(\ev{L^†B(t)}\)
-or its complex conjugate which would lead to an expression involving
-the driving stochastic process which is undesirable as discussed above.
-This is easily done by following the arguments in the previous
-chapters but omitting the time derivative.
-
-For the most general case at zero temperature and for the nonlinear
-method we arrive at
+For zero temperature and the nonlinear method we arrive at
 \begin{equation}
   \label{eq:intexp}
   \ev{H_\inter} =
@@ -392,8 +479,7 @@ method we arrive at
   \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\tilde{D}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
   + \cc.
 \end{equation}
-See \cref{eq:newbcontin} for an explanation of the constituents of
-that equation. The expression for the linear method is obtained by
+The expression for the linear method is obtained by
 simply leaving out the normalization.
 
 For nonzero temperature an extra term
@@ -405,29 +491,151 @@ For nonzero temperature an extra term
 has to be added to \cref{eq:intexp}, where \(ξ\) is the thermal
 stochastic process.
 
+\subsection{Higher Orders of the Coupling Hamiltonian}
+\label{sec:higher_order_coupling}
+
+For self adjoint coupling operators \(L=L^\dag\) we can use Wick's
+theorem to find a normally ordered expression for \(H_\inter^n=L^n(B^\dag +
+B)^n\).
+
+The relevant contraction of \((B^\dag + B)(B^\dag + B)\) is
+\begin{equation}
+  \label{eq:contraction_b}
+  (B^\dag + B)(B^\dag + B) - \mathopen{:} (B^\dag + B)(B^\dag + B)\mathclose{:} = α(0)
+\end{equation}
+with the (zero temperature) bath correlation function \(α\). In this
+way, the interaction operator behaves like a generalized boson.
+
+We find
+\begin{equation}
+  \label{eq:interactionnormal}
+  \qty(H_\inter)^n = L^n ∑_{l=0}^{\lfloor {\frac{n}{2}} \rfloor}
+  \frac{n!}{l!}{\qty(\frac{α(0)}{2})}^l
+  ∑_{k=0}^{n-2l}\frac{1}{k!(n-2l-k)!}\qty(B^\dag)^k B^{n-2l-k},
+\end{equation}
+which can be further evaluated using \cref{eq:f_ex_zero}.
+
+Notably,
+the \(n\)th moment of \(H_\inter\) will depend on the hierarchy states
+up to the depth \(n\). However, the terms involving similar exponents
+for \(B^\dag\) and \(B\) will have the largest weights, so that the
+hierarchy states of depth \(n/2\) play an important role. Truncating
+the hierarchy will not simply lead to all higher orders moments of the
+interaction being zero. Instead, the dependence upon the hierarchy
+states is nontrivial. The explicit appearance of \(α(0)\) can be
+avoided if we choose \(B\) unitless and \(α(0) = 1\).
+
+Minimizing the coefficient \(l! 2^l k! (n-2l-k)!\) will give us the
+order of \(B\) and thus the hierarchy depth that will contribute the
+most to \cref{{eq:interactionnormal}}.  It suffices to minimize the
+logarithm,
+\begin{equation}
+  \label{eq:logcoeff}
+  Λ=\ln(2)l + \ln(Γ(l+1)) + \ln(Γ(k+1)) + \ln(Γ(n-2l -k + 1)).
+\end{equation}
+
+We begin by minimizing for \(k\)
+\begin{equation}
+  \label{eq:mink}
+  \pdv{Λ}{k} = ψ(k+1)-ψ(n-2l-k+1) \overset{!}{=}0,
+\end{equation}
+where \(ψ\) is the Digamma function~\cite[p. 136]{Nisthb}.
+As the Digamma function is strictly monotonic and thus injective,
+\cref{eq:mink} implies \(k+1=n-2l-k+1\) and thus
+\(l=n/2-k\). Note that the optimizing \(k\) is also the order of the
+\(B\) operator associated with the coefficient.
+
+Using this it remains to minimize
+\begin{equation}
+  \label{eq:logcoeff_k}
+  Λ'=\ln(2)\qty(\frac{n}{2}-k) + \ln(Γ\qty(\frac{n}{2}-k+1)) + 2\ln(Γ(k+1)).
+\end{equation}
+yielding
+\begin{equation}
+  \label{eq:minkk}
+  \begin{aligned}
+    \pdv{Λ'}{k} &= 2ψ(k+1) -\ln(2) - ψ\qty(\qty(\frac{n}{2}-k+1))\\
+                &\sim 2 \ln(k+1) - \ln(2) -\ln(\frac{n}{2}-k+1)\\
+                &\overset{!}{=}0
+  \end{aligned}
+\end{equation}
+and finally
+\begin{equation}
+  \label{eq:finalk}
+  k_m=\left\lceil\sqrt{5+n}-2\right\rceil\sim\sqrt{n},
+\end{equation}
+where the ceiling has been chosen to obtain an integer. The error this
+introduces is of the order of one.  We find that the ``most
+important'' order of \(B\) required to calculate \(H_\inter^n\) scales
+with \(\sqrt{n}\).  Note however, that the distribution of weights as
+shown in~\cref{fig:kdist} will become broader with larger \(n\) and
+that a specific \(k\) can occur multiple times, which will slightly
+shift the maximum. A binomial (or Gaussian) distribution centered at
+\(k_m\) as shown in \cref{fig:kdist} appears to be a good fit for the
+relevant parameter space. Such a distribution has a standard deviation
+of \(n^{{1}/{4}}\) for large \(n\). The position tail of the \(k\)
+distribution thus scales like \(n^{1/2} + n^{1/4}\).
+
+\begin{figure}[h]
+  \centering
+  \plot{interaction_orders/k_weights}
+  \caption{\label{fig:kdist}The normalized distribution of the coefficients in
+    \cref{eq:interactionnormal} with respect to \(k\) for different
+    \(n\). As a particular \(k\) can appear multiple times in the sum,
+    only the maximal coefficient for each \(k\) is being considered in
+    the lines with the triangle markers. The maximum of this
+    distribution is given by \cref{eq:finalk}. The lines with the
+    circle markers show the full distribution. The dotted lines
+    correspond to binomial distributions centered at \(k_m\).}
+\end{figure}
 
 \section{Multiple Baths}
 \label{sec:multibath}
+The results above can be generalized in straight-forward manner to
+models of the form
+\begin{equation}
+  \label{eq:multimodel}
+  H = H_\sys + ∑_{n=1}^N \qty[H_\bath\nth + \qty(L_n^†B_n + \hc)],
+\end{equation}
+where \(N\) is the number of baths, \(H_\sys\) is the (possibly time
+dependent) system Hamiltonian,
+\(H_\bath\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
+\(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
+arbitrary operators in the system Hilbert space (again possibly time
+dependent). This models a situation where each bath couples with the
+system through exactly one spectral density and is therefore not fully
+general.
 
-For the models we consider in \fixme{citation,reference}, we have
-\([H_\bath^{(i)}, H_\bath^{(j)}] = 0\), where \(i,j\) are the bath
-indices. Therefore, we can apply the formalism of the previous
-sections almost unchanged, by just taking care that all quantities
-involved in the expression of \(J_n=-\dv{\ev{H_B^{(n)}}}{t}\) refer to
-the \(n\)th bath.
+We refer to \cref{sec:hops_multibath} for an review of the NMQSD
+theory and HOPS method for multiple baths.
 
-This essentially boils down to the replacement
+Because the bath energy change is being calculated directly and not
+through energy conservation as in~\cite{Kato2016Dec}, we find
+\begin{equation}
+  \label{eq:general_n_flow}
+  J_n=-\dv{\ev{H_\bath^{(n)}}}{t} = \iu\ev{[H_\bath^{(n)},
+  H_\inter^{(n)}]}
+\end{equation}
+regardless of the (non-) commutativity\footnote{For example, the
+  three-level model used in \cite{Uzdin2015Sep,Klatzow2019Mar} has
+  non-commuting couplings.} of the interaction
+Hamiltonians. Therefore, we can apply the formalism of the previous
+sections almost unchanged, by taking care that all quantities involved
+in the expression of \(J_n\) refer to the \(n\)th bath denoted by sub
+and superscripts.
+
+This can be achieved by making the replacements
 \begin{equation}
   \label{eq:replacements}
   \begin{aligned}
-    D_t &\rightarrow D_t^{(n)} \equiv
+    D_t \rightarrow D_t^{(n)} &\equiv
     ∫_0^t\dd{s}α_n(t-s)\fdv{η^\ast_n(s)} \\
-    ξ(t) &\rightarrow ξ_n(t)\equiv∑_{\lambda} g^{(n)}_{\lambda}
-    y_{\lambda} \eu^{-\mathrm{i} ω^{(n)}_{\lambda} t},
+    ξ(t) \rightarrow ξ_n(t)&\equiv∑_{\lambda} g^{(n)}_{\lambda}
+    y_{\lambda} \eu^{-\mathrm{i} ω^{(n)}_{\lambda} t}
   \end{aligned}
 \end{equation}
-where the quantities involved are as in \fixme{reference} and
-\cref{eq:xiproc}.
+in the previous sections, where the quantities involved are as in
+\cref{sec:hops_multibath} and \cref{eq:xiproc}.
 
 \section{Pure Dephasing: The initial Slip}
 \label{sec:pure_deph}
@@ -696,10 +904,10 @@ in \cref{eq:ergo_entro} we obtain
   \label{eq:thermo_ergo_bound}
   \begin{aligned}
   \ergo{ρ\otimes τ_β} &= \frac{1}{β}
-  \qty[\qrelent{ρ\otimes τ_β}{ρ_β\otimes τ_β} - \qrelent{(ρ_β\otimes
+  \qty[\qrelent{ρ\otimes τ_β}{ρ_β\otimes τ_β} - \qrelent{(ρ\otimes
                         τ_β)_P}{ρ_β\otimes τ_β}]\\
     &=\frac{1}{β}
-  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ_β\otimes τ_β)_P}{ρ_β\otimes
+  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes
       τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β}.
   \end{aligned}
 \end{equation}
@@ -728,23 +936,25 @@ above discussion the ergotropy becomes the change of bath energy
   \label{eq:ergo_bath_change}
   \begin{aligned}
     \ergo{ρ} &= \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag)
-               (α\id\otimes H_\bath)] =
-               \max_{U\,\text{unitary}}\tr_\bath[\qty(\tr_\sys[ρ-UρU^\dag])
-               H_B]\\
-             &\equiv\max_{U\,\text{unitary}}ΔE_B\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
+               (α\id\otimes H_\bath)] \\
+             &=\max_{U\,\text{unitary}}\tr_\bath[\qty(\tr_\sys[ρ-UρU^\dag])
+               H_\bath]\\
+             &\equiv\max_{U\,\text{unitary}}ΔE_\bath\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
   \end{aligned}
 \end{equation}
 where \(N\) is the system dimension.
 
-
-Requiring a periodically modulated Hamiltonian with \(H(t+τ) = H(t)\)
-for \(τ>0\) we denote by \(U_{m,n}\) the propagator from \(mτ\) to
-\(nτ\) with \(m<n\). Assuming the system's reduced state
+Let us assume a periodically modulated Hamiltonian with
+\(H(t+τ) = H(t)\) and that the system's reduced state
 \(ρ_\sys=\tr_\bath[ρ]\) reaches a limit cycle so that
-\(ρ_\sys(t+τ)=ρ_\sys(t)\) for all \(t > n_0τ\), we
-
-
-
+\(ρ_\sys(t+τ)=ρ_\sys(t)\) for all \(t > n_0τ\). If we further demand
+time translation symmetry for the bath energy expectation difference
+\(ΔE_{\bath,cyc}=E_\bath((n_0+n+1)τ)-E_\bath((n_0+n)τ)\) we can
+conclude that \(ΔE_{B,cyc}\geq 0\) because otherwise we could surpass
+the bound \cref{eq:ergo_bath_change} in finite time. Demanding
+(asymptotic) time translation symmetry is motivated by the finite
+correlation time of an infinite bath\footnote{See also the time
+  oscillator picture in~\cite{RichardDiss}.}.
 
 
 \subsection{Explicit Ergotropy Caluclation for a Bath of Identical
