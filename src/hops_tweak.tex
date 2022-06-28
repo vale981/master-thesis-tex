@@ -59,20 +59,11 @@ These choices lead to an altered HOPS equation
 \end{equation}
 
 \section{Multiple Baths}
-\label{sec:multibath}
+\label{sec:hops_multibath}
 
 We generalize the NMQSD and HOPS to \(N\) baths for Hamiltonians of
-the form
-\begin{equation}
-  \label{eq:multimodel}
-  H = H_\sys + ∑_{n=1}^N \qty[H_\bath\nth + \qty(L_n^†B_n + \hc)],
-\end{equation}
-where \(H_\sys\) is the (possibly time dependent) system Hamiltonian,
-\(H_B\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
-\(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
-arbitrary operators in the system Hilbert space. This models a
-situation where each bath couples with the system through exactly one
-spectral density and is therefore not fully general.
+the form~\cref{eq:multimodel}.
+
 
 \subsection{NMQSD}
 \label{sec:nmqsd}
@@ -241,10 +232,15 @@ Now \cref{eq:multihops} becomes
 \begin{equation}
   \label{eq:fockhops}
   \begin{aligned}
-    ∂_t\ket{Ψ} &= \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
-                 ∑_{n=1}^N∑_{μ=1}^{M_n}b_{n,μ}^\dag b_{n,μ} W\nth_μ +
+    ∂_t\ket{Ψ} &= \qty[
+                 \begin{aligned}
+                 -\iu H_\sys + \vb{L}\cdot\vb{η}^\ast &-
+                               ∑_{n=1}^N∑_{μ=1}^{M_n}b_{n,μ}^\dag b_{n,μ} W\nth_μ \\
+                   &\qquad+
                  \iu ∑_{n=1}^N∑_{μ=1}^{M_n} \sqrt{G_{n,μ}} \qty(b^†_{n,μ}L_n +
-                 b_{n,μ}L^†_n)] \ket{Ψ}\\
+                 b_{n,μ}L^†_n)
+                 \end{aligned}
+                 ] \ket{Ψ}\\
                &= \tilde{H}\ket{Ψ}
   \end{aligned}
 \end{equation}
