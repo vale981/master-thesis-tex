@@ -18,6 +18,12 @@
       };
     in rec {
       packages = {
+        watch = pkgs.writeShellScriptBin "watch-latex" ''
+                 ${tex}/bin/latexmk
+                 while ${pkgs.inotify-tools}/bin/inotifywait --include ".*\.(sty|tex)" -e modify -r .; do
+                   ${tex}/bin/latexmk
+                 done
+              '';
         document = pkgs.stdenvNoCC.mkDerivation rec {
           name = "masters-thesis";
           src = self;
@@ -33,10 +39,16 @@
           '';
           installPhase = ''
             mkdir -p $out
-            cp index.pdf $out/
+            cp output/index.pdf $out/
           '';
         };
       };
       defaultPackage = packages.document;
+      devShell = pkgs.mkShellNoCC {
+        buildInputs = [packages.watch] ++ packages.document.buildInputs;
+        shellHook = ''
+          export OSFONTDIR=${pkgs.gyre-fonts}/share/fonts:${pkgs.liberation_ttf}/share/fonts
+        '';
+      };
     });
 }
