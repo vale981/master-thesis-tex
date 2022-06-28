@@ -9,8 +9,7 @@
 \usepackage[backend=biber, language=english, style=phys]{biblatex}
 \usepackage{siunitx}
 \usepackage{caption}
-\usepackage[list=true, font=small,
-labelformat=brace, position=top]{subcaption}
+\usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{ifdraft}
@@ -52,8 +51,6 @@ linkcolor=blue,
 %% Including plots
 \newcommand{\plot}[1]{%
   \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
-\newcommand{\rivethist}[2][,]{%
-  \includegraphics[draft=false,width=\textwidth,#1]{./figs/rivet/#2.pdf}}
 
 %% Including Results
 \newcommand{\result}[1]{\input{./results/#1}\!}
@@ -62,7 +59,7 @@ linkcolor=blue,
 \sisetup{separate-uncertainty = true}
 
 %% Captions
-\captionsetup{justification=centering}
+\captionsetup{font=footnotesize}
 
 %% Labels
 % \labelformat{chapter}{chapter~#1}
