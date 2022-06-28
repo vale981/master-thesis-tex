@@ -1,0 +1,60 @@
+\documentclass[fontsize=12pt,paper=a4,
+captions=nooneline,captions=tableabove,english,final,parskip=none,titlepage=false]{scrartcl}
+\usepackage[%
+  paper=a4paper,
+  top=30mm,
+  bottom=25mm,
+  left=25mm,
+  right=25mm,
+]{geometry}
+\pdfvariable suppressoptionalinfo 512\relax
+\usepackage{hirostyle}
+\usepackage{hiromacros}
+\setmainfont{Liberation Sans}
+\usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
+\addbibresource{references.bib}
+\renewcommand*{\titlepagestyle}{empty}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+  \Large
+  Calculating Energy Flows in Strongly Coupled Open Quantum Systems with
+  HOPS
+  \vspace{16pt}
+  % Author names and affiliations
+  \small \underline{Valentin Boettcher}$^1$, Richard Hartmann$^1$,
+  Konstantin Beyer$^1$, Walter Strunz$^1$
+  \\
+  $^1$ Institute for Theoretical Physics, Dresden, Germany\\
+  E-mail: \texttt{valentin.boettcher@tu-dresden.de}\\
+  \vspace{8pt}
+\end{center}
+\normalsize
+The hierarchy of pure states
+(HOPS~\cite{Hartmann2017Dec,Diosi1998Mar}) is a general purpose
+stochastic numerical framework for the exact simulation of
+non-Markovian strongly coupled open systems. Without modification of
+the core method, it is possible to calculate the interaction energy
+and the bath energy change. This is due to HOPS' foundation on the
+global dynamics of the system and the bath in contrast to
+master-equation methods. We extended the result in~\cite{Kato2016Dec}
+for the Hierarchical Equations Of Motion method to arbitrary
+modulations of system and coupling inheriting all the advantages of
+the HOPS method.
+
+We present the basic theory and its application to simple driven
+spin-boson like systems, as well as a comparison with an exact
+solution for a quantum Brownian motion like model.
+\begin{figure}[H]
+  \centering
+  \subcaptionbox{Comparison of the bath energy change \(J_i=-∂_t\ev{H_{B,i}}\)
+    for two harmonic oscillators coupled to two
+    baths and each other.}{\input{./figs/poster_abstract/flow_comp.pgf}}
+  \subcaptionbox{Total energy and interaction energy for a qubit
+    coupled to a bath with long correlation time under fast
+    modulation.}
+  {\input{./figs/poster_abstract/energy_shovel_preview.pgf}}
+\end{figure}
+\printbibliography{}
+\end{document}
