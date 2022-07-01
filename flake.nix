@@ -14,7 +14,8 @@
           inherit (pkgs.texlive) scheme-medium latexmk koma-script babel-english
           physics mathtools amsmath fontspec booktabs siunitx caption biblatex float
           pgfplots microtype fancyvrb csquotes setspace newunicodechar hyperref
-          cleveref multirow bbold unicode-math biblatex-phys xpatch;
+          cleveref multirow bbold unicode-math biblatex-phys xpatch beamerposter
+          type1cm changepage;
       };
     in rec {
       packages = {
@@ -47,7 +48,7 @@
       devShell = pkgs.mkShellNoCC {
         buildInputs = [packages.watch] ++ packages.document.buildInputs;
         shellHook = ''
-          export OSFONTDIR=${pkgs.gyre-fonts}/share/fonts:${pkgs.liberation_ttf}/share/fonts
+          export OSFONTDIR=${pkgs.gyre-fonts}/share/fonts:${pkgs.liberation_ttf}/share/fonts:${pkgs.lato}/share/fonts/lato:${pkgs.raleway}/share/fonts
         '';
       };
     });

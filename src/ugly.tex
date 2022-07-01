@@ -446,7 +446,14 @@ norm of the zeroth hierarchy state.
 The generalization to multiple baths may be performed in the same
 manner as will be discussed in \cref{sec:multibath}. This allows to
 calculate the expectation value involving multiple bath operators
-\(B^{(n)}\).
+\(B^{(n)}\). Interestingly, the generalization of \cref{eq:bmel} to
+multiple baths immediately links hierarchy states of the form
+\(ψ^{\underline{e}_{i,k_i} + \underline{e}_{j,k_j}}\) (see
+\cref{sec:multihops} for notation) with correlations between the baths
+\(\ev{B_i(t)B_j(t)}\). Under the assumption that these correlations
+remain small, one could argue to neglect them when performing
+numerical calculations. Verifying this behavior would be an
+interesting task for future work.
 
 By anti-normal ordering the \(B, B^\dag\) in~\cref{eq:collective_obs}
 and inserting the coherent state resolution of unity we find terms of
