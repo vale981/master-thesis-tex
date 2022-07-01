@@ -574,12 +574,23 @@ shift the maximum. A binomial (or Gaussian) distribution centered at
 \(k_m\) as shown in \cref{fig:kdist} appears to be a good fit for the
 relevant parameter space. Such a distribution has a standard deviation
 of \(n^{{1}/{4}}\) for large \(n\). The position tail of the \(k\)
-distribution thus scales like \(n^{1/2} + n^{1/4}\).
+distribution thus scales like \(n^{1/2} + n^{1/4}\). The coupling
+strength does only enter as a scale that controls which moment of
+\(H_I\) is still relevant, albeit such a discussion should rather be
+made for centered and normalized moments as they are
+dimensionless. Without an a-priori estimate of \(\ev{H_I}\) and the
+norm of the hierarchy states the above discussion has to be taken with
+a grain of salt. Such estimates may possibly be obtained from the
+estimates of the hierarchy state norms in \cref{sec:normest} and
+contain not only the coupling strength, but also the shape of the BCF.
+
+The result to take away is, that the expectation value of \(H_I^n\)
+depends strongly on hierarchy states of order \(\sim \sqrt{n}\).
 
 \begin{figure}[h]
   \centering
   \plot{interaction_orders/k_weights}
-  \caption{\label{fig:kdist}The normalized distribution of the coefficients in
+  \caption{\label{fig:kdist}The unnormalized distribution of the coefficients in
     \cref{eq:interactionnormal} with respect to \(k\) for different
     \(n\). As a particular \(k\) can appear multiple times in the sum,
     only the maximal coefficient for each \(k\) is being considered in
@@ -819,6 +830,9 @@ have to lead to a reduction in efficiency\fixme{do more research on
   that.refer to simulations}, if a diagonal state is restored \footnote{Shortcuts to
   adiabaticity, see for example~\cite{Chen2010Feb}.}.
 
+\subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
+\label{sec:ergoonebath}
+
 Let us consider models with the Hamiltonians
 \begin{equation}
   \label{eq:simple_bath_models}
@@ -835,7 +849,6 @@ where \(τ_β=\eu^{-β H_\bath}/Z\) and \(ρ_\sys\) is arbitrary.
 An interesting question is whether the ergotropy of such a state is
 finite. This amounts to the formulation of the second law: ``No energy
 may be extracted from a single bath in a cyclical manner''.
-
 For systems obeying GKSL dynamics connected to a KMS state heat bath,
 thermodynamic laws can be derived in certain situations\footnote{very
   slow or very fast modulation of the system
@@ -865,19 +878,19 @@ ourselves to finite dimensional problems for now.  As unitary
 transformations leave the entropy invariant
 (\(\tr[ρ\ln(ρ)] = \tr[ρ_P\ln(ρ_P)]\)), we have for an arbitrary
 \(β > 0\) and \(ρ_β=\exp(-βH)/Z\)
-\begin{equation}
-  \label{eq:ergo_entro}
-  \begin{aligned}
-    \ergo{ρ} &= E(ρ) - E(ρ_P) = \tr[(ρ-ρ_P) H] = -\frac{1}{β}\tr[(ρ-ρ_P)
-               \qty(\ln(ρ_β) + \ln(Z))] \\
+\begin{align}
+    \ergo{ρ} &= E(ρ) - E(ρ_P) = \tr[(ρ-ρ_P) H]\nonumber\\
+             &= -\frac{1}{β}\tr[(ρ-ρ_P)
+               \qty(\ln(ρ_β) + \ln(Z))] \nonumber\\
              &= -\frac{1}{β}\tr[(ρ-ρ_P) \ln(ρ_β)] =
-               -\frac{1}{β}\tr[(ρ-ρ_P) \qty(\ln(ρ_β))]\\
+               -\frac{1}{β}\tr[(ρ-ρ_P) \qty(\ln(ρ_β))]\nonumber\\
              &=\frac{1}{β}\qty[\tr[ρ(\ln(ρ) - \ln(ρ_β))] -
-               \tr[ρ_P(\ln(ρ_p) - \ln(ρ_β))]]\\
-             &\equiv\frac{1}{β}\qty[\qrelent{ρ}{ρ_β} - \qrelent{ρ_P}{ρ_β}],
-  \end{aligned}
-\end{equation}
-where we have used \(\tr[ρ]=\tr[ρ_P]=1\). The relative entropies
+               \tr[ρ_P(\ln(ρ_p) - \ln(ρ_β))]]\nonumber\\
+             &\equiv\frac{1}{β}\qty[\qrelent{ρ}{ρ_β} - \qrelent{ρ_P}{ρ_β}]\label{eq:ergo_entro},
+\end{align}
+where we have used \(\tr[ρ]=\tr[ρ_P]=1\).
+
+The relative entropies
 appearing in \cref{eq:ergo_entro} are always finite, as \(ρ\) is
 finite-dimensional and \(ρ_β\) has full rank.  As energy is minimized
 by a Gibbs state when keeping the entropy fixed, we find an upper
@@ -942,19 +955,11 @@ above discussion the ergotropy becomes the change of bath energy
              &\equiv\max_{U\,\text{unitary}}ΔE_\bath\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
   \end{aligned}
 \end{equation}
-where \(N\) is the system dimension.
-
-Let us assume a periodically modulated Hamiltonian with
-\(H(t+τ) = H(t)\) and that the system's reduced state
-\(ρ_\sys=\tr_\bath[ρ]\) reaches a limit cycle so that
-\(ρ_\sys(t+τ)=ρ_\sys(t)\) for all \(t > n_0τ\). If we further demand
-time translation symmetry for the bath energy expectation difference
-\(ΔE_{\bath,cyc}=E_\bath((n_0+n+1)τ)-E_\bath((n_0+n)τ)\) we can
-conclude that \(ΔE_{B,cyc}\geq 0\) because otherwise we could surpass
-the bound \cref{eq:ergo_bath_change} in finite time. Demanding
-(asymptotic) time translation symmetry is motivated by the finite
-correlation time of an infinite bath\footnote{See also the time
-  oscillator picture in~\cite{RichardDiss}.}.
+where \(N\) is the system dimension. No finite amount of energy may
+therefore be extracted from the bath in a periodic manner. If it were
+possible to extract a constant positive amount of energy from the bath
+per cycle, \cref{eq:ergo_bath_change} would be breached in finite
+time.
 
 
 \subsection{Explicit Ergotropy Caluclation for a Bath of Identical
@@ -979,7 +984,7 @@ For a pure state \cref{eq:thermo_ergo_bound_specific} is maximal. We
 therefore choose \(ρ=\ketbra{0}\).
 
 
-\subsection{Multiple Baths}
+\subsection{A bound on the Energy Change of Multiple Baths}
 As in the single bath case, some statement about the amount of energy
 that can be expected to be extracted in a cyclic manner. An argument
 based on entropy may be made for the periodic steady state as was
@@ -994,9 +999,102 @@ coupled to multiple baths under periodic driving
 \end{equation}
 Here, \(H_\sys(t)\) is the system Hamiltonian, \(H_\bath^i\) is the
 Hamiltonian of the \(i\)-th bath and \(H_\inter^i(t)\) is the coupling
-to the same. We demand periodic driving, that is \(H(t+τ) = H(t)\) for
-some \(τ\geq 0\).
+to the same. Again, the bath must be treated as finite during the
+derivation.
 
+The von Neumann entropy \(S(t)=-\tr[ρ\ln ρ]\) of the global state whose
+evolution is generated by \cref{eq:katoineqsys} is
+constant. Additionally \(S\) is sub-additive meaning
+\begin{equation}
+  \label{eq:subadd}
+  S(t) \leq -\tr[ρ_\sys(t)\ln ρ_\sys(t)] - ∑_i\tr[ρ_{\bath^i}(t)\ln
+  ρ_{\bath^i}(t)] \equiv S_\sys(t) + ∑_iS_{\bath^i}(t),
+\end{equation}
+where \(ρ_{\sys}(t)=\tr_{\bigotimes_i{\bath^i}}[ρ(t)]\) and
+\(ρ_{\bath^i}=\tr_{\sys\bigotimes_{j\neq i}{\bath^j}}[ρ(t)]\) are the
+marginal states of system and the \(i\)th bath respectively. Note that
+the marginal entropies \(S_{\sys},\,S_{\bath}\) are generally
+\emph{not} constant in time.
 
+This implies for \(ΔS_\sys(t)\equiv S_\sys(t) - S_\sys(0)\) and
+\(ΔS_{\bath^i}(t)\equiv S_{\bath^i}(t) - S_{\bath^i}(0)\)
+\begin{equation}
+  \label{eq:deltagreat}
+  ΔS_\sys(t) + ∑_i ΔS_{\bath^i}(t) \geq 0.
+\end{equation}
+
+The von Neumann entropy of a single bath can be expressed as
+\begin{equation}
+  \label{eq:bathentro}
+  \begin{aligned}
+  S_{\bath^i}(t) &=-\tr[ρ_{\bath^i}(t)\ln ρ_{\bath^i}^β] -
+                   \qty(\tr[ρ_{\bath^i}\ln ρ_{\bath^i}(t)] -
+                   \tr[ρ_{\bath^i}(t)\ln ρ_{\bath^i}^β])\\
+                 &= β E_{\bath^i}(t) - βF_{\bath^i} - \qrelent{ρ_{\bath^i}(t)}{ρ_{\bath^i}^β},
+  \end{aligned}
+\end{equation}
+where
+\(E_{\bath^i}(t)=\tr[ρ_{\bath^i}(t)H_{\bath^i}]=\tr[ρ(t)(H_{\bath^i}\otimes
+\id)]\), \(ρ_{\bath^i}^β=\exp(-β H_{\bath^i})/Z\) and
+\(F_{\bath^i}=-\ln(Z_{\bath^i})/β\) is the equilibrium free energy of
+the bath at (as yet undetermined) inverse temperature \(β\).
+The result \cref{eq:bathentro} implies
+\begin{equation}
+  \label{eq:bathenergychange}
+  ΔS_{\bath^i}(t) = β_i ΔE_{\bath^i}(t) -
+  \qrelent{ρ_{\bath^i}(t)}{ρ_{\bath^i}^{β_i}} \leq β_i ΔE_{\bath^i}(t).
+\end{equation}
+Note that \(β_i\) is now being fixed through
+\(\qrelent{ρ_{\bath^i}(0)}{ρ_{\bath^i}^{β_i}}\Leftrightarrow
+{ρ_{\bath^i}(0)}={ρ_{\bath^i}^{β_i}}\).
+
+Combining \cref{eq:bathenergychange,{eq:deltagreat}} yields
+\begin{equation}
+  \label{eq:bathenergyandsystementro}
+  ΔS_\sys(t) + ∑_iβ_i ΔE_{\bath^i}(t) \geq 0.
+\end{equation}
+This inequality only contains quantities that can be expected to be
+finite, even in the limit of infinite baths.
+
+As in \cref{sec:ergoonebath} we now demand periodic driving, that is
+\(H(t+τ) = H(t)\) for some \(τ\geq 0\). \emph{Assume} that the system
+enters a periodic steady state after the time \(n_0τ\) for some
+\(n_0\in\NN\) so that \(ρ_\sys((n + n_0)τ)= ρ_\sys(n_0τ)\) for all
+\(n\in\NN\). This assumption is linked to the notion of a ``finite
+memory'' of the baths. In the same spirit, we \emph{assume} that the
+energy change of each bath
+\(ΔE_{\bath^i}^\cyc =ΔE_{\bath^i}((n+1)τ)-ΔE_{\bath^i}(nτ) =
+E_{\bath^i}((n+1)τ)-E_{\bath^i}(nτ)\) is constant once the system is
+in the periodic steady state.
+
+As the system entropy does not change over a cycle
+\(ΔS_\sys^\cyc  ΔS_\sys(τ (n+n_0)) - ΔS_\sys(τ n_0)=S_\sys(τ (n+n_0)) - S_\sys(τ
+n_0)=0\) vanishes we have
+\begin{equation}
+  \label{eq:secondlaw_cyclic}
+  ∑_iβ_i ΔE_{\bath^i}^\cyc \geq 0,
+\end{equation}
+as otherwise the inequality \cref{eq:bathenergyandsystementro} would
+be violated in finite time.
+
+If one defines heat as the energy change of the baths as is done
+in~\cite{Kato2016Dec} and substantiated, based on a microscopic
+definition of entropy, in~\cite{Strasberg2021Aug}\footnote{In this
+  work, a full dynamical theory is being derived.},
+\cref{eq:secondlaw_cyclic} amounts to the Clausius form of the second
+law. This definition of heat is corroborated in~\cite{Esposito2015Dec}
+where is shown\footnote{for fermionic baths} that a definition of heat
+involving any nonzero fraction of the interaction energy will lead to
+the internal energy (as defined by the first law) not being an exact
+differential.
+
+In contrast to~\cite{Strasberg2021Aug}, no interpretation in terms of
+thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
+to be useful.
+Assume that the interaction Hamiltonian in \cref{eq:katoineqsys}
+vanishes periodically. In the periodic steady state the system energy
+does not change during a cycle, so the whole energy change amounts to
+the change in bath energy. In a setting with two baths
+\cref{eq:secondlaw_cyclic} implies the Carnot bound.
 
 % LocalWords:  ergotropy
