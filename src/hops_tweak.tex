@@ -180,7 +180,7 @@ formulation. It plays no great role in the HOPS formalism.
 \label{sec:multihops}
 
 Following the usual derivation~\cite{RichardDiss} (but with a
-different normalization) and using an exponential expansion of the
+different unitless normalization) and using an exponential expansion of the
 BCFs \(α_n(τ)=∑_{\mu}^{M_n}=G_μ\nth\eu^{-W_μ\nth τ}\), we define
 \begin{equation}
   \label{eq:dops}
@@ -313,32 +313,42 @@ magnitude can be estimated as follows
   \abs{η_{\mathrm{sh}}} \leq \norm{L} ∫_0^∞\dd{s}\abs{α^\ast(t-s)} \leq
   \norm{L} \sum_{μ=1}^M \frac{\abs{G_μ}}{\Re[W_μ]}.
 \end{equation}
+It is unclear how this shift should be treated. Simply adding it to
+the denominator of~\cref{eq:steadynorm} lead to a breakdown of the
+bound for numerical testing.  A better estimate should account for
+this and also for the coupling to the lower orders foregoing the
+recursive nature of the estimate.
 
-Assuming the contribution of the shift is norm enhancing, we arrive at
-the expression
-\begin{equation}
-  \label{eq:steadynorm_nonlin}
-  \norm{ψ^{\vb{k}}} =
-  \frac{∑_{μ=1}^{M}\abs{\sqrt{G_{μ}k_μ}}\norm{ψ^{\vb{k}-\vb{e}_μ}}\norm{L}}{∑_{μ=1}^{M}k_μ
-    \Re[W_μ] - \norm{L}^2 \sum_{μ=1}^M \frac{\abs{G_μ}}{\Re[W_μ]}}.
-\end{equation}
-
-This indicates, that we trade hierarchy depth for sample count in the
-nonlinear method. Interestingly the divisor in
-\cref{eq:steadynorm_nonlin} may vanish, leading to a breakdown of the
-estimate. An interpretation would be, that for very strong coupling or
-long bath correlation times the interaction \fixme{reference} with the
-bath diverges and the method fails.  On the other hand, the estimate
-may simply be wrong and should account for the coupling to the lower
-orders as well.
-
-The relations \cref{eq:steadynorm,eq:steadynorm_nonlin} are recursive
+The relation \cref{eq:steadynorm} is recursive
 and break off at \(ψ^0\), the norm of which can be assumed to be \(1\)
 in the nonlinear method.
 
 These ideas remain to be verified. Especially the assumptions should
 be checked. For time dependent coupling, one may maximize the estimate
 over all \(L(t)\).
+
+As an illustration the validity of the bound for one specific model
+see \cref{fig:normest_ω,fig:normest_δ}.
+\begin{figure}[t]
+  \centering
+  \plot{norm_est/norm_estimate_omega}
+  \caption{\label{fig:normest_ω} The maximum norm (for each time
+    point) of the first hierarchy states for \(500\) trajectories
+    subtracted from norm estimate and normalized by the norm estimate
+    for a qubit coupled to single zero temperature ohmic baths with
+    varying \(ω_c\). The titles include the range of the norm
+    estimates. For higher cutoff frequencies the BCF vanishes faster
+    and the norm of the hierarchy states decreases. The opacity of the
+    lines is proportional to their corresponding \(\abs{G_μ}\). The
+    bound is tightest for the hierarchy states with the largest
+    coupling. \fixme{reference model description}}
+\end{figure}
+\begin{figure}[p]
+  \centering
+  \plot{norm_est/norm_estimate_delta}
+  \caption{\label{fig:normest_δ} The same as \cref{fig:normest_ω}, but
+    for varying coupling strengths.}
+\end{figure}
 
 \subsection{Truncation Scheme}
 \label{sec:truncsch}
@@ -355,6 +365,5 @@ which balances out the scaling.
 Calculating \(M_{\vb{k}}\) explicitly and demanding it to be small
 (compared to some energy scale) nevertheless gives a convergent
 truncation scheme below a certain coupling strength.
-
 Some basic experimentation has shown, that the cutoff parameter has to
 be tuned and is not universally valid.
