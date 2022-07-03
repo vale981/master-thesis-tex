@@ -11,12 +11,9 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{../hiromacros}
-\usepackage{fontspec}
-\usepackage{unicode-math}
-\setmathfont{texgyrepagella-math.otf}
 
 \usepackage{lmodern}
-\usepackage[size=A0,orientation=portrait,scale=1.0]{beamerposter}
+\usepackage[size=A1,orientation=portrait,scale=1.0]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{mit}
 \usepackage{graphicx}
@@ -24,8 +21,19 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
+\usepackage{physics}
+\usepackage{cleveref}
+
 
 \graphicspath{{figs/}}
+
+% Bibliographic Stuff
+\usepackage[backend=biber, language=english, style=phys]{biblatex}
+\addbibresource{references.bib}
+
+\DeclareDocumentCommand\vectorbold{ s m
+}{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}} % Vector bold [star for
+% Greek and italic Roman]
 
 % ====================
 % Lengths
@@ -45,7 +53,7 @@
 % ====================
 
 \title{Calculating Energy Flows in Strongly Coupled Open Quantum
-  Systems}
+  Systems with HOPS}
 
 \author{\underline{Valentin Boettcher}\inst{1}, Richard Hartmann\inst{1},
   Konstantin Beyer\inst{1}, Walter Strunz\inst{1}}
@@ -80,158 +88,155 @@
 \separatorcolumn
 
 \begin{column}{\colwidth}
-  \begin{block}{A block title}
+  \begin{block}{Premise}
+    \begin{itemize}
+    \item Application of thermodynamic notions to strongly coupled and
+      non-Markovian quantum systems is non-trivial
+      (\cite{Rivas2019Oct,Kato2016Dec,Strasberg2021Aug,Talkner2020Oct} and many
+      more)
+    \item Dynamics of bath and interaction hamiltonians plays an
+      important role \(\rightarrow\) must not be neglected in the
+      strong coupling regime
+    \item The ``Hierarchy of Pure States''
+      (HOPS~\cite{Hartmann2017Dec,Diosi1998Mar}) gives us the ability
+      to simulate non-Markovian and strongly coupled open quantum
+      systems exactly in a scalable way.
+    \item Because HOPS simulates global dynamics \(\rightarrow\) gives
+      access to certain bath dynamics \emph{with no additional effort}
+    \end{itemize}
+  \end{block}
+  \begin{block}{NMQSD/HOPS}
+    Consider the model of a general quantum system (\(H_\sys(t)\))
+    coupled to \(N\) baths
+    \begin{equation}
+      \label{eq:generalmodel}
+      H(t) = H_\sys(t) + ∑_{n=1}^N \qty[L_n^†(t)B_n + \hc] + ∑_{n=1}^NH_B\nth ,
+    \end{equation}
+    with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
+    \(H_B\nth=∑_λω_λ\nth \qty(b_λ\nth)^\dag b_λ\nth\).  Projecting
+    onto coherent bath states
+    \begin{equation}
+      \label{eq:projected}
+      \ket{ψ(t)} = ∫∏_{n=1}^N{\qty(\frac{\dd{\vb{z}\nth}}{π^{N_n}}\eu^{-\abs{\vb{z}}^2})}\ket{ψ(t,\underline{\vb{z}}^\ast)}\ket{\underline{\vb{z}}}
+    \end{equation}
+    leads to \emph{stochastic} Non-Markovian
+    Quantum State Diffusion (NMQSD)
+    \begin{equation}
+      \label{eq:nmqsd}
+      ∂_tψ_t(\vb{η}^\ast_t) = -\iu H(t) ψ_t(\vb{η}^\ast_t) +
+      \vb{L}\cdot \vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L(t)_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)},
+    \end{equation}
+    where the
+    \(α_n(τ) = \ev{B_n(t) B_n(0)} = ∑_λ\abs{g_λ}^2 \eu^{-\iu ω_λ t}\)
+    {\tiny (interaction picture)} are the bath correlation functions
+    and the \(η_n=(\vb{η})_n\) are complex valued Gaussian processes
+    with \(\mathcal{M}(η_n(t))=\mathcal{M}(η_n(t)η_n(s))=0\) and
+    \(\mathcal{M}(η_n(t)η_n^\ast(s))=α_n(t-s)\). The reduced state of
+    the system is recovered through
+    \(ρ=\mathcal{M}(ψ_t(\vb{η}^\ast_t)ψ_t^\dag(\vb{η}^\ast_t))\).
 
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
+    With \(α_n(τ)=∑_{\mu}^{M_n}=G_μ\nth\eu^{-W_μ\nth τ}\) we define
+    \begin{align}
+      \label{eq:dop}
+      D_μ\nth(t) &\equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth
+                   (t-s)}\fdv{η^\ast_n(s)} &
+      D^{\underline{\vb{k}}} &\equiv
+      ∏_{n=1}^N∏_{μ=1}^{M_n}
+      {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
+                               \frac{1}{\iu^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\\
+        ψ^{\underline{\vb{k}}} &\equiv D^{\underline{\vb{k}}}ψ \equiv \braket{\kmat}{Ψ}.
+    \end{align}
+    For the Fock-space embedded hierarchy state \(\ket{Ψ}\) we find
+    \begin{equation}
+      \label{eq:fockhops}
+      \begin{aligned}
+        ∂_t\ket{Ψ} &= \qty[
+                     \begin{aligned}
+                       -\iu H_\sys + \vb{L}\cdot\vb{η}^\ast &-
+                                                              ∑_{n=1}^N∑_{μ=1}^{M_n}b_{n,μ}^\dag b_{n,μ} W\nth_μ \\
+                                                            &\qquad+
+                                                              \iu ∑_{n=1}^N∑_{μ=1}^{M_n} \sqrt{G_{n,μ}} \qty(b^†_{n,μ}L_n +
+                                                              b_{n,μ}L^†_n)
+                     \end{aligned}
+                     ] \ket{Ψ}.
+      \end{aligned}
+    \end{equation}
+    Truncating the hierarchy depth \(\kmat\) in \cref{eq:fockhops}
+    yields the numeric method.
 
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}[scale=6]
-        \draw[step=0.25cm,color=gray] (-1,-1) grid (1,1);
-        \draw (1,0) -- (0.2,0.2) -- (0,1) -- (-0.2,0.2) -- (-1,0)
-          -- (-0.2,-0.2) -- (0,-1) -- (0.2,-0.2) -- cycle;
-      \end{tikzpicture}
-      \caption{A figure caption.}
-    \end{figure}
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
-
+    Finite temperature can be dealt with through substituting
+    \(B(t)\rightarrow B(t)+ξ(t)\) with
+    \begin{equation}
+      \label{eq:thermproc}
+      \begin{aligned}
+        \mathcal{M}(ξ(t))&=0=\mathcal{M}(ξ(t) ξ(s)) \\
+        \mathcal{M}\left(ξ(t) ξ^{*}(s)\right)&=\frac{1}{\pi} ∫_{0}^{∞}
+                                               \dd{ω} \bar{n}(\beta ω) J(ω) e^{-{\iu} ω(t-s)} \\
+        J(ω)&=π\sum_λ\abs{g_λ}^2δ(w-ω_λ).
+      \end{aligned}
+    \end{equation}
+    See~\cite{Hartmann2017Dec} for details about finite temperatures
+    and the nonlinear method.
   \end{block}
 
-  \begin{block}{A block containing a list}
+  \begin{alertblock}{Bath Observables}
+    From \cref{eq:nmqsd,eq:dop} we find the correspondence \(B(t)
+    \leftrightarrow D_t \leftrightarrow ψ^\kmat\) \(\implies\) can
+    calulate observables of type \(O_\sys\otimes (B^a)^\dag B^b\) and
+    time derivatives thereof. This grants the hierarchy states a
+    utility beyond the mere simulation of reduced dynamics.
 
-    Nam vulputate nunc felis, non condimentum lacus porta ultrices. Nullam sed
-    sagittis metus. Etiam consectetur gravida urna quis suscipit.
+    \begin{description}
+    \item[Bath Energy Flow] We consider the zero temperature and
+      one-bath case.
+      \begin{equation}
+        \label{eq:heatflowdef}
+        \begin{aligned}
+          J &= - \dv{\ev{H_\bath}}{t}  = \ev{L(t)^†∂_t B(t) + L(t)∂_t
+              B^†(t)}_\inter \\
+            &=-\i \mathcal{M}_{η^\ast}\bra{\psi(η,
+              t)}L(t)^†\dot{D}_t\ket{\psi(η^\ast,t)} + \cc\\
+            &= - ∑_\mu\sqrt{G_\mu}W_\mu
+              \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,t)}L(t)^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc
+        \end{aligned}
+      \end{equation}
+      Thus, the expectation value of the bath energy flow is connected
+      to the first hierarchy level states in a transparent and easy to
+      calculate manner.
+    \item[Interaction Energy]
+      A similar expression may be found for the expectation value of
+      the interaction energy
+      \begin{equation}
+        \label{eq:intexp}
+        \begin{aligned}
+          \ev{H_\inter} &=-\i \mathcal{M}_{η^\ast}\bra{\psi(η,
+          t)}L(t)^†D_t\ket{\psi(η^\ast,t)} + \cc \\
+                        &=  ∑_\mu\sqrt{G_\mu}
+                          \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,t)}L(t)^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
+        \end{aligned}
+      \end{equation}
+    \end{description}
 
-    \begin{itemize}
-      \item \textbf{Mauris tempor} risus nulla, sed ornare
-      \item \textbf{Libero tincidunt} a duis congue vitae
-      \item \textbf{Dui ac pretium} morbi justo neque, ullamcorper
-    \end{itemize}
-
-    Eget augue porta, bibendum venenatis tortor.
-
-  \end{block}
-
-  \begin{alertblock}{A highlighted block}
-
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
-
-    Curabitur eu libero vehicula, cursus est fringilla, luctus est. Morbi
-    consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
-    Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
-    tristique odio convallis ultrices a ac odio.
-
-    \begin{itemize}
-      \item \textbf{Fusce dapibus tellus} vel tellus semper finibus. In
-        consequat, nibh sed mattis luctus, augue diam fermentum lectus.
-      \item \textbf{In euismod erat metus} non ex. Vestibulum luctus augue in
-        mi condimentum, at sollicitudin lorem viverra.
-      \item \textbf{Suspendisse vulputate} mauris vel placerat consectetur.
-        Mauris semper, purus ac hendrerit molestie, elit mi dignissim odio, in
-        suscipit felis sapien vel ex.
-    \end{itemize}
-
-    Aenean tincidunt risus eros, at gravida lorem sagittis vel. Vestibulum ante
-    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
-
+    This result allows us to calculate the energy flow in arbitrarily
+    driven systems.
   \end{alertblock}
-
+  \begin{block}{Possible Applications}
+    \begin{itemize}
+    \item Simulation of Thermal Quantum Machines
+    \item Convergence Criteria: Energy Conservation, Calculating the
+      same observable in multiple ways
+    \item Quantification of Entanglement of System and Bath (Fisher
+      Information of \(H_\inter\))
+    \item \ldots
+    \end{itemize}
+  \end{block}
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
-
-  \begin{block}{A block containing an enumerated list}
-
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
-    \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
-    \end{enumerate}
-
-  \end{block}
-
-  \begin{block}{Fusce aliquam magna velit}
-
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
-
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            scale only axis,
-            no markers,
-            domain=0:2*pi,
-            samples=100,
-            axis lines=center,
-            axis line style={-},
-            ticks=none]
-          \addplot[red] {sin(deg(x))};
-          \addplot[blue] {cos(deg(x))};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Another figure caption.}
-    \end{figure}
-
-  \end{block}
-
-  \begin{block}{Nam cursus consequat egestas}
-
-    Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
-    lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
-    ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
-    euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
-    ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
-    hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
-    sit amet sollicitudin risus tincidunt non.
-
-    Etiam sit amet tempus lorem, aliquet condimentum velit. Donec et nibh
-    consequat, sagittis ex eget, dictum orci. Etiam quis semper ante. Ut eu
-    mauris purus. Proin nec consectetur ligula. Mauris pretium molestie
-    ullamcorper. Integer nisi neque, aliquet et odio non, sagittis porta justo.
-
-    \begin{itemize}
-      \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
-        sed est scelerisque, elementum mollis augue iaculis.
-        \begin{itemize}
-          \item In sed est finibus, vulputate
-            nunc gravida, pulvinar lorem. In maximus nunc dolor, sed auctor eros
-            porttitor quis.
-          \item Fusce ornare dignissim nisi. Nam sit amet risus vel lacus
-            tempor tincidunt eu a arcu.
-          \item Donec rhoncus vestibulum erat, quis aliquam leo
-            gravida egestas.
-        \end{itemize}
-      \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
-        faucibus purus, sed lobortis justo erat id turpis.
-      \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
-        Maecenas congue finibus justo, vitae eleifend urna facilisis at.
-    \end{itemize}
-
+  \begin{block}{Resources}
+    \printbibliography
   \end{block}
 \end{column}
 
