@@ -21,7 +21,7 @@
       packages = {
         watch = pkgs.writeShellScriptBin "watch-latex" ''
                  ${tex}/bin/latexmk
-                 while ${pkgs.inotify-tools}/bin/inotifywait --include ".*\.(sty|tex)" -e modify -r .; do
+                 while ${pkgs.inotify-tools}/bin/inotifywait --include ".*\.(sty|tex|pgf)" -e modify -r .; do
                    ${tex}/bin/latexmk
                  done
               '';
