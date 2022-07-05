@@ -489,6 +489,14 @@ For zero temperature and the nonlinear method we arrive at
 The expression for the linear method is obtained by
 simply leaving out the normalization.
 
+In HOPS terms \cref{eq:intexp} corresponds to
+\begin{equation}
+  \label{eq:interhops}
+  \ev{H_\inter} =  ∑_\mu\sqrt{G_\mu}
+  \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
+    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
+\end{equation}
+
 For nonzero temperature an extra term
 \begin{equation}
   \label{eq:interexptherm}
@@ -654,6 +662,26 @@ This can be achieved by making the replacements
 \end{equation}
 in the previous sections, where the quantities involved are as in
 \cref{sec:hops_multibath} and \cref{eq:xiproc}.
+
+\section{Time Dependent Hamiltonian}
+\label{sec:timedep}
+The above discussion is based on the model \cref{eq:totalH} which did
+not include explicit time modulations of \(H_\sys\) or \(L\). As we
+did not calculate any explicit time derivatives of those two
+operators, the results of the previous sections remain valid when we
+substitute
+\begin{align}
+  \label{eq:timedepsusbs}
+  H_\sys&\rightarrow H_\sys(t) & L\rightarrow L(t).
+\end{align}
+
+For the total power we find
+\begin{equation}
+  \label{eq:power}
+  \dv{\ev{H}}{t} = \ev{\pdv{H_I}{t}},
+\end{equation}
+which can be evaluated as in \cref{sec:intener} by replacing \(L(t)\)
+with \(\dot{L}(t)\).
 
 \section{Pure Dephasing: The initial Slip}
 \label{sec:pure_deph}
