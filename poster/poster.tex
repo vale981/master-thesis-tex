@@ -1,7 +1,4 @@
-% Gemini theme
-% https://github.com/anishathalye/gemini
-
-\documentclass[final]{beamer}
+\documentclass[draft]{beamer}
 
 \pdfvariable suppressoptionalinfo 512\relax
 
@@ -13,7 +10,7 @@
 \usepackage{../hiromacros}
 
 \usepackage{lmodern}
-\usepackage[size=A1,orientation=portrait,scale=1.0]{beamerposter}
+\usepackage[size=A0,orientation=portrait,scale=1.0]{beamerposter}
 \usetheme{gemini}
 \usecolortheme{mit}
 \usepackage{graphicx}
@@ -23,8 +20,7 @@
 \pgfplotsset{compat=1.14}
 \usepackage{physics}
 \usepackage{cleveref}
-
-
+\usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
 \graphicspath{{figs/}}
 
 % Bibliographic Stuff
@@ -34,6 +30,10 @@
 \DeclareDocumentCommand\vectorbold{ s m
 }{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}} % Vector bold [star for
 % Greek and italic Roman]
+
+\makeatletter
+\newcommand\thefontsize[1]{{#1 The current font size is: \f@size pt\par}}
+\makeatother
 
 % ====================
 % Lengths
@@ -106,47 +106,28 @@
     \end{itemize}
   \end{block}
   \begin{block}{NMQSD/HOPS}
-    Consider the model of a general quantum system (\(H_\sys(t)\))
+    \begin{itemize}
+    \item Consider the model of a general quantum system (\(H_\sys(t)\))
     coupled to \(N\) baths
     \begin{equation}
       \label{eq:generalmodel}
       H(t) = H_\sys(t) + ∑_{n=1}^N \qty[L_n^†(t)B_n + \hc] + ∑_{n=1}^NH_B\nth ,
     \end{equation}
     with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
-    \(H_B\nth=∑_λω_λ\nth \qty(b_λ\nth)^\dag b_λ\nth\).  Projecting
-    onto coherent bath states
-    \begin{equation}
-      \label{eq:projected}
-      \ket{ψ(t)} = ∫∏_{n=1}^N{\qty(\frac{\dd{\vb{z}\nth}}{π^{N_n}}\eu^{-\abs{\vb{z}}^2})}\ket{ψ(t,\underline{\vb{z}}^\ast)}\ket{\underline{\vb{z}}}
-    \end{equation}
-    leads to \emph{stochastic} Non-Markovian
+    \(H_B\nth=∑_λω_λ\nth \qty(b_λ\nth)^\dag b_λ\nth\)
+
+    \item Leads to \emph{stochastic} Non-Markovian
     Quantum State Diffusion (NMQSD)
     \begin{equation}
       \label{eq:nmqsd}
       ∂_tψ_t(\vb{η}^\ast_t) = -\iu H(t) ψ_t(\vb{η}^\ast_t) +
-      \vb{L}\cdot \vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L(t)_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)},
+      \vb{L}\cdot \vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L(t)_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)}
     \end{equation}
-    where the
-    \(α_n(τ) = \ev{B_n(t) B_n(0)} = ∑_λ\abs{g_λ}^2 \eu^{-\iu ω_λ t}\)
-    {\tiny (interaction picture)} are the bath correlation functions
-    and the \(η_n=(\vb{η})_n\) are complex valued Gaussian processes
-    with \(\mathcal{M}(η_n(t))=\mathcal{M}(η_n(t)η_n(s))=0\) and
-    \(\mathcal{M}(η_n(t)η_n^\ast(s))=α_n(t-s)\). The reduced state of
-    the system is recovered through
-    \(ρ=\mathcal{M}(ψ_t(\vb{η}^\ast_t)ψ_t^\dag(\vb{η}^\ast_t))\).
+    \item Reduced state of the system is recovered through
+      \(ρ=\mathcal{M}(ψ_t(\vb{η}^\ast_t)ψ_t^\dag(\vb{η}^\ast_t))\)
 
-    With \(α_n(τ)=∑_{\mu}^{M_n}=G_μ\nth\eu^{-W_μ\nth τ}\) we define
-    \begin{align}
-      \label{eq:dop}
-      D_μ\nth(t) &\equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth
-                   (t-s)}\fdv{η^\ast_n(s)} &
-      D^{\underline{\vb{k}}} &\equiv
-      ∏_{n=1}^N∏_{μ=1}^{M_n}
-      {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
-                               \frac{1}{\iu^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\\
-        ψ^{\underline{\vb{k}}} &\equiv D^{\underline{\vb{k}}}ψ \equiv \braket{\kmat}{Ψ}.
-    \end{align}
-    For the Fock-space embedded hierarchy state \(\ket{Ψ}\) we find
+    \item With \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\)
+      we find for the Fock-space embedded hierarchy state \(\ket{Ψ}\)
     \begin{equation}
       \label{eq:fockhops}
       \begin{aligned}
@@ -161,34 +142,31 @@
                      ] \ket{Ψ}.
       \end{aligned}
     \end{equation}
-    Truncating the hierarchy depth \(\kmat\) in \cref{eq:fockhops}
-    yields the numeric method.
+    \item Truncating hierarchy depth \(\kmat\) in \cref{eq:fockhops}
+      yields numeric method
 
-    Finite temperature can be dealt with through substituting
-    \(B(t)\rightarrow B(t)+ξ(t)\) with
-    \begin{equation}
-      \label{eq:thermproc}
-      \begin{aligned}
-        \mathcal{M}(ξ(t))&=0=\mathcal{M}(ξ(t) ξ(s)) \\
-        \mathcal{M}\left(ξ(t) ξ^{*}(s)\right)&=\frac{1}{\pi} ∫_{0}^{∞}
-                                               \dd{ω} \bar{n}(\beta ω) J(ω) e^{-{\iu} ω(t-s)} \\
-        J(ω)&=π\sum_λ\abs{g_λ}^2δ(w-ω_λ).
-      \end{aligned}
-    \end{equation}
-    See~\cite{Hartmann2017Dec} for details about finite temperatures
-    and the nonlinear method.
+    \item Finite temperature \(\rightarrow\) substitute
+    \(B(t)\rightarrow B(t)+ξ(t)\), \(ξ\) being a suitable
+    Gaussian process
+    \item \(\exists\) nonlinear method which improves convergence drastically
+    \end{itemize}
+
+    See~\cite{Hartmann2017Dec} for details.
   \end{block}
 
   \begin{alertblock}{Bath Observables}
-    From \cref{eq:nmqsd,eq:dop} we find the correspondence \(B(t)
-    \leftrightarrow D_t \leftrightarrow ψ^\kmat\) \(\implies\) can
-    calulate observables of type \(O_\sys\otimes (B^a)^\dag B^b\) and
-    time derivatives thereof. This grants the hierarchy states a
-    utility beyond the mere simulation of reduced dynamics.
+    From \cref{eq:nmqsd,eq:dop} we find the correspondence
+    \(B^n(t) \leftrightarrow D^n_t \leftrightarrow ψ^\kmat\)
+    {\tiny(\(\abs{\kmat}=n\))} \(\implies\) can calulate observables of type
+    \(O_\sys\otimes (B^a)^\dag B^b\) and time derivatives
+    thereof. This grants the hierarchy states a utility beyond the
+    mere simulation of reduced dynamics.
+
+    We consider the zero temperature case with one bath in the linear
+    method.
 
     \begin{description}
-    \item[Bath Energy Flow] We consider the zero temperature and
-      one-bath case.
+    \item[Bath Energy Flow]
       \begin{equation}
         \label{eq:heatflowdef}
         \begin{aligned}
@@ -217,9 +195,47 @@
       \end{equation}
     \end{description}
 
-    This result allows us to calculate the energy flow in arbitrarily
-    driven systems.
+    This result allows us to calculate the energy flow in
+    \textbf{arbitrarily driven systems} for a \textbf{wide temperature
+      range} and with \textbf{arbitrary BCF}.
   \end{alertblock}
+
+  \begin{block}{Comparison to an Analytic Solution}
+    \begin{columns}
+      \begin{column}{.5\colwidth}
+        \begin{itemize}
+        \item Quantum Brownian Motion like Model
+          \begin{equation}
+            \label{eq:hamiltonian}
+            \begin{aligned}
+              H = ∑_{i\in\qty{1,2}} &\qty[H^{(i)}_O + q_iB^{(i)} +
+                                      H_B^{(i)}]\\
+                                    &\quad+ \frac{γ}{4}(q_1-q_2)^2
+            \end{aligned}
+          \end{equation}
+          where \(H_O^{(i)}= \frac{Ω_i}{4}\qty(p_i^2+q_i^2)\)
+        \item Exact solution via exponential expansion of the BCF in the
+          Heisenberg Picture \(\rightarrow\) easy access to bath energy
+          flow
+        \item Here \tval{analytic/omega}, \tval{analytic/gamma},
+          \(α(τ)=η (1+\iu ω_cτ)^{-(s+1)}\) with
+          \tval{analytic/cutoff_freq}, \tval{analytic/bcf_zero}
+        \end{itemize}
+      \end{column}
+      \begin{column}{.5\colwidth}
+        \begin{figure}[H]
+          \centering
+          \plot{analytic/flow}
+          \caption{\label{fig:brownian}The bath energy flows \cref{eq:heatflowdef} for the
+            hot (lower line) and the cold (upper line) bath. The
+            analytical and numerical results are compatible.
+            (\tval{analytic/samples} samples)}
+        \end{figure}
+      \end{column}
+    \end{columns}
+  \end{block}
+
+
   \begin{block}{Possible Applications}
     \begin{itemize}
     \item Simulation of Thermal Quantum Machines
@@ -235,6 +251,60 @@
 \separatorcolumn
 
 \begin{column}{\colwidth}
+  \begin{block}{Simple Toy Model and BCF Dependence}
+    \begin{itemize}
+    \item Spin-boson like Model coupled to a zero temperature bath
+      \begin{equation}
+        \label{eq:spinbos}
+        H_\sys= \frac12 σ_z,\, L=\frac12 σ_x,\, α(τ)=η (1+\iu ω_cτ)^{-(s+1)}
+      \end{equation}
+    \item Memory time \(\sim 1/ω_c\) has qualitative influence on the
+      bath energy flow
+    \end{itemize}
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[t]{.49\columnwidth}
+        \plot{one_bath/omega_interaction}
+        \caption{\label{fig:omega_ints}\tval{one_bath/omega_bcf_str}}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\columnwidth}
+        \plot{one_bath/delta_interaction}
+        \caption{\tval{one_bath/delta_bcf_wc}}
+      \end{subfigure}
+      \caption{The interaction energy expectation value for different
+        cutoff frequencies and coupling strengths. The dashed lines
+        are obtained using energy conservation while the solid lines
+        are the result of direct calculation. The percentages in the
+        legend tell how many points are compatible within one standard
+        deviation. The Statistical error estimate is smaller than the
+        line width. \(N=5\cdot 10^5\) trajectories have been used.}
+    \end{figure}
+  \end{block}
+  \begin{block}{Initial Slip}
+    \begin{itemize}
+    \item For \emph{very} short times \(\rightarrow\) \(H_\sys\approx
+      0\), Origin of the \emph{``Initial Slip''} spike in
+      \cref{fig:brownian}:
+      \begin{equation}
+        \label{eq:purede}
+        \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)].
+      \end{equation}
+    \item Determines ultra short-time shape of \emph{all} trajectories
+    \end{itemize}
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{one_bath/initial_slip}
+        \caption{\label{fig:initslipconst}The bath energy flows for the same settings as in
+          \cref{fig:omega_ints}. The dashed lines correspond to \cref{eq:purede}.}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{modcoup/initial_slip_modcoup}
+        \caption{Same as \cref{fig:initslipconst}, but for modulated
+          coupling (``Smoothstep'' functions, see inset).}
+      \end{subfigure}
+    \end{figure}
+  \end{block}
   \begin{block}{Resources}
     \printbibliography
   \end{block}
