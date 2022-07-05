@@ -1,4 +1,5 @@
 \ProvidesPackage{hiromacros}
+\RequirePackage{ifdraft}
 
 % Macros
 
@@ -81,7 +82,7 @@
 %% GeV
 \newcommand{\gev}[1]{\SI{#1}{\giga\electronvolt}}
 
-\def\iu{\ensuremath{\mathrm{i}}}
+\def\iu{\ensuremath{𝑖}}
 \def\i{\iu}
 \def\id{\ensuremath{\mathbb{1}}}
 \def\NN{\ensuremath{\mathbb{N}}}
@@ -107,3 +108,9 @@
 \newcommand{\ergo}[1]{\ensuremath{\mathcal{W}\qty[#1]}}
 \newcommand{\qrelent}[2]{\ensuremath{S\qty(#1\,\middle|\middle|\,#2)}}
 \newcommand{\cyc}{\ensuremath{\mathrm{cyc}}}
+
+
+%% Including plots
+\newcommand{\plot}[1]{%
+  \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
+\newcommand{\tval}[1]{{\input{./values/#1.tex}}}

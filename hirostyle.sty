@@ -12,7 +12,6 @@
 \usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usepackage{ifdraft}
 \usepackage[protrusion=true,expansion=true,tracking=true]{microtype}
 \usepackage{fancyvrb}
 \usepackage[autostyle=true]{csquotes}
@@ -48,9 +47,6 @@ linkcolor=blue,
 \usetikzlibrary{arrows,shapes,angles,quotes,arrows.meta,external}
 \tikzexternalize[prefix=tikz/]
 
-%% Including plots
-\newcommand{\plot}[1]{%
-  \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
 
 %% Including Results
 \newcommand{\result}[1]{\input{./results/#1}\!}
