@@ -305,3 +305,5 @@ TSWLatexianTemp*
 /result
 /output/
 /ltximg/
+.ob-jupyter/
+/poster/output/
