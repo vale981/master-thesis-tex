@@ -1,0 +1,78 @@
+\begin{block}{NMQSD/HOPS}
+    Consider the model of a general quantum system (\(H_\sys(t)\))
+    coupled to \(N\) baths
+    \begin{equation}
+      \label{eq:generalmodel}
+      H(t) = H_\sys(t) + ∑_{n=1}^N \qty[L_n^†(t)B_n + \hc] + ∑_{n=1}^NH_B\nth ,
+    \end{equation}
+    with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
+    \(H_B\nth=∑_λω_λ\nth \qty(b_λ\nth)^\dag b_λ\nth\).  Projecting
+    onto coherent bath states
+    \begin{equation}
+      \label{eq:projected}
+      \ket{ψ(t)} = ∫∏_{n=1}^N{\qty(\frac{\dd{\vb{z}\nth}}{π^{N_n}}\eu^{-\abs{\vb{z}}^2})}\ket{ψ(t,\underline{\vb{z}}^\ast)}\ket{\underline{\vb{z}}}
+    \end{equation}
+    leads to \emph{stochastic} Non-Markovian
+    Quantum State Diffusion (NMQSD)
+    \begin{equation}
+      \label{eq:nmqsd}
+      ∂_tψ_t(\vb{η}^\ast_t) = -\iu H(t) ψ_t(\vb{η}^\ast_t) +
+      \vb{L}\cdot \vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L(t)_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)},
+    \end{equation}
+    where the
+    \(α_n(τ) = \ev{B_n(t) B_n(0)} = ∑_λ\abs{g_λ}^2 \eu^{-\iu ω_λ t}\)
+    {\tiny (interaction picture)} are the bath correlation functions (BCF)
+    and the \(η_n=(\vb{η})_n\) are complex valued Gaussian processes
+    with \(\mathcal{M}(η_n(t))=\mathcal{M}(η_n(t)η_n(s))=0\) and
+    \(\mathcal{M}(η_n(t)η_n^\ast(s))=α_n(t-s)\). The reduced state of
+    the system is recovered through
+    \(ρ=\mathcal{M}(ψ_t(\vb{η}^\ast_t)ψ_t^\dag(\vb{η}^\ast_t))\).
+
+    With \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\) we define
+    \begin{align}
+      \label{eq:dop}
+      D_μ\nth(t) &\equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth
+                   (t-s)}\fdv{η^\ast_n(s)} &
+      D^{\underline{\vb{k}}} &\equiv
+      ∏_{n=1}^N∏_{μ=1}^{M_n}
+      {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
+                               \frac{1}{\iu^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\\
+        ψ^{\underline{\vb{k}}} &\equiv D^{\underline{\vb{k}}}ψ \equiv \braket{\kmat}{Ψ}.
+    \end{align}
+    For the Fock-space embedded hierarchy state \(\ket{Ψ}\) we find
+    \begin{equation}
+      \label{eq:fockhops}
+      \begin{aligned}
+        ∂_t\ket{Ψ} &= \qty[
+                     \begin{aligned}
+                       -\iu H_\sys + \vb{L}\cdot\vb{η}^\ast &-
+                                                              ∑_{n=1}^N∑_{μ=1}^{M_n}b_{n,μ}^\dag b_{n,μ} W\nth_μ \\
+                                                            &\qquad+
+                                                              \iu ∑_{n=1}^N∑_{μ=1}^{M_n} \sqrt{G_{n,μ}} \qty(b^†_{n,μ}L_n +
+                                                              b_{n,μ}L^†_n)
+                     \end{aligned}
+                     ] \ket{Ψ}.
+      \end{aligned}
+    \end{equation}
+    Truncating the hierarchy depth \(\kmat\) in \cref{eq:fockhops}
+    yields the numeric method.
+
+    Finite temperature can be dealt with through substituting
+    \(B(t)\rightarrow B(t)+ξ(t)\) with
+    \begin{equation}
+      \label{eq:thermproc}
+      \begin{aligned}
+        \mathcal{M}(ξ(t))&=0=\mathcal{M}(ξ(t) ξ(s)) \\
+        \mathcal{M}\left(ξ(t) ξ^{*}(s)\right)&=\frac{1}{\pi} ∫_{0}^{∞}
+                                               \dd{ω} \bar{n}(\beta ω) J(ω) e^{-{\iu} ω(t-s)} \\
+        J(ω)&=π\sum_λ\abs{g_λ}^2δ(w-ω_λ).
+      \end{aligned}
+    \end{equation}
+    See~\cite{Hartmann2017Dec} for details about finite temperatures
+    and the nonlinear method.
+  \end{block}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: ""
+%%% End:
