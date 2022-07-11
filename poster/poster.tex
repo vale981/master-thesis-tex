@@ -155,12 +155,14 @@
   \end{block}
 
   \begin{alertblock}{Bath Observables}
-    From \cref{eq:nmqsd,eq:dop} we find the correspondence
-    \(B^n(t) \leftrightarrow D^n_t \leftrightarrow ψ^\kmat\)
-    {\tiny(\(\abs{\kmat}=n\))} \(\implies\) can calulate observables of type
-    \(O_\sys\otimes (B^a)^\dag B^b\) and time derivatives
-    thereof. This grants the hierarchy states a utility beyond the
-    mere simulation of reduced dynamics.
+    \begin{itemize}
+    \item \Cref{eq:nmqsd,eq:fockhops} \(\implies\) correspondence
+      \(B^n(t) \leftrightarrow ψ^\kmat\) {\tiny(\(\abs{\kmat}=n\))}
+
+    \item Can calulate observables of type
+    \(O_\sys\otimes (B^a)^\dag B^b\) + time derivatives
+    \end{itemize}
+
 
     We consider the zero temperature case with one bath in the linear
     method.
@@ -178,12 +180,18 @@
               \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,t)}L(t)^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc
         \end{aligned}
       \end{equation}
-      Thus, the expectation value of the bath energy flow is connected
-      to the first hierarchy level states in a transparent and easy to
-      calculate manner.
+      \begin{itemize}
+      \item Expectation value of bath energy flow \(\leftrightarrow\)
+        first level hierarchy states in a transparent and easy to calculate
+        manner
+      \end{itemize}
     \item[Interaction Energy]
-      A similar expression may be found for the expectation value of
-      the interaction energy
+      \begin{itemize}
+      \item Similar expression exists the expectation value of the
+        interaction energy
+      \end{itemize}
+
+
       \begin{equation}
         \label{eq:intexp}
         \begin{aligned}
@@ -305,8 +313,46 @@
       \end{subfigure}
     \end{figure}
   \end{block}
+  \begin{block}{Modulating the Coupling}
+    \begin{itemize}
+    \item Same model as above \cref{eq:spinbos}, but with \(L(τ) =
+      \sin^2(\frac{Δ}{2} τ)σ_x\)
+    \item Question: How much energy can be extracted from a system
+      connected to a single bath? (Ergotropy)
+      \begin{itemize}
+      \item Answer: less than
+        \(ΔE_{\mathrm{max}}=\frac{1}{β}\qrelent{ρ}{ρ_β}\)
+      \end{itemize}
+    \end{itemize}
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{modcoup/omegas_total}
+        \caption{\label{fig:omega_total}The total energy for
+          \tval{modcoup/omega_delta} and \tval{modcoup/omega_alpha}
+          but varying cutoff. Energy is normalized to the
+          ergotropy. The dashed vertical lines show where \(α(τ) = α(0)/300\).}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{modcoup/flow_interaction_overview}
+        \caption{Same situation as in \cref{fig:omega_total}. All
+          quantities are normalized to the \(ω_c=1\)
+          case.}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{modcoup/flow_interaction_overview}
+        \caption{Maximum power for \(10\) periods and different
+          modulations \(Δ\).}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{modcoup/flow_interaction_overview}
+        \caption{Maximum power for \(10\) periods and different
+          coupling strengths \(α(0)\).}
+      \end{subfigure}
+    \end{figure}
+  \end{block}
   \begin{block}{Resources}
-    \printbibliography
+    {\AtNextBibliography{\tiny} \printbibliography}
   \end{block}
 \end{column}
 
