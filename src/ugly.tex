@@ -663,6 +663,15 @@ This can be achieved by making the replacements
 in the previous sections, where the quantities involved are as in
 \cref{sec:hops_multibath} and \cref{eq:xiproc}.
 
+In the light of \cref{sec:general_obs} it might be an interesting
+question what impact mixed bath hierarchy states have. For a cyclic
+machine with long strokes, where only one bath is coupled to the
+system at a time, it might be efficient to truncate the hierarchy in a
+way that discards mixed bath states more readily than single bath
+hierarchy states as the correlations between the baths are expected to
+be small.
+
+
 \section{Time Dependent Hamiltonian}
 \label{sec:timedep}
 The above discussion is based on the model \cref{eq:totalH} which did
@@ -1092,15 +1101,16 @@ This inequality only contains quantities that can be expected to be
 finite, even in the limit of infinite baths.
 
 As in \cref{sec:ergoonebath} we now demand periodic driving, that is
-\(H(t+τ) = H(t)\) for some \(τ\geq 0\). \emph{Assume} that the system
-enters a periodic steady state after the time \(n_0τ\) for some
+\(H(t+τ) = H(t)\) for some \(τ\geq 0\). Now we \emph{Assume} that the
+system enters a periodic steady state after the time \(n_0τ\) for some
 \(n_0\in\NN\) so that \(ρ_\sys((n + n_0)τ)= ρ_\sys(n_0τ)\) for all
 \(n\in\NN\). This assumption is linked to the notion of a ``finite
 memory'' of the baths. In the same spirit, we \emph{assume} that the
 energy change of each bath
 \(ΔE_{\bath^i}^\cyc =ΔE_{\bath^i}((n+1)τ)-ΔE_{\bath^i}(nτ) =
 E_{\bath^i}((n+1)τ)-E_{\bath^i}(nτ)\) is constant once the system is
-in the periodic steady state.
+in the periodic steady state. This behavior, at least on the system
+level, is suggested by the NMQSD equation \cref{{eq:multinmqsd}}.
 
 As the system entropy does not change over a cycle
 \(ΔS_\sys^\cyc  ΔS_\sys(τ (n+n_0)) - ΔS_\sys(τ n_0)=S_\sys(τ (n+n_0)) - S_\sys(τ
@@ -1118,18 +1128,18 @@ definition of entropy, in~\cite{Strasberg2021Aug}\footnote{In this
   work, a full dynamical theory is being derived.},
 \cref{eq:secondlaw_cyclic} amounts to the Clausius form of the second
 law. This definition of heat is corroborated in~\cite{Esposito2015Dec}
-where is shown\footnote{for fermionic baths} that a definition of heat
+where it is shown\footnote{for fermionic baths} that a definition of heat
 involving any nonzero fraction of the interaction energy will lead to
 the internal energy (as defined by the first law) not being an exact
 differential.
 
 In contrast to~\cite{Strasberg2021Aug}, no interpretation in terms of
 thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
-to be useful.
-Assume that the interaction Hamiltonian in \cref{eq:katoineqsys}
-vanishes periodically. In the periodic steady state the system energy
-does not change during a cycle, so the whole energy change amounts to
-the change in bath energy. In a setting with two baths
-\cref{eq:secondlaw_cyclic} implies the Carnot bound.
+to be useful.  Assume that the interaction Hamiltonian in
+\cref{eq:katoineqsys} vanishes periodically, so that system and bath
+energy expectation values can be cleanly separated. In the periodic
+steady state the system energy does not change during a cycle, so the
+whole energy change amounts to the change in bath energy. In a setting
+with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound.
 
 % LocalWords:  ergotropy
