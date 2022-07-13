@@ -1,4 +1,4 @@
-\documentclass[draft]{beamer}
+\documentclass[final]{beamer}
 
 \pdfvariable suppressoptionalinfo 512\relax
 
@@ -20,7 +20,8 @@
 \pgfplotsset{compat=1.14}
 \usepackage{physics}
 \usepackage{cleveref}
-\usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
+\usepackage[font=scriptsize]{caption}
+\usepackage[list=true, font=scriptsize, labelformat=brace]{subcaption}
 \graphicspath{{figs/}}
 
 % Bibliographic Stuff
@@ -90,24 +91,23 @@
 \begin{column}{\colwidth}
   \begin{block}{Premise}
     \begin{itemize}
-    \item Application of thermodynamic notions to strongly coupled and
-      non-Markovian quantum systems is non-trivial
+    \item application of thermodynamic notions to strongly coupled and
+      non-Markovian open quantum systems is non-trivial
       (\cite{Rivas2019Oct,Kato2016Dec,Strasberg2021Aug,Talkner2020Oct} and many
       more)
-    \item Dynamics of bath and interaction hamiltonians plays an
+    \item dynamics of bath and interaction Hamiltonians plays an
       important role \(\rightarrow\) must not be neglected in the
       strong coupling regime
-    \item The ``Hierarchy of Pure States''
-      (HOPS~\cite{Hartmann2017Dec,Diosi1998Mar}) gives us the ability
-      to simulate non-Markovian and strongly coupled open quantum
-      systems exactly in a scalable way.
-    \item Because HOPS simulates global dynamics \(\rightarrow\) gives
-      access to certain bath dynamics \emph{with no additional effort}
+    \item the ``Hierarchy of Pure States''
+      (HOPS~\cite{Hartmann2017Dec,Diosi1998Mar}) gives the us ability to
+      simulate open quantum systems \textbf{exactly}
+    \item because HOPS simulates global dynamics \(\rightarrow\) \textbf{gives
+      access to certain bath dynamics with no additional effort}
     \end{itemize}
   \end{block}
   \begin{block}{NMQSD/HOPS}
     \begin{itemize}
-    \item Consider the model of a general quantum system (\(H_\sys(t)\))
+    \item consider the model of a general quantum system (\(H_\sys(t)\))
     coupled to \(N\) baths
     \begin{equation}
       \label{eq:generalmodel}
@@ -116,18 +116,18 @@
     with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
     \(H_B\nth=∑_λω_λ\nth \qty(b_λ\nth)^\dag b_λ\nth\)
 
-    \item Leads to \emph{stochastic} Non-Markovian
+    \item leads to \emph{stochastic} Non-Markovian
     Quantum State Diffusion (NMQSD)
     \begin{equation}
       \label{eq:nmqsd}
       ∂_tψ_t(\vb{η}^\ast_t) = -\iu H(t) ψ_t(\vb{η}^\ast_t) +
       \vb{L}\cdot \vb{η}^\ast_tψ_t(\vb{η}^\ast_t) - ∑_{n=1}^N L(t)_n^†∫_0^t\dd{s}α_n(t-s)\fdv{ψ_t(\vb{η}^\ast_t)}{η^\ast_n(s)}
     \end{equation}
-    \item Reduced state of the system is recovered through
+    \item the reduced state of the system is recovered through
       \(ρ=\mathcal{M}(ψ_t(\vb{η}^\ast_t)ψ_t^\dag(\vb{η}^\ast_t))\)
 
-    \item With \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\)
-      we find for the Fock-space embedded hierarchy state \(\ket{Ψ}\)
+    \item with \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\)
+      we find for the hierarchy state \(\ket{Ψ}\in \hilb\otimes\mathcal{F}\)
     \begin{equation}
       \label{eq:fockhops}
       \begin{aligned}
@@ -142,12 +142,11 @@
                      ] \ket{Ψ}.
       \end{aligned}
     \end{equation}
-    \item Truncating hierarchy depth \(\kmat\) in \cref{eq:fockhops}
+    \item truncating hierarchy depth \(\kmat\) in \cref{eq:fockhops}
       yields numeric method
 
-    \item Finite temperature \(\rightarrow\) substitute
-    \(B(t)\rightarrow B(t)+ξ(t)\), \(ξ\) being a suitable
-    Gaussian process
+    \item finite temperature \(\rightarrow\) substitute
+    \(B(t)\rightarrow B(t)+ξ(t)\)
     \item \(\exists\) nonlinear method which improves convergence drastically
     \end{itemize}
 
@@ -156,13 +155,12 @@
 
   \begin{alertblock}{Bath Observables}
     \begin{itemize}
-    \item \Cref{eq:nmqsd,eq:fockhops} \(\implies\) correspondence
+    \item \cref{eq:nmqsd,eq:fockhops} \(\implies\) correspondence
       \(B^n(t) \leftrightarrow ψ^\kmat\) {\tiny(\(\abs{\kmat}=n\))}
 
-    \item Can calulate observables of type
+    \item can calulate observables of type
     \(O_\sys\otimes (B^a)^\dag B^b\) + time derivatives
     \end{itemize}
-
 
     We consider the zero temperature case with one bath in the linear
     method.
@@ -180,18 +178,11 @@
               \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,t)}L(t)^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc
         \end{aligned}
       \end{equation}
-      \begin{itemize}
-      \item Expectation value of bath energy flow \(\leftrightarrow\)
-        first level hierarchy states in a transparent and easy to calculate
-        manner
-      \end{itemize}
+      The expectation value of bath energy flow is connected to the first
+      level hierarchy states.
     \item[Interaction Energy]
-      \begin{itemize}
-      \item Similar expression exists the expectation value of the
-        interaction energy
-      \end{itemize}
-
-
+      A similar expression exists for the expectation value of the
+        interaction energy.
       \begin{equation}
         \label{eq:intexp}
         \begin{aligned}
@@ -203,16 +194,16 @@
       \end{equation}
     \end{description}
 
-    This result allows us to calculate the energy flow in
+    This result allows us (in principle) to calculate the energy flow in
     \textbf{arbitrarily driven systems} for a \textbf{wide temperature
-      range} and with \textbf{arbitrary BCF}.
+      range} and with (sub-)Ohmic BCF.
   \end{alertblock}
 
   \begin{block}{Comparison to an Analytic Solution}
     \begin{columns}
       \begin{column}{.5\colwidth}
         \begin{itemize}
-        \item Quantum Brownian Motion like Model
+        \item ``Quantum Brownian Motion'' like model
           \begin{equation}
             \label{eq:hamiltonian}
             \begin{aligned}
@@ -222,11 +213,11 @@
             \end{aligned}
           \end{equation}
           where \(H_O^{(i)}= \frac{Ω_i}{4}\qty(p_i^2+q_i^2)\)
-        \item Exact solution via exponential expansion of the BCF in the
-          Heisenberg Picture \(\rightarrow\) easy access to bath energy
+        \item exact solution via exponential expansion of the BCF in the
+          Heisenberg picture \(\rightarrow\) easy access to bath energy
           flow
-        \item Here \tval{analytic/omega}, \tval{analytic/gamma},
-          \(α(τ)=η (1+\iu ω_cτ)^{-(s+1)}\) with
+        \item here \tval{analytic/omega}, \tval{analytic/gamma},
+          \(α(τ)=η (1+\iu ω_cτ)^{-(2)}\) with
           \tval{analytic/cutoff_freq}, \tval{analytic/bcf_zero}
         \end{itemize}
       \end{column}
@@ -235,38 +226,37 @@
           \centering
           \plot{analytic/flow}
           \caption{\label{fig:brownian}The bath energy flows \cref{eq:heatflowdef} for the
-            hot (lower line) and the cold (upper line) bath. The
-            analytical and numerical results are compatible.
-            (\tval{analytic/samples} samples)}
+            hot (lower line) and the cold (upper line) bath show that the
+            analytical and numerical results are compatible.}
         \end{figure}
       \end{column}
     \end{columns}
   \end{block}
-
-
   \begin{block}{Possible Applications}
     \begin{itemize}
-    \item Simulation of Thermal Quantum Machines
-    \item Convergence Criteria: Energy Conservation, Calculating the
+    \item \emph{Simulation of thermal quantum machines}
+    \item convergence criteria for HOPS: energy conservation, calculating the
       same observable in multiple ways
-    \item Quantification of Entanglement of System and Bath (Fisher
-      Information of \(H_\inter\))
-    \item \ldots
+    \item quantification of entanglement of system and bath
+    \item testing results obtained from approximations
     \end{itemize}
+  \end{block}
+  \begin{block}{Resources}
+    {\AtNextBibliography{\tiny} \printbibliography}
   \end{block}
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
-  \begin{block}{Simple Toy Model and BCF Dependence}
+  \begin{block}{Spin-Boson like Model and BCF Dependence}
     \begin{itemize}
-    \item Spin-boson like Model coupled to a zero temperature bath
+    \item spin-boson like model coupled to a zero temperature bath
       \begin{equation}
         \label{eq:spinbos}
-        H_\sys= \frac12 σ_z,\, L=\frac12 σ_x,\, α(τ)=η (1+\iu ω_cτ)^{-(s+1)}
+        H_\sys= \frac12 σ_z,\, L=\frac12 σ_x,\, α(τ)=η (1+\iu ω_cτ)^{-(2)}
       \end{equation}
-    \item Memory time \(\sim 1/ω_c\) has qualitative influence on the
+    \item memory time \(\sim 1/ω_c\) has qualitative influence on the
       bath energy flow
     \end{itemize}
     \begin{figure}[H]
@@ -280,42 +270,43 @@
         \caption{\tval{one_bath/delta_bcf_wc}}
       \end{subfigure}
       \caption{The interaction energy expectation value for different
-        cutoff frequencies and coupling strengths. The dashed lines
-        are obtained using energy conservation while the solid lines
-        are the result of direct calculation. The percentages in the
-        legend tell how many points are compatible within one standard
-        deviation. The Statistical error estimate is smaller than the
-        line width. \(N=5\cdot 10^5\) trajectories have been used.}
+        cutoff frequencies and coupling strengths, where the dashed
+        lines are obtained using energy conservation while the solid
+        lines are the result of direct calculation. The percentages in
+        the legend tell how many points are compatible within one
+        standard deviation. The Statistical error estimate is smaller
+        than the line width. \(N=5\cdot 10^5\) trajectories have been
+        used.}
     \end{figure}
   \end{block}
   \begin{block}{Initial Slip}
     \begin{itemize}
-    \item For \emph{very} short times \(\rightarrow\) \(H_\sys\approx
-      0\), Origin of the \emph{``Initial Slip''} spike in
+    \item for \emph{very} short times \(\rightarrow\) \(H_\sys\approx
+      0\), origin of the \emph{``Initial Slip''} spike in
       \cref{fig:brownian}:
       \begin{equation}
         \label{eq:purede}
         \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)].
       \end{equation}
-    \item Determines ultra short-time shape of \emph{all} trajectories
+    \item determines ultra short-time shape of \emph{all} trajectories
     \end{itemize}
     \begin{figure}[H]
       \centering
       \begin{subfigure}[t]{.49\linewidth}
         \plot{one_bath/initial_slip}
         \caption{\label{fig:initslipconst}The bath energy flows for the same settings as in
-          \cref{fig:omega_ints}. The dashed lines correspond to \cref{eq:purede}.}
+          \cref{fig:omega_ints}, where the dashed lines correspond to \cref{eq:purede}.}
       \end{subfigure}
       \begin{subfigure}[t]{.49\linewidth}
         \plot{modcoup/initial_slip_modcoup}
         \caption{Same as \cref{fig:initslipconst}, but for modulated
-          coupling (``Smoothstep'' functions, see inset).}
+          coupling (``Smoothstep'' functions with smoothness \(s\), see inset).}
       \end{subfigure}
     \end{figure}
   \end{block}
   \begin{block}{Modulating the Coupling}
     \begin{itemize}
-    \item Same model as above \cref{eq:spinbos}, but with \(L(τ) =
+    \item same model as above \cref{eq:spinbos}, but with \(L(τ) =
       \sin^2(\frac{Δ}{2} τ)σ_x\)
     \item Question: How much energy can be extracted from a system
       connected to a single bath? (Ergotropy)
@@ -331,28 +322,72 @@
         \caption{\label{fig:omega_total}The total energy for
           \tval{modcoup/omega_delta} and \tval{modcoup/omega_alpha}
           but varying cutoff. Energy is normalized to the
-          ergotropy. The dashed vertical lines show where \(α(τ) = α(0)/300\).}
+          ergotropy. The dashed vertical lines illustrate the bath
+          memory time (\(|α(τ)| = α(0)/300\)).}
       \end{subfigure}
+      % \begin{subfigure}[t]{.49\linewidth}
+      %   \plot{modcoup/flow_interaction_overview}
+      %   \caption{Same situation as in \cref{fig:omega_total}. All
+      %     quantities are normalized to the \(ω_c=1\)
+      %     case.}
+      % \end{subfigure}
       \begin{subfigure}[t]{.49\linewidth}
-        \plot{modcoup/flow_interaction_overview}
-        \caption{Same situation as in \cref{fig:omega_total}. All
-          quantities are normalized to the \(ω_c=1\)
-          case.}
-      \end{subfigure}
-      \begin{subfigure}[t]{.49\linewidth}
-        \plot{modcoup/flow_interaction_overview}
-        \caption{Maximum power for \(10\) periods and different
-          modulations \(Δ\).}
-      \end{subfigure}
-      \begin{subfigure}[t]{.49\linewidth}
-        \plot{modcoup/flow_interaction_overview}
-        \caption{Maximum power for \(10\) periods and different
-          coupling strengths \(α(0)\).}
+        \plot{modcoup/delta_dependence}
+        \caption{Maximum one-shot power for \(10\) periods and
+          different modulation frequencies \(Δ\) and coupling
+          strengths.}
       \end{subfigure}
     \end{figure}
   \end{block}
-  \begin{block}{Resources}
-    {\AtNextBibliography{\tiny} \printbibliography}
+  \begin{block}{Continuously Coupled Engine (Preliminary)}
+    \begin{itemize}
+    \item qubit coupled to two baths of different
+      temperatures (\(T_c, T_h\))
+      \begin{equation}
+        \label{eq:antizenomodel}
+        H_\sys= \frac12  \qty[ω_0 + γ Δ\sin(Δ t)]σ_z,\, L_{c,h}=\frac12 σ_x
+      \end{equation}
+      {\tiny \tval{anti_zeno/delta}, \tval{anti_zeno/gamma}, \tval{anti_zeno/omega_alpha},
+        \tval{anti_zeno/omega_zero}, \tval{anti_zeno/tc}, \tval{anti_zeno/th}}
+    \item system Hamiltonian modulated + baths periodically
+      decoupled (cooldown) and ``reset''
+    \end{itemize}
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{anti_zeno/sd_setup}
+        \caption{The spectral densities of the baths, where the vertical
+          lines show where \(ω=ω_0 \pm Δ\). The overlap of the filter
+          for \(n\) modulation periods is crucial for the ``anti-zeno''
+          effect~\cite{Mukherjee2020Jan}.}
+      \end{subfigure}
+      % \begin{subfigure}[t]{.49\linewidth}
+      %   \plot{modcoup/flow_interaction_overview}
+      %   \caption{Same situation as in \cref{fig:omega_total}. All
+      %     quantities are normalized to the \(ω_c=1\)
+      %     case.}
+      % \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{anti_zeno/modulation_setup}
+        \caption{Setup of the system and coupling modulation for the
+          case with ``cooldown''. The units are arbitrary. The
+          initialization period and two cycles are shown.}
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{anti_zeno/anti_zeno_with_cool}
+        \caption{\label{fig:cont_coup} The total energy change after the initialization
+          period, where vertical lines show the points at which the
+          times for the calculation of the power are taken. The mean
+          power obtained is \tval{anti_zeno/power_with_cool}.}.
+      \end{subfigure}
+      \begin{subfigure}[t]{.49\linewidth}
+        \plot{anti_zeno/anti_zeno_without_cool}
+        \caption{Same as in \cref{fig:cont_coup} but without
+          cooldown. The mean power obtained is
+          \tval{anti_zeno/power_without_cool}. The difference is not
+          significant yet.}.
+      \end{subfigure}
+    \end{figure}
   \end{block}
 \end{column}
 
