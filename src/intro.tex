@@ -1,0 +1,388 @@
+\chapter{Introduction and Preliminaries}
+\label{chap:intro}
+
+The exact treatment of strongly coupled and non Markovian open quantum
+systems is a challenging problem.  If no analytical solution is
+available, numerical methods have to be relied upon. Notably there are
+HEOM\fixme{cite more}.
+
+Besides the reduced dynamics of the system, the field of quantum
+thermodynamics has attracted much interest. Quantum thermodynamics is,
+among other issues, concerned with extending the standard
+phenomenological thermodynamic notions to microscopic systems coupled
+to macroscopic baths. This setting may make it possible to make
+rigorous microscopic definitions of thermodynamic quantities such as
+internal energy, heat and work that are consistent with the laws of
+thermodynamics. There is no consensus on this matter yet, as is
+demonstrated by the plethora of proposals and discussions in
+\cite{Rivas2019Oct,Talkner2020Oct,Motz2018Nov,Wiedmann2020Mar,Senior2020Feb,Kato2015Aug,Kato2016Dec,Strasberg2021Aug,Talkner2016Aug,Bera2021Feb,Bera2021Jun,Esposito2015Dec}.
+
+As system and baths may not be regarded as completely separable
+entities in a strong coupling
+regime~\cite{Rivas2019Oct,Esposito2015Dec}, an insight into the
+dynamics of the bath is crucial. In some settings
+\cite{Kato2016Dec,Lobejko2021Feb, Strasberg2021Aug}, such as cyclic
+heat engines, the change in the bath energies is a quite suitable
+definition of heat, as is expounded in
+\cref{sec:basic_thermo,sec:operational_thermo}.
+
+As it turns out, the framework of the ``Non Markovian State
+Diffusion'' (NMQSD)~\cite{Diosi1998Mar}, which will be reviewed
+in~\cref{sec:quick_hops}, allows access to certain bath related
+observables such as the time derivative of the bath energy expectation
+value and the interaction Hamiltonian expectation value. The
+
+In \cref{sec:basic_thermo}, some operational quantum thermodynamical
+questions will be discussed and some light will be shed on the
+necessity of infinite baths.
+
+\Cref{chap:flow} presents the main result of this thesis, namely
+formulas to calculate expectation values of bath related
+observables. Finally, we will discuss some numerical applications of
+the result in \cref{chap:numres}. These application include a
+\fixme{references}.
+
+\newpage
+
+\section{Open Systems and HOPS}
+\label{sec:quick_hops}
+
+\section{Ergotropy and Basic Thermodynamics of Open Systems}
+\label{sec:basic_thermo}
+The ergotropy of a quantum system is defined
+as~\cite{Binder2018}
+\begin{equation}
+  \label{eq:ergo_def}
+  \ergo{ρ} = \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag) H],
+\end{equation}
+which is the maximal energy that can be extracted from a system through
+cyclic modulation of the Hamiltonian \(H\). A state is called passive
+iff the maximizing \(U\) \cref{eq:ergo_def} is the identity \(\id\).
+
+A passive state \(ρ_P\) is always diagonal in the eigenbasis of \(H\) and its
+eigenvalues satisfy the following ordering condition~\cite{Lenard1978Dec}
+\begin{equation}
+  \label{eq:passive_diag}
+  ρ_{p}=∑_{j=1}^{n} \lambda_{j}|j\rangle\langle j|, \quad E_{j} \leq E_{j+1}, \quad \lambda_{j+1} \leq \lambda_{j},
+\end{equation}
+where \(n<∞\) is the Hilbert space dimension. This condition is both
+necessary and sufficient. Examples of passive states are the state of
+the micro-canonical ensemble or a Gibbs state. Gibbs are further
+distinguished by additional features as described
+in~\cite{Lenard1978Dec}, which can be connected to formulations of the
+zeroth and second laws of thermodynamics.
+
+One of these properties is complete passivity. Completely passive
+states remain passive under the transformation \(ρ\to\otimes^Nρ\) (and
+an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore no
+energy can be extracted from multiple identical systems at the same
+temperature. For finite dimensional systems, the complete passivity
+implies the form of the Gibbs state. The open-systems case differs as
+here a ``small'' system is coupled to a bath of infinite size. If the
+system state is not a Gibbs state, the whole system becomes
+non-passive, even if the system state is passive with respect to the
+system Hamiltonian\footnote{for example being the ground state}.
+
+For systems of infinite size, states fulfilling the
+Kubo–Martin–Schwinger (KMS) condition have been proposed as the
+generalizations of Gibbs states, having similar properties as
+Gibbs states. Under some conditions passivity implies the KMS
+condition. These conditions are related to the fact that KMS states
+are not necessarily unique~\cite{Binder2018,Pusz1978Oct}.
+
+The KMS condition is stated for two arbitrary observables \(A,B\) and
+\(F_{AB}(t)=\tr[ρ_βA(t)B(0)]\) (Heisenberg picture,
+\(A(t)=\eu^{\iu H t}H\eu^{-\iu H t}\)) as
+\begin{equation}
+  \label{eq:kmscond}
+  F_{AB}(-t) = F_{BA}(t-\iu β)
+\end{equation}
+by virtue of analytic continuation.
+
+For two initially uncorrelated KMS states, of different
+temperature, the Carnot efficiency bound can be
+proven~\cite{Pusz1978Oct}.
+
+A simple application of ergotropy is an explanation for quantum
+friction. The buildup of coherence\footnote{Meaning a state which is
+  non-diagonal in the energy basis.} in a quantum system makes the
+state non-passive and thus requires additional energy which cannot be
+extracted by modulating of the energy level gaps of the
+system\footnote{This is the usual mechanism of energy extraction in a
+  quantum Otto cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec}.  The
+reduction of efficiency in through quantum coherence general has been
+termed quantum friction. However, the occurrence of coherence does not
+have to lead to a reduction in efficiency\fixme{do more research on
+  that.refer to simulations}, if a diagonal state is restored \footnote{Shortcuts to
+  adiabaticity, see for example~\cite{Chen2010Feb}.}.
+
+\subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
+\label{sec:ergoonebath}
+
+Let us consider models with the Hamiltonians
+\begin{equation}
+  \label{eq:simple_bath_models}
+  H = \id_\sys\otimes H_\bath + H_\sys\otimes \id_\bath,
+\end{equation}
+where the system \(\sys\) is finite dimensional and \(H_\bath\) may
+chosen arbitrarily. Let the initial state of the system be
+\begin{equation}
+  \label{eq:simple_initial_state}
+  ρ=ρ_\sys\otimes τ_β,
+\end{equation}
+where \(τ_β=\eu^{-β H_\bath}/Z\) and \(ρ_\sys\) is arbitrary.
+
+An interesting question is whether the ergotropy of such a state is
+finite. This amounts to the formulation of the second law: ``No energy
+may be extracted from a single bath in a cyclical manner''.
+For systems obeying GKSL dynamics connected to a KMS state heat bath,
+thermodynamic laws can be derived in certain situations\footnote{very
+  slow or very fast modulation of the system
+  hamiltonian}\cite{Binder2018}, which imply the answer ``yes'' for the
+above questions. In the non-Markovian case, those arguments do not
+hold anymore.
+
+For finite dimensional baths, we always have finite ergotropies, as
+their Hamiltonians are bounded. In the infinite dimensional case, we
+may expect that the ergotropy is still finite for some models, as long
+as the energies of the thermal states for those models is finite. This
+assumption breaks down when we consider infinite baths, whose thermal
+energy is unbounded even for finite temperatures.
+
+Nevertheless, \fixme{graphics} the ergotropy appears to be
+bounded. Further, the system as if it was in a passive state as soon
+as the limit cycle is reached. In fact, there is a simple and general
+argument that provides and upper bound on the ergotropy of states of
+the form~\cref{eq:simple_initial_state} based on the special form of
+Gibbs states and relative entropy. The latter quantity allows the
+application of quantum informational tools, even in the presence of
+infinite baths if we are careful in taking limits.
+
+The following is adapted
+from~\cite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb} and we limit
+ourselves to finite dimensional problems for now.  As unitary
+transformations leave the entropy invariant
+(\(\tr[ρ\ln(ρ)] = \tr[ρ_P\ln(ρ_P)]\)), we have for an arbitrary
+\(β > 0\) and \(ρ_β=\exp(-βH)/Z\)
+\begin{align}
+    \ergo{ρ} &= E(ρ) - E(ρ_P) = \tr[(ρ-ρ_P) H]\nonumber\\
+             &= -\frac{1}{β}\tr[(ρ-ρ_P)
+               \qty(\ln(ρ_β) + \ln(Z))] \nonumber\\
+             &= -\frac{1}{β}\tr[(ρ-ρ_P) \ln(ρ_β)] =
+               -\frac{1}{β}\tr[(ρ-ρ_P) \qty(\ln(ρ_β))]\nonumber\\
+             &=\frac{1}{β}\qty[\tr[ρ(\ln(ρ) - \ln(ρ_β))] -
+               \tr[ρ_P(\ln(ρ_p) - \ln(ρ_β))]]\nonumber\\
+             &\equiv\frac{1}{β}\qty[\qrelent{ρ}{ρ_β} - \qrelent{ρ_P}{ρ_β}]\label{eq:ergo_entro},
+\end{align}
+where we have used \(\tr[ρ]=\tr[ρ_P]=1\).
+
+The relative entropies
+appearing in \cref{eq:ergo_entro} are always finite, as \(ρ\) is
+finite-dimensional and \(ρ_β\) has full rank.  As energy is minimized
+by a Gibbs state when keeping the entropy fixed, we find an upper
+bound on the ergotropy by replacing \(ρ_P\to ρ_{β^\ast}\) in
+\cref{eq:ergo_entro} where
+\(S(ρ_{β^\ast})=S(ρ)\)~\cite{Alicki2013Apr}.
+
+By choosing the temperature in \cref{eq:ergo_entro} accordingly, we
+arrive at
+\begin{equation}
+  \label{eq:ergo_bound_single}
+  \ergo{ρ} \leq \frac{1}{β^\ast}\qrelent{ρ}{ρ_{β^\ast}}.
+\end{equation}
+This bound can be saturated for states which are a permutation of a
+thermal state, as their corresponding passive states is the thermal
+state.
+
+For our setting in
+\cref{eq:simple_bath_models,eq:simple_initial_state} we find a still
+better way to bound the ergotropy and fix the
+temperature~\cite{Lobejko2021Feb}. Substituting \(ρ\to ρ \otimes τ_β\)
+in \cref{eq:ergo_entro} we obtain
+\begin{equation}
+  \label{eq:thermo_ergo_bound}
+  \begin{aligned}
+  \ergo{ρ\otimes τ_β} &= \frac{1}{β}
+  \qty[\qrelent{ρ\otimes τ_β}{ρ_β\otimes τ_β} - \qrelent{(ρ\otimes
+                        τ_β)_P}{ρ_β\otimes τ_β}]\\
+    &=\frac{1}{β}
+  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes
+      τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β}.
+  \end{aligned}
+\end{equation}
+
+Remarkably, the bound \cref{eq:thermo_ergo_bound} only depends on the
+system state and ``inherits'' the temperature of the bath. For any
+\(\dim[τ_β] = N\gg 1\) the bound stays valid. It is therefore
+reasonable to expected that it is also valid for an infinite bath. On
+the basis of physical intuition, a very large but finitely sized bath
+may be an arbitrarily good substitute for a continuous one. One might
+even argue, that the continuous bath is a mathematically convenient
+construct and the finite bath is the physical one.  The objection to
+taking the limit outright is that the state \(τ_β\) does not exist as
+trace class operator for an infinite bath.
+
+Interestingly, a saturation of \cref{eq:thermo_ergo_bound} is achieved
+in~\cite{Skrzypczyk2014Jun} with a continuous qubit
+bath. In~\cite{Lobejko2021Feb} a more generic argument is made in a
+similar setting. Both propose concrete protocols within the bounds of
+thermal operations and by considering explicit work reservoirs.
+
+A corollary of \cref{eq:thermo_ergo_bound} is the Clausius form of the
+second law. By setting the system Hamiltonian to \(α \id\) in the
+above discussion the ergotropy becomes the change of bath energy
+\begin{equation}
+  \label{eq:ergo_bath_change}
+  \begin{aligned}
+    \ergo{ρ} &= \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag)
+               (α\id\otimes H_\bath)] \\
+             &=\max_{U\,\text{unitary}}\tr_\bath[\qty(\tr_\sys[ρ-UρU^\dag])
+               H_\bath]\\
+             &\equiv\max_{U\,\text{unitary}}ΔE_\bath\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
+  \end{aligned}
+\end{equation}
+where \(N\) is the system dimension. No finite amount of energy may
+therefore be extracted from the bath in a periodic manner. If it were
+possible to extract a constant positive amount of energy from the bath
+per cycle, \cref{eq:ergo_bath_change} would be breached in finite
+time.
+
+
+\subsection{Explicit Ergotropy Caluclation for a Bath of Identical
+  Oscillators}
+\label{sec:explicitergo}
+Here, we explicitly calculate the ergotropy of a finite dimensional
+system connected to a bath of identical oscillators. This doesn't
+
+
+Let us choose \(H_S=α\id_N\)  for simplicity,
+where \(α\) is an arbitrary energy scale. The ergotropy is then equal
+to the maximal energy reduction of the bath under arbitrary cyclic
+modulation.
+
+The bound \cref{eq:thermo_ergo_bound} further simplifies to
+\begin{equation}
+  \label{eq:thermo_ergo_bound_specific}
+  \ergo{ρ\otimes τ_β} \leq \frac{1}{β} \qty[\ln(N) - S(ρ)],
+\end{equation}
+where \(S(ρ)=-\tr[ρ\ln(ρ)]\).
+For a pure state \cref{eq:thermo_ergo_bound_specific} is maximal. We
+therefore choose \(ρ=\ketbra{0}\).
+
+
+\subsection{A bound on the Energy Change of Multiple Baths}
+\label{sec:operational_thermo}
+As in the single bath case, some statement about the amount of energy
+that can be expected to be extracted in a cyclic manner. An argument
+based on entropy may be made for the periodic steady state as was
+shown in~\cite{Kato2016Dec} and is reproduced here. We will find the
+Clausius form of the second law.
+
+We consider the situation given by the Hamiltonian for a system
+coupled to multiple baths under periodic driving
+\begin{equation}
+  \label{eq:katoineqsys}
+  H(t) = H_\sys(t) + ∑_i \qty(H_\bath^i + H_\inter^i(t)).
+\end{equation}
+Here, \(H_\sys(t)\) is the system Hamiltonian, \(H_\bath^i\) is the
+Hamiltonian of the \(i\)-th bath and \(H_\inter^i(t)\) is the coupling
+to the same. Again, the bath must be treated as finite during the
+derivation.
+
+The von Neumann entropy \(S(t)=-\tr[ρ\ln ρ]\) of the global state whose
+evolution is generated by \cref{eq:katoineqsys} is
+constant. Additionally \(S\) is sub-additive meaning
+\begin{equation}
+  \label{eq:subadd}
+  S(t) \leq -\tr[ρ_\sys(t)\ln ρ_\sys(t)] - ∑_i\tr[ρ_{\bath^i}(t)\ln
+  ρ_{\bath^i}(t)] \equiv S_\sys(t) + ∑_iS_{\bath^i}(t),
+\end{equation}
+where \(ρ_{\sys}(t)=\tr_{\bigotimes_i{\bath^i}}[ρ(t)]\) and
+\(ρ_{\bath^i}=\tr_{\sys\bigotimes_{j\neq i}{\bath^j}}[ρ(t)]\) are the
+marginal states of system and the \(i\)th bath respectively. Note that
+the marginal entropies \(S_{\sys},\,S_{\bath}\) are generally
+\emph{not} constant in time.
+
+This implies for \(ΔS_\sys(t)\equiv S_\sys(t) - S_\sys(0)\) and
+\(ΔS_{\bath^i}(t)\equiv S_{\bath^i}(t) - S_{\bath^i}(0)\)
+\begin{equation}
+  \label{eq:deltagreat}
+  ΔS_\sys(t) + ∑_i ΔS_{\bath^i}(t) \geq 0.
+\end{equation}
+
+The von Neumann entropy of a single bath can be expressed as
+\begin{equation}
+  \label{eq:bathentro}
+  \begin{aligned}
+  S_{\bath^i}(t) &=-\tr[ρ_{\bath^i}(t)\ln ρ_{\bath^i}^β] -
+                   \qty(\tr[ρ_{\bath^i}\ln ρ_{\bath^i}(t)] -
+                   \tr[ρ_{\bath^i}(t)\ln ρ_{\bath^i}^β])\\
+                 &= β E_{\bath^i}(t) - βF_{\bath^i} - \qrelent{ρ_{\bath^i}(t)}{ρ_{\bath^i}^β},
+  \end{aligned}
+\end{equation}
+where
+\(E_{\bath^i}(t)=\tr[ρ_{\bath^i}(t)H_{\bath^i}]=\tr[ρ(t)(H_{\bath^i}\otimes
+\id)]\), \(ρ_{\bath^i}^β=\exp(-β H_{\bath^i})/Z\) and
+\(F_{\bath^i}=-\ln(Z_{\bath^i})/β\) is the equilibrium free energy of
+the bath at (as yet undetermined) inverse temperature \(β\).
+The result \cref{eq:bathentro} implies
+\begin{equation}
+  \label{eq:bathenergychange}
+  ΔS_{\bath^i}(t) = β_i ΔE_{\bath^i}(t) -
+  \qrelent{ρ_{\bath^i}(t)}{ρ_{\bath^i}^{β_i}} \leq β_i ΔE_{\bath^i}(t).
+\end{equation}
+Note that \(β_i\) is now being fixed through
+\(\qrelent{ρ_{\bath^i}(0)}{ρ_{\bath^i}^{β_i}}\Leftrightarrow
+{ρ_{\bath^i}(0)}={ρ_{\bath^i}^{β_i}}\).
+
+Combining \cref{eq:bathenergychange,{eq:deltagreat}} yields
+\begin{equation}
+  \label{eq:bathenergyandsystementro}
+  ΔS_\sys(t) + ∑_iβ_i ΔE_{\bath^i}(t) \geq 0.
+\end{equation}
+This inequality only contains quantities that can be expected to be
+finite, even in the limit of infinite baths.
+
+As in \cref{sec:ergoonebath} we now demand periodic driving, that is
+\(H(t+τ) = H(t)\) for some \(τ\geq 0\). Now we \emph{Assume} that the
+system enters a periodic steady state after the time \(n_0τ\) for some
+\(n_0\in\NN\) so that \(ρ_\sys((n + n_0)τ)= ρ_\sys(n_0τ)\) for all
+\(n\in\NN\). This assumption is linked to the notion of a ``finite
+memory'' of the baths. In the same spirit, we \emph{assume} that the
+energy change of each bath
+\(ΔE_{\bath^i}^\cyc =ΔE_{\bath^i}((n+1)τ)-ΔE_{\bath^i}(nτ) =
+E_{\bath^i}((n+1)τ)-E_{\bath^i}(nτ)\) is constant once the system is
+in the periodic steady state. This behavior, at least on the system
+level, is suggested by the NMQSD equation \cref{{eq:multinmqsd}}.
+
+As the system entropy does not change over a cycle
+\(ΔS_\sys^\cyc  ΔS_\sys(τ (n+n_0)) - ΔS_\sys(τ n_0)=S_\sys(τ (n+n_0)) - S_\sys(τ
+n_0)=0\) vanishes we have
+\begin{equation}
+  \label{eq:secondlaw_cyclic}
+  ∑_iβ_i ΔE_{\bath^i}^\cyc \geq 0,
+\end{equation}
+as otherwise the inequality \cref{eq:bathenergyandsystementro} would
+be violated in finite time.
+
+If one defines heat as the energy change of the baths as is done
+in~\cite{Kato2016Dec} and substantiated, based on a microscopic
+definition of entropy, in~\cite{Strasberg2021Aug}\footnote{In this
+  work, a full dynamical theory is being derived.},
+\cref{eq:secondlaw_cyclic} amounts to the Clausius form of the second
+law. This definition of heat is corroborated in~\cite{Esposito2015Dec}
+where it is shown\footnote{for fermionic baths} that a definition of heat
+involving any nonzero fraction of the interaction energy will lead to
+the internal energy (as defined by the first law) not being an exact
+differential.
+
+In contrast to~\cite{Strasberg2021Aug}, no interpretation in terms of
+thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
+to be useful.  Assume that the interaction Hamiltonian in
+\cref{eq:katoineqsys} vanishes periodically, so that system and bath
+energy expectation values can be cleanly separated. In the periodic
+steady state the system energy does not change during a cycle, so the
+whole energy change amounts to the change in bath energy. In a setting
+with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound.
+
+% LocalWords:  ergotropy
