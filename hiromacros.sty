@@ -111,6 +111,8 @@
 
 
 %% Including plots
+% \newcommand{\plot}[1]{%
+% \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
 \newcommand{\plot}[1]{%
-  \ifdraft{\includegraphics[draft=false]{./figs/#1.pdf}}{\input{./figs/#1.pgf}}}
+  \includegraphics[draft=false]{./figs/#1.pdf}}
 \newcommand{\tval}[1]{{\input{./values/#1.tex}}}
