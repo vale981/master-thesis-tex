@@ -15,7 +15,7 @@
           physics mathtools amsmath fontspec booktabs siunitx caption biblatex float
           pgfplots microtype fancyvrb csquotes setspace newunicodechar hyperref
           cleveref multirow bbold unicode-math biblatex-phys xpatch beamerposter
-          type1cm changepage;
+          type1cm changepage lualatex-math;
       };
     in rec {
       packages = {
