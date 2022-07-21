@@ -42,10 +42,98 @@ observables. Finally, we will discuss some numerical applications of
 the result in \cref{chap:numres}. These application include a
 \fixme{references}.
 
+In \cref{chap:hops_notes}, some HOPS related subjects are discussed,
+including a derivation of the HOPS for multiple baths embedded in an
+auxiliary bosonic Fock space in \cref{sec:multihops}.
+
 \newpage
 
-\section{Open Systems and HOPS}
+\section{Open Systems, the NMQSD and HOPS}
 \label{sec:quick_hops}
+
+The basic and most general model which forms the foundation of all
+matters discussed in this is a general quantum system \(H_\sys(t)\)
+coupled to \(N\) baths of harmonic oscillators
+\begin{equation}
+  \label{eq:generalmodel}
+  H(t) = H_\sys(t) + ∑_{n=1}^N \qty[L_n^†(t)B_n + \hc] + ∑_{n=1}^NH_B\nth ,
+\end{equation}
+with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
+\(H_B\nth=∑_λω_λ\nth \qty(a_λ\nth)^\dag a_λ\nth\). The \(a_λ\) are
+bosonic annihilation operators and the \(L_n\) are arbitrary not
+necessarily hermitian operators system Hilbert space. Sometimes
+\cref{eq:generalmodel} is called the ``Standard Model of Open
+Systems''. Throughout the work we set \(\hbar=c=1\).
+
+Despite the simple structure of the baths, \cref{eq:generalmodel} is
+generally very hard to solve beyond weak coupling strengths and the
+secular approximation~\cite{Rivas2012}. The ``Non Markovian Quantum
+State Diffusion'' (NMQSD)~\cite{Diosi1998Mar} approach allows to
+recast \cref{eq:generalmodel} into a stochastic differential equation
+in which the bath degrees of freedom are accounted for by Gaussian
+stochastic processes. This drastic reduction of the number of degrees
+of freedom also leads to an efficient numerical method, the
+``Hierarchy of Pure States'' (HOPS).
+
+The basics of the NMQSD will be briefly reviewed in
+\cref{sec:nmqsd_basics} as will the basics of HOPS in
+\cref{sec:hops_basics}. A more detailed account may be found in
+\cref{sec:multihops} as well as \cite{RichardDiss}.
+
+\subsection{Non Markovian Quantum State Diffusion}
+\label{sec:nmqsd_basics}
+
+We begin by considering a single zero temperature bath in the ground
+state \(\ket{0}\). The total system-bath state may then be expanded in
+a Bargmann coherent state basis~\cite{klauder1968fundamentals} with
+respect to the bath degrees of freedom
+\begin{equation}
+  \label{eq:projected_single}
+  \ket{ψ(t)} = ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ket{ψ(t,\vb{z})^\ast}\ket{\vb{z}},
+\end{equation}
+where \(\vb{z}\) is a vector of coherent state labels \(z_λ\) for each
+environment oscillator.
+
+After transforming \cref{eq:generalmodel} into the interaction picture
+with respect to \(H_B\) and using the properties of the coherent
+states (\(\mel{z_λ}{a_λ}{ψ}\rightarrow ∂_{z_λ^\ast}\braket{z_λ}{ψ}\),
+\(\mel{z_λ}{a_λ^\dag}{ψ}\rightarrow z_λ^\ast\braket{z_λ}{ψ}\)) we
+arrive at
+\begin{equation}
+  \label{eq:nmqsd_single}
+  ∂_tψ_t(η^\ast_t) = -\iu H ψ_t(η^\ast_t) +
+  L {η}^\ast_tψ_t({η}^\ast_t) - L^†∫_0^t\dd{s}α(t-s)\fdv{ψ_t({η}^\ast_t)}{η^\ast_s},
+\end{equation}
+where \(α\) is the zero temperature bath correlation function (BCF)
+\begin{equation}
+  \label{eq:bcfdef}
+  α(t-s) = \ev{B(t)B(s)} = ∑_λ \abs{g_λ}^2\,\eu^{-\iu ω_λ (t-s)}
+\end{equation}
+and \(η_t\) is a Gaussian stochastic process obeying
+\begin{equation}
+  \label{eq:single_processescorr}
+  \begin{aligned}
+      \mathcal{M}(η^\ast_t) &=0, & \mathcal{M}(η_tη_s) &= 0,
+      & \mathcal{M}(η_tη_s^\ast) &= α(t-s).
+  \end{aligned}
+\end{equation}
+
+Note that the BCF \(α\) is usually defined as Fourier transform of the
+spectral density
+\begin{equation}
+  \label{eq:specdens}
+  J(ω) = {π} ∑_λ \abs{g_λ}^2 δ(ω-ω_λ).
+\end{equation}
+One then usually performs a continuum limit so that \(J(ω)\) becomes
+``smeared out'' to a smooth function and \(α(τ)\) decays to zero for
+\(τ\rightarrow ∞\). This behavior leads to \cref{eq:nmqsd_single}
+
+
+\fixme{ask richard about origin of ohmic}
+
+
+\subsection{Hierarchy of Pure States}
+\label{sec:hops_basics}
 
 \section{Ergotropy and Basic Thermodynamics of Open Systems}
 \label{sec:basic_thermo}

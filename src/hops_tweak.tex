@@ -1,4 +1,5 @@
 \chapter{Some Notes on HOPS}
+\label{chap:hops_notes}
 \section{Normalized HOPS}%
 \label{sec:norm}
 
@@ -35,8 +36,9 @@ arbitrary\(f\colon \RR \rightarrow \CC\) we can begin to calculate
 \end{equation}
 
 We would now like to obtain \(∂_t\norm{\tilde{ψ}}^2 = 0\) as well as
-\(\dot{f} > 0\) for \(\norm{\tilde{ψ}} < 0\) and \(\dot{f} < 0\) for
-\(\norm{\tilde{ψ}} > 0\), so that \(\norm{\tilde{ψ}} = 1\) becomes a
+\(\dot{f} > 0\) for \(\norm{\tilde{ψ}} < 1\), \(\dot{f} < 0\) for
+\(\norm{\tilde{ψ}} > 1\) and \(\dot{f} = 0\) for
+\(\norm{\tilde{ψ}}=1\), so that \(\norm{\tilde{ψ}} = 1\) becomes a
 stable fix-point.
 
 Observing \cref{eq:normdgl}, we conclude that our goals can be
@@ -44,10 +46,12 @@ achieved by demanding
 \begin{equation}
   \label{eq:fdgl}
   \dot{f} = \frac{\tilde{ψ}^†F(\tilde{ψ},
-    \tilde{φ})}{\norm{\tilde{ψ}}^2} + g\qty(\norm{ψ}^2).
+    \tilde{φ})}{\norm{\tilde{ψ}}^2} + g\qty(\norm{ψ}^2)
 \end{equation}
-The first summand on its own would lead to \(∂_t\norm{\tilde{ψ}}^2 =
-0\) norm conservation. The latter of our goals may be achieved by
+with \(g(0)=0\).
+
+The first summand on its own would lead to norm conservation, \(∂_t\norm{\tilde{ψ}}^2 =
+0\). The latter of our goals may be achieved by
 choosing \(g(x) = \qty(1-x)\).
 
 These choices lead to an altered HOPS equation
