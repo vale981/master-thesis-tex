@@ -240,7 +240,10 @@ trajectory count are shown and this behaviour is observed. We also
 find that in the more challenging regimes of stronger coupling or
 longer bath correlation times the behaviour of the convergence is more
 volatile, dipping into regions of inconsistency even at high sample
-counts.
+counts. While the mean difference between the numerical and the
+analytical flow is always below the mean statistical error, larger
+fluctuations can occur at certain points in time when a new region of
+the probability space is sampled.
 
 \begin{figure}[p]
   \centering
@@ -275,11 +278,82 @@ counts.
 \label{sec:twoosccomp}
 
 The model of \cref{sec:oneosc} was generalized to two oscillators
-coupled to two separate baths in \cref{sec:twoosc}. The main challenge
-of simulating the model \cref{eq:hamiltonian} is the dimension of the
-system Hilbert space which is constrained by the available memory. To
-limit the variance the temperature of one of the baths was set to
-zero, so that only one thermal stochastic process was introduced.
+coupled to two separate baths in \cref{sec:twoosc} and
+\cref{eq:hamiltonian_two_bath}. In this section we simulate this model
+and compare the results with the analytical solution.
+
+For simplicity, the parameters were chosen symmetric so that the
+frequencies of both oscillators are the same \(Ω=Λ=1\). As before,
+\(Ω\) defines the energy unit. The zero temperature bath correlation
+functions of both baths were chosen identically with a cutoff
+frequency \(ω_c=2\). The intra-oscillator coupling was chosen as
+\(γ=0.5\). The hierarchy was truncated so that \(\abs{\vb{k}}\leq 3\) and a BCF
+expansion with five terms was chosen to limit memory demands.
+\fixme{mention number of samples}
+
+To limit the variance the temperature of one of the baths was set to
+zero, so that only one thermal stochastic process was introduced. The
+other bath was chosen to have \(T=0.6\). The ground state of the
+system Hamiltonian \(\ket{0}\otimes \ket{0}\) was chosen as the
+initial state of the oscillators.
+
+The main challenge of simulating the model \cref{eq:hamiltonian_two_bath} is
+the dimension of the system Hilbert space which is constrained by the
+available memory. In the simulation discussed here, each oscillator
+was truncated at \(9\) levels leading to \(9^2 = 81\) dimensions in
+total\footnote{This is a naive method of truncation, but sufficient
+  for the purposes of this work.}. The effect of a too drastic
+truncation of the system Hilbert space can be seen in
+\cref{fig:insufficient_levels}. At the temperature chosen the mean
+level occupation of a harmonic oscillator is given by the Bose distribution
+\begin{equation}
+  \label{eq:harm_mean_occ}
+  \ev{n} = \frac{1}{\eu^{Ωβ}-1} \approx 0.23 < 1.
+\end{equation}
+Nevertheless, quite more than two levels are required per
+oscillator. This may be due to a required minimal resolution of the
+position operators that occur in the model
+\cref{eq:hamiltonian_two_bath} which is formulated with position space
+in mind.
+
+The final result can be studied in \cref{fig:sufficient_levels}. We
+find good, but not excellent agreement. Based on the results of
+\cref{sec:oneosccomp} however, it can be argued that this result is
+sufficient to corroborate the validity of the results of
+\cref{sec:multibath}. With more computational effort and fine-tuning
+of parameters a better agreement between the analytical and the
+numerical results may be achieved.
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[t]{.49\linewidth}
+    \includegraphics{figs/analytic_comp/comparison_two_5bcf_5ho.pdf}
+    \caption{\label{fig:insufficient_levels}\(\dim\hilb_\sys=25\).}
+  \end{subfigure}
+  \begin{subfigure}[t]{.49\linewidth}
+    \includegraphics{figs/analytic_comp/comparison_two.pdf}
+    \caption{\label{fig:sufficient_levels}\(\dim\hilb_\sys=81\).}
+  \end{subfigure}
+  \caption{\label{fig:comp_two_bath} The bath energy flows for
+    the model \cref{eq:hamiltonian_two_bath}, where the dashed lines
+    correspond to the analytical solutions.}
+\end{figure}
+
+\Cref{fig:comp_two_bath} exhibits some interesting features. The
+initial slip peak in the bath energy flows is identical for both baths
+and independent of temperature as suggested by the discussion in
+\cref{sec:pure_deph}. As is expected, the hot bath looses energy and
+the cold bath gains energy, while this process is modulated by the
+intra-oscillator coupling. It follows from the analytical solution
+that eventually a steady state without oscillations will be reached.
+
+Interestingly, the zero temperature bath flow converges very much
+faster than the finite temperature flow despite the whole system being
+connected, at least indirectly, to the hot bath. The reason for this
+is that the derivative of the thermal stochastic process \(\dot{ξ}\)
+dominates the variance of the flow for each trajectory. This is also
+the reason that expressions depending on the hierarchy states rather
+than time derivatives of stochastic processes are preferred as
+discussed in \cref{sec:general_obs}.
 
 
 \fixme{show simulation with insufficient HO levels}
@@ -298,6 +372,7 @@ zero, so that only one thermal stochastic process was introduced.
 \item quantum friction
 \item non-markovianity in the energy shovel
 \item resonance effects
+\item nonuniform level spacing, three level system
 \item \ldots
 \end{itemize}
 
