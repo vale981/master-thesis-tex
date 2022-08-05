@@ -1,13 +1,32 @@
 \documentclass[fontsize=10pt,paper=b5,open=any,
-,twoside=true,toc=listof,toc=bibliography,headings=optiontohead,
-captions=nooneline,captions=tableabove,english,DIV=calc,numbers=noenddot,final,parskip=half,
-headinclude=false,footinclude=false,BCOR=1cm]{scrbook}
-
+twoside=yes,toc=listof,toc=bibliography,headings=optiontohead,
+captions=nooneline,captions=tableabove,english,DIV=15,numbers=noenddot,final,parskip=half-,
+headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 \pdfvariable suppressoptionalinfo 512\relax
-
+\usepackage[bottom]{footmisc}
+\raggedbottom
 \usepackage{lualatex-math}
 \usepackage{hirostyle}
 \usepackage{hiromacros}
+
+
+\newcommand{\figW}{\columnwidth}
+\newcommand{\figH}{0.61803551232\figW}
+
+\newcommand{\legendfontsize}{\tiny}
+\newcommand{\tickfontsize}{\tiny}
+\newcommand{\labelfontsize}{\scriptsize}
+
+
+
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows}
+\pgfplotsset{compat=newest}
+\pgfplotsset{every axis/.append style={
+    tick label style={font=\tickfontsize},
+    legend style={font=\legendfontsize},
+    y label style={font=\labelfontsize},
+    x label style={font=\labelfontsize}}}
 
 
 \addbibresource{references.bib}
@@ -15,6 +34,9 @@ headinclude=false,footinclude=false,BCOR=1cm]{scrbook}
 \title{Energy Flow in Strongly Coupled Open Quantum Systems}
 \author{Valentin Boettcher}
 \date{\today}
+
+% \includeonly{./src/num_results}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -22,8 +44,8 @@ headinclude=false,footinclude=false,BCOR=1cm]{scrbook}
 % Chapters
 \include{./src/intro}
 \include{./src/flow}
-\include{./src/num_results}
 \include{./src/analytical_solution}
+\include{./src/num_results}
 
 \appendix
 \include{./src/hops_tweak}
