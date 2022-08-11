@@ -10,8 +10,6 @@
 \usepackage{siunitx}
 \usepackage{caption}
 \usepackage[list=true, font=footnotesize, labelformat=brace]{subcaption}
-\usepackage{tikz}
-\usepackage{pgfplots}
 \usepackage[protrusion=true,expansion=true,tracking=true]{microtype}
 \usepackage{fancyvrb}
 \usepackage[autostyle=true]{csquotes}
@@ -22,7 +20,7 @@ linkcolor=blue,
      filecolor=blue,
      citecolor = black,
      urlcolor=cyan,]{hyperref} % load late
-\usepackage[capitalize]{cleveref}
+\usepackage{cleveref}
 \usepackage{multirow,tabularx}
 \usepackage{bbold}
 \usepackage{scrhack}
@@ -43,11 +41,6 @@ linkcolor=blue,
 \pgfplotsset{compat=1.16}
 
 
-%% Tikz
-\usetikzlibrary{arrows,shapes,angles,quotes,arrows.meta,external}
-\tikzexternalize[prefix=tikz/]
-
-
 %% Including Results
 \newcommand{\result}[1]{\input{./results/#1}\!}
 
@@ -55,7 +48,7 @@ linkcolor=blue,
 \sisetup{separate-uncertainty = true}
 
 %% Captions
-\captionsetup{font=scriptsize}
+\captionsetup{font=scriptsize,format=plain}
 
 %% Labels
 % \labelformat{chapter}{chapter~#1}

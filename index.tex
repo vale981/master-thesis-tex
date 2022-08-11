@@ -6,9 +6,9 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 \usepackage[bottom]{footmisc}
 \raggedbottom
 \usepackage{lualatex-math}
+\usepackage{wrapfig2}
 \usepackage{hirostyle}
 \usepackage{hiromacros}
-
 
 \newcommand{\figW}{\columnwidth}
 \newcommand{\figH}{0.61803551232\figW}
@@ -17,16 +17,6 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 \newcommand{\tickfontsize}{\tiny}
 \newcommand{\labelfontsize}{\scriptsize}
 
-
-
-\usepgfplotslibrary{groupplots,dateplot}
-\usetikzlibrary{patterns,shapes.arrows}
-\pgfplotsset{compat=newest}
-\pgfplotsset{every axis/.append style={
-    tick label style={font=\tickfontsize},
-    legend style={font=\legendfontsize},
-    y label style={font=\labelfontsize},
-    x label style={font=\labelfontsize}}}
 
 
 \addbibresource{references.bib}
@@ -49,6 +39,7 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 
 \appendix
 \include{./src/hops_tweak}
+\include{./src/further_graphics}
 
 \printbibliography{}
 \end{document}
@@ -57,4 +48,5 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 %%% mode: latex
 %%% TeX-master: t
 %%% TeX-output-dir: "output"
+%%% TeX-engine: luatex
 %%% End:
