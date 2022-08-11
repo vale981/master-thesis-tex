@@ -396,7 +396,8 @@ To evaluate \(\ev{O}\) we have to find the value of
 \(\ev{\qty(B^†)^a B^b}\). This can be achieved by interjecting the
 overcomplete coherent state basis as in \cref{eq:interactev} which
 leads us to expressions in the form of
-\(\mel{ψ}{\qty(B^†)^a}{z}\mel{z}{B^b}{ψ}\).
+\(\mel{ψ}{\qty(B^†)^a}{z}\mel{z}{B^b}{ψ}\) and switching to the
+interaction picture with respect to \(H_{\bath}\).
 
 For zero temperature, we find following the procedures of
 \cref{sec:flow_lin},
@@ -773,10 +774,16 @@ yielding
 \end{equation}
 \fixme{plots}
 
-It is useful to normalize the BCF based on \cref{eq:pureinterexp}, so
-that the pure interaction energy build-up in the initial slip is
-canceled. To make the normalization independent of \(L(t)\),
-we choose the normalization to be
+For time independent coupling we have
+\begin{equation}
+  \label{eq:pureinterexp_timeidp}
+  \ev{H_\inter} = -2 \ev{L^2} \Im[α(t)] = -Δ\ev{H_{\bath}}.
+\end{equation}
+
+It may be useful to normalize the BCF based on \cref{eq:pureinterexp},
+so that the pure interaction energy build-up in the initial slip is
+canceled. To make the normalization independent of \(L(t)\), we choose
+the normalization to be
 \begin{equation}
   \label{eq:bcfnorm}
   \begin{aligned}

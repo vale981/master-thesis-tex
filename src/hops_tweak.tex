@@ -324,7 +324,7 @@ this and also for the coupling to the lower orders foregoing the
 recursive nature of the estimate.
 
 The relation \cref{eq:steadynorm} is recursive
-and break off at \(ψ^0\), the norm of which can be assumed to be \(1\)
+and break off at \(ψ^0\), the norm of which can be assumed to be unity
 in the nonlinear method.
 
 These ideas remain to be verified. Especially the assumptions should
@@ -335,17 +335,17 @@ As an illustration the validity of the bound for one specific model
 see \cref{fig:normest_ω,fig:normest_δ}.
 \begin{figure}[t]
   \centering
-  \plot{norm_est/norm_estimate_omega}
+  \includegraphics{figs/one_bath_syst/norm_estimate_omega}
   \caption{\label{fig:normest_ω} The maximum norm (for each time
     point) of the first hierarchy states for \(500\) trajectories
     subtracted from norm estimate and normalized by the norm estimate
-    for a qubit coupled to single zero temperature ohmic baths with
-    varying \(ω_c\). The titles include the range of the norm
-    estimates. For higher cutoff frequencies the BCF vanishes faster
-    and the norm of the hierarchy states decreases. The opacity of the
-    lines is proportional to their corresponding \(\abs{G_μ}\). The
-    bound is tightest for the hierarchy states with the largest
-    coupling. \fixme{reference model description}}
+    for a qubit coupled to single zero temperature ohmic baths
+    \cref{eq:one_qubit_model} with varying \(ω_c\). The titles include
+    the range of the norm estimates. For higher cutoff frequencies the
+    BCF vanishes faster and the norm of the hierarchy states
+    decreases. The opacity of the lines is proportional to their
+    corresponding \(\abs{G_μ}\). The bound is tightest for the
+    hierarchy states with the largest coupling.}
 \end{figure}
 \begin{figure}[p]
   \centering
@@ -370,4 +370,8 @@ Calculating \(M_{\vb{k}}\) explicitly and demanding it to be small
 (compared to some energy scale) nevertheless gives a convergent
 truncation scheme below a certain coupling strength.
 Some basic experimentation has shown, that the cutoff parameter has to
-be tuned and is not universally valid.
+be tuned and is not universally valid which is in accord with the
+findings of \cite{RichardDiss}.
+
+\section{Shifted Spectral Densities}
+\label{sec:shift_sp}

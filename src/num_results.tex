@@ -16,7 +16,8 @@ size. As the quantities that are being calculated using HOPS are
 essentially Monte Carlo integrals, those statistical errors scale as
 \(1/\sqrt{N}\) with the sample size \(N\) and therefore controllable
 besides being simple to estimate. Note however, that a certain number
-of samples is required to estimate the standard deviation correctly.
+of samples is required to estimate the standard deviation
+correctly.
 
 To tell whether some vector quantities\footnote{For example a time
   series.} \(X_1, X_2\) obtained with HOPS or otherwise are compatible
@@ -27,6 +28,10 @@ of the \(X_i\), where \(σ_Δ\) is the standard deviation due to the
 stochastic sampling. This percentage is often displayed in legends as
 a number in parentheses.
 
+For the estimation of mean and standard deviation from trajectory
+data, Welford's online algorithm is employed to avoid catastrophic
+numerical cancellation~\cite{Welford1962Aug,Knuth1997}.
+
 In all simulations discussed an Ohmic spectral density
 \begin{equation}
   \label{eq:ohmic_sd}
@@ -36,12 +41,12 @@ is used unless otherwise. This spectral density models an environment
 with a physical energy spectrum that is bounded from below and allows
 the application of the finite temperature method described
 in~\cite{RichardDiss} \fixme{internal reference}. Also, \(J(0) = 0\)
-ensures that there is a unique zero temperature state of the bath. In
-\cite{cite:Kolar2012Aug} it is argued (under weak coupling
+ensures that there is a unique zero temperature state of the
+bath. In~\cite{Kolar2012Aug} it is argued (under weak coupling
 assumptions), that \(J(ω)\approx ω^γ\) with \(γ<1\) could lead to a
 violation of the third law.  Physically, a scaling of the spectral
 density \(\propto ω\) is connected to acoustic
-phonons~\cite{cite:Kolar2012Aug}.
+phonons~\cite{Kolar2012Aug}.
 
 In \cref{eq:ohmic_sd} \(η\) is a scaling
 constant and \(ω_c\) (the cutoff frequency) regulates the decay of the
@@ -71,8 +76,9 @@ method~\cite{Hartmann2017Dec} \fixme{rereference} (see also \cref{sec:nonlin_flo
 In \cref{chap:analytsol} and specifically \cref{sec:oneosc,sec:twoosc} an
 analytical solution for a quantum Brownian motion like model was
 derived. Using this solution, we are able to verify the results of
-\cref{chap:flow} and benchmark the HOPS method.
-
+\cref{chap:flow} and benchmark the HOPS method. It will be shown, that
+HOPS can indeed reproduce the \emph{exact} open system dynamics of the
+bath energy flow.
 
 \subsection{One Oscillator, One Bath}
 \label{sec:oneosccomp}
@@ -121,7 +127,12 @@ The observed behaviour for longer bath memories may be qualitatively
 understood by assuming that the system interacts with the same part of
 the bath for a longer time and can therefore more efficiently transfer
 energy. When the bath memory is short however, new interactions have
-to be built up continuously which leads to a slower energy transfer.
+to be built up continuously which leads to a slower energy
+transfer. Correspondingly, the system energy decays slower for shorter
+bath memories \cref{fig:ho_zero_entropy}. Another explanation is a
+resonance effect due to the peak of the BCF being located at \(ω_c\)
+and the HO energy gap being one. We will discuss this point further in
+\cref{sec:one_bath_cutoff} in the context of a simpler model.
 
 \begin{figure}[h]
   \centering
@@ -130,6 +141,18 @@ to be built up continuously which leads to a slower energy transfer.
     of the system state as a measure for entanglement with the
     bath. Right: The system energy as a function of time.}
 \end{figure}
+The ``backflow'' observed in \cref{fig:comp_zero_t} for stronger
+coupling seems to diminish the advantage of stronger coupling over
+larger bath memories. The decay of the red curve in
+\cref{fig:ho_zero_entropy} is barely faster than the decay of the blue
+curve, despite much larger coupling strength in the case of the red
+curve. This may be due to the system interaction ``too long'' with a
+given portion of the bath. Here we observe this behaviour for stronger
+coupling which shortens the time-scale of energy exchange. It is an
+interesting question for future work, whether we can also observe it
+by further decreasing \(ω_c\).
+\fixme{or now? if i have time}
+
 Note however, that the steady state is not a product state as can be
 seen by the residual entropy in \cref{fig:ho_zero_entropy} in the
 cases where the steady state has been approximately reached. The
@@ -146,7 +169,7 @@ loss of the system is markedly slower and the initial energy gain is
 less pronounce. This is consistent with the flow in
 \cref{fig:comp_zero_t}.
 
-The simulation was run with a hierarchy depth of \(\norm{\vb{k}} = 5\)
+The simulation was run with a hierarchy depth of \(\norm{\vb{k}} \leq 5\)
 (simplex truncation\footnote{see \cref{sec:hops_basics}}) and a BCF
 fit with \(7\) terms taken from \cite{RichardDiss} which was also used
 in the analytical solution. The harmonic oscillator Hilbert space was
@@ -320,9 +343,10 @@ The final result can be studied in \cref{fig:sufficient_levels}. We
 find good, but not excellent agreement. Based on the results of
 \cref{sec:oneosccomp} however, it can be argued that this result is
 sufficient to corroborate the validity of the results of
-\cref{sec:multibath}. With more computational effort and fine-tuning
-of parameters a better agreement between the analytical and the
-numerical results may be achieved.
+\cref{sec:multibath}. With more computational effort\footnote{Mainly
+  more BCF expansion terms.} and fine-tuning of parameters an even
+better agreement between the analytical and the numerical results may
+be achieved.
 \begin{figure}[h]
   \centering
   \begin{subfigure}[t]{.49\linewidth}
@@ -330,7 +354,7 @@ numerical results may be achieved.
     \caption{\label{fig:insufficient_levels}\(\dim\hilb_\sys=25\).}
   \end{subfigure}
   \begin{subfigure}[t]{.49\linewidth}
-    \includegraphics{figs/analytic_comp/comparison_two.pdf}
+    \includegraphics{figs/analytic_comp/comparison_two_ho.pdf}
     \caption{\label{fig:sufficient_levels}\(\dim\hilb_\sys=81\).}
   \end{subfigure}
   \caption{\label{fig:comp_two_bath} The bath energy flows for
@@ -355,16 +379,472 @@ the reason that expressions depending on the hierarchy states rather
 than time derivatives of stochastic processes are preferred as
 discussed in \cref{sec:general_obs}.
 
+\fixme{show simulation with insufficient HO levels} We have shown that
+the findings of \cref{chap:flow} are consistent with
+\cref{chap:analytsol} and that through a careful choice of the HOPS
+parameters such as hierarchy depth, Hilbert space dimension and BCF
+expansion the exact open system dynamics of the bath energy flow can
+be reproduced. The statistical error can be made arbitrarily small by
+increasing the trajectory count. For a given target error, the
+trajectory count can be estimated by the empirical standard deviation
+of a given observable.
 
-\fixme{show simulation with insufficient HO levels}
+For future work there remains the generalization of the work in this
+section and \cref{chap:analytsol} to time dependent couplings and
+Hamiltonians. Because the NMQSD and also HOPS are largely agnostic of
+these factors, we may safely assume that the results of the comparison
+will be similar to the ones presented here.
+
+\section{Precision Simulations for a System without Analytical
+  Solution}
+\label{sec:prec_sim}
+
+An analytical solution to a given open system is generally not known,
+so that another indicator of the proper choice of HOPS parameters may
+be required. In this section we will briefly demonstrate some high
+precision simulations of a single qubit coupled to a single zero
+temperature bath. The corresponding Hamiltonian is
+\begin{equation}
+  \label{eq:one_qubit_model}
+  H = \frac{1}{2} σ_z + \frac{1}{2} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
+  σ_x a_λ^†) + ∑_λ ω_λ a_λ^\dag a_λ,
+\end{equation}
+where we've chosen \(H\) to be dimensionless\footnote{The energy scale
+is set by the system Hamiltonian.}.
+
+In the language of HOPS this corresponds to \(H_\sys=σ_z/2\),
+\(L=σ_x/2\). We again choose the Ohmic BCF as explained in
+\cref{sec:meth}. Throughout this section we choose the ``up'' state
+\(H_S\ket{1} = 1/2\ket{1}\) as the initial state.
+
+The main measure of convergence for variables other than the
+trajectory count are consistency conditions. The simplest one
+available to us is energy conservation which allows us to calculate
+the expectation value of the interaction energy through integration of
+the bath energy flow. The interaction energy obtained in this way can
+then be compared to the interaction energy obtained directly as shown
+in \cref{sec:intener}.  For time dependent Hamiltonians, the power
+must be considered similarly.
+
+To check for converge we generally set all parameters to a value which
+may be safely above the required optimum and vary one parameter. This
+is a procedure that could be automated in future work. The main
+sources of systematic deviations for the model
+\cref{eq:one_qubit_model} are the quality of the sampling of the
+stochastic process and the cutoff of the hierarchy. The first becomes
+important when the cutoff frequency is large and the BCF vanishes
+rapidly and has to be resolved on shorter time scales. The second is
+important when the cutoff frequency is smaller and the bath has a
+longer memory.
+
+\subsection{Stochastic Process}
+\label{sec:stocproc}
+For studying the convergence behaviour regarding the sampling of the
+stochastic process we chose the cutoff as \(\norm{\vb{k}} \leq 4\)
+(simplex truncation\footnote{see \cref{sec:hops_basics}}),
+\(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=1.6\)
+and \(ω_c=4\). The high cutoff was chosen to provide the most
+challenging setting for the sampling. The sampling method uses the
+``Fast Fourier Transform'' (FFT) as described
+in~\cite{RichardDiss}. As the system Hilbert space dimension is small,
+a BCF expansion with seven terms was employed.
+
+The main parameter of this method is the accuracy of the FFT. The
+implementation compares the BCF and its FFT approximation on the time
+interval of the simulation and chooses the internal
+parameters\footnote{The number of time grid points and the integral
+  boundaries in frequency space.} so that the difference normalized by
+\(α(0)\) is smaller than a given value \(ς\).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/stocproc_systematics_interaction}
+  \caption{\label{fig:stocproc_systematics} Left panel: The
+    interaction energy of the model \cref{eq:one_qubit_model} for
+    \(α(0)=1.6\) and \(ω_c=4\) using different precisions for the
+    sampling of the stochastic process. The dashed lines are obtained
+    using energy conservation while the solid lines are obtained
+    directly as in \cref{sec:intener}. The consistency between the too
+    is given in the legend of the right panel. Right panel: The
+    difference of the interaction energies obtained using energy
+    conservation and directly. The values are normalized by the
+    maximal absolute value of the interaction energy.}
+\end{figure}
+\Cref{fig:stocproc_systematics} illustrates the effect of this
+parameter. We find very good qualitative agreement for all values of
+\(ς\). The indirectly calculated value of then interaction energy
+shows some fluctuation between the settings, but the value calculated
+directly is very stable as can bee seen in the inset of
+\Cref{fig:stocproc_systematics}.
+
+\begin{wrapfigure}[16]{o}{0.5\textwidth}
+  \centering
+  \includegraphics{figs/one_bath_syst/stocproc_systematics_flow}
+  \caption{\label{fig:stocprocflow}The bath energy flow of the model
+    \cref{eq:one_qubit_model} for \(α(0)=1.6\) and \(ω_c=4\) using
+    different precisions \(\varsigma\) for the sampling of the
+    stochastic process.}
+\end{wrapfigure}
+The same behaviour can be observed with the bath energy flow in
+\cref{fig:stocprocflow}, which demonstrates near-identical results.
+
+Only in the \(\varsigma=10^{-6}\) case however, compatibility is
+satisfied at the given sample count. This is due to the fact that here
+multiple values that are obtained in different ways, namely system
+energy and the flow, have to be considered. The system energy depends
+on the zeroth hierarchy order only whereas the flow additionally
+depends on the first hierarchy states and has to be numerically
+integrated.
+
+The development of the consistency of trajectory count \(N\) can be
+studied in \cref{fig:stocproc_consistency_dev}. Only for the highest
+precision case we have a consistent picture. For lower precision, the
+consistency fluctuates and only occasionally surpasses \(68\%\). For
+the lower precisions we find that they initially demonstrate
+compatibility (until about \(N=10^4\)) but eventually diverge from the
+exact\footnote{The result that demonstrates compatibility
+  consistently.} result. It is therefore important to consider the
+dependence of the compatibility on the sample count \(N\) to judge the
+veracity of the simulation results.
+\begin{figure}[p]
+  \centering
+  \includegraphics{figs/one_bath_syst/stocproc_systematics_consistency}
+  \caption{\label{fig:stocproc_consistency_dev} Upper panel: The
+    compatibility of the flow (direct computation vs. energy
+    conservation) of the model \cref{eq:one_qubit_model} for
+    \(α(0)=1.6\) and \(ω_c=4\) using different precisions
+    \(\varsigma\) for the sampling of the stochastic process in
+    relation to the trajectory count \(N\). Lower left: The time
+    averaged difference (dashed) and the time averaged standard
+    deviation of the difference (solid) as a function of trajectory
+    count. Only for the smallest \(\varsigma\) the difference is
+    consistently smaller than the standard deviation of the
+    difference. Lower right: The time averaged statistical errors of the interaction
+    energy calculated directly (solid lines) and indirectly through
+    energy conservation (dashed lines).}
+\end{figure}
+
+Apart from being closer to the correct result, the direct computation
+of the interaction energy has the advantage of providing faster
+convergence\footnote{See \cref{fig:stocproc_consistency_dev}, lower right
+  panel.}.
+
+\subsection{Hierarchy Truncation}
+\label{sec:trunc}
+As the effect truncation depth has already been studied thoroughly
+in~\cite{RichardDiss}, we will keep the discussion short.  We chose
+\(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=0.8\)
+and \(ω_c=2\). Again, seven a BCF expansion with seven terms have been
+used. The coupling strength has been chosen with the help of
+\cref{sec:pure_deph}, so that the interaction energy is of a similar
+order of magnitude as in the discussion
+above. \Cref{fig:k_systematics} shows that there seems to be no
+improvement in accuracy or even change in the value of the flow for
+\(\norm{\vb{k}}\geq 4\). However, the inset in the left panel
+demonstrates that the direct result differs slightly for
+\(\norm{\vb{k}} = 2\), which demonstrates that an adequate choice of
+truncation depth is important.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/k_systematics_interaction}
+  \caption{\label{fig:k_systematics} The same as
+    \cref{fig:stocproc_systematics} but for \(α(0)=0.8\) and
+    \(ω_c=2\) and for various truncation depths \(k=\norm{\vb{k}}_{\mathrm{max}}\).}
+\end{figure}
+
+The observed behaviour may be due to the fact that only zeroth and
+first hierarchy depth states contribute to the result. For a
+truncation depth of four, the first hierarchy state does not ``see''
+the truncation any more. The deviation of the system energy from the
+highest precision value is shown in
+\cref{fig:k_systematics_system}. We see that the normalized difference
+of the \(\norm{\vb{k}} = 2\) case from the \(\norm{\vb{k}} = 6\) is on
+the same order of magnitude for system energy and interaction energy
+which contradicts the aforementioned explanation. Also, the results
+\(\norm{\vb{k}} = 4,6\) agree perfectly for both energies.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/k_systematics_system}
+  \caption{\label{fig:k_systematics_system} Left panel: The system
+    energy of the model \cref{eq:one_qubit_model} with \(α(0)=0.8\)
+    and \(ω_c=2\) and for various truncation depths
+    \(k=\norm{\vb{k}}_{\mathrm{max}}\). Right panel: The difference between
+    the \(k=4\) result and the results with \(k<4\) normalized by the
+    maximal absolute system energy (solid lines) and the same for the
+    interaction energy (dashed lines).}
+\end{figure}
+
+\begin{wrapfigure}[12]{o}{0.3\textwidth}
+  \centering
+  \includegraphics{figs/one_bath_syst/trajectories_not_same}
+  \caption{\label{fig:notsame} The norm of the difference of a
+    normalized single trajectory to the \(\norm{\vb{k}} = 6\) case.}
+\end{wrapfigure}
+\Cref{fig:notsame} demonstrates, that there is still a difference
+greater than the machine epsilon on the level the trajectories. This
+difference however, is small enough not to impact observables.
+
+Summarizing, it may be said that the HOPS parameters have to be chosen
+carefully for precision simulations, but that lower precision results
+already give a \emph{very} good qualitative picture.
+
+\fixme{maybe describe integration and error propagatation and time distribution.}
+\fixme{maybe run a simulation with more hierarchy depth and more bcf
+  terms, check whether there is a mistake}
+It remains for future work to perform precision studies the
+systematics of the finite temperature flow and modulated
+Hamiltonians. In the following sections we will look at some examples
+of physically interesting systems with less focus on the systematics
+of convergence.
+
+\subsection{Dependence on the Cutoff Frequency}
+\label{sec:one_bath_cutoff}
+We now consider precision simulations of the spin-boson like system
+with varying cutoff frequency. To make the interaction energies
+comparable to each other, the BCF normalization of section
+\cref{sec:pure_deph} is being used. Because of the small size of the
+Hilbert space, we were able to choose a HOPS
+configuration\footnote{\(\norm{\vb{k}}\leq 7\), seven BCF terms,
+  \(\varsigma = 10^{-6}\)} that yields high-accuracy results, based on
+the results of the previous section. A detailed account of the
+consistency is given in \cref{fig:omega_interaction_consistency}. The
+only problematic result is the one for \(ω_c=1\), but there is good
+qualitative consistency in this case. For all simulations
+\(N=5\cdot 10^{5}\) trajectories were computed. The results of these
+simulations are summarized in \cref{fig:omega_systematics_system}.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/omega_energy_overview}
+  \caption{\label{fig:omega_systematics_system} Energy overview for the
+    model \cref{eq:one_qubit_model} for various coupling strengths and
+     cutoff frequencies. The curves are converged out, and the error
+    funnels are not visible.}
+\end{figure}
+
+The interactions energy expectation values, despite being in the same
+order of magnitude, differ significantly. This illustrates the
+limitation of the estimate in \cref{sec:pure_deph}. Better estimates
+of the interaction energy and thus interaction strength may be derived
+from ideas similar to the ones discussed in
+\cref{sec:normest}. Besides the magnitude, the qualitative time
+dependence of the interaction energies varies, especially between the
+\(ω_c=1\) configuration and the others.
+
+The blue (\(ω_c=1\)) curve exhibits two pronounced turning points as
+opposed to one as the others do. This behaviour may be interpreted as
+non Markovian. Further, despite having the weakest overall coupling
+strength \(α(0)=0.4\) the system energy falls off the fastest after a
+short period where it is above the other configurations. This
+behaviour is also visible in the bath energy expectation value, where
+the blue almost reaches the same levels as the \(ω_c=2\) configuration
+for \(τ\gtrsim 5\).
+
+The flow is generally negative (the bath gains energy) and decays
+after an initial peak. All the flow graphs appear to be crossing in
+about the same point \(τ\approx 7.7\) after which their ordering by
+magnitude is reversed.  The inset shows that the crossing is not
+precisely at the same point, nevertheless further investigation of
+this phenomenon may of interest in the future. The decay is
+faster for higher cutoff frequencies and stronger couplings. Despite
+the higher interaction energies and coupling strengths, the
+high-cuttoff simulations exhibit a slower energy transfer after the
+initial peak as decayed sufficiently, with the system energy falling
+slower and the bath energy rising slower. The situation is generally
+reversed for short times \(τ\lesssim 2.5\), because here the build-up
+of interaction energy is significant. Despite the moving peaks in the
+flow, the location of the first extremum in is remarkably stable.
+
+The presentation in \cref{fig:omega_systematics_system} is not
+conducive to comparing the actual performance of the energy transfer,
+because of the variable shape of the spectral density and the chosen
+normalization. Because the maximum of the Ohmic spectral density is
+located at \(ω_c\) the special observed energy transfer behaviour for
+\(ω_c=1\) is likely due to a resonance effect as the system energy
+level spacing is unity.
+
+For a systematic study of resonance, we first compare the flow for
+shifted ohmic spectral densities\footnote{See \cref{sec:shift_sp} for
+  details.} with the same scaling and cutoff frequency \(ω_c=2\). We
+turn off the interaction before the system has reached its steady
+state and compare how much energy has been transferred in terms of the
+final bath and system energies and the loss due to the modulated
+coupling. The less energy the system has at the end of the process and
+the more the bath has taken up, the better the performance of
+transfer. If the interaction energies are on the same scale, the
+decoupling costs should be roughly the same. Otherwise, the added
+energy may go to the bath or to the system.  To make space for the
+shifted bath correlation functions, the system energy gap has been set
+to four so that \(α(0)=8\) represents a quite reasonable coupling
+strength.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/resonance_analysis}
+  \caption{\label{fig:resonance_analysis} Left
+    panel: The system, bath and interaction energies for various Ohmic
+    BFCs with \(α(0)=8,\,ω_c=2\) shifted by \(ω_s\). Mid panel: The
+    difference in total energy, the distance of the system energy to
+    the ground state energy and the distance of the bath energy to the
+    initial system energy. Right panel: The spectral density for the
+    there shift values.}
+\end{figure}
+The results for three shifts are presented in
+\cref{fig:resonance_analysis}. For all shifts the spectral density has
+a finite value at the system energy spacing, but in the \(ω_s=2\)
+case, the resonance condition is fulfilled. Indeed, the energy
+transfer out of the system is the best for the resonant case (see
+\cref{fig:resonance_analysis}, middle panel). The change in total
+energy due to the decoupling of the bath is moderately higher than in
+the resonant case than in the \(ω_s=1\) case but the final system
+energy is the lowest. The third simulation with \(ω_s=3\) does exhibit
+the worst performance with the lowest final bath energy the highest
+residual system energy and the highest change in total energy due to
+high interaction energy. Turning of the interaction leads mostly to
+the increased final system energy (see the middle panel).
+
+Generally the maximal absolute interaction energy is roughly
+proportional to the shift\fixme{maybe due to the fact that only higher
+  frequency modes are available}, so that the short term interaction
+strength as measured by the interaction energy expectation value is
+not only dependent on the width and total norm of the spectral
+density, but also on its absolute distribution in frequency space. The
+worse performance of the large shift case may be due to the lack of
+coupling to low frequency modes\fixme{this is speculation, should I
+  remove it?} or the greater asymmetry of the spectral density around
+the resonance frequency.
+
+However, due to the asymmetry of the spectral
+density, the simulations for \(ω_s=1\) and \(ω_s=3\) are not directly
+comparable. A repetition of this investigation with a
+(pseudo~\cite{Mukherjee2020Jan}) Lorentzian spectral density and for
+different interaction time-frames\footnote{steady state vs. transient
+  states} is left for future work.
+
+To study the effect of the bath memory, we use Ohmic spectral
+densities with varying \(ω_c\) that have been shifted and scaled so
+that their peaks coincide and the resulting interaction energies are
+comparable.
+
+The results that can be obtained are very much dependent on the
+timing. \Cref{fig:markov_analysis} has been obtained by tweaking the
+time point of decoupling so that an extremum in the \(ω_{c}=1\) curve
+is captured. This leads to an advantageous transfer performance with a
+lower system energy and a higher bath energy and similar cost in terms
+of total energy change.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/markov_analysis}
+  \caption{\label{fig:markov_analysis}}
+\end{figure}
+
+For slightly longer coupling times, we find in
+the exact opposite picture as can be ascertained from \Cref{fig:markov_analysis_longer}.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/markov_analysis_longer}
+  \caption{\label{fig:markov_analysis_longer}}
+\end{figure}
+The increased bath memory time allows for ``back flow'' of energy and
+so the performance of energy transfer is strongly dependent on the
+precision of control.
 
 
-\section{Precision Simulations for a Single Bath}
-\label{sec:prec}
-\begin{itemize}
-\item consistency
-\item dependency upon BCF and coupling strength
-\end{itemize}
+% It may be cautiously concluded, that in this case non Markovianity is
+% conductive to energy transfer between the system and the bath. A
+% similar observation was made in \cref{sec:oneosccomp}, but without
+% discussing interaction energies and with another normalization of the
+% BCF.
+
+% If the explanation given in \cref{sec:oneosccomp} is correct and the
+% non Markovian advantage in energy transfer is due to the system having
+% more time to interact with a given portion of the bath, a turning
+% point should be reached for very long bath memories\footnote{and
+%   correspondingly narrow spectral densities}, so that a given portion
+% of the bath can't absorb more energy after a certain time. Note however,
+% that this is a speculative idea.  \fixme{Do now?, Remove speculation?}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/omega_initial_slip}
+  \caption{\label{fig:omega_initial_slip} Left panel: The bath energy
+    flow of the model \cref{eq:one_qubit_model} for various coupling
+    strengths (solid lines) and the pure dephasing flow of
+    \cref{sec:pure_deph} (dashed lines). The vertical lines mark the
+    position of the first minimum of the interaction energy. Right
+    panel: The difference of the actual flow \(J\) and the pure
+    dephasing flow \(J_\mathrm{p.d.}\). The solid vertical lines mark
+    the time \(τ_p\) where the normalized deviation from pure
+    dephasing is \(10^{-2}\) and the dashed vertical lines show the
+    position of the peak flow at time \(τ_p\).}
+\end{figure}
+\paragraph{Initial Slip}
+For very short time scales, we see in \cref{fig:omega_initial_slip}
+that the pure dephasing dynamics discussed in \cref{sec:pure_deph}
+dominate but fail to predict the exact location of the peaks. The
+deviation from the pure dephasing flow occurs before the peak, where
+the time difference between the peak absolute flow and the deviation
+increases with decreasing \(ω_c\) as does the magnitude of the maximal
+deviation. With increasing non-Markovianity, the role of the system
+Hamiltonian in modulating the flow becomes increasingly important.
+
+\subsection{Dependence on the Coupling Strength}
+\label{sec:one_bathcoup_strength}
+After having studied the dependence of the bath energy flow for
+various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
+we now consider the case with fixed cutoff \(ω_c=2\) but varying
+coupling strength. The simulation parameters are the same as in
+\cref{sec:one_bath_cutoff} and again consistent results have been
+obtained as can be gathered from
+\cref{fig:delta_interaction_consistency}.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/one_bath_syst/δ_energy_overview}
+  \caption{\label{fig:delta_energy_overview} Energy overview for the
+    model \cref{eq:one_qubit_model} for various coupling
+    strengths. The curves are converged out, and the error funnels are
+    not visible.}
+\end{figure}
+
+The interaction strength was chosen linearly spaced and the simulation
+results are presented in \cref{fig:delta_energy_overview}.
+
+\begin{wrapfigure}[17]{o}{0.3\textwidth}
+  \centering
+  \includegraphics{figs/one_bath_syst/final_states_flows}
+  \caption{\label{fig:delta_fs_flow} The absolute difference of the state energies and the
+  maximal flows for the simulations in
+  \cref{fig:delta_energy_overview} relative to their value at \(α(0)=1.12\).}
+\end{wrapfigure}
+As the shape of the BCF is not altered the bath energy flows look very
+similar as do the interaction energies. The main difference is the
+magnitude of the interaction energy. With increased coupling strength
+there is an increased interaction energy and an increased flow which
+leads to faster energy loss in the system and faster energy gain of
+the bath. The stronger the coupling, the more pronounced as the
+non-monotonicity in time of the interaction energy, which is reflected
+in a non-monotonicity in the bath energy expectation value, which
+reaches a maximum and falls slightly for the strongest coupling
+simulations. Despite these differences for finite times, the
+approximate steady state\footnote{excluding the \(α(0)=0.4\) cases}
+interaction energies, maximal flows, system energies and bath energies
+are almost linearly dependent on the coupling strength \(α(0)\) as is
+demonstrated in the log-log plot \cref{fig:delta_fs_flow}.
+
+We find that we can control the speed of the energy transfer between
+bath and system with the coupling strength at the cost of greater
+steady state interaction energy. Were we to turn off the interaction
+very fast, we would have to expend this energy in the worst
+case. Also, both the final system and bath energies are increasing
+with the coupling strength, compensating for the interaction
+energy. Abrupt decoupling would in this scenario correspond to
+``heating'' the system and the bath, but the bath to a greater
+extend. If we were to put a two level system into a large cavity where
+it can emit light to shed energy, it is better to do that slowly.
+
+
+\fixme{iftime: re-run with same coupling strength, more cutoff freqs,
+  less samples, see, longer times for coupling strengths, more coup}
+
 
 \section{Modulation of System and Interaction for a Single Bath}
 \label{sec:singlemod}
@@ -396,4 +876,11 @@ the time to include them.
 \item ... list all those nice papers ...
 \item the third law
 \item look more deeply into the peculiarities in \cref{sec:oneosccomp}
+\item verify speculation of energy flow vs non-markvianity: flow
+  between two baths though a system
+\item three level system -> paper
+\item driven spin boson -> paper
+\item flows crossing in one point: robust featureu
+\item linear regeime of steady state energies -> universal, how far
+  does it extend
 \end{itemize}

@@ -15,13 +15,13 @@
           physics mathtools amsmath fontspec booktabs siunitx caption biblatex float
           pgfplots microtype fancyvrb csquotes setspace newunicodechar hyperref
           cleveref multirow bbold unicode-math biblatex-phys xpatch beamerposter
-          type1cm changepage lualatex-math;
+          type1cm changepage lualatex-math footmisc wrapfig2 curve2e pict2e wrapfig;
       };
     in rec {
       packages = {
         watch = pkgs.writeShellScriptBin "watch-latex" ''
                  ${tex}/bin/latexmk
-                 while ${pkgs.inotify-tools}/bin/inotifywait --include ".*\.(sty|tex|pgf)" -e modify -r .; do
+                 while ${pkgs.inotify-tools}/bin/inotifywait --include ".*\.(sty|tex|pgf|pdf)" -e modify -r .; do
                    ${tex}/bin/latexmk
                  done
               '';
@@ -46,9 +46,9 @@
       };
       defaultPackage = packages.document;
       devShell = pkgs.mkShellNoCC {
-        buildInputs = [packages.watch] ++ packages.document.buildInputs;
+        buildInputs = [packages.watch pkgs.openjdk] ++ packages.document.buildInputs;
         shellHook = ''
-          export OSFONTDIR=${pkgs.gyre-fonts}/share/fonts:${pkgs.liberation_ttf}/share/fonts:${pkgs.lato}/share/fonts/lato:${pkgs.raleway}/share/fonts
+          export OSFONTDIR=${pkgs.gyre-fonts}/share/fonts:${pkgs.liberation_ttf}/share/fonts:${pkgs.lato}/share/fonts/lato:${pkgs.raleway}/share/fonts:${pkgs.lmodern}/share/fonts
         '';
       };
     });
