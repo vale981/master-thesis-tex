@@ -18,6 +18,31 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 \newcommand{\labelfontsize}{\scriptsize}
 
 
+% \usepackage{verbatim} % provides the `\comment` block
+% \renewenvironment{figure}[1][]{%
+% \expandafter\comment%
+% }{%
+% \expandafter\endcomment%
+% }
+\usepackage[switch*]{lineno}
+\renewcommand\linenumberfont{\normalfont\tiny\color{gray}}
+\linenumbers
+
+
+%% Patch 'normal' math environments:
+\newcommand*\linenomathpatch[1]{%
+  \cspreto{#1}{\linenomath}%
+  \cspreto{#1*}{\linenomath}%
+  \csappto{end#1}{\endlinenomath}%
+  \csappto{end#1*}{\endlinenomath}%
+}
+
+\linenomathpatch{equation}
+\linenomathpatch{gather}
+\linenomathpatch{multline}
+\linenomathpatch{align}
+\linenomathpatch{alignat}
+\linenomathpatch{flalign}
 
 \addbibresource{references.bib}
 \synctex=1
