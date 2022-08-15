@@ -1,0 +1,150 @@
+These are the planning and notes for the talk for "Wissenschaftliches
+Arbeiten".
+
+There is a total time of 20 minutes to fill, which is going to be
+a pretty tough upper bound.
+
+#+begin_src emacs-lisp :results none
+  (defun total-time ()
+    (interactive)
+    (let ((total 0))
+      (message
+       (number-to-string
+        (apply
+         #'+
+         (org-map-entries
+          #'(lambda ()
+              (string-to-number
+               (or (cdr (assoc "DURATION" (org-entry-properties))) "0")))))))))
+#+end_src
+
+
+* Introduction
+** DONE General Model                                               :WAITING:
+:PROPERTIES:
+:DURATION: 2
+:END:
+
+- hamiltonian multiple baths
+- (def. BCFs)
+
+** DONE Motivation
+:PROPERTIES:
+:DURATION: 2
+:END:
+- weak coupling/equilibrium well settled
+- strong coupling: no consensus (lots of citations)
+- won't be settled in a masters thesis but ->
+  - access to bath/interaction observables with exact dynamics would
+    be helpful
+- this where hopsflow will come in
+- also: nice maintainable tooling would be good
+
+** DONE NMQSD
+:PROPERTIES:
+:DURATION: 2
+:END:
+
+- nmqsd equation
+- not much more
+
+** DONE HOPS
+:PROPERTIES:
+:DURATION: 2
+:END:
+- hops for multiple baths
+- with new normalization
+
+* Bath Energy
+** DONE Formulas and Generalizations
+:PROPERTIES:
+:DURATION: 2
+:END:
+- short derivation
+- explain hurdles
+- explain nonzero
+
+** DONE Interaction Energy
+:PROPERTIES:
+:DURATION: 1
+:END:
+- straight forward -> remove dot
+
+* Analytical Verification
+** Model
+:PROPERTIES:
+:DURATION: 2
+:END:
+
+- for one HO
+- give valentin credit
+** Solution
+:PROPERTIES:
+:DURATION: 5
+:END:
+
+- give valentin credit
+- general idea
+- formula for laplace transform of exponential
+- trick with mathematica
+** Comparison
+:PROPERTIES:
+:DURATION: 2
+:END:
+
+- one bath case for zero and nonzero temperature
+** Quick review of the two HO case
+:PROPERTIES:
+:DURATION: 3
+:END:
+
+- explain that generalization is straight forward
+- problems with numerics (sensitive to bcf)
+- show comparison
+
+* Applications
+** One Bath, Zero
+- quick mention of use as convergence check, no details
+  - it is hard to get "perfect" convergence, but qualitative picture
+    is ok pretty fast
+- quick mention of resonance effect -> already present in weak coupling
+- non show that non markovianity has to be exploited pretty rigorously
+- point out initial slip, mention that this has to do with initial pure dephasing
+- dependence of the energy change on shape of bcf -> beyond weak
+  coupling and non-markovianity
+** One Bath with Modulation
+- take the figure from the poster
+- explain ergotropy bound
+- show relevance of non-markovianity
+** Show a picture of a circular process
+- just as demo, not looked into this
+** show plots of anti zeno engine
+- say wip
+- explain anti zeno engine
+- hard to reproduce -> weak coupling but very high temperatures
+- ideally hops allows us to go beyond the restrictive setting in the
+  paper
+
+* HOPS Related, No Details
+:PROPERTIES:
+:DURATION: 3
+:END:
+
+- code and docs and tests and poetry
+- auto norm
+- new cutoff
+- tree hops
+
+* Outlook
+:PROPERTIES:
+:DURATION: 3
+:END:
+
+- concrete models
+  - sweep
+  - three baths
+- steady state detection -> pseudo eigenstates?
+- higher order moments of bath energy
+  - may bring insight into role of aux states
+  - better cutoff for multi bath (not as many cross terms)
+- concrete importance sampling

@@ -1,0 +1,63 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{lightgray204}{RGB}{204,204,204}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+height=\figH,
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=lightgray204},
+log basis x={10},
+log basis y={10},
+minor xtick={20,30,40,50,60,70,80,90,200,300,400,500,600,700,800,900,2000,3000,4000,5000,6000,7000,8000,9000,20000,30000,40000,50000,60000,70000,80000,90000,200000,300000,400000,500000,600000,700000,800000,900000},
+minor ytick={2e-05,3e-05,4e-05,5e-05,6e-05,7e-05,8e-05,9e-05,0.0002,0.0003,0.0004,0.0005,0.0006,0.0007,0.0008,0.0009,0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09},
+tick align=outside,
+tick pos=left,
+width=\figW,
+x grid style={darkgray176},
+xlabel={N},
+xmin=922.680834590588, xmax=5418.99193367184,
+xmode=log,
+xtick style={color=black},
+xtick={10,100,1000,10000,100000},
+xticklabels={
+  \(\displaystyle {10^{1}}\),
+  \(\displaystyle {10^{2}}\),
+  \(\displaystyle {10^{3}}\),
+  \(\displaystyle {10^{4}}\),
+  \(\displaystyle {10^{5}}\)
+},
+y grid style={darkgray176},
+ylabel={\(\displaystyle \langle σ \rangle / J_\mathrm{max}\)},
+ymin=0.000345871424493466, ymax=0.000838201019949921,
+ymode=log,
+ytick style={color=black},
+ytick={1e-05,0.0001,0.001,0.01},
+yticklabels={
+  \(\displaystyle {10^{-5}}\),
+  \(\displaystyle {10^{-4}}\),
+  \(\displaystyle {10^{-3}}\),
+  \(\displaystyle {10^{-2}}\)
+}
+]
+\addplot [semithick, steelblue31119180, dotted, mark=*, mark size=2.8, mark options={solid}]
+table {%
+1000 0.00080514483852312
+1999.99963378906 0.000566588540095836
+3000.00073242188 0.000463386240880936
+4000.00073242188 0.000403286510845646
+5000.0009765625 0.000361806363798678
+};
+\addlegendentry{Numerics}
+\addplot [semithick, darkorange25512714]
+table {%
+1000 0.00080514483852312
+5000.0009765625 0.000360071600880474
+};
+\addlegendentry{$1/\sqrt{N}$}
+\end{axis}
+
+\end{tikzpicture}
