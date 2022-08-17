@@ -83,12 +83,22 @@ labelformat=brace, position=top]{subcaption}
 \synctex=1
 \title{Bath Observables with HOPS}
 \subtitle{Energy Flow in Strongly Coupled Open Quantum Systems}
-\author{Valentin Boettcher}
+
+\author{\underline{Valentin Boettcher}, Richard Hartmann,
+  Konstantin Beyer, Walter Strunz}
+\titlegraphic{
+  \includegraphics[width=2cm]{figs/Logo_TU_Dresden.pdf}
+}
+\institute{Institute for Theoretical Physics, Dresden, Germany}
+\date{17.08.2022}
 \beamertemplatenavigationsymbolsempty
 
 \begin{document}
 \hypersetup{pageanchor=false}
-\maketitle
+\begin{frame}[plain]
+  \titlepage
+  %\includegraphics[width=3cm]{figs/Logo_TU_Dresden.pdf}
+\end{frame}
 
 \hypersetup{pageanchor=true} \pagenumbering{arabic}
 \begin{frame}
@@ -150,7 +160,7 @@ labelformat=brace, position=top]{subcaption}
 
 \subsection{Technical Basics}
 \begin{frame}{Standard Model of Open Systems}
-  In the following we will models of the form\footnote{Sometimes this
+  In the following we will work with models of the form\footnote{Sometimes this
     is called the ``Standard Model of Open Systems''.}
   \begin{equation}
     \label{eq:openmodel}
@@ -236,14 +246,14 @@ labelformat=brace, position=top]{subcaption}
     {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
     \frac{1}{i^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\),
   \(
-    ψ^{\kmat} \equiv D^\kmatψ\)
+    ψ_{t}^{\kmat} \equiv D^\kmatψ_{t}\)
   we find
   \begin{multline}
     \label{eq:multihops}
-    \dot{ψ}^\kmat = \qty[-\iu H_\sys(t) + \vb{L}(t)\cdot\vb{η}^\ast -
-    ∑_{n=1}^N∑_{μ=1}^{M_n}\kmat_{n,μ}W\nth_μ]ψ^\kmat \\+
-    \iu ∑_{n=1}^N∑_{μ=1}^{M_n}\sqrt{G\nth_μ}\qty[\sqrt{\kmat_{n,μ}}  L_n(t)ψ^{\kmat -
-      \mat{e}_{n,μ}} + \sqrt{\qty(\kmat_{n,μ} + 1)}  L^†_n(t)ψ^{\kmat +
+    \dot{ψ}_{t}^\kmat = \qty[-\iu H_\sys(t) + \vb{L}(t)\cdot\vb{η}_{t}^\ast -
+    ∑_{n=1}^N∑_{μ=1}^{M_n}\kmat_{n,μ}W\nth_μ]ψ_{t}^\kmat \\+
+    \iu ∑_{n=1}^N∑_{μ=1}^{M_n}\sqrt{G\nth_μ}\qty[\sqrt{\kmat_{n,μ}}  L_n(t)ψ_{t}^{\kmat -
+      \mat{e}_{n,μ}} + \sqrt{\qty(\kmat_{n,μ} + 1)}  L^†_n(t)ψ_{t}^{\kmat +
       \mat{e}_{n,μ}} ].
   \end{multline}
 \end{frame}
@@ -380,7 +390,7 @@ labelformat=brace, position=top]{subcaption}
     \end{aligned}
   \end{equation}
   \begin{itemize}
-  \item becomes huge sum of exponentials (thanks mathematica)
+  \item becomes huge sum of exponentials (thanks Mathematica)
   \note[item]{initially forgot last term, took some time to find}
   \end{itemize}
 \end{frame}
@@ -507,9 +517,8 @@ labelformat=brace, position=top]{subcaption}
       σ_x a_λ^†) + ∑_λ ω_λ a_λ^\dag a_λ,\;\ket{ψ_{0}}_{\sys} = \ket{\uparrow}
     \end{equation}
   \end{block}
-  \pause
   \begin{itemize}
-  \item how do we check convergence:\pause
+  \item<+-> how do we check convergence:\pause
     \begin{itemize}
     \item old: difference of results to some ``good'' configuration\pause
     \item new: consistency with energy conservation
@@ -518,7 +527,7 @@ labelformat=brace, position=top]{subcaption}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Example: Dependence of Flow on Stochastic Process
+  \frametitle{Example: Dependence of the Interaction Energy on Stochastic Process
     Sampling}
   \begin{figure}[h]
     \centering
@@ -621,7 +630,7 @@ labelformat=brace, position=top]{subcaption}
   \item \(\bar{P} = 1.98 \cdot 10^{-3} \pm 2.3 \cdot 10^{-5}\),
     \(η\approx 20\%\), \(T_{c}=1\), \(T_{h}=20\)
   \item no tuning of parameters, except for resonant coupling
-  \item long bath memory \(ω_{c}=1\), but weak coupling
+  \item long bath memory \(ω_{c}=1\), but weak-ish coupling
   \end{itemize}
 \end{frame}
 \begin{frame}{Questions (for the future)}
@@ -701,37 +710,6 @@ labelformat=brace, position=top]{subcaption}
   \end{itemize}
 \end{frame}
 
-\section{Other Projects}
-\begin{frame}[allowframebreaks]
-  \begin{itemize}
-  \item stabilized normalization in nonlinear HOPS
-    \begin{figure}
-      \centering
-      \plot{05/norm}
-    \end{figure}
-  \item stochastic process sampling via Cholesky decomposition
-    \note[item]{allows to generate processes that match up to a point in
-      time}
-    \note[item]{allows to extend stochastic processes to arbitrary times}
-    \note[item]{could be useful for steady state studies and long-time
-      propagation}
-    \begin{figure}
-      \centering
-      \plot{05/cholesky}
-    \end{figure}
-  \item norm based truncation scheme
-    \begin{itemize}
-    \note[item]{needs further investigation}
-    \item promising at ``friendly'' coupling strengths
-    \end{itemize}
-    \begin{figure}
-      \centering
-      \plot{06/convergence}
-    \end{figure}
-  \end{itemize}
-\end{frame}
-
-
 
 \section{Outlook}
 \label{sec:outlook}
@@ -741,6 +719,7 @@ labelformat=brace, position=top]{subcaption}
     (engines)
   \item three-level systems: there is an experimental paper ;)
   \item parameter scan of two qubit model
+  \item filter modes
   \item \ldots
   \end{itemize}
 \end{frame}
@@ -786,11 +765,15 @@ labelformat=brace, position=top]{subcaption}
   \item we do quantum mechanics \(\implies\) can't separate bath
     and system\uncover<+->{, especially not dynamics!}
   \item no consensus about strong coupling thermodynamics:
-    \footcite{Rivas2019Oct,Talkner2020Oct,Motz2018Nov,Wiedmann2020Mar,Senior2020Feb,Kato2015Aug,Kato2016Dec,Strasberg2021Aug,Talkner2016Aug,Bera2021Feb,Bera2021Jun,Esposito2015Dec}
     \note[item]{won't resolve within scope of masters thesis}
   \item but what is clear: \emph{need to get access to exact dynamics
       of \(H_\inter,H_\bath\)}
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{More Papers on Thermo}
+  \cite{Rivas2019Oct,Talkner2020Oct,Motz2018Nov,Wiedmann2020Mar,Senior2020Feb,Kato2015Aug,Kato2016Dec,Strasberg2021Aug,Talkner2016Aug,Bera2021Feb,Bera2021Jun,Esposito2015Dec}
 \end{frame}
 
 \begin{frame}{Ohmic SD BCF}
@@ -875,6 +858,37 @@ labelformat=brace, position=top]{subcaption}
     b^{(i),†}_λ)\) and \(H_B^{(i)}=\sum_λ\omega_λ b^{(i),†}_λ b^{(i)}_λ\).
   \end{itemize}
 \end{frame}
+
+\section{Other Projects}
+\begin{frame}[allowframebreaks]
+  \begin{itemize}
+  \item stabilized normalization in nonlinear HOPS
+    \begin{figure}
+      \centering
+      \plot{05/norm}
+    \end{figure}
+  \item stochastic process sampling via Cholesky decomposition
+    \note[item]{allows to generate processes that match up to a point in
+      time}
+    \note[item]{allows to extend stochastic processes to arbitrary times}
+    \note[item]{could be useful for steady state studies and long-time
+      propagation}
+    \begin{figure}
+      \centering
+      \plot{05/cholesky}
+    \end{figure}
+  \item norm based truncation scheme
+    \begin{itemize}
+    \note[item]{needs further investigation}
+    \item promising at ``friendly'' coupling strengths
+    \end{itemize}
+    \begin{figure}
+      \centering
+      \plot{06/convergence}
+    \end{figure}
+  \end{itemize}
+\end{frame}
+
 
 %%% Local Variables:
 %%% mode: latex
