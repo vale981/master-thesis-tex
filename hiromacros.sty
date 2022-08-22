@@ -40,7 +40,7 @@
 \newcommand{\hc}{\ensuremath{\mathrm{h.c.}}}
 
 %% eulers number
-\def\eu{\ensuremath{\mathrm{e}}}
+\def\eu{\ensuremath{\operatorname{e}}}
 
 %% Notes on Equations
 \newcommand{\shorteqnote}[1]{ &  & \text{\small\llap{#1}}}
@@ -88,7 +88,8 @@
 \def\NN{\ensuremath{\mathbb{N}}}
 \def\RR{\ensuremath{\mathbb{R}}}
 \def\CC{\ensuremath{\mathbb{C}}}
-\def\dim{\ensuremath{\mathrm{dim}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\def\dim{\ensuremath{\operatorname{dim}}}
 \def\hilb{\ensuremath{\mathcal{H}}}
 
 % fixme
@@ -109,6 +110,29 @@
 \newcommand{\qrelent}[2]{\ensuremath{S\qty(#1\,\middle|\middle|\,#2)}}
 \newcommand{\cyc}{\ensuremath{\mathrm{cyc}}}
 
+\makeatletter
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+
+\newcommand*\xoverline[2][0.75]{%
+    \sbox{\myboxA}{$\m@th#2$}%
+    \setbox\myboxB\null% Phantom box
+    \ht\myboxB=\ht\myboxA%
+    \dp\myboxB=\dp\myboxA%
+    \wd\myboxB=#1\wd\myboxA% Scale phantom
+    \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+    \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+    \addtolength\mylenA{-\the\wd\myboxB}%
+    \ifdim\wd\myboxB<\wd\myboxA%
+       \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+    \else
+        \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+    \fi}
+\makeatother
+
+\DeclareMathOperator{\bosedist}{\xoverline{n}}
+\DeclareDocumentCommand\bose{}{\opbraces{\bosedist}}
 
 %% Including plots
 % \newcommand{\plot}[1]{%
