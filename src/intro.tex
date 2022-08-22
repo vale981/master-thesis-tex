@@ -315,6 +315,15 @@ bath. In~\cite{Lobejko2021Feb} a more generic argument is made in a
 similar setting. Both propose concrete protocols within the bounds of
 thermal operations and by considering explicit work reservoirs.
 
+For the term \(\qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes τ_β}\) to vanish
+in \cref{eq:thermo_ergo_bound}, the state bath and system should be as
+close to the product thermal state as possible and so the bath state
+should not change too much. This is achievable with a continuous
+infinite size bath.  As \(ρ_β\otimes τ_β\) is the steady state of GKSL
+dynamics (without modulation) under mild
+assumptions~\cite{Binder2018}, it can be said that in this case
+ergotropy is being lost.
+
 A corollary of \cref{eq:thermo_ergo_bound} is the Clausius form of the
 second law. By setting the system Hamiltonian to \(α \id\) in the
 above discussion the ergotropy becomes the change of bath energy
@@ -603,9 +612,11 @@ ergotropy
       1}^{2}}.
 \end{equation}
 
-In the limit \(ω\to 0\) or equivalently \(β\to 0\) we further find
+In the limit \(βω\ll 1 \leftrightarrow ω \ll T\) (continous bath) we further find
 \(\mathcal{W} \rightarrow β^{-1} \ln(2)\) which saturates the bound
-\cref{eq:thermo_ergo_bound_specific}.
+\cref{eq:thermo_ergo_bound_specific}. This is in concert with
+\cite{Skrzypczyk2014Jun,Lobejko2021Feb} where it was found, that an
+infinite continous bath is required for the saturation of the bound.
 
 A similar scheme to the one used in \cref{eq:manhoergoestimate} can be
 employed numerically to compute the exact ergotropy efficiently and to verify our
