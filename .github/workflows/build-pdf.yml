@@ -7,13 +7,9 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
 
-      - uses: yegor256/latexmk-action@0.4.0
-        with:
-          cmd: latexmk
-          path: .
-          packages: >
-            koma-script babel-english
-            physics mathtools amsmath fontspec booktabs siunitx caption biblatex float
-            pgfplots microtype fancyvrb csquotes setspace newunicodechar hyperref
-            cleveref multirow bbold unicode-math biblatex-phys xpatch beamerposter
-            type1cm changepage lualatex-math tex-gyre-pagella
+      - uses: cachix/install-nix-action@v15
+          with:
+            extra_nix_config: |
+              access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - run: nix build
