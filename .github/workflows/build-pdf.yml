@@ -13,3 +13,8 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
       - run: nix build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pdf
+          path: result/index.pdf
