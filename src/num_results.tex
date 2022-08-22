@@ -398,6 +398,13 @@ will be similar to the ones presented here.
 \section{Precision Simulations for a System without Analytical
   Solution}
 \label{sec:prec_sim}
+In this section, we will study the energy flow of a simple model
+connected to zero temperature bath. Both the characteristics of the
+flow mediated by the concrete form of the bath correlation function
+and the performance of the HOPS method itself will be investigated. We
+will find that the numerics do indeed yield very consistent results
+and that the specifics of the energy flow depend very much on the
+spectral density.
 
 An analytical solution to a given open system is generally not known,
 so that another indicator of the proper choice of HOPS parameters may
@@ -894,6 +901,16 @@ For longer bath memories along with weaker
 couplings, the role of the system Hamiltonian dynamics in modulating
 the flow becomes increasingly important.
 
+Remarkably, the flow for a single trajectory does match the converged
+flow even better than the pure dephasing flow. For large \(ω_{c}\) the
+single trajectory matches until after the peak, whereas the deviation
+occurs earlier for the \(ω_{c}=1\) case. For short times the flow is
+mainly influenced by the buildup of the auxiliary states rather than
+the fluctuations of the stochastic process, leading to a similar
+behavior for most trajectories. See \cref{fig:flow_buildup} an
+illustration of this phenomenon. This is useful, as this period of
+rapid dynamics must be resolved very precisely to accurately integrate
+the flow into the bath energy change.
 \begin{figure}[h]
   \centering
   \includegraphics{figs/one_bath_syst/flow_buildup}
@@ -907,33 +924,16 @@ the flow becomes increasingly important.
     functional form for very short times, apart from a scaling factor.}
 \end{figure}
 
-Remarkably, the flow for a single trajectory does match the converged
-flow even better than the pure dephasing flow. For large \(ω_{c}\) the
-single trajectory matches until after the peak, whereas the deviation
-occurs earlier for the \(ω_{c}=1\) case. For short times the flow is
-mainly influenced by the buildup of the auxiliary states rather than
-the fluctuations of the stochastic process, leading to a similar
-behavior for most trajectories. See \cref{fig:flow_buildup} an
-illustration of this phenomenon. This is useful, as this period of
-rapid dynamics must be resolved very precisely to accurately integrate
-the flow into the bath energy change.
-
 \subsection{Dependence on the Coupling Strength}
 \label{sec:one_bathcoup_strength}
-\begin{wrapfigure}[17]{o}{0.3\textwidth}
-  \centering
-  \includegraphics{figs/one_bath_syst/final_states_flows}
-  \caption{\label{fig:delta_fs_flow} The absolute difference of the state energies and the
-  maximal flows for the simulations in
-  \cref{fig:delta_energy_overview} relative to their value at \(α(0)=1.12\).}
-\end{wrapfigure}
 After having studied the dependence of the bath energy flow for
 various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
 we now consider the case with fixed cutoff \(ω_c=2\) but varying
 coupling strength. The simulation parameters are the same as in
 \cref{sec:one_bath_cutoff} and again consistent results have been
 obtained as can be gathered from
-\cref{fig:delta_interaction_consistency}.
+\cref{fig:delta_interaction_consistency} throughout the whole range of
+coupling strengths.
 \begin{figure}[h]
   \centering
   \includegraphics{figs/one_bath_syst/δ_energy_overview}
@@ -943,6 +943,13 @@ obtained as can be gathered from
     not visible.}
 \end{figure}
 
+\begin{wrapfigure}[17]{o}{0.3\textwidth}
+  \centering
+  \includegraphics{figs/one_bath_syst/final_states_flows}
+  \caption{\label{fig:delta_fs_flow} The absolute difference of the state energies and the
+  maximal flows for the simulations in
+  \cref{fig:delta_energy_overview} relative to their value at \(α(0)=1.12\).}
+\end{wrapfigure}
 The interaction strength was chosen linearly spaced and the simulation
 results are presented in \cref{fig:delta_energy_overview}.
 
@@ -961,22 +968,24 @@ occur despite finite bath correlation times. In
 additionally to a strong coupling so that multiple oscillations can be
 seen.
 
-Despite these differences for finite times, the
-approximate steady state\footnote{excluding the \(α(0)=0.4\) cases}
-interaction energies, maximal flows, system energies and bath energies
-are almost linearly dependent on the coupling strength \(α(0)\) as is
-demonstrated in the log-log plot \cref{fig:delta_fs_flow}.
+Despite these differences for finite times, the approximate steady
+state\footnote{excluding the \(α(0)=0.4\) cases} interaction energies,
+maximal flows, system energies and bath energies are almost linearly
+dependent on the coupling strength \(α(0)\) as is demonstrated in the
+log-log plot \cref{fig:delta_fs_flow}.
 
 We find that we can control the speed of the energy transfer between
 bath and system with the coupling strength at the cost of greater
 steady state interaction energy. Were we to turn off the interaction
 very fast, we would have to expend this energy in the worst
 case. Also, both the final system and bath energies are increasing
-with the coupling strength, compensating for the interaction
-energy. Abrupt decoupling would in this scenario correspond to
-``heating'' the system and the bath, but the bath to a greater
-extend. If we were to put a two level system into a large cavity where
-it can emit light to shed energy, it is better to do that slowly.
+with the coupling strength, compensating for the interaction energy.
+The cooling performance for a coupling that is being turned off at the
+end would depend on the concrete protocol as we've seen in
+\cref{sec:one_bath_cutoff} and a more detailed study is left to future
+work. The interplay between the interaction time-scale mediated by the
+coupling strength, the bath memory time and the system dynamics allows
+for intricate tuning.
 
 
 \fixme{iftime: re-run with same coupling strength, more cutoff freqs,
@@ -985,6 +994,43 @@ it can emit light to shed energy, it is better to do that slowly.
 
 \section{Modulation of System and Interaction for a Single Bath}
 \label{sec:singlemod}
+
+Because the HOPS allows us to simulate a full dynamical picture of our
+model, let us now turn to a situation where the dynamics are of
+interest.
+
+A classical dictum of thermodynamics is, that it is impossible to
+extract energy from a single bath in a cyclical manner. Indeed, we
+found in \cref{sec:ergoonebath} that this also holds for a finite
+quantum system coupled to a thermal bath. In \cref{sec:explicit ergo}
+we found, that the bound given on the ergotropy in such a situation
+can be saturated for infinite baths, such as the ones used with
+NMQSD/HOPS. However, it is unclear if such a unitary transformation
+can be implemented without explicit construction of a model.
+
+In this section we will focus on the minimal dimensionless model
+\begin{equation}
+  \label{eq:one_qubit_model_driven}
+  H = \frac{1}{2} ((σ_z+1)+λΔ \sin(Δτ) σ_{f}) + \frac{1}{2}
+  {\sin[2](\frac{Δ}{2}τ)} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
+  σ_x a_λ^†) + ∑_λ ω_λ a_λ^\dag a_λ,
+\end{equation}
+where \(λ,Δ\geq 0\) and \(f\in \{z, y\}\). The form of the system
+Hamiltonian has been chosen similar to \cite{Mukherjee2020Jan}, where
+Floquet theory was used, and it was shown that the relevant quantities
+are scaling with \(λ\). For \(λ=0\) the system Hamiltonian is positive
+semi-definite with the energies zero and one.  The modulation of the
+interaction has been chosen heuristically to always act in the same
+``direction'' and vanish periodically.
+
+Before focusing on the \(λ = 0\) case, we will briefly visit a
+phenomenon coined ``Quantum Friction'', whereby the creation of
+coherences in the system energy basis hinders the performances of
+thermal quantum machines. These coherences raise the ergotropy of the
+system without necessarily raising its energy and can thus not
+contribute to the operation of a machine.
+
+
 \begin{itemize}
 \item quantum friction
 \item non-markovianity in the energy shovel
@@ -1008,7 +1054,8 @@ the time to include them.
 \item otto cycle
 \item rotating engine
 \end{itemize}
-\section{Some Ideas for future Work}
+
+\section{Some Proposals for future Work}
 \begin{itemize}
 \item ... list all those nice papers ...
 \item the third law
@@ -1025,4 +1072,8 @@ the time to include them.
   independent (maybe try different protocols and turn off interaction
   at for beginning and end in an adiabatic way...)
 \item compare with results from master equation in \cref{sec:prec_sim}
+\item steady state methods, better convergence for long-time
+  simulations
+\item coupling to single bath: although breach of second law forbidden
+  -> cyclical energy transfer for very long bath correlation times
 \end{itemize}
