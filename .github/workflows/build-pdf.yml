@@ -13,12 +13,12 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
       - run: nix build
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - run: cp result/index.pdf .
+
       - uses: actions/upload-artifact@v3
         with:
           name: pdf
-          path: result/index.pdf
+          path: index.pdf
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
