@@ -531,7 +531,10 @@ We find
 where we have used that all summands are nonnegative and we could
 therefore obtain a lower bound on the passive energy by dropping all
 terms where the difference between \(m_{i}\) and \(m_{2i}\,,m_{2i+1}\)
-is greater than one.
+is greater than one. The terms for which this is true will have large
+values of \(m\) and will further be suppressed by a factor of
+\(\eu^{-kωβ}\) (\(k\geq 2\)) so one might expect this bound to be
+tight for large \(ω\) and large \(N\).
 
 We can evaluate \cref{eq:manhoergoestimate} further by noting
 \begin{equation}
@@ -565,7 +568,7 @@ where we shifted indices and used some properties of the
 Finally, we arrive at
 \begin{equation}
   \label{eq:many_ho_ergo_bound_prelim}
-  E_{p} \geq E_{0} - \frac{ω}{Z_{1}^{N}}\bose(ωβ) = E_{0} - ω
+  E_{p} \geq E_{0} - ω \frac{Z_{1}^{N+1}}{Z_{1}^{N}} \eu^{-ωβ} = E_{0} - ω
   \bose(ωβ),
 \end{equation}
 which yields
@@ -612,7 +615,7 @@ ergotropy
       1}^{2}}.
 \end{equation}
 
-In the limit \(βω\ll 1 \leftrightarrow ω \ll T\) (continous bath) we further find
+In the limit \(βω\ll 1 \iff ω \ll T\) (continous bath) we further find
 \(\mathcal{W} \rightarrow β^{-1} \ln(2)\) which saturates the bound
 \cref{eq:thermo_ergo_bound_specific}. This is in concert with
 \cite{Skrzypczyk2014Jun,Lobejko2021Feb} where it was found, that an
@@ -633,7 +636,28 @@ findings as has been done in.
 In conclusion, we have found an upper bound
 \cref{eq:many_ho_ergo_bound} for and a high temperature estimate
 \cref{eq:ergo_esti_high_t} of the ergotropy to \(N\) oscillators in a
-thermal state and a two level system in a pure state.
+thermal state and a two level system in a pure state. The bound
+\cref{eq:thermo_ergo_bound_specific} on ergtropy is still valid and
+also tightest in the infinite bath case with vanishing level distance
+\(ω\to 0\). We find that in order to saturate the bound, a bath of
+infinite size and vanishing level spacing is required.
+
+Even for finitely many oscillator the ergtropy bound can be approached
+rather closely for finite \(ω\) as can be seen in
+\cref{fig:numeric_n_ho_ergo_nonmon}. Remarkably, the ergotropy becomes
+a non-monotonous function of level spacing \(ω\) for larger \(N\)
+while always increasing with \(N\). Also, for large \(N\) the
+transition into the region where the estimate upper bound
+\cref{eq:thermo_ergo_bound} is tight is very close to the crossing
+point of this bound with the \(ω\ll 1\) estimate and the bound is very
+tight as may be expected, because the error one makes in
+\cref{eq:manhoergoestimate} becomes negligible in the case \(N\gg 1\).
+\begin{figure}[ht]
+  \includegraphics{figs/ergo_calc/ergo_nonmonotonic}
+  \caption{\label{fig:numeric_n_ho_ergo_nonmon} Numerical evaluation of
+    \cref{eq:many_ho_pass} for different \(N\) and \(β=1\).}
+\end{figure}
+
 
 \subsection{A bound on the Energy Change of Multiple Baths in the
   Periodic Steady State}
@@ -747,7 +771,7 @@ thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
 to be useful.  Assume that the interaction Hamiltonian in
 \cref{eq:katoineqsys} vanishes periodically, so that system and bath
 energy expectation values can be cleanly separated. In the periodic
-steady state the system energy does not change during a cycle, so the
+steady state the system energy does not change during a cycle and the
 whole energy change amounts to the change in bath energy. In a setting
 with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound.
 
