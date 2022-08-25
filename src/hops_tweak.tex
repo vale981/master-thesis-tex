@@ -378,8 +378,62 @@ findings of \cite{RichardDiss}.
 
 \subsection{Shifted Spectral Densities}
 \label{sec:shift_sp}
-\fixme{Write it up}
+To provide resonant baths for optimal energy flow, it is useful to
+shift the ohmic spectral density to higher frequencies. A more
+elaborate way to create resonances would be to use a filter cavity mode
+\cite{Kurizki2021Dec} which is left to future work.
 
-\subsection{Shifted Spectral Densities}
+The shifted Ohmic-type spectral density is given by
+\begin{equation}
+  \label{eq:shifted_ohm}
+  J(ω) = η \operatorname{Θ}(ω)  \pqty{ω-ω_{s}}^{s} \eu^{-\frac{ω}{ω_{c}}},
+\end{equation}
+which leads to an additional phase factor in the BCF
+\begin{equation}
+  \label{eq:shifted_bcf}
+  α(τ) = \frac{η}{π}\qty(\frac{ω_c}{1+\iu ω_c τ})^2 \eu^{-\i ω_{s} τ}.
+\end{equation}
+
+The finite temperature correlation function of the thermal process
+\(ξ\) \cite{RichardDiss} is given by
+\begin{equation}
+  \label{eq:shifted_thermal}
+  \begin{aligned}
+    α_{ξ}(τ) &= \frac{1}{π}∫_{0}^{∞}\bose(βω) J(ω) \eu^{-\iu ωτ} \\
+    &= \frac{η\operatorname{Γ}(s+1) \eu^{-ω_{s} (\iu τ + β)}}{π β^{1+s}}
+  Φ\pqty{\eu^{-ω_{s}β}, s+1, \frac{1+βω_{c}+\iu
+      ω_{c}τ}{βω_{c}}}.
+  \end{aligned}
+\end{equation}
+
+In \cref{eq:shifted_thermal}
+\begin{equation}
+  \label{eq:lerch}
+  Φ=∑_{k=0}^{∞} \frac{z^{k}}{(k+a)^{s}}
+\end{equation}
+is the Lerch transcendent. For \(\abs{z} \geq 1\) \cref{eq:lerch} is
+analytically continued. For \(z=1 \iff ω_{s}=0\) we obtain the Hurwitz
+zeta function \(ζ(s, a)\). An efficient and correct numeric
+evaluation is, at the time of writing, only available through the
+\emph{Arb} library \cite{Johansson2017arb}.
+
+\subsection{Smoothstep Functions}
 \label{sec:smoothstep}
-\fixme{Write it up}
+The smooth step functions \(S_{n}(x)\) are smooth sigmoid like
+versions of the Heaviside step function that are zero except for
+\(x\in (0,1)\) and \(n\) times continuously differentiable, even at
+the edges.
+
+The polynomial expressions for the smoothstep functions are
+\begin{equation}
+  \label{eq:smoothstep}
+  {S} _{n}(x)={
+    \begin{cases}
+      0&{\text{if }}x\leq 0\\
+
+      x^{n+1}∑_{k=0}^{n}{\binom {n+k}{k}}{\binom
+      {2n+1}{n-k}}(-x)^{k} &{\text{if }}0 < x < 1\\1
+
+       &{\text{if }}1\leq x\\
+    \end{cases}}
+\end{equation}
