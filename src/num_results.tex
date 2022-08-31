@@ -1107,10 +1107,10 @@ simplifies the situation.
 To further answer whether a substantial fraction of the maximal
 ergotropy can be extracted from a system we have numerically optimized
 the coupling strengths of the model \cref{eq:one_qubit_model_driven},
-so that after three modulation periods \(τ_{m} = \frac{2 π}{Δ}\) the
+so that over ten modulation periods \(τ_{m} = \frac{2 π}{Δ}\) the
 maximal absolute interaction energy is close to a give value (here
-\(\ev{H_{\inter}}\approx 0.4\) which constitutes quite a strong coupling) for various cutoff
-frequencies \(ω_{c}\).
+\(\ev{H_{\inter}}\approx 0.4\) which constitutes quite a strong
+coupling) for various cutoff frequencies \(ω_{c}\).
 \begin{figure}[h]
   \centering
   \includegraphics{figs/one_bath_mod/omega_interactions}
@@ -1121,6 +1121,10 @@ frequencies \(ω_{c}\).
     the parameters in \cref{tab:plus_omega}.}
 \end{figure}
 
+The resulting couplings can be found in
+\cref{fig:omega_couplings_and_energies}. They correspond roughly to
+demanding \(α_{β}(0)=1.4\), where \(α_{β}\) is the finite temperature
+bath correlation function.
 \Cref{fig:omega_couplings_and_energies} also shows that for the
 simulations with small \(ω_{c}\) the positive parts of the interaction
 energy are especially large.
@@ -1152,14 +1156,14 @@ minimal total energy is achieved earlier and is of greater
 magnitude. Further, we see that a non-trivial amount of energy is
 being extracted relative to ergotropy bound \cref{eq:ergo_mod_model}.
 
-\begin{wrapfigure}[12]{o}{.5\textwidth}
+\begin{figure}
   \centering
   \includegraphics{figs/one_bath_mod/omega_energies_and_powers}
   \caption{\label{fig:omegas_energies_and_powers} One shot power
     (blue) and maximal extracted energy (orange) as a function of
     the bath memory. The grey vertical line marks one
     modulation period.}
-\end{wrapfigure}
+\end{figure}
 In \cref{fig:omegas_energies_and_powers} we can see that longer
 bath\fixme{looks like ``phase transition'' but really isn't} memories,
 defined as the time point at which \(α(τ_{\bath}) = α(0)/10\), lead to
@@ -1176,9 +1180,6 @@ densities. However, the abrupt transition to zero for short memories
 is due to the requirement that power and extracted energy have to be
 finite, and the stroboscopic time view induced by the requirement that
 the interaction energy should be zero.
-
-Note also, that for the two longest bath memories, the relative gain
-in extracted energy is much smaller than the relative gain in power.
 
 In conclusion we can say that in the cases studied here we can extract
 a finite amount of energy from the system as soon as the bath memory
@@ -1422,6 +1423,16 @@ A periodic steady state is reached after roughly two cycles. In this
 steady state, the system and interaction related quantities are
 constant in the stroboscopic view (the dots in \cref{fig:ottoenergy}),
 while the total energy and the bath energies depend linearly on time.
+
+The Gibbs like inequality \cref{eq:secondlaw_cyclic} derived in
+\cref{sec:operational_thermo} can also be verified in this case.
+We find
+\begin{equation}
+  \label{eq:secondlaw_otto_actual}
+  ∑_iβ_i ΔE_{\bath^i}^\cyc = 0.1096\pm 0.0008 ≥ 0,
+\end{equation}
+which does satisfy the inequality to over 100 standard
+deviations. Minimizing this quantity would maximize the efficiency.
 
 A worthwhile task for future work would be to verify the results
 summarized in \cite{Binder2018} for the Otto cycle. Especially the
