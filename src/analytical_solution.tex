@@ -474,17 +474,19 @@ With the Laplace transform find for \(t\geq 0\) the formula
 now with a more complicated matrix
 \begin{equation}
   \label{eq:mdeftwo}
-  M = z-A + \mathcal{L}\{K\}(z) = \mqty(z & -\Omega  & 0 & 0 \\
-  \mathcal{L}\{\Im[α^{(1)}_0]\}(z)+\gamma +\Omega  & z & -\gamma  & 0 \\
-  0 & 0 & z & -\Lambda  \\
-  -\gamma  & 0 & \mathcal{L}\{\Im[α^{(2)}_0]\}(z)+\gamma +\Lambda  & z)
+  \begin{aligned}
+    M &= z-A + \mathcal{L}\{K\}(z)\\
+    &= \mqty(z & -\Omega  & 0 & 0 \\
+    \mathcal{L}\{\Im[α^{(1)}_0]\}(z)+\gamma +\Omega  & z & -\gamma  & 0 \\
+    0 & 0 & z & -\Lambda  \\
+    -\gamma  & 0 & \mathcal{L}\{\Im[α^{(2)}_0]\}(z)+\gamma +\Lambda  & z)
+  \end{aligned}
 \end{equation}
 that we have to invert.
 
 This can be done easily\footnote{We have use a computer algebra
-  system. There is probably a pattern to the inverse matrix which can
-  be found so that the solution for \(N>2\) oscillators may be found.}
-and yields
+  system. There is probably a pattern to the inverse matrix, so that
+  the solution for \(N>2\) oscillators may be found.}  and yields
 \begin{equation}
   \label{eq:minvtwo}
   M^{-1}(z) = \frac{1}{\det[M](z)} \tilde{M}(z)
@@ -492,7 +494,7 @@ and yields
 where \(\tilde{M}\) is a matrix containing only polynomials of \(z\)
 and of the Laplace transforms of the bath correlation functions.
 
-The numerator
+The numerator is
 \begin{equation}
   \label{eq:numerator}
   \begin{aligned}
@@ -501,7 +503,7 @@ The numerator
   +b
   \left(\gamma \Lambda  \Omega +\Lambda  \Omega ^2+\Lambda  z^2\right)\\
   &+\gamma  \Lambda ^2 \Omega +\gamma  \Lambda
-   \Omega ^2+\Lambda ^2 \Omega ^2+\gamma  \Lambda  z^2+\gamma  \Omega  z^2+\Lambda ^2 z^2+\Omega ^2 z^2+z^4
+   \Omega ^2+\Lambda ^2 \Omega ^2+\gamma  \Lambda  z^2+\gamma  \Omega  z^2+\Lambda ^2 z^2+\Omega ^2 z^2+z^4,
   \end{aligned}
 \end{equation}
 where \(a=\mathcal{L}\{\Im[α^{(1)}_0]\}\) and \(b=\mathcal{L}\{\Im[α^{(2)}_0]\}\).
