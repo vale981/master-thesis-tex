@@ -1438,17 +1438,50 @@ We find
 which does satisfy the inequality to over 100 standard
 deviations. Minimizing this quantity would maximize the efficiency.
 
-A worthwhile task for future work would be to verify the results
-summarized in \cite{Binder2018} for the Otto cycle. Especially the
-optimization for optimal power which leads to the
-Novikov–Curzon–Ahlborn efficiency \(η_{ca}=1-\sqrt{T_{c}/T_{h}}\) is
-interesting in the case of stronger coupling.
-
 With this cycle, little coherence is generated\footnote{See
   \cref{eq:otto_coherences}.} leading so called ``frictionless''
 dynamics. See also \cref{eq:otto_bloch} for a plot of the trajectory
 of the system density matrix in the bloch sphere.
 
+Because it requires little additional effort, we can briefly explore a
+continuously coupled version off this model, where the coupling
+modulation is turned of and we have \(h_{1}(τ)=1\). We find in
+\cref{fig:ottoenergy_cont} that work extraction is still possible,
+albeit at a much lower power \(\bar{P}=0.001670\pm 0.000029\) and
+efficiency \(η=5\%\).
+\begin{figure}[ht]
+  \centering
+  \includegraphics{figs/otto/energy_strobe_continuous}
+  \caption{\label{fig:ottoenergy_cont} The system, bath and
+    interaction energies as well as the total energies of the model
+    \cref{eq:otto_model} for continuously coupled baths. The dots mark
+    the times where one cycle is completed. We can observe positive
+    energy extraction albeit at a much reduced power
+    \(\bar{P}=0.001670\pm 0.000029\) and efficiency \(η=5\%\) compared
+    to the modulated case in \cref{fig:ottoenergy}.}
+\end{figure}
+
+The finite energy extraction is due to the baths being alternately
+resonant and off-resonant. Increasing the amplitude of the system
+modulation and consequently the gap between the peaks of the spectral
+densities should improve the performance.
+
+The lost efficiency is due to energy flowing ``through'' the system
+unused, a behaviour which is promoted by the continous coupling and
+reflected in the quantity
+\(∑_iβ_i ΔE_{\bath^i}^\cyc = 0.6198\pm 0.0021\) which reflects the
+``entropy production'' of the bath that leads to reduced efficiency.
+
+Nevertheless, if the cycle was very fast, the effect of the
+(un)coupling of the baths could be so detrimental that the
+continuously coupled version of the cycle is superior. See also the
+remarks below about \cite{Uzdin2015Sep}.
+
+A worthwhile task for future work would be to verify the results
+summarized in \cite{Binder2018} for the Otto cycle. Especially the
+optimization for optimal power which leads to the
+Novikov–Curzon–Ahlborn efficiency \(η_{ca}=1-\sqrt{T_{c}/T_{h}}\) is
+interesting in the case of stronger coupling.
 
 Another interesting cycle to study would be a Carnot-type cycle, where
 the modulation of the system and the thermalization with the bath
