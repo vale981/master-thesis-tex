@@ -1,5 +1,10 @@
-\chapter{Introduction and Preliminaries}
+\chapter{Introduction}
 \label{chap:intro}
+\begin{itemize}
+\item this is not finished!! (not event close to being so)
+\item motivate interesting thermodynamical questions and the advantage
+  of the NMQSD/HOPS in this case without repeating \cref{sec:ergo_general}
+\end{itemize}
 
 The exact treatment of strongly coupled and non Markovian open quantum
 systems is a challenging problem.  If no analytical solution is
@@ -48,9 +53,16 @@ auxiliary bosonic Fock space in \cref{sec:multihops}.
 
 \newpage
 
-\section{Open Systems, the NMQSD and HOPS}
+\section{Open Systems}
 \label{sec:quick_hops}
-
+\begin{itemize}
+\item set the stage, introduce open systems (not just dump the general
+  model on people as is done currently\ldots)
+\item usually closed systems, open systems only weakly coupled or
+  ``effectively'' through statistical physics
+\item emphasize the unitary time development of the total system as
+  ``exact'' approach
+\end{itemize}
 The basic and most general model which forms the foundation of all
 matters discussed in this is a general quantum system \(H_\sys(t)\)
 coupled to \(N\) baths of harmonic oscillators
@@ -80,9 +92,13 @@ The basics of the NMQSD will be briefly reviewed in
 \cref{sec:hops_basics}. A more detailed account may be found in
 \cref{sec:multihops} as well as \cite{RichardDiss}.
 
-\subsection{Non Markovian Quantum State Diffusion}
+\section{The Non Markovian Quantum State Diffusion}
 \label{sec:nmqsd_basics}
-
+\begin{itemize}
+\item after general intro: technical basics for \cref{chap:flow}
+\item problem: hilbert space too large
+\item solution: exploit structure of bath and recast problem
+\end{itemize}
 We begin by considering a single zero temperature bath in the ground
 state \(\ket{0}\). The total system-bath state may then be expanded in
 a Bargmann coherent state basis~\cite{klauder1968fundamentals} with
@@ -128,7 +144,12 @@ One then usually performs a continuum limit so that \(J(ω)\) becomes
 ``smeared out'' to a smooth function and \(α(τ)\) decays to zero for
 \(τ\rightarrow ∞\). This behavior leads to \cref{eq:nmqsd_single}
 
-
-
-\subsection{Hierarchy of Pure States}
+\section{The Hierarchy of Pure States}
 \label{sec:hops_basics}
+\begin{itemize}
+\item point out difficulties with the functional derivative
+\item goal: numerical method for general systems: mutli bath,
+  modulated etc
+\item introduce HOPS briefly and refer to \cref{chap:hops_notes} for
+  details
+\end{itemize}
