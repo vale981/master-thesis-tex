@@ -1978,7 +1978,10 @@ modulation frequency, exhibiting a clear maximum. This constitutes the
 Running the simulations with a peak interaction energy target like in
 \cref{sec:extr_mem} the results are broadly similar on the level of
 detail available to us as can be ascertained from
-\cref{fig:power_heatmap_tuned}.
+\cref{fig:power_heatmap_tuned}. For the \(Δ=1\) case the optimization
+was generally not very effective in the weaker coupling regime as is
+quantified in \cref{fig:interaction_tuning_success}. Therefore this
+region should be interpreted with care.
 
 These results have to be taken with a grain of salt however. The grid
 resolution of 10 by 10 does not allow us to perceive a shift in the
@@ -1997,7 +2000,8 @@ is rather limited.
 \end{figure}
 
 The maximal absolute interaction energies are shown in
-\cref{fig:interaction_nontuned} and increase generally with increasing
+\cref{fig:interaction_nontuned} for the non-optimized case of
+\cref{fig:power_heatmap} and increase generally with increasing
 coupling strength. The dependence on the coupling strength is linear
 for modulations with \(Δ\geq 5\) but deviates for slower
 modulation. This may be due to the fact, that fewer periods can occur
@@ -2009,7 +2013,9 @@ especially at greater coupling strengths. Comparing
 that the top right region where the interaction energy is strongest
 somewhat coincides with a decrease in power. In this region, the
 dependence of the interaction energy on the modulation frequency is
-also most pronounced.
+also most pronounced.  The \(Δ=1\) case is an outlier and should
+therefore be interpreted with care. It is likely that not enough
+cycles have been simulated to judge this case accurately.
 
 
 Summarizing, we found that the one shot power output for the model
