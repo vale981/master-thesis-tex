@@ -394,6 +394,127 @@ Hamiltonians. Because the NMQSD and also HOPS are largely agnostic of
 these factors, we may safely assume that the results of the comparison
 will be similar to the ones presented here.
 
+\subsection{Pure Dephasing: The initial Slip}
+\label{sec:pure_deph}
+As seen in \cref{fig:comp_finite_t,fig:comp_zero_t,fig:comp_two_bath},
+the short time behavior of the bath energy flow is dominated by
+characteristic peak at short times. Because this peak occurs at very
+short time scales, it may in part be explained by a simple calculation
+which neglects the system dynamics, setting \(H_\sys=0\).
+
+We solve the model with the Hamiltonian (Schr\"odinger picture)
+\begin{equation}
+  \label{eq:puredeph}
+  H = L^†(t) B + L(t) B^† + H_\bath
+\end{equation}
+with \(L(t)=L(t)^†\), \([L(t), L(s)] = 0\;\forall t,s\) (so that
+Heisenberg Hamiltonian matches \cref{eq:puredeph}) and \(B,H_\bath\)
+as in \cref{eq:bop}.
+
+Because \([L,H]=0\) we can immediately solve \(L_H(t)=L_S(t)\), where
+the subscript signify the Heisenberg and Schr\"odinger pictures
+respectively. The Heisenberg equations for the \(a_λ\) yield
+\begin{equation}
+  \label{eq:alapuredeph}
+  a_λ(t) = a_λ(0) \eu^{-\iu ω_λ  t} - \iu g_λ^\ast∫_0^t\dd{s} L(s)
+  \eu^{-\iu ω_λ  (t-s)}.
+\end{equation}
+
+This allows us to calculate
+\begin{equation}
+  \label{eq:pureflow}
+  \dot{H}_\bath = - ∑_λ g_λ L(t) \qty[∂_t a_λ(0) \eu^{\iu ω_λ t} - \iu
+  g_λ^\ast∫_0^t\dd{s} L(s) ∂_t \eu^{-\iu ω_λ (t-s)}] + \hc,
+\end{equation}
+which gives with a state of the form \(ρ=\ketbra{ψ} \otimes ρ_β\)
+(\(ρ_β\) being a thermal state)
+\begin{equation}
+  \label{eq:pureflowexpectation}
+  \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)].
+\end{equation}
+
+For time independent \(L\) this becomes
+\begin{equation}
+  \label{eq:pureflowtimeindep}
+  \ev{\dot{H}_\bath } = 2 \ev{L^2} \Im[\dot{α}(t)].
+\end{equation}
+
+The proportionality to the imaginary BCF \(α\) does explain the
+initial peak in the bath energy flow. The imaginary part of the BCF is
+zero for \(t=0\) and then usually features a peak at rather short
+times (assuming finite correlation times). For the ohmic BCF used
+here, this feature is very prominent.
+\fixme{insert graph}
+
+Interestingly, \cref{eq:pureflowexpectation} does not contain any
+reference to the temperature of the bath. Therefore, the bath energy
+can only surpass its initial value in this model, as the dynamics
+match the zero temperature case in which the bath has minimal energy
+in the initial state. A thermodynamically useful model should
+therefore feature an significant system dynamics that do not commute
+with the interaction or fast modulation so that the Hamiltonian does
+not commute with itself at different times. The latter may induce
+deviations from the pure-dephasing behavior at very short time scales
+and thus be useful for finite power output. \fixme{here the plot with
+  energy extraction would be good.} Coupling that is not self-adjoint
+\fixme{plot} may also have this effect, but may be harder to
+physically motivate. For the spin-boson system it is the result of the
+random wave approximation, which however does not imply weak
+coupling~\cite{Irish2007Oct}.
+
+For completeness, the interaction energy is given by
+\begin{equation}
+  \label{eq:pureinter}
+  H_\inter = L(t)\qty[∑_λg_λ\qty(a_λ(0)\eu^{-\i ω_λ t} - \i
+  g^\ast_λ∫_0^t\dd{s} L(s) \eu^{\i ω_λ (t-s)})] + \hc,
+\end{equation}
+yielding
+\begin{equation}
+  \label{eq:pureinterexp}
+  \ev{H_\inter} = 2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[α(t-s)].
+\end{equation}
+\fixme{plots}
+
+For time independent coupling we have
+\begin{equation}
+  \label{eq:pureinterexp_timeidp}
+  \ev{H_\inter} = -2 \ev{L^2} \Im[α(t)] = -Δ\ev{H_{\bath}}.
+\end{equation}
+
+It may be useful to normalize the BCF based on \cref{eq:pureinterexp},
+so that the pure interaction energy build-up in the initial slip is
+canceled. To make the normalization independent of \(L(t)\), we choose
+the normalization to be
+\begin{equation}
+  \label{eq:bcfnorm}
+  \begin{aligned}
+  \mathcal{N} &= 2 \abs{\frac{\max_t\norm{L(t)L^\dag(t)+\hc}}{\max_t{\norm{H(t)}}} ∫_0^∞ \Im[α_u(τ)]\dd{τ}}\\
+    α(τ) &= α_u(τ)/\mathcal{N},
+  \end{aligned}
+\end{equation}
+where \(α_u\) is some unnormalized BCF. This normalization has the
+useful property, that it neutralizes any scaling in \(L\). Note that
+here the convention in which \(α\) is dimensionless is used.
+
+% this is not true
+% imaginary part becomes proportional to the Dirac delta in the limit
+% where typical cutoff frequency \(ω_c\rightarrow ∞\). The integral over
+% the real part of \(α\) always gives zero if the spectral density obeys
+% \(J(0) = 0\) and tends to exhibit fast oscillations and fast decay in
+% the large-cutoff limit. For weak coupling, it may therefore be
+% neglected. This constitutes the Markov limit mentioned in
+% \cite{Strunz2001Habil}.
+
+The Ohmic-type BCF is
+\begin{equation}
+  \label{eq:normohmic}
+  α(τ)=\frac{ω_c  s }{ (\max_t\norm{H})(1+\iu ω_c τ)^{s+1}},
+\end{equation}
+in this normalization. Note however, that the norm of the Hamiltonian
+is assumed to be unity in the simulations referred to in this
+thesis. \fixme{maybe change}
+
+
 \section{Precision Simulations for a System without Analytical
   Solution}
 \label{sec:prec_sim}
