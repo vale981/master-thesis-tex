@@ -1,5 +1,19 @@
 \chapter{Numerical Results}
 \label{chap:numres}
+\begin{itemize}
+\item all the theory developed in \cref{chap:flow,chap:analytsol}
+  wants some applications
+\item roadmap: first verify numerics and systematics using
+  \cref{chap:analytsol} in \cref{sec:hopsvsanalyt} and then using
+  energy conservation \cref{sec:prec_sim}. Although not the focus:
+  also some discussion of observations and the role of stronger
+  coupling and non-markovianity
+\item especially short time behaviour in \cref{sec:pure_deph}
+\item after systematics interlude about basic quantum-thermo
+  \cref{sec:basic_thermo}
+\item finally short applications: single bath \cref{sec:singlemod} and
+  a simple otto cycle \cref{sec:otto}
+\end{itemize}
 In this chapter some application of the results described in
 \cref{chap:flow,chap:analytsol} are presented. In
 \cref{sec:hopsvsanalyt}, we begin by considering the bath energy for
@@ -8,6 +22,11 @@ with the results obtained by hops.
 
 \section{Some Remarks on the Methods}
 \label{sec:meth}
+\begin{itemize}
+\item lowest common denominator of all models
+\item error estimation important to claim convergence, compatibility
+\end{itemize}
+
 The figures presented may feature error funnels whose origin is,
 unless otherwise stated, estimated from the empirical standard
 deviation of the calculated quantities due to the finite sample
@@ -79,8 +98,13 @@ derived. Using this solution, we are able to verify the results of
 HOPS can indeed reproduce the \emph{exact} open system dynamics of the
 bath energy flow.
 
-\subsection{One Oscillator, One Bath}
+\subsection{A Harmonic Oscillator coupled to a single Bath}
 \label{sec:oneosccomp}
+\begin{itemize}
+\item a numerically simple model (because of Hilbert space, one bath)
+  to begin our verification
+\item complex implementation needs high level tests
+\end{itemize}
 For the simulations with HOPS the model \cref{eq:one_ho_hamiltonian}
 was made dimensionless by choosing \(Ω=1\). Simulations were run for
 both for zero temperature and a finite temperature with varying bath
@@ -296,8 +320,13 @@ the probability space is sampled.
 %     used in the last simulation of \cref{fig:comp_zero_t}.}
 % \end{figure}
 
-\subsection{Two Oscillators, Two Baths}
+\subsection{Two coupled Harmonic Oscillators coupled to two Baths}
 \label{sec:twoosccomp}
+\begin{itemize}
+\item first ever application of HOPS to multiple baths
+\item important to verify fitness for thermodynamics simulations
+\item much more challenging
+\end{itemize}
 
 The model of \cref{sec:oneosc} was generalized to two oscillators
 coupled to two separate baths in \cref{sec:twoosc} and
@@ -394,7 +423,7 @@ Hamiltonians. Because the NMQSD and also HOPS are largely agnostic of
 these factors, we may safely assume that the results of the comparison
 will be similar to the ones presented here.
 
-\subsection{Pure Dephasing: The initial Slip}
+\section{Pure Dephasing and The Initial Slip}
 \label{sec:pure_deph}
 As seen in \cref{fig:comp_finite_t,fig:comp_zero_t,fig:comp_two_bath},
 the short time behavior of the bath energy flow is dominated by
@@ -515,9 +544,16 @@ is assumed to be unity in the simulations referred to in this
 thesis. \fixme{maybe change}
 
 
-\section{Precision Simulations for a System without Analytical
-  Solution}
+\section{Precision Simulations of the Zero Temperature Spin-Boson Model}
 \label{sec:prec_sim}
+\begin{itemize}
+\item often no analytical solution available: how to verify
+  convergence?
+\item at the same time: simplest model to start with, numerically
+  simple
+\item good starting point to get to know the system and find out if
+  results can be trusted
+\end{itemize}
 In this section, we will study the energy flow of a simple model
 connected to zero temperature bath. Both the characteristics of the
 flow mediated by the concrete form of the bath correlation function
@@ -726,7 +762,14 @@ of convergence.
 
 \subsection{Dependence on the Cutoff Frequency}
 \label{sec:one_bath_cutoff}
-We now consider precision simulations of the spin-boson like system
+\begin{itemize}
+\item what role does non-markovianity play in this simple model for
+  the energy transfer?
+\item want to deepen indications seen in precision simulations
+\item also verify initial slip dynamics \cref{sec:pure_deph} for this model
+\end{itemize}
+We now consider precision simulations of the spin-boson like
+system\fixme{Float placement is abysmal in this section}
 with varying cutoff frequency. To make the interaction energies
 comparable to each other, the BCF normalization of section
 \cref{sec:pure_deph} is being used. Because of the small size of the
@@ -1047,6 +1090,10 @@ the flow into the bath energy change.
 
 \subsection{Dependence on the Coupling Strength}
 \label{sec:one_bathcoup_strength}
+\begin{itemize}
+\item does it pay off to couple more strongly?
+\item very brief discussion
+\end{itemize}
 After having studied the dependence of the bath energy flow for
 various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
 we now consider the case with fixed cutoff \(ω_c=2\) but varying
@@ -1182,6 +1229,9 @@ optimal efficiency.
 
 \subsection{The Ergotropy of Open Quantum Systems with a single Bath}
 \label{sec:ergo_general}
+\begin{itemize}
+\item introduce ergotropy and passivity as basis for the rest
+\end{itemize}
 The ergotropy of a quantum system is defined\fixme{mention paper that
   uses ergo for heat}
 as~\cite{Binder2018}
@@ -1252,7 +1302,12 @@ have to lead to a reduction in efficiency\fixme{do more research on
 
 \subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
 \label{sec:ergoonebath}
-
+\begin{itemize}
+\item thermal states are somewhat special (as seen above)
+\item for thermodynamic consistency: we want to find a general bound
+  on ergotropy that may be valid also in the infinite dimensional case
+\item great news: model independent and gives meaning to temperature!
+\end{itemize}
 Let us consider models with the Hamiltonians
 \begin{equation}
   \label{eq:simple_bath_models}
@@ -1394,6 +1449,13 @@ time.
 \subsection{The Ergotropy of a Two
   Level System and a Bath of Identical Oscillators}
 \label{sec:explicitergo}
+\begin{itemize}
+\item as an illustrative example: calculate ergotropy for a concrete
+  model
+\item can show us how good the bound derived earlier is and whether it
+  holds for these infinite dimensional systems
+\end{itemize}
+
 Here, we explicitly calculate the ergotropy of a finite dimensional
 system connected to a bath of identical oscillators. Throughout we
 will set the zero-point energy of the oscillators to zero, meaning
@@ -1713,6 +1775,14 @@ tight as may be expected, because the error one makes in
 \subsection{A bound on the Energy Change of Multiple Baths in the
   Periodic Steady State}
 \label{sec:operational_thermo}
+\begin{itemize}
+\item for multiple baths of differing temperatures: previous
+  discussions not applicable
+\item nevertheless, there is a limit on the combined energy change of
+  the baths in the PSS
+\item a gibbs like inequality is derived, the left-hand-side may be
+  interpreted as thermodynamic cost, maybe input for future optimizations
+\end{itemize}
 As in the single bath case, some statement about the amount of energy
 that can be expected to be extracted in a cyclic manner. An argument
 based on entropy may be made for the periodic steady state as was
@@ -1812,15 +1882,14 @@ motivated in \cite{Riechers2021Apr}, where heat is identified with
 into account system and bath is being considered and brought into
 connection with information-theoretic quantities.
 
-If one defines heat as above and in
-\cite{Kato2016Dec,Riechers2021Apr,Strasberg2021Aug}, i.e. as the
-energy change of the baths and substantiated, based on a microscopic
-definition of entropy, in, \cref{eq:secondlaw_cyclic} amounts to the
-Clausius form of the second law. This definition of heat is
-corroborated in~\cite{Esposito2015Dec} where it is shown\footnote{for
-  fermionic baths} that a definition of heat involving any nonzero
-fraction of the interaction energy will lead to the internal energy
-(as defined by the first law) not being an exact differential.
+If one defines heat as is done in
+\cite{Kato2016Dec,Riechers2021Apr,Strasberg2021Aug} as the change of
+bath energy, \cref{eq:secondlaw_cyclic} amounts to the Clausius form
+of the second law. This definition of heat is corroborated
+in~\cite{Esposito2015Dec} where it is shown\footnote{for fermionic
+  baths} that a definition of heat involving any nonzero fraction of
+the interaction energy will lead to the internal energy (as defined by
+the first law) not being an exact differential.
 
 In contrast to~\cite{Strasberg2021Aug}, no interpretation in terms of
 thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
@@ -1834,6 +1903,16 @@ with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound.
 
 \section{Modulation of System and Interaction for a Single Bath}
 \label{sec:singlemod}
+\begin{itemize}
+\item again a numerically simple model to apply our findings from
+  \cref{sec:basic_thermo}
+
+\item not clear how tight the bound is and if it is still valid
+\item apply also findings about resonance (modified for modulation)
+  from previous section
+\item despite simplicity: a lot of parameters and we only look at a
+  shallow subset of all possibilities
+\end{itemize}
 
 Because the HOPS allows us to simulate a full dynamical picture of our
 model, let us now turn to a situation where the dynamics are of
@@ -2185,7 +2264,13 @@ coupling.
 
 \section{Quantum Otto Cycle}
 \label{sec:otto}
-
+\begin{itemize}
+\item multi bath simulations are resource intensive
+\item we focus therefore on a simple demonstration of HOPSs usefulness
+  in multiple baths
+\item an opportunity to test \cref{sec:operational_thermo}
+\item also: very popular model and good starting point for future work
+\end{itemize}
 As a demonstration of a standard thermodynamic cycle that is a popular
 model in the literature\footnote{See
   \cite{Wiedmann2021Jun,Karimi2016Nov,Binder2018}.}
@@ -2368,20 +2453,20 @@ would be interesting to see if the slight deviations from theory in
 \newpage
 \section{Anti Zeno Engine}
 \label{sec:antizeno}
-
-
-\section{Miscellaneous Demonstrations of the Capabilities of HOPS}
-\label{sec:miscdemo}
-Very short mention of some results from ``side projects'' if I have
-the time to include them.
-
 \begin{itemize}
-\item two qubits coupled to each other -> steady state flow
-\item otto cycle
-\item rotating engine
+\item mention concept
+\item results not reliable in time for thesis
+\item interesting because: non markovian QUANTUM advantage. a bit
+  sensational ;P
 \end{itemize}
 
 \section{Some Proposals for future Work}
+\begin{itemize}
+\item a list of ideas and some papers I've came across
+\item projects for future theses or papers
+\end{itemize}
+
+
 \begin{itemize}
 \item ... list all those nice papers ...
 \item the third law
