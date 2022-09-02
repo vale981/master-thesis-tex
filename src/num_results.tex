@@ -1239,6 +1239,14 @@ different values of \(Δ\).
     cases \(100\) grid points and Gaussian interpolation have been
     used.}
 \end{figure}
+\begin{figure}[htb]
+  \centering
+  \includegraphics{figs/one_bath_mod/power_en_heatmap}
+  \caption{\label{fig:power_heatmap_tuned} Like
+    \cref{fig:power_heatmap_tuned} but as function of maximal
+    interaction energy as in \cref{sec:extr_mem}.  The parameters of
+    the underlying simulations can be found in \cref{tab:plus_mod_en}}
+\end{figure}
 
 We find that the best power output is achieved by stronger
 coupling. The dependence on the modulation frequency is more
@@ -1248,6 +1256,17 @@ achieved at roughly the same modulation frequency. However, with
 increasing coupling strength, the system becomes more sensitive to the
 modulation frequency, exhibiting a clear maximum. This constitutes the
 ``speed limit'' discussed above.
+
+Running the simulations with a peak interaction energy target like in
+\cref{sec:extr_mem} the results are broadly similar on the level of
+detail available to us as can be ascertained from
+\cref{fig:power_heatmap_tuned}.
+
+These results have to be taken with a grain of salt however. The grid
+resolution of 10 by 10 does not allow us to perceive a shift in the
+optimal modulation frequency. Also, the range of interaction strengths
+is rather limited.
+
 
 \begin{figure}[htb]
   \centering
@@ -1273,6 +1292,7 @@ that the top right region where the interaction energy is strongest
 somewhat coincides with a decrease in power. In this region, the
 dependence of the interaction energy on the modulation frequency is
 also most pronounced.
+
 
 Summarizing, we found that the one shot power output for the model
 \cref{eq:one_qubit_model_driven} has a complex dependence on the
