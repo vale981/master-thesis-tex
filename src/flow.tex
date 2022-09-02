@@ -1,8 +1,24 @@
-\chapter{Bath Observables and the Hierarchy of Pure States}
+\chapter{Bath Observables in NMQSD and HOPS}
 \label{chap:flow}
-\section{Linear NMQSD, Zero Temperature}
+\begin{itemize}
+\item remind of the main goal
+\item motivate why this is expected to be achievable with NMQSD/HOPS
+\item outline the different parts of the derivation: from special case
+  to most general
+\end{itemize}
+
+\section{Bath Energy Change of a Zero Temperature Bath}
 \label{sec:flow_lin}
-As in~\cite{Hartmann2017Dec} we choose
+\begin{itemize}
+\item illustrate the general idea with the simplest case
+  possible:
+  zero T, one bath, no modulation etc, linear theory
+\item this is also the ``historical order''
+\item hint at straight forward generalizations in further sections
+\end{itemize}
+
+As in~\cite{Hartmann2017Dec} we choose\fixme{This section needs a lot
+  of love! More Explainations etc..}
 \begin{equation}
   \label{eq:totalH}
   H = H_\sys + \underbrace{LB^† + L^† B}_{H_\inter} + H_\bath
@@ -168,8 +184,15 @@ however the expression becomes
     t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
 \end{equation}
 
-\section{Nonlinear NMQSD, Zero Temperature}
+\section{Generalization to the Nonlinear Theory}
 \label{sec:nonlin_flow}
+\begin{itemize}
+\item until now: not much use for stronger coupling
+\item nonlinear method way better convergence
+\item we show that results be generically generalized to the nonlinear
+  theory by ``just normalizing''
+\end{itemize}
+
 In the spirit of the usual derivation of the nonlinear NMQSD we write
 \begin{equation}
   \label{eq:newb}
@@ -245,8 +268,18 @@ becomes
       t)}\ket{\psi^{0}(η^\ast,t)}} + \cc.
 \end{equation}
 
-\section{Linear Theory, Finite Temperature}
+\section{Generalization to Finite Temperature}
 \label{sec:lin_finite}
+\begin{itemize}
+\item zero temperature case simple and the main result, but not very
+  useful in practice
+\item stochastic hamiltonian method as simple addon can be translated
+  into bath observable language easily
+\item choosing this method, as it is the one used in richards thesis \cite{RichardDiss}
+\item at the end: mention also self adjoint coupling -> use finite
+  temp BCF
+\end{itemize}
+
 The finite temperature case needs some additional considerations as
 the previous sections dealt explicitly with mean values in a pure
 state. The Ehrenfest theorem still holds in mixed states, but we would
@@ -375,10 +408,17 @@ and therefore
   \ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter]} = -i \mathcal{M}_{η^\ast}\mel{\psi}{ξ(t)^\ast[L,L^†]D_t}{\psi}.
 \end{equation}
 This is an expression that we can easily evaluate with the HOPS
-method.
+method. We will however refrain from doing so, as it turns out in
+\cref{sec:hopsvsanalyt} that consistent results can be obtained using
+the derivative of the stochastic process \(ξ\).
 
 \section{General Collective Bath Observables}
 \label{sec:general_obs}
+\begin{itemize}
+\item now we have all the basic tools ready we can discuss what the
+  most general observables are that we can calculate
+\item elucidates the meaning of the hierarchy states
+\end{itemize}
 The results obtained in \cref{sec:flow_lin,sec:nonlin_flow,sec:lin_finite}
 can be generalized to calculate expectation values (and thus moments)
 of arbitrary observables of the form
@@ -471,11 +511,16 @@ tend to converge slower. However this statement comes without
 empirical proof and its verification may be left to future
 study. Also, this alternative method could be used convergence and
 consistency check, as expressions of the form~\cref{eq:with_process}
-only involve the HOPS cutoff and the exponential expansion of the BCF
+only involve the hierarchy cutoff and the exponential expansion of the BCF
 in an indirect manner.
 
 \subsection{Interaction Energy}
 \label{sec:intener}
+\begin{itemize}
+\item last missing ``thermodynamic'' quantity
+\item can also be used to quantify how ``strong'' the coupling is
+\item simple application of the above formalism, even simpler than flow
+\end{itemize}
 A simple application of the formalism discussed
 in~\cref{sec:general_obs} is the expectation value of the interaction
 Hamiltonian.
@@ -510,7 +555,10 @@ stochastic process.
 
 \subsection{Higher Orders of the Coupling Hamiltonian}
 \label{sec:higher_order_coupling}
-
+\begin{itemize}
+\item a slight dive into the meaning and importance of the hierarchy
+  states for convergence
+\end{itemize}
 For self adjoint coupling operators \(L=L^\dag\) we can use Wick's
 theorem to find a normally ordered expression for \(H_\inter^n=L^n(B^\dag +
 B)^n\).
@@ -556,7 +604,7 @@ We begin by minimizing for \(k\)
   \label{eq:mink}
   \pdv{Λ}{k} = ψ(k+1)-ψ(n-2l-k+1) \overset{!}{=}0,
 \end{equation}
-where \(ψ\) is the Digamma function~\cite[p. 136]{Nisthb}.
+where \(ψ\) is the Digamma function~\cite[p. 136]{NISTHandbook}.
 As the Digamma function is strictly monotonic and thus injective,
 \cref{eq:mink} implies \(k+1=n-2l-k+1\) and thus
 \(l=n/2-k\). Note that the optimizing \(k\) is also the order of the
@@ -617,8 +665,14 @@ depends strongly on hierarchy states of order \(\sim \sqrt{n}\).
     correspond to binomial distributions centered at \(k_m\).}
 \end{figure}
 
-\section{Multiple Baths}
+\section{Generalization to Multiple Baths}
 \label{sec:multibath}
+\begin{itemize}
+\item for thermodynamic machines: need multiple baths
+\item due to the structure of NMQSD/HOPS generalization is
+  straightforward
+\end{itemize}
+
 The results above can be generalized in straight-forward manner to
 models of the form
 \begin{equation}
@@ -673,8 +727,14 @@ way that discards mixed bath states more readily than single bath
 hierarchy states as the correlations between the baths are expected to
 be small.
 
-\section{Time Dependent Hamiltonian}
+\section{Generalization to Time Dependent Hamiltonians}
 \label{sec:timedep}
+\begin{itemize}
+\item second important ingredient: external modulation, at least for
+  our purposes here
+\item again here -> no magic, straight forward
+\end{itemize}
+
 The above discussion is based on the model \cref{eq:totalH} which did
 not include explicit time modulations of \(H_\sys\) or \(L\). As we
 did not calculate any explicit time derivatives of those two
