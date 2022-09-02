@@ -1,16 +1,23 @@
 \chapter{An Analytical Solution for Quantum Brownian Motion Models}
 \label{chap:analytsol}
+\begin{itemize}
+\item \cref{chap:flow} is all nice and good, but need verification
+\item many actual numerical approximations to control besides theory
+  verification
+\end{itemize}
 
-\section{One Oscillator, One Bath}
+\section{A Harmonic Oscillator coupled to a single Bath}
 \label{sec:oneosc}
-
+\begin{itemize}
+\item simplest model in the spirit of previous derivations
+\item well known to be solvable, we will tease out the bath related
+  quantities in the heisenberg picture
+\end{itemize}
 The solution presented here is not entirely new, as the model is well
 known. For reference see~\cite{Breuer2002Jun}. The trick with the
 exponential expansion of the bath correlation function has been
 arrived at independently, but may also be well known.
 
-\subsection{Model}
-\label{sec:model}
 The model is given by the quadratic hamiltonian
 \begin{equation}
   \label{eq:one_ho_hamiltonian}
@@ -21,9 +28,6 @@ The model is given by the quadratic hamiltonian
 where \(a,a^†\) are the ladder operators of the harmonic
 oscillator, \(q=a+a^†\) and \(p=\frac{1}{\iu}\qty(a-a^†)\) so
 that \([q,p] = 2\iu\).
-
-\subsection{Equations of Motion}
-\label{sec:eqmot}
 
 The Heisenberg equation yields
 \begin{align}
@@ -232,6 +236,9 @@ and
 
 \subsection{Applications}
 \label{sec:applications}
+\begin{itemize}
+\item the actual ``meat'' that is of interest to verify HOPS
+\end{itemize}
 Knowing \(G\) and \(α\), we can calculate all observables of the
 system. Simple closed form expressions of sums of exponentials can be
 obtained by using an exponential expansions of \(α\). Throughout,
@@ -387,8 +394,15 @@ give explicit expressions for the coefficients and exponents. This is
 not required for now. Code implementing this can be found under
 \url{https://github.com/vale981/hopsflow}.
 
-\section{Two Oscillators, Two Baths}%
+\section{Two coupled Harmonic Oscillators coupled to two Baths}%
 \label{sec:twoosc}
+\begin{itemize}
+\item (future) applications involve thermodynamically interesting case
+  of multiple baths
+\item we chose two HOs because then the coupling to the two baths is
+  not trivially additive and we can reuse the method from
+  \cref{sec:oneosc} without alteration
+\end{itemize}
 
 The considerations of~\cref{sec:oneosc} can be straight forwardly
 generalized to the case of two coupled oscillators coupled in turn to
@@ -397,9 +411,6 @@ a bath each.
 We will not give explicit formulas for the results in terms of sums of
 exponentials, as they are quite extensive and easily obtained via the
 use of a computer algebra system or the aforementioned code.
-
-\subsection{Model}
-\label{sec:twomodel}
 
 The model is again given by a quadratic hamiltonian
 \begin{equation}
@@ -528,7 +539,9 @@ with \(R_l={f_0(\tilde{z}_l)}/{p'(\tilde{z}_l)}\).
 \subsection{Applications}
 \subsubsection{Correlation Functions}
 \label{sec:correltwo}
-
+\begin{itemize}
+\item same game as in \cref{sec:applications}
+\end{itemize}
 We can now proceed to calculate the correlation functions
 \(C(t,s) = \ev{x_i(t)x_j(s)}\) where the \(x_i\) are the phase space operators
 of the two harmonic oscillators.
