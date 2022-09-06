@@ -390,9 +390,20 @@ Hamiltonian and the replacement
 an expression that plausibly corresponds to the \(L^†\) part of
 \(H_\inter + H_{\sys}^{\mathrm{shift}}\).
 
+We end up with an additive term in our expression for the bath energy change
+\begin{equation}
+  \label{eq:extra_flow_therm}
+  J_{β}(t) = \mathcal{M}_{η^\ast,ξ}\bra{\psi(η,
+    t)}L^†\dot{ξ}(t)+L\dot{ξ}^\ast(t)\ket{\psi(η^\ast,t)},
+\end{equation}
+which constitutes the bath energy change due to the finite bath
+temperature and is equally valid for HOPS.
+
+
 The result of this section may be generalized to the nonlinear method
 in the same way as was shown \cref{sec:nonlin_flow} by applying
-\cref{eq:breplacement} to \cref{eq:nonlinhopsflowfock}.
+\cref{eq:breplacement} and simply normalizing
+\cref{eq:extra_flow_therm}.
 
 The appearance of \(\dot{ξ}(t)\) may be cause for concern. However,
 for twice differentiable \(\mathcal{M}(ξ(t)ξ^\ast(s))\) the sample
