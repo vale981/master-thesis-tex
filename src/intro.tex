@@ -226,16 +226,38 @@ coherent state basis~\cite{klauder1968fundamentals} with respect to
 the bath degrees of freedom
 \begin{equation}
   \label{eq:projected_single}
-  \ket{ψ(t)} = ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ket{ψ(t,\vb{z})^\ast}\ket{\vb{z}},
+  \ket{ψ(t)} = ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ket{ψ(t,\vb{z}^\ast)}\ket{\vb{z}},
 \end{equation}
 where \(\vb{z}\) is a vector of coherent state labels \(z_λ\) for each
-environment oscillator.
+environment oscillator. The \(\ket{ψ(t,\vb{z})^{\ast}}\) are
+holomorphic functions of \(\vb{z}^\ast\).
+
 
 After transforming \cref{eq:generalmodel} into the interaction picture
 with respect to \(H_B\) and using the properties of the coherent
 states (\(\mel{z_λ}{a_λ}{ψ}\rightarrow ∂_{z_λ^\ast}\braket{z_λ}{ψ}\),
 \(\mel{z_λ}{a_λ^\dag}{ψ}\rightarrow z_λ^\ast\braket{z_λ}{ψ}\)) we
-arrive at an equation for stochastic pure state trajectories
+arrive at an equation for \(\ket{ψ(t,\vb{z}^{\ast})}\)
+\begin{equation}
+  \label{eq:nmqsd_single_proto}
+  ∂_t\ket{ψ(t,\vb{z}^{\ast})} = -\iu H \ket{ψ(t,\vb{z}^{\ast})} - \iu
+  L ∑_{λ}g_{λ}^\ast z_{λ}^\ast \eu^{\iu ω_{λ} t}
+  \ket{ψ(t,\vb{z}^{\ast})} - \iu L^\dag ∑_{λ} g_{λ}\eu^{-\iu ω_{λ} t}\pdv{}{z_{λ}^\ast}\ket{ψ(t,\vb{z}^{\ast})}.
+\end{equation}
+
+From this point on there are multiple avenues to continue. We choose
+the simplest one, but there is also a time-discrete derivation that
+avoids functional derivatives in~\cite{Hartmann2017Dec}.
+
+We shift the perspective and define
+\begin{equation}
+  \label{eq:single_process}
+  η^\ast_{t} = -\iu ∑_λg_λ^{\ast} z_λ^{\ast}\eu^{\iu ω_λ t},
+\end{equation}
+using
+\(\pdv{z_λ^{\ast}}=∫\dd{s}\pdv{η^\ast_{s}}{z_λ^{\ast}}\fdv{η^\ast_{s}}\)
+and interpreting \(\ket{ψ(t,\vb{z}^{\ast})}\) as a functional of
+\(η_{t}^\ast\) we arrive at
 \begin{equation}
   \label{eq:nmqsd_single}\tag{NMQSD}
   ∂_tψ_t(η^\ast_t) = -\iu H ψ_t(η^\ast_t) +
@@ -244,7 +266,7 @@ arrive at an equation for stochastic pure state trajectories
 where \(α\) is the zero temperature bath correlation function (BCF)
 \begin{equation}
   \label{eq:bcfdef}
-  α(t-s) = \ev{B(t)B(s)} = ∑_λ \abs{g_λ}^2\,\eu^{-\iu ω_λ (t-s)}
+  α(t-s) = \ev{B(t)B(s)} = ∑_λ \abs{g_λ}^2\eu^{-\iu ω_λ (t-s)}
 \end{equation}
 and \(η_t\) is a Gaussian stochastic process obeying
 \begin{equation}
@@ -255,11 +277,12 @@ and \(η_t\) is a Gaussian stochastic process obeying
   \end{aligned}
 \end{equation}
 
-The reduced system state may then be recovered by averaging over all
-trajectories
+The statistics of the process follow from interpreting
+\cref{eq:projected_single} in a Monte-Carlo sense and thus reduced
+system state may then be recovered by averaging over all trajectories
 \begin{equation}
   \label{eq:recover_rho}
-  ρ_{\sys}(t) = \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
+  ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} = \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
 \end{equation}
 
 Note that the BCF \(α\) is usually defined as Fourier transform of the
@@ -290,7 +313,10 @@ To remedy this, we choose a co-moving shifted stochastic process
 \end{equation}
 where
 \(\ev{L^\dag}_{t}=ψ(\tilde{η}_{t}^\ast)_{t}^\dag L^\dag
-ψ(\tilde{η}_{t}^\ast)_{t}\).
+ψ(\tilde{η}_{t}^\ast)_{t}\). The origin of this shift lies in the
+study of the Husimi \(Q\) function of the bath
+\(Q_{t}(\vb{z}, \vb{z}^\ast) = \eu^{-\abs{z}^{2}} π^{-N}
+\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\).
 
 This leads to the nonlinear NMQSD equation
 \begin{equation}
@@ -306,7 +332,6 @@ Crucially, the system state is now recovered through
   ρ_{\sys}(t) = \mathcal{M}_{η_{t}^\ast}\bqty{\frac{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}{\norm{ψ_t(η_t)}^{2}}},
 \end{equation}
 so that all trajectories contribute with ``equal weight''.
-
 
 \section{The Hierarchy of Pure States}
 \label{sec:hops_basics}
