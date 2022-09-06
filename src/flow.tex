@@ -247,60 +247,90 @@ and in the language of HOPS
       t)}\ket{\psi^{(0)}(\tilde{η}^\ast,t)}} + \cc.
 \end{equation}
 
-In essence, the expressions derived in \cref{sec:flow_lin}  simply
-have to be normalized.
+In essence, the expressions derived in \cref{sec:flow_lin} simply have
+to be normalized.
 
 \section{Generalization to Finite Temperature}
 \label{sec:lin_finite}
-\begin{itemize}
-\item zero temperature case simple and the main result, but not very
-  useful in practice
-\item stochastic hamiltonian method as simple addon can be translated
-  into bath observable language easily
-\item choosing this method, as it is the one used in richards thesis \cite{RichardDiss}
-\item at the end: mention also self adjoint coupling -> use finite
-  temp BCF
-\end{itemize}
+Another generalization is necessary in order for \cref{sec:flow_lin}
+to be useful in thermodynamic settings. In contrast to
+\cref{sec:nonlin_flow} we now have to consider a physical aspect of
+the system rather than a numerical detail. Finite temperature initial
+states of the bath are essential for the physical questions that will
+be discussed in \cref{sec:basic_thermo}.
 
-The finite temperature case needs some additional considerations as
-the previous sections dealt explicitly with mean values in a pure
-state. The Ehrenfest theorem still holds in mixed states, but we would
-like to recover the usual pure state zero temperature formalism. There
-are multiple methods for dealing with a thermal initial such as the
-thermofield method (see~\cite{Diosi1998Mar}), but because the results
-discussed here are to be applied with the HOPS method we shall use the
-method described in~\cite{Hartmann2017Dec}, as this is the most mature
-and well tested one.
 
-The shift operator
+Finite temperatures need some additional considerations as
+we now deal with a mixed global state. Explicitly, the initial state
+in consideration is given by
+\begin{equation}
+  \label{eq:therm_init}
+  ρ_{0}=\ketbra{ψ_{\sys}} \otimes ρ_{β}
+\end{equation}
+with \(ρ_{β}\) being a Gibbs or KMS state~\cite{Binder2018} of inverse
+temperature \(β\).
+
+However, the previous sections dealt explicitly with pure
+states. There are multiple ways of approaching finite temperature. One
+is to \emph{purify} the bath initial state by introducing additional
+degrees of freedom\footnote{Also called the \emph{thermofield}
+  method.}. This has the advantage of yielding a particularly simple
+result in the case of self-adjoint coupling \(L=L^\dag\). In that
+case, one may simply replace the zero temperature BCF \(α\) with its
+finite temperature counterpart and continue as before
+\begin{equation}
+  \label{eq:finite_bcf}
+  \begin{aligned}
+  α_{β}(τ)&=\frac{1}{π}∫_{0}^{∞} J(ω) \bqty{2\bose(βω) \cos(ω (t-s)) - \iu
+        \sin(ω (t-s))} \dd{ω}\\
+    &= \frac{1}{π} ∫_{-∞}^{∞} \bqty{\bose(\abs{βω})+Θ(ω)} J(\abs{ω})
+  \eu^{-i ω t}\dd{ω},
+  \end{aligned}
+\end{equation}
+where \(\bose\) is the Bose-Einstein distribution.
+
+Here we choose another approach however, as it holds for general
+couplings, is well tested by \cite{RichardDiss} and the tools for its
+applications are already in place.
+
+Let us introduce the shift operator
 \begin{equation}
   \label{eq:shiftop}
-  \vb{D}(y) = \bigotimes_\lambda \eu^{y_\lambda a_\lambda^†-y^\ast_\lambda a_\lambda}
+  \begin{aligned}
+    D(\vb{y}) &= \bigotimes_\lambda \eu^{y_\lambda a_\lambda^†-y^\ast_\lambda a_\lambda},&  D(\vb{y})\ket{0} &= \ket{\vb{y}}
+  \end{aligned}
 \end{equation}
-the ground state of the environment into an arbitrary
-coherent state
-\begin{equation}
-  \label{eq:shiftwork}
-  \vb{D}(y)\ket{0} = \ket{y}
-\end{equation}
-where \(y=(y_1,y_2,\ldots)\) as usual.
+which shifts the ground state of the environment into an arbitrary
+coherent state, where \(\vb{y}=(y_1,y_2,\ldots)\) as usual.
 
-This allows us to write the density matrix of the system with a
-thermal initial bath as
+This allows us to write the global state of system and bath as
 \begin{equation}
   \label{eq:shiftbath}
-  \rho =
+  \rho(t) =
   \prod_\lambda\qty(∫\dd[2]{y_\lambda}
-  \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})
-  U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†.
+  \frac{\eu^{-\abs{y_\lambda}^2\bose_\lambda}}{\pi\bose_\lambda})
+  U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D(\vb{y})^† U(t)^†,
 \end{equation}
-The usual step is now to insert \(\id =\vb{D}(y)\vb{D}^†(y)\) to
-arrive at a new time translation operator
+where \(\bose_{λ}=\bose(βω_{λ})\).
+
+The system state is then recovered through
+\begin{equation}
+  \label{eq:shiftbath_system}
+  \rho_{\sys}(t) =
+  \prod_\lambda\qty(∫\dd[2]{y_\lambda}
+  \frac{\eu^{-\abs{y_\lambda}^2\bose_\lambda}}{\pi\bose_\lambda})
+  \tr_{\bath}\bqty{U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D(\vb{y})^† U(t)^†}.
+\end{equation}
+
+The usual step is now to insert \(\id =D(\vb{y})D^†(\vb{y})\) and
+permute one \(D\) operator to the rightmost side in
+\cref{eq:shiftbath_system} when tracing out the bath to arrive at a
+new time translation operator
 \begin{equation}
   \label{eq:utilde}
-  \tilde{U}(t) = \vb{D}^†(y)U(t)\vb{D}(y)
+  \tilde{U}(t) = D^†(\vb{y})U(t)D(\vb{y})
 \end{equation}
-and to interpret the integral in \cref{eq:shiftbath} in a monte-carlo
+and to interpret the integral in \cref{eq:shiftbath} in a Monte-Carlo
 sense which leads to a stochastic contribution to the system Hamiltonian
 \begin{equation}
   \label{eq:thermalh}
@@ -309,11 +339,11 @@ sense which leads to a stochastic contribution to the system Hamiltonian
 with the stochastic process
 \begin{equation}
   \label{eq:xiproc}
-  ξ(t):=∑_{\lambda} g_{\lambda} y_{\lambda} \eu^{-\mathrm{i} ω_{\lambda} t}
+  ξ(t)\equiv ∑_{\lambda} g_{\lambda} y_{\lambda} \eu^{-\mathrm{i} ω_{\lambda} t}
 \end{equation}
 with corresponding moments \(\mathcal{M}(ξ(t))=0=\mathcal{M}(ξ(t) ξ(s))\) and
 \[
-\mathcal{M}\left(ξ(t) ξ^{*}(s)\right)=\frac{1}{\pi} ∫_{0}^{∞} \mathrm{d} ω \bar{n}(\beta ω) J(ω) e^{-\mathrm{i} ω(t-s)}.
+\mathcal{M}\left(ξ(t) ξ^{*}(s)\right)=\frac{1}{π} ∫_{0}^{∞} \dd{ω} \bose(β ω) J(ω) \eu^{-\iu ω(t-s)}.
 \]
 Remember that we want to calculate
 \begin{equation}
@@ -325,12 +355,12 @@ Remember that we want to calculate
                            \prod_\lambda&\qty(∫\dd[2]{y_\lambda}
                                           \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
                                         &\tr[L^†\dot{B}(t)
-                                          U(t)\vb{D}(y)\ketbra{\psi}\otimes\ketbra{0}\vb{D}(y)^† U(t)^†].
+                                          U(t)D(\vb{y})\ketbra{\psi}\otimes\ketbra{0}D(\vb{y})^† U(t)^†].
                          \end{aligned}
   \end{aligned}
 \end{equation}
-To recover the zero temperature formulation of this expectation value we
-again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
+To connect to the zero temperature results we again insert a \(\id\),
+but have to additionally commute \(D(\vb{y})^†\) past
 \(\dot{B}(t)\). This leads to the expression
 \begin{equation}
   \label{eq:pureagain}
@@ -340,32 +370,33 @@ again insert a \(\id\), but have to commute \(\vb{D}(y)^†\) past
                        &\qquad\times\tr[
                          \begin{aligned}
                            L^†(\dot{B}(t) + \dot{ξ}(t))
-                           \vb{D}^†(y) &U(t)\vb{D}(y)\ketbra{\psi}\\
-                                       &\otimes\ketbra{0}\vb{D}^†(y)U(t)^†\vb{D}(y)
+                           D^†(\vb{y}) &U(t)D(\vb{y})\ketbra{\psi}\\
+                                       &\otimes\ketbra{0}D^†(\vb{y})U(t)^†D(\vb{y})
                          \end{aligned}
                          ] \\
                        &=\prod_\lambda
                        \qty(∫\dd[2]{y_\lambda}
                          \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
                        &\qquad\times\tr[L^†\qty{\dot{B}(t) + \dot{ξ}(t)}
-                         \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†].
+                         \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†],
   \end{aligned}
 \end{equation}
 which returns us to the zero temperature formalism with a transformed
 Hamiltonian and the replacement
 \begin{eqnarray}
   \label{eq:breplacement}
-  B(t) \rightarrow B(t) + ξ(t)
+  B(t) \rightarrow B(t) + ξ(t),
 \end{eqnarray}
-which plausibly corresponds to the \(L^†\) part of \(H_\inter + H_{\mathrm{sys}}^{\mathrm{shift}}\).
+an expression that plausibly corresponds to the \(L^†\) part of
+\(H_\inter + H_{\sys}^{\mathrm{shift}}\).
 
-The result of this section may be generalized in much the same way as
-in \cref{sec:nonlin_flow} and leads to the replacement
-\cref{sec:nonlin_flow} in the results of \cref{eq:breplacement}.
+The result of this section may be generalized to the nonlinear method
+in the same way as was shown \cref{sec:nonlin_flow} by applying
+\cref{eq:breplacement} to \cref{eq:nonlinhopsflowfock}.
 
-The appearance of \(\dot{ξ}(t)\) may cause concern. However, for twice
-differentiable \(\mathcal{M}(ξ(t)ξ^\ast(s))\) the sample trajectories
-are smooth.  Alternatively we can calculate
+The appearance of \(\dot{ξ}(t)\) may be cause for concern. However,
+for twice differentiable \(\mathcal{M}(ξ(t)ξ^\ast(s))\) the sample
+trajectories are smooth.  Alternatively we can calculate
 \begin{equation}
   \label{eq:gettingarounddot}
   \begin{aligned}
