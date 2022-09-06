@@ -282,7 +282,9 @@ The statistics of the process follow from interpreting
 system state may then be recovered by averaging over all trajectories
 \begin{equation}
   \label{eq:recover_rho}
-  ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} = \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
+  ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} =
+ ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ketbra{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}=
+  \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
 \end{equation}
 
 Note that the BCF \(α\) is usually defined as Fourier transform of the
@@ -306,7 +308,16 @@ state, encoded in the value of the stochastic process.
 
 The equation \cref{eq:nmqsd_single} does not preserve the norm of the
 state, leading to suboptimal convergence of \cref{eq:recover_rho}.
-To remedy this, we choose a co-moving shifted stochastic process
+When recovering the system state, we would like to average of
+normalized states
+\begin{equation}
+  \label{eq:norm_av}
+  ρ_{\sys}(t) =
+ ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}
+ \braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)} \frac{\ketbra{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}{\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}.
+\end{equation}
+
+This can be achieved by using a co-moving shifted stochastic process
 \begin{equation}
   \label{eq:shifted_proc}
   \tilde{η}_{t}^\ast= η^\ast_{t} + ∫_{0}^{t}\dd{s} α^\ast(t-s) \ev{L^\ast}_{s},
@@ -316,7 +327,9 @@ where
 ψ(\tilde{η}_{t}^\ast)_{t}\). The origin of this shift lies in the
 study of the Husimi \(Q\) function of the bath
 \(Q_{t}(\vb{z}, \vb{z}^\ast) = \eu^{-\abs{z}^{2}} π^{-N}
-\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\).
+\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\). Shifting the process, or on
+a deeper level the stochastic state labels, amounts to importance
+sampling for each time step.
 
 This leads to the nonlinear NMQSD equation
 \begin{equation}
@@ -329,7 +342,7 @@ discussed here, but in \cref{sec:nonlin}.
 Crucially, the system state is now recovered through
 \begin{equation}
   \label{eq:recover_rho_nonlinear}
-  ρ_{\sys}(t) = \mathcal{M}_{η_{t}^\ast}\bqty{\frac{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}{\norm{ψ_t(η_t)}^{2}}},
+  ρ_{\sys}(t) = \mathcal{M}_{\tilde{η}_{t}^\ast}\bqty{\frac{ψ_t(\tilde{η}_t)^\dag ψ_t(\tilde{η}^\ast_t)}{\norm{ψ_t(\tilde{η}_t)}^{2}}},
 \end{equation}
 so that all trajectories contribute with ``equal weight''.
 
@@ -348,8 +361,9 @@ There exist analytical approaches to this
 term~\cite{Diosi1998Mar,Strunz2001Habil}, but we keep the approach as
 general as possible and instead choose a numerical avenue.
 
-They key is define away the complicated term containing the functional
-derivative as an auxiliary state. Expanding the BCF into exponentials
+They key~\cite{Suess2014Oct,Hartmann2017Dec,RichardDiss} is define
+away the complicated term containing the functional derivative as an
+auxiliary state. Expanding the BCF into exponentials
 \(α(τ)=∑_{μ}G_{μ=1}^{M}\eu^{-W_{μ}τ}\) and defining
 \begin{equation}
   \label{eq:d_op_one}

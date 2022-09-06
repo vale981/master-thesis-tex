@@ -180,61 +180,55 @@ states.
 
 \section{Generalization to the Nonlinear Theory}
 \label{sec:nonlin_flow}
-\begin{itemize}
-\item until now: not much use for stronger coupling
-\item nonlinear method way better convergence
-\item we show that results be generically generalized to the nonlinear
-  theory by ``just normalizing''
-\end{itemize}
 Due to the inferior convergence of the linear method for stronger
 coupling \cite{Suess2014Oct}, the results of \cref{sec:flow_lin} are
 not yet of much practical use. We therefore turn to the nonlinear
 NMQSD which preserves the norm of the stochastic trajectory and
 ammounts to performing importance sampling at each point in time.
 
-In the spirit of the usual derivation of the nonlinear NMQSD we write
+Following the usual derivation of the nonlinear NMQSD we write
 \begin{equation}
   \label{eq:newb}
   \begin{aligned}
-  \ev{L^†\dot{B}(t)} &= ∫ \frac{\dd[2]{z}}{\pi^N} \eu^{-\abs{z}^2}
-  \braket{\psi}{z}\!\braket{z}{\psi}
-  \frac{\braket{\psi(t)}{z}\!\mel{z}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{z}\!\braket{z}{\psi}}
+  \ev{L^†\dot{B}(t)} &= ∫ \frac{\dd[2]{\vb{z}}}{\pi^N} \eu^{-\abs{\vb{z}}^2}
+  \braket{\psi}{\vb{z}}\!\braket{\vb{z}}{\psi}
+  \frac{\braket{\psi(t)}{\vb{z}}\!\mel{\vb{z}}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{\vb{z}}\!\braket{\vb{z}}{\psi}}
   \\
-  &= ∫ \frac{\dd[2]{z}}{\pi^N} \eu^{-\abs{z}^2}
-  \frac{\mel{z(t)}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{z(t)}\!\braket{z(t)}{\psi}},
+  &= ∫ \frac{\dd[2]{\vb{z}}}{\pi^N} \eu^{-\abs{\vb{z}}^2}
+  \frac{\mel{\tilde{\vb{z}}(t)}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{\tilde{\vb{z}}(t)}\!\braket{\tilde{\vb{z}}(t)}{\psi}},
   \end{aligned}
 \end{equation}
-where \(z_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
+where \(\tilde{z}_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
 \dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\).
-We find that next steps are the same as in \cref{sec:nonlin} by noting
+
+It has to be shown now, that the term
+\({\braket{\psi}{\tilde{\vb{z}}(t)}\!\braket{\tilde{\vb{z}}(t)}{\psi}}\)
+can be evaluated in the same fashion as in \cref{sec:flow_lin}.  We
+proceed as in \cref{sec:nonlin} by noting
 \begin{equation}
   \label{eq:deriv_trick}
   \begin{aligned}
   \eval{∂_{z^\ast_\lambda}}_{z^\ast=z_\lambda^\ast(t)} &=
-  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast_\lambda(t)}
-                                                         \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \\
+  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{\vb{z}^\ast=\vb{z}^\ast(t)}
+                                                         \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))} \\
     &=
-  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{z^\ast=z^\ast(0)}
-  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))},
+  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{\vb{z}^\ast=\tilde{\vb{z}}^\ast(0)}
+  \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))},
   \end{aligned}
 \end{equation}
 which does alter the definition of \(D_t\) but results in the same
 HOPS equations.
-The shifted process \(\tilde{η}^\ast=
-η^\ast(z^\ast(t),t)=η^\ast(t) +
+The shifted process \(\tilde{η}^\ast_{t}=
+η_{t}^\ast(\tilde{\vb{z}}^\ast(t),t)=η^\ast_{t} +
 ∫_0^t\dd{s}\alpha^\ast(t-s)\ev{L^†}_{\psi_s}\) appears directly
 in the NMQSD equation but results only in a slight change in the
 functional derivative. Note however that
 \begin{equation}
   \label{eq:fdvclarification}
-  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \neq \fdv{}{\tilde{η}^\ast_s}
+  \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))} \neq \fdv{}{\tilde{η}^\ast_s}
 \end{equation}
-which is not problematic as we have (implicit in~\cite{Diosi1998Mar})
-\begin{equation}
-  \label{eq:fdvhops}
-  \fdv{}{η^\ast_s(z^\ast=z^\ast(t))} \ket{\psi(z^\ast)} = \fdv{}{η^\ast_s}\ket{\psi(z^\ast(t, z^\ast_0), t)}
-\end{equation}
-so that the usual HOPS hierarchy follows. Note \(z^\ast_0 = z^\ast(0)\).
+which is not problematic as we absorb the functional derivative into
+the definition of the hierarchy state.
 
 Therefore,
 \begin{equation}
@@ -242,30 +236,19 @@ Therefore,
   J(t) =
   -\i
   \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\dot{\tilde{D}}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
-  + \cc,
+  + \cc.
 \end{equation}
-where the dependence on \(\tilde{η}\) is symbolic and to be
-understood in the context of \cref{eq:fdvhops}.
-
-Again we express the result in the language of~\cite{Hartmann2021Aug}
-to obtain
-\begin{equation}
-  \label{eq:nonlinhopsflowrich}
-  J(t) = ∑_\mu\frac{G_\mu W_\mu}{\bar{g}_\mu}
-  \i\mathcal{M}_{η^\ast}\frac{\bra{\psi^{(0)}(η,
-      t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}}{\bra{\psi^{(0)}(η,
-      t)}\ket{\psi^{0}(η^\ast,t)}} + \cc.
-\end{equation}
-
-With the new ``fock-space'' normalization however the expression
-becomes
+and in the language of HOPS
 \begin{equation}
   \label{eq:nonlinhopsflowfock}
   J(t) = - ∑_\mu\sqrt{G_\mu}W_\mu
-  \mathcal{M}_{η^\ast}\frac{\bra{\psi^{(0)}(η,
-      t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}}{\bra{\psi^{(0)}(η,
-      t)}\ket{\psi^{0}(η^\ast,t)}} + \cc.
+  \mathcal{M}_{\tilde{η}^\ast}\frac{\bra{\psi^{(0)}(\tilde{η},
+      t)}L^†\ket{\psi^{\vb{e}_\mu}(\tilde{η}^\ast,t)}}{\bra{\psi^{(0)}(\tilde{η},
+      t)}\ket{\psi^{(0)}(\tilde{η}^\ast,t)}} + \cc.
 \end{equation}
+
+In essence, the expressions derived in \cref{sec:flow_lin}  simply
+have to be normalized.
 
 \section{Generalization to Finite Temperature}
 \label{sec:lin_finite}
@@ -286,7 +269,8 @@ like to recover the usual pure state zero temperature formalism. There
 are multiple methods for dealing with a thermal initial such as the
 thermofield method (see~\cite{Diosi1998Mar}), but because the results
 discussed here are to be applied with the HOPS method we shall use the
-method described in~\cite{Hartmann2017Dec}.
+method described in~\cite{Hartmann2017Dec}, as this is the most mature
+and well tested one.
 
 The shift operator
 \begin{equation}
