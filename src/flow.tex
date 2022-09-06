@@ -16,45 +16,40 @@ treated with the methods developed in here as is shown
 \cref{sec:general_obs}.
 
 The generalization to multiple baths \cref{sec:multibath} and time
-depend Hamiltonians \cref{sec:timedep} is straight forward.
-
+depend Hamiltonians \cref{sec:timedep} will present itself as straight
+forward.
 
 \section{Bath Energy Change of a Zero Temperature Bath}
 \label{sec:flow_lin}
-\begin{itemize}
-\item illustrate the general idea with the simplest case
-  possible:
-  zero T, one bath, no modulation etc, linear theory
-\item this is also the ``historical order''
-\item hint at straight forward generalizations in further sections
-\end{itemize}
 
-As in~\cite{Hartmann2017Dec} we choose\fixme{This section needs a lot
-  of love! More Explainations etc..}
+In this section we demonstrate upon the example of the change of the
+bath energy, here defined with a negative sign as ``flow'' out of the
+bath,
+\begin{equation}
+  \label{eq:heatflowdef}
+  J = - \dv{\ev{H_\bath}}{t}
+\end{equation}
+how collective bath observables may be obtained from the formalism
+presented in \cref{sec:nmqsd_basics,sec:hops_basics}.
+
+The simplest version of the general model \cref{eq:generalmodel} is
+given by
 \begin{equation}
   \label{eq:totalH}
   H = H_\sys + \underbrace{LB^† + L^† B}_{H_\inter} + H_\bath
 \end{equation}
-with the system hamiltonian \(H_\sys\), the bath hamiltonian
-\begin{equation}
-  \label{eq:bathh}
-  H_\bath = ∑_\lambda ω_\lambda a^† a,
-\end{equation}
-the bath coupling system operator \(L\) and the bath coupling bath
-operator
-\begin{equation}
-  \label{eq:bop}
-  B=∑_{\lambda} g_{\lambda} a_{\lambda}
-\end{equation}
-which define the interaction hamiltonian \(H_\inter\).
+with the system hamiltonian \(H_\sys\), the bath Hamiltonian
+\(H_\bath = ∑_\lambda ω_\lambda a_{λ}^† a_{λ}\), the bath coupling
+system operator \(L\) and the bath coupling bath operator
+\(B=∑_{\lambda} g_{\lambda} a_{\lambda}\) which define the interaction
+Hamiltonian \(H_\inter\).
 
-We define the heat flow out of the system as in~\cite{Kato2015Aug}
-through
-\begin{equation}
-  \label{eq:heatflowdef}
-  J = - \dv{\ev{H_\bath}}{t}.
-\end{equation}
-Working, for now, in the Schr\"odinger picture the Ehrenfest theorem
+We do not consider external modulation of the Hamiltonian, finite
+temperatures or multiple baths, as we are interested in the essentials
+of the procedure. With this approach we also follow the ``historical''
+order of derivation.
+
+Working, for now, in the Schr\"odinger picture, the Ehrenfest theorem
 can be employed to find
 \begin{equation}
   \label{eq:ehrenfest}
@@ -95,31 +90,24 @@ expression for \(J\) follows
 \end{equation}
 
 From this point on, we will assume the interaction picture and drop
-the \(I\) subscript. The two summands yield different expressions in
-terms of the NMQSD.  For use with HOPS with the final goal of
-utilizing the auxiliary states the expression \(\ev{L^†∂_t B(t)}\)
-should be evaluated. When considering the complex conjugate of this
-expression, we find a formula involving the derivative of the driving
-stochastic process. This is undesirable as it does not exist for all
-bath correlation functions\footnote{Only for BCFs that are smooth at
-  \(τ=0\).} and expressions involving the process directly are alleged
-to converge slower. The last fact may be explained by the fact, that
-one needs quite a lot of sample paths of the process for the mean of
-those sample paths to converge to zero. On the other hand, the first
-hierarchy states do contain an integral of-sorts of the sample paths
-and are not as sensitive to fluctuations.
+the \(I\) subscript. The two summands yield different expressions when
+evaluated in terms of the NMQSD.
 
+For use with HOPS with the final goal of utilizing the auxiliary
+states the expression \(\ev{L^†∂_t B(t)}\) should be evaluated.
 We calculate
 \begin{equation}
   \label{eq:interactev}
   \ev{L^†∂_t B(t)}=\ev{L^†∂_t B(t)}{\psi(t)} =
-  ∫ \braket{\psi(t)}{z}\mel{z}{L^†∂_tB(t)}{\psi(t)}\frac{\dd[2]{z}}{\pi^N},
+  ∫ \braket{\psi(t)}{\vb{z}}\mel{\vb{z}}{L^†∂_tB(t)}{\psi(t)}\frac{\dd[2]{\vb{z}}}{\pi^N},
 \end{equation}
 where \(N\) is the total number of environment oscillators and
-\(z=\qty(z_{\lambda_1}, z_{\lambda_2}, \ldots)\).  Using
-\(\mel{z}{a_λ}{ψ}= ∂_{z^\ast_λ}\braket{z}{ψ}=
-∂_{z^\ast_λ}\ket{ψ(z^\ast,t)}\) and
-\(\mel{z}{a_λ^\dag}{ψ}= z_λ^\ast\braket{z}{ψ}\) we find,
+\(\vb{z}=\qty(z_{\lambda_1}, z_{\lambda_2}, \ldots)\).
+
+Using
+\(\mel{\vb{z}}{a_λ}{ψ}= ∂_{z^\ast_λ}\braket{\vb{z}}{ψ}=
+∂_{z^\ast_λ}\ket{ψ(\vb{z}^\ast,t)}\) and
+\(\mel{\vb{z}}{a_λ^\dag}{ψ}= z_λ^\ast\ket{ψ(\vb{z}^\ast,t)}\) we find
 \begin{equation}
   \label{eq:nmqsdficate}
   \begin{aligned}
@@ -129,18 +117,21 @@ where \(N\) is the total number of environment oscillators and
   &= ∫_0^t ∑_\lambda g_\lambda
   \qty(∂_t \eu^{-\iω_\lambda
     t})\pdv{η_s^\ast}{z^\ast_\lambda}\fdv{\ket{\psi(z^\ast,t)}}{η^\ast_s}\dd{s}\\
-  &= -\i∫_0^t\dot{\alpha}(t-s)\fdv{\ket{\psi(η^\ast,t)}}{η^\ast_s}\dd{s},
+  &= -\i∫_0^t\dot{\alpha}(t-s)\fdv{\ket{\psi(η^\ast_{t},t)}}{η^\ast_s}\dd{s},
   \end{aligned}
 \end{equation}
 where
 \(η^\ast_t\equiv -\i ∑_\lambda g^\ast_\lambda z^\ast_\lambda
 \eu^{\iω_\lambda t}\) which led to the chain rule
-\(∂_{z^\ast_λ}=∫\dd{s}\pdv{η_s^\ast}{z^\ast_λ}\fdv{}{η_s^\ast}\). With
-this we obtain
+\(∂_{z^\ast_λ}=∫\dd{s}\pdv{η_s^\ast}{z^\ast_λ}\fdv{}{η_s^\ast}\)
+exactly corresponding to the procedure in
+\cref{sec:nmqsd_basics}.
+
+With this we obtain
 \begin{equation}
   \label{eq:steptoproc}
-  \ev{L^†∂_t B(t)} = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
-    t)}L^†∫_0^t\dd{s} \dot{\alpha}(t-s)\fdv{η^\ast_s} \ket{\psi(η^\ast,t)}.
+  \ev{L^†∂_t B(t)} = -\i \mathcal{M}_{η^\ast}\bra{\psi(η_{t},
+    t)}L^†∫_0^t\dd{s} \dot{\alpha}(t-s)\fdv{η^\ast_s} \ket{\psi(η^\ast_{t},t)}.
 \end{equation}
 Defining
 \begin{equation}
@@ -169,32 +160,23 @@ Interestingly one finds that
   \ev{L∂_t B^†(t)} = \i∫\frac{\dd[2]{z}}{\pi^N}
   \dot{η}_t^\ast \mel{\psi(η,t)}{L}{\psi(η^\ast,t)}.
 \end{equation}
-However, this approach becomes more complicated in the nonlinear
-method.
-The previous expression has the advantage
-that we utilize the first hierarchy states that are already being
-calculated as a byproduct.
+This expression is undesirable as it does not exist for all bath
+correlation functions\footnote{Only for BCFs that are smooth at
+  \(τ=0\).} and expressions involving the process directly are alleged
+to converge slower. Furthermore, this approach becomes more
+complicated in the nonlinear method.  We will briefly return to this
+issue in \cref{sec:general_obs}.
 
-In the language of~\cite{Hartmann2021Aug} we can generalize to
-\(\alpha(t) = ∑_i G_i \eu^{-W_i t}\) and thus
-\begin{equation}
-  \label{eq:hopsflowrich}
-  J(t) = ∑_\mu\frac{G_\mu W_\mu}{\bar{g}_\mu} \i\mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
-    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc,
-\end{equation}
-where \(\psi^{\vb{e}_\mu}\) is the \(\mu\)-th state of the first
-hierarchy and \(\bar{g}_\mu\) is an arbitrary scaling introduced in
-the definition of the hierarchy in~\cite{Hartmann2021Aug} to help with
-the scaling of the norm.
-
-With the new ``fock-space'' normalization (see \cref{eq:dops_full})
-however the expression becomes
+In the language of \cref{sec:hops_basics} we can generalize to
+\(\alpha(t) = ∑_i G_i \eu^{-W_i t}\) obtaining
 \begin{equation}
   \label{eq:hopsflowfock}
   J(t) = - ∑_\mu\sqrt{G_\mu}W_\mu
   \mathcal{M}_{η^\ast}\bra{\psi^{(0)}(η,
-    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc.
+    t)}L^†\ket{\psi^{\vb{e}_\mu}(η^\ast,t)} + \cc,
 \end{equation}
+where \(\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}\) are the first hierarchy
+states.
 
 \section{Generalization to the Nonlinear Theory}
 \label{sec:nonlin_flow}
@@ -519,12 +501,17 @@ the form
 The corresponding version of~\cref{eq:f_ex_zero} would only depend on
 the zeroth order state and the stochastic processes. It has been
 observed that expressions involving the stochastic process directly
-tend to converge slower. However this statement comes without
-empirical proof and its verification may be left to future
-study. Also, this alternative method could be used convergence and
+tend to converge slower. However, this statement comes without
+empirical proof and its verification may be left to future study. An
+explanation may be that the first hierarchy states fluctuate about
+their average dynamics whereas the stochastic process fluctuates
+around zero and does not contain much information about the actual
+dynamics.
+
+Also, this alternative method could be used convergence and
 consistency check, as expressions of the form~\cref{eq:with_process}
-only involve the hierarchy cutoff and the exponential expansion of the BCF
-in an indirect manner.
+only involve the hierarchy cutoff and the exponential expansion of the
+BCF in an indirect manner.
 
 \subsection{Interaction Energy}
 \label{sec:intener}
