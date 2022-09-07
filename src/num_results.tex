@@ -26,10 +26,8 @@ in \cref{sec:code}.
 
 \section{Some Remarks on the Methods}
 \label{sec:meth}
-\begin{itemize}
-\item lowest common denominator of all models
-\item error estimation important to claim convergence, compatibility
-\end{itemize}
+Before we begin with the applications in earnest, let us review some
+technical details.
 
 The figures presented may feature error funnels whose origin is,
 unless otherwise stated, estimated from the empirical standard
@@ -38,8 +36,8 @@ size. As the quantities that are being calculated using HOPS are
 essentially Monte Carlo integrals, those statistical errors scale as
 \(1/\sqrt{N}\) with the sample size \(N\) and therefore controllable
 besides being simple to estimate. Note however, that a certain number
-of samples is required to estimate the standard deviation
-correctly.
+of samples is required to estimate the standard deviation of a single
+trajectory correctly.
 
 To tell whether some vector quantities\footnote{For example a time
   series.} \(X_1, X_2\) obtained with HOPS or otherwise are compatible
@@ -62,7 +60,7 @@ In all simulations discussed an Ohmic spectral density
 is used unless otherwise. This spectral density models an environment
 with a physical energy spectrum that is bounded from below and allows
 the application of the finite temperature method described
-in~\cite{RichardDiss} \fixme{internal reference}. Also, \(J(0) = 0\)
+in~\cite{RichardDiss} and \cref{sec:lin_finite}. Also, \(J(0) = 0\)
 ensures that there is a unique zero temperature state of the
 bath. In~\cite{Kolar2012Aug} it is argued (under weak coupling
 assumptions), that \(J(ω)\approx ω^γ\) with \(γ<1\) could lead to a
@@ -91,7 +89,8 @@ with HOPS, a sum of exponentials must be fitted to the BCF. In
 strategy.
 
 Throughout this chapter, we will only apply the nonlinear
-method~\cite{Hartmann2017Dec} \fixme{rereference} (see also \cref{sec:nonlin_flow}).
+method~\cite{Hartmann2017Dec} described in \cref{sec:nmqsd_basics}
+(see also \cref{sec:nonlin_flow}).
 
 \section{Comparison with an Analytical Solution}
 \label{sec:hopsvsanalyt}
