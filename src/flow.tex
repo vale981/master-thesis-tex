@@ -159,7 +159,7 @@ state. This can be generalized to any BCF that is a sum of exponentials.
 Interestingly one finds that
 \begin{equation}
   \label{eq:alternative}
-  \ev{L∂_t B^†(t)} = \i∫\frac{\dd[2]{z}}{\pi^N}
+  \ev{L∂_t B^†(t)} = \i \mathcal{M}_{η^\ast}
   \dot{η}_t^\ast \mel{\psi(η,t)}{L}{\psi(η^\ast,t)}.
 \end{equation}
 This expression is undesirable as it does not exist for all bath
@@ -201,7 +201,8 @@ Following the usual derivation of the nonlinear NMQSD we write
   \end{aligned}
 \end{equation}
 where \(\tilde{z}_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
-\dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\).
+\dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\) and \(\ev{L^\dag}_{t}=ψ(\tilde{η}_{t}^\ast)_{t}^\dag L^\dag
+ψ(\tilde{η}_{t}^\ast)_{t}\) as in \cref{sec:nmqsd_basics}.
 
 It has to be shown now, that the term
 \({\braket{\psi}{\tilde{\vb{z}}(t)}\!\braket{\tilde{\vb{z}}(t)}{\psi}}\)
@@ -438,26 +439,102 @@ This is an expression that we can easily evaluate with the HOPS
 method. We will however refrain from doing so, as it turns out in
 \cref{sec:hopsvsanalyt} that consistent results can be obtained using
 the derivative of the stochastic process \(ξ\).
+\section{Generalization to Multiple Baths}
+\label{sec:multibath}
+Another requirement for thermodynamic application is the ability to
+couple to multiple baths of possibly different structure and
+temperature.
+
+Due to the structure of the NMQSD and HOPS the results above can be
+generalized in straight-forward manner to models of the form
+\begin{equation}
+  \label{eq:multimodel}
+  H = H_\sys + ∑_{n=1}^N \qty[H_\bath\nth + \qty(L_n^†B_n + \hc)],
+\end{equation}
+where \(N\) is the number of baths, \(H_\sys\) is the system
+Hamiltonian, \(H_\bath\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
+\(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
+arbitrary operators in the system Hilbert space.
+
+Note that this models a situation where each bath couples with the
+system through exactly one spectral density and is therefore not fully
+general.
+
+We refer to \cref{sec:hops_multibath} for an review of the NMQSD
+theory and HOPS method for multiple baths.
+
+Because the bath energy change is being calculated directly and not
+through energy conservation as in~\cite{Kato2016Dec}, we find
+\begin{equation}
+  \label{eq:general_n_flow}
+  J_n=-\dv{\ev{H_\bath^{(n)}}}{t} = \iu\ev{[H_\bath^{(n)},
+  H_\inter^{(n)}]}
+\end{equation}
+regardless of the (non-) commutativity\footnote{For example, the
+  three-level model used in \cite{Uzdin2015Sep,Klatzow2019Mar} has
+  non-commuting couplings.} of the interaction
+Hamiltonians. Therefore, we can apply the formalism of the previous
+sections almost unchanged, by taking care that all quantities involved
+in the expression of \(J_n\) refer to the \(n\)th bath denoted by sub
+and superscripts.
+
+This can be achieved by making the replacements
+\begin{equation}
+  \label{eq:replacements}
+  \begin{aligned}
+    D_t \rightarrow D_t^{(n)} &\equiv
+    ∫_0^t\dd{s}α_n(t-s)\fdv{η^\ast_n(s)} \\
+    ξ(t) \rightarrow ξ_n(t)&\equiv∑_{\lambda} g^{(n)}_{\lambda}
+    y_{\lambda} \eu^{-\mathrm{i} ω^{(n)}_{\lambda} t}
+  \end{aligned}
+\end{equation}
+in the previous sections, where the quantities involved are as in
+\cref{sec:hops_multibath} and \cref{eq:xiproc}.
+
+Foreshadowing slightly it may be states that in the light of
+\cref{sec:general_obs} it might be an interesting question what impact
+mixed bath hierarchy states have. For a cyclic machine with long
+strokes, where only one bath is coupled to the system at a time, it
+might be efficient to truncate the hierarchy in a way that discards
+mixed bath states more readily than single bath hierarchy states as
+the correlations between the baths are expected to be small.
+
+\section{Generalization to Time Dependent Hamiltonians}
+\label{sec:timedep}
+To extract energy from a quantum thermal machine without an explicit
+work reservoir, external modulation is required.
+
+The above discussion is based on the model \cref{eq:multimodel} which
+did not include explicit time modulations of \(H_\sys\) or \(L\). As
+we did not calculate any explicit time derivatives of those two
+operators, the results of the previous sections remain valid when we
+substitute \(H_\sys\rightarrow H_\sys(t)\) and \(L\rightarrow L(t)\).
+
+For the total power we find
+\begin{equation}
+  \label{eq:power}
+  \dv{\ev{H}}{t} = \ev{\pdv{H_\inter}{t}} + \ev{\pdv{H_\sys}{t}},
+\end{equation}
+which can be evaluated as we will find in \cref{sec:intener} by
+replacing \(L(t)\) with \(\dot{L}(t)\).
 
 \section{General Collective Bath Observables}
 \label{sec:general_obs}
-\begin{itemize}
-\item now we have all the basic tools ready we can discuss what the
-  most general observables are that we can calculate
-\item elucidates the meaning of the hierarchy states
-\end{itemize}
-The results obtained in \cref{sec:flow_lin,sec:nonlin_flow,sec:lin_finite}
-can be generalized to calculate expectation values (and thus moments)
-of arbitrary observables of the form
+Now that we have introduced the formalism using the example of the
+bath energy flow \(J\) in
+\cref{sec:flow_lin,sec:nonlin_flow,sec:lin_finite,sec:multibath,sec:timedep},
+we may proceed to more general observables of the form can be
+generalized to calculate expectation values (and thus moments) of
+arbitrary observables of the form
 \begin{equation}
   \label{eq:collective_obs}
   O = f(B^†, B) = ∑_{α}F_α\qty(B^†)^{α_1}B^{α_2}
 \end{equation}
-where \(α\) is a multi-index, \(B\) is as in~\cref{eq:totalH} and the
-\(F_α\) are general observables acting on the system only. Note that
-\(f\) is already normal-ordered. We will restrict the discussion to
-the case of a single bath, as the generalization to multiple baths is
-straight-forward.
+where \(α\) is a two-dimensional multi-index, \(B\) is as
+in~\cref{eq:totalH} and the \(F_α\) are general observables acting on
+the system only. Note that \(f\) is already normal-ordered.  We will
+restrict the discussion to the case of a single bath, as the
+generalization to multiple baths is straight-forward.
 
 To evaluate \(\ev{O}\) we have to find the value of
 \(\ev{\qty(B^†)^a B^b}\). This can be achieved by interjecting the
@@ -475,12 +552,12 @@ For zero temperature, we find following the procedures of
                       \sqrt{\frac{G^{\vb{k}}}{\vb{k}!}}ψ^{\vb{k}}\\
     \label{eq:bdagmel}\mel{ψ}{\qty(B^†)^a}{z} &=
                               \begin{aligned}[t]
-                                \qty(\mel{z}{B^a}{ψ})^†&= \qty((-\iu D_t)^b\ket{ψ(η^\ast,t)})^\dag\\
+                                \qty(\mel{z}{B^a}{ψ})^†&= \qty((-\iu D_t)^a\ket{ψ(η^\ast,t)})^\dag\\
                                                    &= (\iu)^a∑_{\abs{\vb{k}}=a}\binom{a}{\vb{k}} (-\iu)^{\vb{k}}
-                                                     \sqrt{\frac{\qty(G^{\vb{k}})^\ast}{\vb{k}!}}\qty(ψ^{\vb{k}})^\dag
+                                                     \sqrt{\frac{\qty(G^{\vb{k}})^\ast}{\vb{k}!}}\qty(ψ^{\vb{k}})^\dag,
                               \end{aligned}
 \end{align}
-in ``fock-space'' normalization where \(\vb{k}! = k_1!k_2!\ldots\) and
+where \(\vb{k}! = k_1!k_2!\ldots\) and
 \(G^{\vb{k}}=G_1^{k_1}G_2^{k_2}\ldots\) following the usual
 conventions of multi-indices. Thus, expressions involving the bath
 operator \(B\) to the \(b\)th power lead to expressions involving the
@@ -513,7 +590,7 @@ involving the HOPS hierarchy states this reduces to dividing by the
 norm of the zeroth hierarchy state.
 
 The generalization to multiple baths may be performed in the same
-manner as will be discussed in \cref{sec:multibath}. This allows to
+manner as was discussed in \cref{sec:multibath}. This allows to
 calculate the expectation value involving multiple bath operators
 \(B^{(n)}\). Interestingly, the generalization of \cref{eq:bmel} to
 multiple baths immediately links hierarchy states of the form
@@ -529,7 +606,7 @@ and inserting the coherent state resolution of unity we find terms of
 the form
 \begin{equation}
   \label{eq:with_process}
-  \mel{z}{\qty(B^\dag)^b}{ψ} \sim \qty(η^\ast(t))^b\ket{ψ(η^\ast,t)}.
+  \mel{z}{\qty(B^\dag)^b}{ψ} \sim \qty(η^\ast_{t})^b\ket{ψ(η^\ast,t)}.
 \end{equation}
 The corresponding version of~\cref{eq:f_ex_zero} would only depend on
 the zeroth order state and the stochastic processes. It has been
@@ -541,6 +618,18 @@ their average dynamics whereas the stochastic process fluctuates
 around zero and does not contain much information about the actual
 dynamics.
 
+% The process \(\pqty{η^\ast_{t}}^{b}\) has the autocorrelation function
+% \(\ev{\pqty{η_{t}}^{b}\pqty{η^\ast_{s}}^{b}}=b! (α(t-s))^{b}\). Now
+% for a decaying function
+% \begin{equation}
+%   \label{eq:bcf_exponentiated}
+%   \pqty{\frac{α(τ)}{α(0)}}^{b}\xrightarrow{b\to ∞}
+%   \begin{cases}
+%     1 & τ = 0 \\
+%     0 & τ \neq 0,
+%   \end{cases}
+% \end{equation}
+% so that we end up with a process that is some approximation of white noise.
 Also, this alternative method could be used convergence and
 consistency check, as expressions of the form~\cref{eq:with_process}
 only involve the hierarchy cutoff and the exponential expansion of the
@@ -553,9 +642,10 @@ BCF in an indirect manner.
 \item can also be used to quantify how ``strong'' the coupling is
 \item simple application of the above formalism, even simpler than flow
 \end{itemize}
-A simple application of the formalism discussed
-in~\cref{sec:general_obs} is the expectation value of the interaction
-Hamiltonian.
+To access all contributions to the total energy \(\ev{H}\) a way to
+calculate the expectation value of the interaction energy
+\(\ev{H_{\inter}}\) is required.  This is a application of the
+formalism discussed in~\cref{sec:general_obs}.
 
 For zero temperature and the nonlinear method we arrive at
 \begin{equation}
@@ -579,7 +669,7 @@ In HOPS terms \cref{eq:intexp} corresponds to
 For nonzero temperature an extra term
 \begin{equation}
   \label{eq:interexptherm}
-  \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†ξ(t)}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
+  \mathcal{M}_{\tilde{η}^\ast,ξ}{\mel{\psi(\tilde{η},t)}{L^†ξ(t)}{\psi(\tilde{η}^\ast,t)}}
   + \cc
 \end{equation}
 has to be added to \cref{eq:intexp}, where \(ξ\) is the thermal
@@ -587,10 +677,12 @@ stochastic process.
 
 \subsection{Higher Orders of the Coupling Hamiltonian}
 \label{sec:higher_order_coupling}
-\begin{itemize}
-\item a slight dive into the meaning and importance of the hierarchy
-  states for convergence
-\end{itemize}
+In this section, the question of how many hierarchy orders have to be
+included in the simulation to consistently calculate the expectation
+value of powers of the interaction Hamiltonian. Being nonessential for
+the understanding of the rest of the work, this section may be
+skipped.
+
 For self adjoint coupling operators \(L=L^\dag\) we can use Wick's
 theorem to find a normally ordered expression for \(H_\inter^n=L^n(B^\dag +
 B)^n\).
@@ -687,100 +779,15 @@ depends strongly on hierarchy states of order \(\sim \sqrt{n}\).
 \begin{figure}[h]
   \centering
   \plot{interaction_orders/k_weights}
-  \caption{\label{fig:kdist}The unnormalized distribution of the coefficients in
-    \cref{eq:interactionnormal} with respect to \(k\) for different
-    \(n\). As a particular \(k\) can appear multiple times in the sum,
-    only the maximal coefficient for each \(k\) is being considered in
-    the lines with the triangle markers. The maximum of this
-    distribution is given by \cref{eq:finalk}. The lines with the
-    circle markers show the full distribution. The dotted lines
-    correspond to binomial distributions centered at \(k_m\).}
+  \caption{\label{fig:kdist}The unnormalized distribution of the
+    coefficients in \cref{eq:interactionnormal} with respect to \(k\)
+    for different \(n\). As a particular \(k\) can appear multiple
+    times in the sum, only the maximal coefficient for each \(k\) is
+    being considered in the lines with the triangle markers. The
+    maximum of this distribution is given by \cref{eq:finalk}. The
+    lines with the circle markers show the full distribution and the
+    lines with the triangle markers show only the normalized
+    distribution of the maximum of \(l! 2^l k! (n-2l-k)!\) over \(l\).
+    The dotted lines correspond to binomial distributions centered at
+    \(k_m\).}
 \end{figure}
-
-\section{Generalization to Multiple Baths}
-\label{sec:multibath}
-\begin{itemize}
-\item for thermodynamic machines: need multiple baths
-\item due to the structure of NMQSD/HOPS generalization is
-  straightforward
-\end{itemize}
-
-The results above can be generalized in straight-forward manner to
-models of the form
-\begin{equation}
-  \label{eq:multimodel}
-  H = H_\sys + ∑_{n=1}^N \qty[H_\bath\nth + \qty(L_n^†B_n + \hc)],
-\end{equation}
-where \(N\) is the number of baths, \(H_\sys\) is the (possibly time
-dependent) system Hamiltonian,
-\(H_\bath\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
-\(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
-arbitrary operators in the system Hilbert space (again possibly time
-dependent). This models a situation where each bath couples with the
-system through exactly one spectral density and is therefore not fully
-general.
-
-We refer to \cref{sec:hops_multibath} for an review of the NMQSD
-theory and HOPS method for multiple baths.
-
-Because the bath energy change is being calculated directly and not
-through energy conservation as in~\cite{Kato2016Dec}, we find
-\begin{equation}
-  \label{eq:general_n_flow}
-  J_n=-\dv{\ev{H_\bath^{(n)}}}{t} = \iu\ev{[H_\bath^{(n)},
-  H_\inter^{(n)}]}
-\end{equation}
-regardless of the (non-) commutativity\footnote{For example, the
-  three-level model used in \cite{Uzdin2015Sep,Klatzow2019Mar} has
-  non-commuting couplings.} of the interaction
-Hamiltonians. Therefore, we can apply the formalism of the previous
-sections almost unchanged, by taking care that all quantities involved
-in the expression of \(J_n\) refer to the \(n\)th bath denoted by sub
-and superscripts.
-
-This can be achieved by making the replacements
-\begin{equation}
-  \label{eq:replacements}
-  \begin{aligned}
-    D_t \rightarrow D_t^{(n)} &\equiv
-    ∫_0^t\dd{s}α_n(t-s)\fdv{η^\ast_n(s)} \\
-    ξ(t) \rightarrow ξ_n(t)&\equiv∑_{\lambda} g^{(n)}_{\lambda}
-    y_{\lambda} \eu^{-\mathrm{i} ω^{(n)}_{\lambda} t}
-  \end{aligned}
-\end{equation}
-in the previous sections, where the quantities involved are as in
-\cref{sec:hops_multibath} and \cref{eq:xiproc}.
-
-In the light of \cref{sec:general_obs} it might be an interesting
-question what impact mixed bath hierarchy states have. For a cyclic
-machine with long strokes, where only one bath is coupled to the
-system at a time, it might be efficient to truncate the hierarchy in a
-way that discards mixed bath states more readily than single bath
-hierarchy states as the correlations between the baths are expected to
-be small.
-
-\section{Generalization to Time Dependent Hamiltonians}
-\label{sec:timedep}
-\begin{itemize}
-\item second important ingredient: external modulation, at least for
-  our purposes here
-\item again here -> no magic, straight forward
-\end{itemize}
-
-The above discussion is based on the model \cref{eq:totalH} which did
-not include explicit time modulations of \(H_\sys\) or \(L\). As we
-did not calculate any explicit time derivatives of those two
-operators, the results of the previous sections remain valid when we
-substitute
-\begin{align}
-  \label{eq:timedepsusbs}
-  H_\sys&\rightarrow H_\sys(t) & L\rightarrow L(t).
-\end{align}
-
-For the total power we find
-\begin{equation}
-  \label{eq:power}
-  \dv{\ev{H}}{t} = \ev{\pdv{H_\inter}{t}} + \ev{\pdv{H_\sys}{t}},
-\end{equation}
-which can be evaluated as in \cref{sec:intener} by replacing \(L(t)\)
-with \(\dot{L}(t)\).

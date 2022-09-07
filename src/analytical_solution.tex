@@ -1,24 +1,27 @@
 \chapter{An Analytical Solution for Quantum Brownian Motion Models}
 \label{chap:analytsol}
-\begin{itemize}
-\item \cref{chap:flow} is all nice and good, but need verification
-\item many actual numerical approximations to control besides theory
-  verification
-\end{itemize}
+
+The results of \cref{chap:flow} are promising from a numerical
+perspective remain to be verified. Previous
+work~\cite{Hartmann2017Dec,RichardDiss} has made it clear that the
+reduced system dynamics, but it is an open question whether bath
+related quantities can be calculated to a similar degree of accuracy.
+
+The best possible verification is the comparison with a soluble model,
+ideally solved with a method completely different from the NMQSD. In
+this chapter we will present the solution to the Heisenberg equations
+of two quantum Brownian motion models for a single (\cref{sec:oneosc})
+and two baths (\cref{sec:twoosc}) and time independent Hamiltonians.
+
+These solutions will enable us to calculate the bath energy flow \(J\)
+for one or two baths which will be compared with the numerical
+solution in \cref{sec:hopsvsanalyt}.
+
 
 \section{A Harmonic Oscillator coupled to a single Bath}
 \label{sec:oneosc}
-\begin{itemize}
-\item simplest model in the spirit of previous derivations
-\item well known to be solvable, we will tease out the bath related
-  quantities in the heisenberg picture
-\end{itemize}
-The solution presented here is not entirely new, as the model is well
-known. For reference see~\cite{Breuer2002Jun}. The trick with the
-exponential expansion of the bath correlation function has been
-arrived at independently, but may also be well known.
-
-The model is given by the quadratic hamiltonian
+A simple quadratic model that is soluble~\cite{Breuer2002Jun} and of
+the form \cref{eq:totalH} is given by
 \begin{equation}
   \label{eq:one_ho_hamiltonian}
   H = \frac{Ω}{4}\qty(p^2+q^2) + \frac{1}{2} q
@@ -29,14 +32,13 @@ where \(a,a^†\) are the ladder operators of the harmonic
 oscillator, \(q=a+a^†\) and \(p=\frac{1}{\iu}\qty(a-a^†)\) so
 that \([q,p] = 2\iu\).
 
-The Heisenberg equation yields
+The Heisenberg equations for \cref{eq:one_ho_hamiltonian}
 \begin{align}
   \dot{q} &=Ω p \label{eq:qdot}\\
   \dot{p} &= -Ω q - \int_0^t \Im[α_0(t-s)] q(s)\dd{s} + W(t) \label{eq:pdot}
   \\
   \dot{b}_λ &= -\iu g_λ \frac{q}{2} - \iu\omega_λ b_λ
 \end{align}
-
 with the operator noise
 \(W(t)=-\sum_λ \qty(g_λ^\ast b_λ(0)
 \eu^{-\iu\omega_λ t } + g_λ b_λ^†(0)
@@ -79,9 +81,12 @@ leads to an algebraic formula
   \mathcal{L}\{G\}(z) = \qty(z-A + \mathcal{L}\{K\}(z))^{-1}.
 \end{equation}
 
-
 \subsection{Solution}
 \label{sec:solution}
+To solve \cref{eq:eqmotprop} and find the propagator \(G\), we have to
+find an explicit expression for \cref{eq:galgebr}, a simple matrix
+inversion, and then apply the inverse transformation.
+
 We observe that
 \begin{equation}
   \label{eq:mdef}
@@ -95,7 +100,7 @@ and therefore
   \mqty(z & Ω \\ -(Ω + \mathcal{L}\{\Im[α_0]\}(z)) & z).
 \end{equation}
 From this we can conclude that \(G_{11}=G_{22}\).
-Because \(\ev{W(s)}=0\) for thermal initial states of the bath we have
+Because \(\ev{W(s)}=0\) holds for thermal initial states of the bath we have
 \begin{equation}
   \label{eq:meanvals}
   \mqty(\ev{q(t)}\\ \ev{p(t)}) = G(t)\mqty(\ev{q(0)}\\ \ev{p(0)}).
@@ -107,11 +112,16 @@ Knowing this, we can deduce from \(\ev{\dot{q}}= Ω \ev{p}\) that
 \end{align}
 These relations are true independent of the initial state of the
 system. It therefore suffices if we concern ourselves with
-\(G_{12}\). We nevertheless continue in full generality.
+\(G_{12}\).
 
-Assume that \(α_0(t)=\sum_{n=1}^N G_n \eu^{-W_n t - \i
-  \varphi_n}\) with \(W_n=\gamma_n + \i\delta_n\) and \(G_n,
-\varphi_n, \gamma_n,\delta_n\in\RR\) for \(t\geq 0\).
+We nevertheless continue in full generality and approach the inverse
+Laplace transformation by expanding the BCF in terms of functions that
+have a simple Laplace transform. As we also use an exponential
+expansion in HOPS and are only interested in finite times, we may
+choose \(α_0(t)=\sum_{n=1}^N G_n \eu^{-W_n t - \i \varphi_n}\) with
+\(W_n=\gamma_n + \i\delta_n\) and
+\(G_n, \varphi_n, \gamma_n,\delta_n\in\RR\) for \(t\geq 0\).
+
 This leads to a mathematically simple expression for the Laplace
 transform
 \begin{equation}
@@ -166,10 +176,10 @@ of degree \(2(N+1)\) where we \textbf{assume that there are
   no roots with multiplicity greater than one}.
 With this we can now calculate the inverse laplace transform of
 expressions of the form \(\frac{f_0(z)g(z)}{p(z)}\) where \(g(z)\) is
-any holonome function so that \(\frac{f_0(z)g(z)}{p(z)} \eu^{z\cdot
+any holonomic function so that \(\frac{f_0(z)g(z)}{p(z)} \eu^{z\cdot
   t}\) falls off fast enough for \(t\geq 0\),
 \(\Re(z)>\max_l{\Re(\tilde{z}_l)}=\Delta\) and \(\Re(z) \rightarrow
--\infty\). With this we can close the contour of the inverse Laplace
+-\infty\). Now the contour of the inverse Laplace
 transform
 \begin{equation}
   \label{eq:invlap}
@@ -177,7 +187,7 @@ transform
   \frac{1}{2\pi\i}\int_{\Delta - \i\infty}^{\Delta + \i\infty} \frac{f_0(z)g(z)}{p(z)} \eu^{z\cdot
   t}\dd{z}
 \end{equation}
-to the left to obtain
+can be closed to the left to obtain
 \begin{equation}
   \label{eq:simpleinvtrans}
   \mathcal{L}^{-1}\qty{\frac{f_0(z)g(z)}{p(z)}}(t)
@@ -192,7 +202,8 @@ all our purposes. For completeness we give
   p'(z) = 2\mu\sum_{k=1}^{N+1}\qty[(z-\Re(\tilde{z}_k))\prod_{\substack{n=1\\
     n\neq k}}^{N+1}(z-\tilde{z}_n)(z-\tilde{z}^\ast_n)].
 \end{equation}
-We can immediately conclude that all elements of \(G\) are sums of
+
+It can be immediately concluded that all elements of \(G\) are sums of
 exponentials, just like the BCF. In particular
 \begin{equation}
   \label{eq:gfinal}
@@ -201,7 +212,17 @@ exponentials, just like the BCF. In particular
 \end{equation}
 with \(R_l={f_0(\tilde{z}_l)}/{p'(\tilde{z}_l)}\).
 
+It may be noted that this solution does not contain any notion of
+temperature, as we are working in the Heisenberg picture.
+
 \subsubsection{Negative Times}
+For completeness, it may be of interest to find a solution for
+negative times. This solution is relatively unphysical, as the initial
+condition of a product state plays a pivotal role in open system
+dynamics~\cite{Rivas2012}. Therefore a system that starts out in some
+entangled state just to reach the perfect product state at \(t=0\) is
+not something that is likely to be applicable to physical questions.
+
 The solution detailed above is only valid for positive times. Because
 we strive to employ the same formalism again for negative times, we
 will concern ourselves with the transformed quantities
@@ -236,13 +257,20 @@ and
 
 \subsection{Applications}
 \label{sec:applications}
-\begin{itemize}
-\item the actual ``meat'' that is of interest to verify HOPS
-\end{itemize}
+Having found an expression for \(G\), we have in principle solved the
+model. It remains however to apply that solution in a way that is
+contributing towards our goal of validating the results of
+\cref{chap:flow}.
+
+
 Knowing \(G\) and \(α\), we can calculate all observables of the
-system. Simple closed form expressions of sums of exponentials can be
-obtained by using an exponential expansions of \(α\). Throughout,
-we assume a thermal bath initial state so that \(\ev{W(t)}=0\).
+system with the ultimate goal of finding an expression for
+\(J=-∂_{t}\ev{H_{B}}\). Simple closed form expressions of sums of
+exponentials will be obtained by using an exponential expansion of
+\(α\).
+
+Throughout, we assume a thermal bath initial state so that
+\(\ev{W(t)}=0\).
 
 \subsubsection{Correlation Functions}
 \label{sec:correl}
@@ -259,7 +287,7 @@ We proceed to calculate \(\ev{q(t)q(s)}\). For brevity we set
   \end{aligned}
 \end{equation}
 
-For a pure harmonic oscillator initial state \(\ket{n}\) we have
+For a Fock type initial state \(\ket{n}\) we have
 \begin{equation}
   \label{eq:hoexp}
   \begin{aligned}
@@ -326,73 +354,17 @@ For further evaluation of \cref{eq:bathderiv_1} we have to calculate
       \biggr]
     \end{aligned}
     \\
-    &= ∫_0^t\dd{r} g_1(t-r)\qty[g_2(t-r) + g_3(t,r)] = Λ_1(t) + Λ_2(t)
+    &= ∫_0^t\dd{r} g_1(t-r)\qty[g_2(t-r) + g_3(t,r)] = Λ_1(t) + Λ_2(t),
   \end{aligned}
 \end{equation}
+where \(Λ(t,s)\) was defined in \cref{eq:qcorrel}.
+
 This expression now only uses \(α(t)\) for \(t\geq 0\) so that we can
-once again employ the exponential expansion for \(α\). In fact, all
-other quantities in \cref{eq:lambdafold} have exponential expansion so
-that we can now define\footnote{Note that this is inconsistent with
-  \cref{sec:solution}.}
-\begin{equation}
-  \label{eq:expansions}
-  \begin{aligned}
-    α_0&=∑_k U_k\eu^{-Q_k t} & \dot{α}_0&=∑_k P_k\eu^{-L_k t} & α(t)
-    &= ∑_nG_n\eu^{-W_n t} \\
-    A(t) &= ∑_l A_l\eu^{-C_l t} & B(t) &= ∑_l B_l\eu^{-C_l t}.
-  \end{aligned}
-\end{equation}
+once again employ the exponential expansion for \(α\).
 
-With this we can calculate,
-\begin{align}
-  \label{eq:lambdaintegrals}
-  ∫_r^t\dd{s}B(s-r)\dot{α}_0(t-s)
-  &=\sum_{m,k}\underbrace{\frac{B_mP_k}{L_k-C_m}}_{\equiv
-    Γ^1_{mk}}\qty[\eu^{-C_m(t-r)}-\eu^{-L_k(t-r)}]=g_1(t-r)\\
-  ∫_0^{t-r}\dd{u}B(t-r-u)α(u)
-  &=\sum_{n,l}\underbrace{\frac{B_nG_l}{C_n-W_l}}_{\equiv
-    Γ^2_{nl}}\qty[\eu^{-W_l(t-r)}-\eu^{-C_n(t-r)}]=g_2(t-r)\\
-  ∫_0^{r}\dd{u}B(t-r+u)α^\ast(u)
-  &=\sum_{n,l}\underbrace{\frac{B_nG_l^\ast}{C_n+W_l^\ast}}_{\equiv
-    Γ^3_{nl}}\qty[\eu^{-C_n(t-r)}-\eu^{-W_l^\ast r-C_n t}]=g_3(t,r)
-\end{align}
-and
-\begin{align}
-  \label{eq:finalsummands}
-  Λ_1(t)&= ∑_{m,k,n,l}Γ^1_{mk}Γ^2_{nl}\qty[\frac{1-\eu^{-(C_m+W_l)t}}{C_m+W_l}
-                                 -
-                                 \frac{1-\eu^{-(C_m+C_n)t}}{C_m+C_n}-
-                                 \frac{1-\eu^{-(L_k+W_l)t}}{L_k+W_l}
-                                 +
-          \frac{1-\eu^{-(L_k+C_n)t}}{L_k+C_n}]\\
-  Λ_2(t)&=
-          \begin{aligned}[t]
-            ∑_{m,k,n,l}Γ^1_{mk}Γ^3_{nl}\biggl[\frac{1-\eu^{-(C_m+C_n)t}}{C_m+C_n}
-            &-\frac{1-\eu^{-(L_k+C_n)t}}{L_k+C_n}
-            \\&-\frac{\eu^{-(C_n+W_l^\ast)t}-\eu^{-(C_m+C_n)t}}{C_m-W_l^\ast}
-            +\frac{\eu^{-(C_n+W_l^\ast)t}-\eu^{-(L_k+C_n)t}}{L_k-W^\ast_l}\biggr]
-          \end{aligned}
-\end{align}
-
-Also required for \cref{eq:bathderiv_1} are
-\begin{align}
-  \label{eq:ABconv}
-  ∫_0^t\dd{s}A(s)\dot{α}_0(t-s) &= ∑_{n,m}\underbrace{\frac{A_nP_m}{L_m-C_n}}_{\equiv
-                                  Γ^A_{nm}}\qty[\eu^{-C_n t}-\eu^{-L_m t}]\\
-  ∫_0^t\dd{s}B(s)\dot{α}_0(t-s) &= ∑_{n,m}Γ^1_{nm}\qty[\eu^{-C_n t}-\eu^{-L_m t}]
-\end{align}
-and
-\begin{multline}
-  \label{eq:nonzerotemplim}
-  ∫_0^t\dd{s}A(s)\qty(α(s)-α_0(s)) =\\
-  ∑_{m,n}\frac{A_nG_m}{C_n+W_m}\qty(1-\eu^{-(C_n+W_m)t}) - ∑_{m,n}\frac{A_nU_m}{C_n+Q_m}\qty(1-\eu^{-(C_n+Q_m)t}).
-\end{multline}
-
-This concludes the calculation. A possible measure of simplification
-would be to write \cref{eq:bathderiv_1} as a sum of exponentials and
-give explicit expressions for the coefficients and exponents. This is
-not required for now. Code implementing this can be found under
-\url{https://github.com/vale981/hopsflow}.
+We will arrive at expressions that are weighted sums of exponentials
+whose detailed calculation is quite tedious and can be found
+in\cref{sec:explicit_flow}.
 
 \section{Two coupled Harmonic Oscillators coupled to two Baths}%
 \label{sec:twoosc}
@@ -403,16 +375,19 @@ not required for now. Code implementing this can be found under
   not trivially additive and we can reuse the method from
   \cref{sec:oneosc} without alteration
 \end{itemize}
+As we would like to verify our method also for more than one bath, a
+model with two baths is required.
 
 The considerations of~\cref{sec:oneosc} can be straight forwardly
 generalized to the case of two coupled oscillators coupled in turn to
-a bath each.
+a bath each. This construction is chosen so that the previous results
+can be reused and the coupling to the baths is not trivial.
 
 We will not give explicit formulas for the results in terms of sums of
 exponentials, as they are quite extensive and easily obtained via the
 use of a computer algebra system or the aforementioned code.
 
-The model is again given by a quadratic hamiltonian
+The model is again given by a quadratic Hamiltonian
 \begin{equation}
   \label{eq:hamiltonian_two_bath}
   \begin{aligned}
@@ -427,28 +402,27 @@ The \(a_i^{(i)},a_i^{†}\) are the ladder operators of the harmonic
 oscillators and \(q_i=a_i+a_i^†\) and \(p=\frac{1}{\iu}\qty(a_i-a_i^†)\) so
 that \([q_i,p_j] = 2\iuδ_{ij}\) and \([q_i,q_j] = [p_i,p_j] = 0\).
 
-\subsection{Equations of Motion}
-\label{sec:eqmot_two}
-The Heisenberg equation yields
+The Heisenberg equations for \cref{eq:hamiltonian_two_bath} are
 \begin{align}
   \dot{q}_i &= Ω_i p_i \label{eq:qidot}\\
   \dot{p}_i &= -(Ω_i+γ) q_i - \int_0^t \Im[α^{(i)}_0(t-s)] q_i(s)\dd{s} + W_i(t) \label{eq:pidot}
   \\
-  \dot{b}^{(i)}_λ &= -\iu g^{(i)}_λ \frac{q_i}{2} - \iu\omega^{(i)}_λ b^{(i)}_λ
+  \dot{b}^{(i)}_λ &= -\iu g^{(i)}_λ \frac{q_i}{2} - \iu\omega^{(i)}_λ b^{(i)}_λ,
 \end{align}
-
 with the operator noise
 \(W_i(t)=-\sum_λ \qty(g_λ^{(i),\ast} b^{(i)}_λ(0)
 \eu^{-\iu\omega^{(i)}_λ t } + g_λ^{(i)} b_λ^{(i),†}(0)
 \eu^{\iu\omega^{(i)}_λ t })\) satisfying \(\ev{W_i(s)}=0\) and
-\(\ev{W_i(t)W_j(s)}=δ_{ij}α^{(i)}(t-s)\). We introduced \(α^{(i)}_0
-\equiv \eval{α^{(i)}}_{T=0}\).
+\(\ev{W_i(t)W_j(s)}=δ_{ij}α^{(i)}(t-s)\). We introduced
+\(α^{(i)}_0 \equiv \eval{α^{(i)}}_{T=0}\).
 
 We have given most quantities an extra index and accounted for the
 coupling between the two oscillators. Apart from this, the equations
-of motion have the same structure as in \cref{seq:eqmot}.
+of motion have the same structure as in \cref{sec:oneosc}.
 
-Again, we obtain
+\subsection{Solution}
+\label{sec:eqmot_two}
+With the same general program as before, we we first obtain
 \begin{equation}
   \label{eq:bsoltwo}
   b^{(i)}_λ(t) = b^{(i)}_λ(0) \eu^{-\iu ω^{(i)}_λ t} - \frac{\iu g^{(i)}_λ}{2}∫_0^t
@@ -501,7 +475,7 @@ This can be done easily\footnote{We have use a computer algebra
 \begin{equation}
   \label{eq:minvtwo}
   M^{-1}(z) = \frac{1}{\det[M](z)} \tilde{M}(z)
- \end{equation}
+\end{equation}
 where \(\tilde{M}\) is a matrix containing only polynomials of \(z\)
 and of the Laplace transforms of the bath correlation functions.
 
@@ -509,15 +483,16 @@ The numerator is
 \begin{equation}
   \label{eq:numerator}
   \begin{aligned}
-  \det[M](z)=a& b \Lambda  \Omega +a \left(\gamma
+  \det[M](z)=a(z)& b(z) \Lambda  \Omega +a(z) \left(\gamma
     \Lambda  \Omega +\Lambda ^2 \Omega +\Omega  z^2\right)
-  +b
+  +b(z)
   \left(\gamma \Lambda  \Omega +\Lambda  \Omega ^2+\Lambda  z^2\right)\\
   &+\gamma  \Lambda ^2 \Omega +\gamma  \Lambda
    \Omega ^2+\Lambda ^2 \Omega ^2+\gamma  \Lambda  z^2+\gamma  \Omega  z^2+\Lambda ^2 z^2+\Omega ^2 z^2+z^4,
   \end{aligned}
 \end{equation}
-where \(a=\mathcal{L}\{\Im[α^{(1)}_0]\}\) and \(b=\mathcal{L}\{\Im[α^{(2)}_0]\}\).
+where \(a(z)=\mathcal{L}\{\Im[α^{(1)}_0]\}(z)\) and
+\(b(z)=\mathcal{L}\{\Im[α^{(2)}_0]\}(z)\).
 
 Using the same approach as in \cref{sec:solution}, we arrive at an
 expression similar to \cref{eq:prefactorrational} for
@@ -534,17 +509,17 @@ exponentials
   G(t) = \sum_{l=1}^{2+N_1+N_2}\qty[R_l \tilde{M}(\tilde{z}_l)\eu^{\tilde{z}_l \cdot
     t} + \cc]
 \end{equation}
-with \(R_l={f_0(\tilde{z}_l)}/{p'(\tilde{z}_l)}\).
+with \(R_l={f_0(\tilde{z}_l)}/{p'(\tilde{z}_l)}\) as defined in
+\cref{sec:solution}.
 
 \subsection{Applications}
 \subsubsection{Correlation Functions}
 \label{sec:correltwo}
-\begin{itemize}
-\item same game as in \cref{sec:applications}
-\end{itemize}
 We can now proceed to calculate the correlation functions
 \(C(t,s) = \ev{x_i(t)x_j(s)}\) where the \(x_i\) are the phase space operators
-of the two harmonic oscillators.
+of the two harmonic oscillators. This will enable use to calculate the
+system energies of the two oscillators (omitted here) and again the
+bath energy flows of the two baths.
 
 We find
 \begin{equation}
@@ -556,6 +531,18 @@ We find
 The matrix \(Θ_{ij}\) contains the bath-induced correlations and can
 be calculated as in the single-oscillator case.
 
+For two oscillators that are initially in Fock states
+\(\ket{ψ_{0}}=\ket{n}\otimes\ket{m}\) we have
+\begin{equation}
+  \label{eq:initial_corr}
+  C(0,0) =
+  \begin{pmatrix}
+    1 + 2 n & \i & 0 & 0 \\
+    -\i & 1 + 2 n & 0 & 0 \\
+    0 & 0 & 1 + 2 m & \i \\
+    0 & 0 & -\iu & 1 + 2m
+  \end{pmatrix}.
+\end{equation}
 
 \subsubsection{Bath Enery Derivative}
 \label{sec:bathflowtwo}
@@ -568,6 +555,10 @@ Similar to the calculations in \cref{sec:bathflow} we find
   ∑_{k=1,2}G_{2n-1,2k}∂_s\qty(α^{(k)}(s)-α_0^{(k)}(s)).
 \end{equation}
 
-This can be evaluated using the exponential expansions and yields
-yet another sum of exponentials. The steady state flow can then be
-found be setting all exponentials to zero.
+This can be evaluated using the exponential expansions and yields yet
+another sum of exponentials. The steady state flow can then be found
+be setting all exponentials to zero, although care has to be taken, as
+an exponential fit of the BCF may be only valid for finite times.
+
+This concludes the calculation. Python code implementing the solution
+can be found under \url{https://github.com/vale981/hopsflow}.

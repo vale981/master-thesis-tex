@@ -437,3 +437,70 @@ The polynomial expressions for the smoothstep functions are
        &{\text{if }}1\leq x\\
     \end{cases}}.
 \end{equation}
+
+\subsection{Explicit Expressions for the Bath Energy Flow of the QBM
+  Model}
+\label{sec:explicit_flow}
+Here we detail the rest of the calculations omitted in
+\cref{sec:bathflow}.
+
+All quantities in \cref{eq:lambdafold} have exponential expansion so
+that we can now define\footnote{Note that this is inconsistent with
+  \cref{sec:solution}.}
+\begin{equation}
+  \label{eq:expansions}
+  \begin{aligned}
+    α_0&=∑_k U_k\eu^{-Q_k t} & \dot{α}_0&=∑_k P_k\eu^{-L_k t} & α(t)
+    &= ∑_nG_n\eu^{-W_n t} \\
+    A(t) &= ∑_l A_l\eu^{-C_l t} & B(t) &= ∑_l B_l\eu^{-C_l t}.
+  \end{aligned}
+\end{equation}
+
+With this we can calculate,
+\begin{align}
+  \label{eq:lambdaintegrals}
+  ∫_r^t\dd{s}B(s-r)\dot{α}_0(t-s)
+  &=\sum_{m,k}\underbrace{\frac{B_mP_k}{L_k-C_m}}_{\equiv
+    Γ^1_{mk}}\qty[\eu^{-C_m(t-r)}-\eu^{-L_k(t-r)}]=g_1(t-r)\\
+  ∫_0^{t-r}\dd{u}B(t-r-u)α(u)
+  &=\sum_{n,l}\underbrace{\frac{B_nG_l}{C_n-W_l}}_{\equiv
+    Γ^2_{nl}}\qty[\eu^{-W_l(t-r)}-\eu^{-C_n(t-r)}]=g_2(t-r)\\
+  ∫_0^{r}\dd{u}B(t-r+u)α^\ast(u)
+  &=\sum_{n,l}\underbrace{\frac{B_nG_l^\ast}{C_n+W_l^\ast}}_{\equiv
+    Γ^3_{nl}}\qty[\eu^{-C_n(t-r)}-\eu^{-W_l^\ast r-C_n t}]=g_3(t,r)
+\end{align}
+and
+\begin{align}
+  \label{eq:finalsummands}
+  Λ_1(t)& =
+                    \begin{aligned}[t]
+          ∑_{m,k,n,l}Γ^1_{mk}Γ^2_{nl}\biggl[\frac{1-\eu^{-(C_m+W_l)t}}{C_m+W_l}
+                                 &-
+                               \frac{1-\eu^{-(C_m+C_n)t}}{C_m+C_n}
+                      \\&-
+                                 \frac{1-\eu^{-(L_k+W_l)t}}{L_k+W_l}
+                                 +
+                      \frac{1-\eu^{-(L_k+C_n)t}}{L_k+C_n}\biggr]
+                      \end{aligned}\\
+  Λ_2(t)&=
+          \begin{aligned}[t]
+            ∑_{m,k,n,l}Γ^1_{mk}&Γ^3_{nl}\biggl[\frac{1-\eu^{-(C_m+C_n)t}}{C_m+C_n}
+           -\frac{1-\eu^{-(L_k+C_n)t}}{L_k+C_n}
+            \\&-\frac{\eu^{-(C_n+W_l^\ast)t}-\eu^{-(C_m+C_n)t}}{C_m-W_l^\ast}
+            +\frac{\eu^{-(C_n+W_l^\ast)t}-\eu^{-(L_k+C_n)t}}{L_k-W^\ast_l}\biggr]
+          \end{aligned}
+\end{align}
+
+Also required for \cref{eq:bathderiv_1} are
+\begin{align}
+  \label{eq:ABconv}
+  ∫_0^t\dd{s}A(s)\dot{α}_0(t-s) &= ∑_{n,m}\underbrace{\frac{A_nP_m}{L_m-C_n}}_{\equiv
+                                  Γ^A_{nm}}\qty[\eu^{-C_n t}-\eu^{-L_m t}]\\
+  ∫_0^t\dd{s}B(s)\dot{α}_0(t-s) &= ∑_{n,m}Γ^1_{nm}\qty[\eu^{-C_n t}-\eu^{-L_m t}]
+\end{align}
+and
+\begin{multline}
+  \label{eq:nonzerotemplim}
+  ∫_0^t\dd{s}A(s)\qty(α(s)-α_0(s)) =\\
+  ∑_{m,n}\frac{A_nG_m}{C_n+W_m}\qty(1-\eu^{-(C_n+W_m)t}) - ∑_{m,n}\frac{A_nU_m}{C_n+Q_m}\qty(1-\eu^{-(C_n+Q_m)t}).
+\end{multline}
