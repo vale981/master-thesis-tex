@@ -577,25 +577,32 @@ in this normalization.
 \item good starting point to get to know the system and find out if
   results can be trusted
 \end{itemize}
-In this section, we will study the energy flow of a simple model
-connected to zero temperature bath. Both the characteristics of the
-flow mediated by the concrete form of the bath correlation function
-and the performance of the HOPS method itself will be investigated. We
-will find that the numerics do indeed yield very consistent results
-and that the specifics of the energy flow depend very much on the
-spectral density.
 
-An analytical solution to a given open system is generally not known,
-so that another indicator of the proper choice of HOPS parameters may
-be required. In this section we will briefly demonstrate some high
-precision simulations of a single qubit coupled to a single zero
-temperature bath. The corresponding Hamiltonian is
+Despite being solvable analytically, the models from
+\cref{sec:hopsvsanalyt} are numerically cumbersome, as their system
+Hilbert space is infinite dimensional and has to be truncated. In this
+section we concern ourselves with a very simple model that poses
+lesser numerical challenges and still exhibits interesting behaviour.
+
+Both the performance of the HOPS method itself
+(\cref{sec:stocproc,sec:trunc}) and the characteristics of the flow
+mediated by the concrete form of the bath correlation function
+(\cref{sec:one_bath_cutoff,sec:one_bathcoup_strength}) will be
+investigated. We will find that the numerics do indeed yield very
+consistent results and that the specifics of the energy flow depend
+very much on the spectral density.
+
+As an analytical solution to a given open system is generally not
+known, another indicator of the proper choice of HOPS parameters is
+required. Upon the example of a single qubit coupled to a single zero
+temperature bath, we will study the convergence behaviour of the
+interaction energy.  The corresponding Hamiltonian is
 \begin{equation}
   \label{eq:one_qubit_model}
   H = \frac{1}{2} σ_z + \frac{1}{2} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
   σ_x a_λ^†) + ∑_λ ω_λ a_λ^\dag a_λ,
 \end{equation}
-where we've chosen \(H\) to be dimensionless\footnote{The energy scale
+where we have chosen \(H\) to be dimensionless\footnote{The energy scale
 is set by the system Hamiltonian.}.
 
 In the language of HOPS this corresponds to \(H_\sys=σ_z/2\),
@@ -604,18 +611,17 @@ In the language of HOPS this corresponds to \(H_\sys=σ_z/2\),
 \(H_S\ket{1} = 1/2\ket{1}\) as the initial state of the system.
 
 The main measure of convergence for variables other than the
-trajectory count are consistency conditions. The simplest one
-available to us is energy conservation which allows us to calculate
-the expectation value of the interaction energy through integration of
-the bath energy flow. The interaction energy obtained in this way can
-then be compared to the interaction energy obtained directly as shown
-in \cref{sec:intener}.  For time dependent Hamiltonians, the power
-must be considered similarly.
+trajectory count are consistency conditions. One check available to us
+is energy conservation which allows us to calculate the expectation
+value of the interaction energy through integration of the bath energy
+flow. The interaction energy obtained in this way can then be compared
+to the interaction energy obtained directly as shown in
+\cref{sec:intener}. Note that this scheme may also be adapted easily
+to multiple baths where the sum of interaction energies has to be
+considered and to time dependent Hamiltonians where finite power has
+to be taken into account.
 
-To check for converge we generally set all parameters to a value which
-may be safely above the required optimum and vary one parameter. This
-is a procedure that could be automated in future work. The main
-sources of systematic deviations for the model
+The main sources of systematic deviations for the model
 \cref{eq:one_qubit_model} are the quality of the sampling of the
 stochastic process and the cutoff of the hierarchy. The first becomes
 important when the cutoff frequency is large and the BCF vanishes
@@ -629,11 +635,10 @@ For studying the convergence behaviour regarding the sampling of the
 stochastic process we chose the cutoff as \(\norm{\vb{k}} \leq 4\)
 (simplex truncation\footnote{see \cref{sec:hops_basics}}),
 \(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=1.6\)
-and \(ω_c=4\). The high cutoff was chosen to provide the most
-challenging setting for the sampling. The sampling method uses the
-``Fast Fourier Transform'' (FFT) as described
-in~\cite{RichardDiss}. As the system Hilbert space dimension is small,
-a BCF expansion with seven terms was employed.
+and \(ω_c=4\).  The sampling method uses the ``Fast Fourier
+Transform'' (FFT) as described in~\cite{RichardDiss}. As the system
+Hilbert space dimension is small, a BCF expansion with seven terms was
+employed.
 
 The main parameter of this method is the accuracy of the FFT. The
 implementation compares the BCF and its FFT approximation on the time
@@ -650,11 +655,15 @@ parameters\footnote{The number of time grid points and the integral
     \(α(0)=1.6\) and \(ω_c=4\) using different precisions for the
     sampling of the stochastic process. The dashed lines are obtained
     using energy conservation while the solid lines are obtained
-    directly as in \cref{sec:intener}. The consistency between the too
-    is given in the legend of the right panel. Right panel: The
-    difference of the interaction energies obtained using energy
-    conservation and directly. The values are normalized by the
-    maximal absolute value of the interaction energy.}
+    directly as in \cref{sec:intener}. The consistency between the two
+    is given in the legend of the right panel. An inset shows the
+    curves for the final three time units. Right panel: The difference
+    of the interaction energies obtained using energy conservation and
+    directly. The values are normalized by the maximal absolute value
+    of the interaction energy. The \(\varsigma = 10^{-6}\) case gives
+    the most accurate results in terms of energy conservation, but
+    when using the direct method of calculating \(\ev{H_{\inter}}\)
+    all parameter choices yield the same results.}
 \end{figure}
 \Cref{fig:stocproc_systematics} illustrates the effect of this
 parameter. We find very good qualitative agreement for all values of
@@ -663,17 +672,6 @@ shows some fluctuation between the settings, but the value calculated
 directly is very stable as can bee seen in the inset of
 \Cref{fig:stocproc_systematics}.
 
-\begin{wrapfigure}[15]{o}{0.5\textwidth}
-  \centering
-  \includegraphics{figs/one_bath_syst/stocproc_systematics_flow}
-  \caption{\label{fig:stocprocflow}The bath energy flow of the model
-    \cref{eq:one_qubit_model} for \(α(0)=1.6\) and \(ω_c=4\) using
-    different precisions \(\varsigma\) for the sampling of the
-    stochastic process.}
-\end{wrapfigure}
-The same behaviour can be observed with the bath energy flow in
-\cref{fig:stocprocflow}, which demonstrates near-identical results.
-
 Only in the \(\varsigma=10^{-6}\) case however, compatibility is
 satisfied at the given sample count. This is due to the fact that here
 multiple values that are obtained in different ways, namely system
@@ -681,6 +679,23 @@ energy and the flow, have to be considered. The system energy depends
 on the zeroth hierarchy order only whereas the flow additionally
 depends on the first hierarchy states and has to be numerically
 integrated.
+\begin{figure}[hp]
+  \centering
+  \includegraphics{figs/one_bath_syst/stocproc_systematics_bath_energy}
+  \includegraphics{figs/one_bath_syst/stocproc_systematics_system}
+  \caption{\label{fig:stocproc_bath_sys}The bath and system energies of the
+    model \cref{eq:one_qubit_model} for \(α(0)=1.6\) and \(ω_c=4\)
+    using different precisions \(\varsigma\) for the sampling of the
+    stochastic process. Systematic deviations outside the error bounds
+  occur mainly in the bath energy.}
+\end{figure}
+
+The individual contributions to the indirectly obtained interaction
+energy may be studied in \cref{fig:stocproc_bath_sys}. The bath
+energy, being an integrated quantity for which errors may accumulate,
+is most susceptible to systematic deviations outside the error bounds,
+as is clearly visible in the insets. Nevertheless, the qualitative
+agreement of the different simulations is excellent.
 
 The development of the consistency of trajectory count \(N\) can be
 studied in \cref{fig:stocproc_consistency_dev}. Only for the highest
@@ -692,22 +707,26 @@ exact\footnote{The result that demonstrates compatibility
   consistently.} result. It is therefore important to consider the
 dependence of the compatibility on the sample count \(N\) to judge the
 veracity of the simulation results.
-\begin{figure}[p]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/one_bath_syst/stocproc_systematics_consistency}
   \caption{\label{fig:stocproc_consistency_dev} Upper panel: The
-    compatibility of the flow (direct computation vs. energy
+    compatibility (number of values within one standard deviation, see
+    \cref{sec:meth}) of the flow (direct computation vs. energy
     conservation) of the model \cref{eq:one_qubit_model} for
     \(α(0)=1.6\) and \(ω_c=4\) using different precisions
     \(\varsigma\) for the sampling of the stochastic process in
-    relation to the trajectory count \(N\). Lower left: The time
-    averaged difference (dashed) and the time averaged standard
-    deviation of the difference (solid) as a function of trajectory
-    count. Only for the smallest \(\varsigma\) the difference is
-    consistently smaller than the standard deviation of the
-    difference. Lower right: The time averaged statistical errors of the interaction
-    energy calculated directly (solid lines) and indirectly through
-    energy conservation (dashed lines).}
+    relation to the trajectory count \(N\). Only the
+    \(\varsigma=10^{-6}\) simulation is consistent for all sample
+    counts. Lower left: The time averaged difference of the direct and
+    indirect interaction energies (dashed) and the time averaged
+    standard deviation of the difference (solid) as a function of
+    trajectory count. Only for the smallest \(\varsigma\) the
+    difference is consistently smaller than the standard deviation of
+    the difference. Lower right: The time averaged statistical errors
+    of the interaction energy calculated directly (solid lines) and
+    indirectly through energy conservation (dashed lines). The
+    deviation of the direct method smaller by an order of magnitude.}
 \end{figure}
 
 Apart from being closer to the correct result, the direct computation
@@ -724,13 +743,13 @@ and \(ω_c=2\). Again, seven a BCF expansion with seven terms have been
 used. The coupling strength has been chosen with the help of
 \cref{sec:pure_deph}, so that the interaction energy is of a similar
 order of magnitude as in the discussion
-above. \Cref{fig:k_systematics} shows that there seems to be no
+above. \Cref{fig:k_systematics} suggests that there seems to be no
 improvement in accuracy or even change in the value of the flow for
 \(\norm{\vb{k}}\geq 4\). However, the inset in the left panel
 demonstrates that the direct result differs slightly for
 \(\norm{\vb{k}} = 2\), which demonstrates that an adequate choice of
 truncation depth is important.
-\begin{figure}[h]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/one_bath_syst/k_systematics_interaction}
   \caption{\label{fig:k_systematics} The same as
@@ -738,73 +757,75 @@ truncation depth is important.
     \(ω_c=2\) and for various truncation depths \(k=\norm{\vb{k}}_{\mathrm{max}}\).}
 \end{figure}
 
-The observed behaviour may be due to the fact that only zeroth and
-first hierarchy depth states contribute to the result. For a
-truncation depth of four, the first hierarchy state does not ``see''
-the truncation any more. The deviation of the system energy from the
-highest precision value is shown in
-\cref{fig:k_systematics_system}. We see that the normalized difference
-of the \(\norm{\vb{k}} = 2\) case from the \(\norm{\vb{k}} = 6\) is on
-the same order of magnitude for system energy and interaction energy
-which contradicts the aforementioned explanation. Also, the results
-\(\norm{\vb{k}} = 4,6\) agree perfectly for both energies.
-\begin{figure}[h]
+
+We see in \cref{fig:k_systematics_system} that the difference of the
+\(\norm{\vb{k}} = 2\) case from the \(\norm{\vb{k}} = 6\) is on the
+same order of magnitude for system energy and interaction energy. The
+bath energy, being an integrated quantity, accumulates errors and
+deviates the most. Also, the results for \(\norm{\vb{k}} = 4,6\) agree
+perfectly in all cases.
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/one_bath_syst/k_systematics_system}
-  \caption{\label{fig:k_systematics_system} Left panel: The system
-    energy of the model \cref{eq:one_qubit_model} with \(α(0)=0.8\)
-    and \(ω_c=2\) and for various truncation depths
-    \(k=\norm{\vb{k}}_{\mathrm{max}}\). Right panel: The difference between
-    the \(k=4\) result and the results with \(k<4\) normalized by the
-    maximal absolute system energy (solid lines) and the same for the
-    interaction energy (dashed lines).}
+  \caption{\label{fig:k_systematics_system} Left panel: The norm of
+    the difference of a single trajectory to the \(\norm{\vb{k}} = 6\)
+    case. The solid lines show the difference of the zeroth hierarchy
+    states and the dashed lines show the same for the first hierarchy
+    states.  There is still a slight difference on the trajectory
+    level. Right panel: The difference between the \(k=6\) result and
+    the results with \(k<6\) normalized by the maximal absolute system
+    energy (solid lines) and the same for the interaction energy
+    (dashed lines) as well as the bath energy change (dotted). The
+    deviation is most substantial for the bath energy change, as
+    errors can accumulate in the integration of the bath energy flow.}
 \end{figure}
+The left panel of \cref{fig:k_systematics_system} demonstrates, that there is still a
+difference greater than the machine epsilon on the level the
+trajectories. This difference however, is small enough not to impact
+observables much.  The deviation of the system, interaction and bath
+energies from the highest precision case (\(k=6\)) is also
+plotted.
 
-\begin{wrapfigure}[12]{o}{0.3\textwidth}
-  \centering
-  \includegraphics{figs/one_bath_syst/trajectories_not_same}
-  \caption{\label{fig:notsame} The norm of the difference of a
-    normalized single trajectory to the \(\norm{\vb{k}} = 6\) case.}
-\end{wrapfigure}
-\Cref{fig:notsame} demonstrates, that there is still a difference
-greater than the machine epsilon on the level the trajectories. This
-difference however, is small enough not to impact observables.
 
-Summarizing, it may be said that the HOPS parameters have to be chosen
-carefully for precision simulations, but that lower precision results
-already give a \emph{very} good qualitative picture.
+Summarizing, we conclude that the HOPS parameters have to be chosen
+carefully for precision simulations, but that a more relaxed choice of
+parameters already give a \emph{very} good qualitative picture.
 
-\fixme{maybe describe integration and error propagatation and time distribution.}
 \fixme{maybe run a simulation with more hierarchy depth and more bcf
-  terms, check whether there is a mistake}
-It remains for future work to perform precision studies the
-systematics of the finite temperature flow and modulated
-Hamiltonians. In the following sections we will look at some examples
-of physically interesting systems with less focus on the systematics
-of convergence.
+  terms, check whether there is a mistake} It remains for future work
+to perform a detailed study of the systematics of the finite
+temperature flow and modulated Hamiltonians. In the following sections
+we will look at some examples of physically interesting systems with
+less focus on the systematics of convergence.
 
 \subsection{Dependence on the Cutoff Frequency}
 \label{sec:one_bath_cutoff}
-\begin{itemize}
-\item what role does non-markovianity play in this simple model for
-  the energy transfer?
-\item want to deepen indications seen in precision simulations
-\item also verify initial slip dynamics \cref{sec:pure_deph} for this model
-\end{itemize}
-We now consider precision simulations of the spin-boson like
-system\fixme{Float placement is abysmal in this section}
-with varying cutoff frequency. To make the interaction energies
-comparable to each other, the BCF normalization of section
-\cref{sec:pure_deph} is being used. Because of the small size of the
-Hilbert space, we were able to choose a HOPS
+The lessons learned in \cref{sec:stocproc,sec:trunc} will now be
+applied to simulate \cref{eq:one_qubit_model} with high consistency
+for various parameter choices of the cutoff \(ω_{c}\) of the BCF
+\begin{equation}
+  \label{eq:ohmic_bcf_repeat}
+  α(τ) =
+  \frac{η}{π}\qty(\frac{ω_c}{1+\iu ω_c τ})^2.
+\end{equation}
+Guided by these demonstrations, we'll turn to a more detailed analysis
+of the role of non-Markovianity in the energy transfer characteristics
+of our model. The quantification of the initial slip dynamics in
+\cref{sec:pure_deph} will also be verified.
+
+To make the interaction energies comparable to each other, the BCF
+normalization of section \cref{sec:pure_deph} is being used. Because
+of the small size of the Hilbert space, we were able to choose a HOPS
 configuration\footnote{\(\norm{\vb{k}}\leq 7\), seven BCF terms,
-  \(\varsigma = 10^{-6}\)} that yields high-accuracy results, based on
-the results of the previous section. A detailed account of the
-consistency is given in \cref{fig:omega_interaction_consistency}. The
-only problematic result is the one for \(ω_c=1\), but there is good
-qualitative consistency in this case. For all simulations
-\(N=5\cdot 10^{5}\) trajectories were computed. The results of these
-simulations are summarized in \cref{fig:omega_systematics_system}.
+  \(\varsigma = 10^{-6}\)} that yields high-accuracy
+results\footnote{A detailed account of the consistency is given in
+  \cref{fig:omega_interaction_consistency}.}, based on the results of
+the previous section. The only problematic result is the one for
+\(ω_c=1\), but there is good qualitative consistency in this case.
+
+For all simulations \(N=5\cdot 10^{5}\) trajectories were integrated
+to produce the results that are summarized in
+\cref{fig:omega_systematics_system}.
 \begin{figure}[h]
   \centering
   \includegraphics{figs/one_bath_syst/omega_energy_overview}
@@ -821,46 +842,48 @@ phenomena observed in \cref{sec:hopsvsanalyt} can be seen. Whether
 there is some universality to the results obtained is an interesting
 question for a more detailed future detailed study.\fixme{Remove this?}
 
-The interactions energy expectation values, despite being in the same
-order of magnitude, differ significantly. This illustrates the
-limitation of the estimate in \cref{sec:pure_deph}. Better estimates
-of the interaction energy and thus interaction strength may be derived
-from ideas similar to the ones discussed in
-\cref{sec:normest}. Besides the magnitude, the qualitative time
-dependence of the interaction energies varies, especially between the
-\(ω_c=1\) configuration and the others.
+The interaction energy expectation values, despite being in the same
+order of magnitude and not in the weak coupling regime, differ
+significantly. This illustrates the limitation of the estimate in
+\cref{sec:pure_deph} and exemplifies the nontriviality of the open
+system dynamics. Better estimates of the interaction energy and thus
+interaction strength may be derived from ideas similar to the ones
+discussed in \cref{sec:normest}.  Besides the magnitude, the
+qualitative time dependence of the interaction energies varies,
+especially between the \(ω_c=1\) configuration and the others.
 
-The blue (\(ω_c=1\)) curve exhibits two pronounced turning points as
-opposed to one as the others do. This behaviour may be interpreted as
-non Markovian. Further, despite having the weakest overall coupling
-strength \(α(0)=0.4\) the system energy falls off the fastest after a
-short period where it is above the other configurations. This
-behaviour is also visible in the bath energy expectation value, where
-the blue almost reaches the same levels as the \(ω_c=2\) configuration
-for \(τ\gtrsim 5\).
+The blue (\(ω_c=1\)) curve exhibits two pronounced turning points in
+contrast to the other simulations. This behaviour is a symptom of
+interference of the system and bath time scales which are of similar
+orders in this simulation, an idea that we will develop further
+below. Further, despite having the weakest overall coupling strength
+\(α(0)=0.4\) the system energy falls off the fastest after a short
+period where it is above the other configurations. This behaviour is
+also visible in the bath energy expectation value, where this
+simulation almost reaches the same levels as the \(ω_c=2\)
+configuration for \(τ\gtrsim 5\).
 
 The flow is generally negative (the bath gains energy) and decays
 after an initial peak. All the flow graphs appear to be crossing in
 about the same point \(τ\approx 7.7\) after which their ordering by
 magnitude is reversed.  The inset shows that the crossing is not
 precisely at the same point, nevertheless further investigation of
-this phenomenon may of interest in the future. The decay is
-faster for higher cutoff frequencies and stronger couplings. Despite
-the higher interaction energies and coupling strengths, the
-high-cuttoff simulations exhibit a slower energy transfer after the
-initial peak as decayed sufficiently, with the system energy falling
-slower and the bath energy rising slower. The situation is generally
-reversed for short times \(τ\lesssim 2.5\), because here the build-up
-of interaction energy is significant. Despite the moving peaks in the
-flow, the location of the first extremum in is remarkably stable.
+this phenomenon may of interest in the future. The decay is faster for
+higher cutoff frequencies and stronger couplings. Despite the higher
+interaction energies and coupling strengths, the high-cuttoff
+simulations exhibit a slower energy transfer after the initial peak
+has decayed sufficiently, with the system energy falling slower and
+the bath energy rising slower. The situation is generally reversed for
+short times \(τ\lesssim 2.5\), because here the build-up of
+interaction energy is significant.
 
 The presentation in \cref{fig:omega_systematics_system} is not
 conducive to comparing the actual performance of the energy transfer,
-because of the variable shape of the spectral density and the chosen
-normalization. Because the maximum of the Ohmic spectral density is
-located at \(ω_c\) the special observed energy transfer behaviour for
-\(ω_c=1\) is likely due to a resonance effect as the system energy
-level spacing is unity.
+due to the variable shape of the spectral density and the chosen
+coupling strengths. Because the maximum of the Ohmic spectral density
+is located at \(ω_c\) the special observed energy transfer behaviour
+for \(ω_c=1\) is likely due to a resonance effect (see above) as the
+system energy level spacing is unity.
 
 The dissipator of the master equation for this two level system only
 depends on the value of the spectral density at the level
@@ -911,7 +934,7 @@ energy due to the decoupling of the bath is moderately higher than in
 the resonant case than in the \(ω_s=1\) case, but the final system
 energy is the lowest. \fixme{The decoupling seems to affect mainly the bath
 energy (see left panel). Should I say so?}
-\begin{figure}[ht]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/one_bath_syst/resonance_analysis}
   \caption{\label{fig:resonance_analysis} Left
@@ -1759,7 +1782,7 @@ infinite continous bath is required for the saturation of the bound.
 A similar scheme to the one used in \cref{eq:manhoergoestimate} can be
 employed numerically to compute the exact ergotropy efficiently and to verify our
 findings as has been done in.
-\begin{figure}[ht]
+\begin{figure}[hp]
   \includegraphics{figs/ergo_calc/ergo_numeric}
   \caption{\label{fig:numeric_n_ho_ergo} Numerical evaluation of
     \cref{eq:many_ho_pass} and the estimates
@@ -1790,7 +1813,7 @@ transition into the region where the estimate upper bound
 point of this bound with the \(ω\ll 1\) estimate and the bound is very
 tight as may be expected, because the error one makes in
 \cref{eq:manhoergoestimate} becomes negligible in the case \(N\gg 1\).
-\begin{figure}[ht]
+\begin{figure}[hp]
   \includegraphics{figs/ergo_calc/ergo_nonmonotonic}
   \caption{\label{fig:numeric_n_ho_ergo_nonmon} Numerical evaluation of
     \cref{eq:many_ho_pass} for different \(N\) and \(β=1\).}
@@ -2319,7 +2342,7 @@ The modulations \(f\) and \(h_{i}\) are periodic and constructed out
 of smoothstep\footnote{See \cref{sec:smoothstep}.} functions. Rather
 than giving the precise formulas, we instead plot all the modulations
 over one period in \cref{fig:ottomod}.
-\begin{figure}[ht]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/otto/modulation}
   \includegraphics{figs/otto/spectral_densities}
@@ -2353,7 +2376,7 @@ In comparison to the system time scale, the modulation cycle is rather
 slow. On the other hand, the time scales on which \(f\) and \(h_{i}\)
 change are rather short.
 
-\begin{figure}[ht]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/otto/power}
   \caption{\label{fig:ottopower} The power due to the system and the
@@ -2383,7 +2406,7 @@ under equilibrium conditions. In any case we are far from the Carnot
 efficiency for the given temperatures \(η_{c}=95\%\), as we are not in
 the adiabatic regime.
 
-\begin{figure}[ht]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/otto/energy_strobe}
   \caption{\label{fig:ottoenergy} The system, bath and interaction
@@ -2426,7 +2449,7 @@ modulation is turned of and we have \(h_{1}(τ)=1\). We find in
 \cref{fig:ottoenergy_cont} that work extraction is still possible,
 albeit at a much lower power \(\bar{P}=0.001670\pm 0.000029\) and
 efficiency \(η=5\%\).
-\begin{figure}[ht]
+\begin{figure}[hp]
   \centering
   \includegraphics{figs/otto/energy_strobe_continuous}
   \caption{\label{fig:ottoenergy_cont} The system, bath and
