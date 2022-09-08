@@ -387,10 +387,11 @@ For this state the following equation of motion can be derived
 \end{equation}
 where \(\vb{k}=(k_{1}, k_{2}, \ldots, k_{M})\) with \(k_{μ}\geq 0\) is
 a multi index an \(\pqty{\vb{e}_{μ}}_{ν} = δ_{μ,ν}\). The term
-\({\vb{k} - \vb{e}_{μ}}\) is evaluated only if \(k_{μ}\geq 1\). We
-call \(\abs{\vb{k}}=∑_{μ}k_{μ}\) the hierarchy level of
-\(ψ^{\vb{k}}\). The state \(ψ\equiv ψ^{\vb{0}}\) corresponds to the
-trajectory obeying \cref{eq:nmqsd_single}.
+\({\vb{k} - \vb{e}_{μ}}\) is evaluated only if \(k_{μ}\geq 1\). The
+norm of the multi index \(\vb{k}\) is called
+\(\abs{\vb{k}}=∑_{μ}k_{μ}\) the hierarchy level of \(ψ^{\vb{k}}\). The
+state \(ψ\equiv ψ^{\vb{0}}\) corresponds to the trajectory obeying
+\cref{eq:nmqsd_single}.
 
 
 We call \cref{eq:singlehops} the \emph{Hierarchy of Pure States}
@@ -405,7 +406,10 @@ matrices.
 By truncating the hierarchy we obtain from \cref{eq:singlehops} a
 linear differential equation that can be solved numerically. By
 choosing a suitable cutoff the method can be made arbitrarily
-exact.
+exact. For concrete truncation schemes see \cite{RichardDiss} and
+\cref{sec:truncsch}. In most simulations in this work the so called
+\emph{simplex truncation scheme} was used. This scheme amounts to
+only including hierarchy states with \(\abs{\vb{k}} \leq k_{\max}\).
 
 Note that the hierarchy states have no physical interpretation, but
 can be thought of as the ``memory'' of the system. We will find in
