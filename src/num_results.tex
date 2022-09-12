@@ -1391,7 +1391,8 @@ Here, we will focus on two closely related problems. The first is
 concerned with how much energy can be extracted through a unitary
 transformation from a single infinite thermal bath coupled to an
 arbitrary finite dimensional working medium. We call this energy
-\emph{ergotropy}\footnote{See \cref{eq:ergo_def} for a more precise definition.}.
+\emph{ergotropy}\footnote{See \cref{eq:ergo_def} for a more precise
+  definition.}.
 
 In Thermodynamics the second law tells us that in this setting no
 energy can be extracted in a periodic manner.  It turns out that in
@@ -1434,11 +1435,8 @@ of the derivation in~\cite{Kato2016Dec}. The left hand side of this
 inequality can be associated with a thermodynamic cost that should be
 minimized for optimal efficiency.
 
-\subsection{The Ergotropy of Open Quantum Systems with a single Bath}
+\subsection{The Ergotropy of Open Quantum Systems}
 \label{sec:ergo_general}
-\begin{itemize}
-\item introduce ergotropy and passivity as basis for the rest
-\end{itemize}
 The ergotropy of a quantum system is defined\fixme{mention paper that
   uses ergo for heat}
 as~\cite{Binder2018}
@@ -1448,17 +1446,23 @@ as~\cite{Binder2018}
 \end{equation}
 which is the maximal energy that can be extracted from a system through
 cyclic modulation of the Hamiltonian \(H\). A state is called passive
-iff the maximizing \(U\) \cref{eq:ergo_def} is the identity \(\id\).
+iff the maximizing \(U\) \cref{eq:ergo_def} is the identity \(\id\)
+and its ergotropy vanishes.
 
-A passive state \(ρ_P\) is always diagonal in the eigenbasis of \(H\) and its
-eigenvalues satisfy the following ordering condition~\cite{Lenard1978Dec}
+The immediate appeal of this quantity for later applications is, that
+it is formulated with respect to the full unitary dynamics which is
+accessible to us through HOPS.
+
+A passive state \(ρ_P\) is always diagonal in the eigenbasis of \(H\)
+and its eigenvalues satisfy the following ordering
+condition~\cite{Lenard1978Dec}
 \begin{equation}
   \label{eq:passive_diag}
   ρ_{p}=∑_{j=1}^{n} \lambda_{j}|j\rangle\langle j|, \quad E_{j} \leq E_{j+1}, \quad \lambda_{j+1} \leq \lambda_{j},
 \end{equation}
 where \(n<∞\) is the Hilbert space dimension. This condition is both
 necessary and sufficient. Examples of passive states are the state of
-the micro-canonical ensemble or a Gibbs state. Gibbs are further
+the micro-canonical ensemble or Gibbs states. Gibbs states are further
 distinguished by additional features as described
 in~\cite{Lenard1978Dec}, which can be connected to formulations of the
 zeroth and second laws of thermodynamics.
@@ -1466,20 +1470,22 @@ zeroth and second laws of thermodynamics.
 One of these properties is complete passivity. Completely passive
 states remain passive under the transformation \(ρ\to\otimes^Nρ\) (and
 an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore no
-energy can be extracted from multiple identical systems at the same
-temperature. For finite dimensional systems, the complete passivity
-implies the form of the Gibbs state. The open-systems case differs as
-here a ``small'' system is coupled to a bath of infinite size. If the
-system state is not a Gibbs state, the whole system becomes
-non-passive, even if the system state is passive with respect to the
-system Hamiltonian\footnote{for example being the ground state}.
+energy can be extracted from multiple identical systems in equilibrium
+at the same temperature.  For finite dimensional systems, the complete
+passivity even implies the the Gibbs state.
+
+The open-systems case differs as here a ``small'' system is coupled to
+a bath of infinite size. If the system state is not a Gibbs state, the
+whole system becomes non-passive, even if the system state is passive
+with respect to the system Hamiltonian\footnote{for example being the
+  ground state}.
 
 For systems of infinite size, states fulfilling the
 Kubo–Martin–Schwinger (KMS) condition have been proposed as the
-generalizations of Gibbs states, having similar properties as
-Gibbs states. Under some conditions passivity implies the KMS
-condition. These conditions are related to the fact that KMS states
-are not necessarily unique~\cite{Binder2018,Pusz1978Oct}.
+generalizations of Gibbs states, having similar properties. Under some
+conditions passivity implies the KMS condition. These conditions are
+related to the fact that KMS states are not necessarily
+unique~\cite{Binder2018,Pusz1978Oct}.
 
 The KMS condition is stated for two arbitrary observables \(A,B\) and
 \(F_{AB}(t)=\tr[ρ_βA(t)B(0)]\) (Heisenberg picture,
@@ -1488,45 +1494,90 @@ The KMS condition is stated for two arbitrary observables \(A,B\) and
   \label{eq:kmscond}
   F_{AB}(-t) = F_{BA}(t-\iu β)
 \end{equation}
-by virtue of analytic continuation.
+by virtue of analytic continuation and does not rely on a concrete
+expression of the state \(ρ_{β}\) which may not exist in the
+traditional sense.
 
-For two initially uncorrelated KMS states, of different
-temperature, the Carnot efficiency bound can be
-proven~\cite{Pusz1978Oct}.
+For example, the Carnot efficiency bound can be proven
+rigorously~\cite{Pusz1978Oct} for two KMS states of different
+temperatures.
 
-A simple application of ergotropy is an explanation for quantum
-friction. The buildup of coherence\footnote{Meaning a state which is
-  non-diagonal in the energy basis.} in a quantum system makes the
-state non-passive and thus requires additional energy which cannot be
-extracted by modulating of the energy level gaps of the
-system\footnote{This is the usual mechanism of energy extraction in a
-  quantum Otto cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec}.  The
-reduction of efficiency in through quantum coherence general has been
-termed quantum friction. However, the occurrence of coherence does not
-have to lead to a reduction in efficiency\fixme{do more research on
-  that.refer to simulations}, if a diagonal state is restored \footnote{Shortcuts to
+In the following we will restrict our discussions to finite
+dimensional systems, taking the thermodynamic limit when it is
+appropriate. KMS states only enter the NMQSD/HOPS formalism
+indirectly, as they predict the expression for negative frequency part
+of the finite temperature spectral density. Due to the formulation of
+the NMQSD which only relies on bath correlation functions, the problem
+of non-existing states is circumvented.
+
+In fact, we see in \cref{fig:bcf_approx} that the BCF of an infinite
+bath can be approximate very well by a finite number of evenly spaced
+oscillators for finite times\footnote{Finite times include the
+  lifetime of the universe.}. For such a bath the thermal state is
+trace class, albeit not finite dimensional. However, for finite
+temperature the individual oscillator Hilbert spaces may be suitably
+truncated making the whole bath finite dimensional, justifying our
+finite dimensional treatment in the following.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figs/misc/bcf_approx}
+  \caption{\label{fig:bcf_approx} An ohmic BCF with \(ω_{c}=η=1\)
+    approximated by the BCF of linearly spaced oscillators. The figure
+    plots the relative difference between an approximation with \(N\)
+    oscillators and the exact BCF over time. An order of magnitude
+    more oscillators give an approximation which is valid for an order
+    of longer dimensionless period.}
+\end{figure}
+
+The Hamiltonian of a finite dimensional system is bounded and
+therefore the ergotropy of such a system is finite. However, in the
+following we will find that the ergotropy cannot even be made
+arbitrarily large by enlarging the bath.
+
+
+\subsection{Quantum Friction}
+\label{sec:quantum_friction_theory}
+A simple application of the notion ergotropy is an explanation for so
+called \emph{quantum
+  friction}~\cite{Binder2018,Mukherjee2020Jan}. This is an
+unfortunate term. From it one would expect that quantum friction has
+some connection to dissipation. In fact the reverse is true in most
+cases where it is a concept applied to the reduced state of the
+system.
+
+Consider a modulated open quantum system.  The buildup of energy basis
+coherence in the system state makes it non-passive.  Thus additional
+energy which cannot be extracted by modulating of the energy level
+gaps of the system\footnote{This is the usual mechanism of energy
+  extraction in a quantum Otto
+  cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec} is tied up in the
+system state, reducing power output.  The reduction of power output in
+through quantum coherence general has been termed quantum
+friction. However, the occurrence of coherence is not necessarily
+detrimental\fixme{do more research on that.refer to simulations}, if
+the system is restored to a diagonal state\footnote{Shortcuts to
   adiabaticity, see for example~\cite{Chen2010Feb}.}.
 
 \subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
 \label{sec:ergoonebath}
-\begin{itemize}
-\item thermal states are somewhat special (as seen above)
-\item for thermodynamic consistency: we want to find a general bound
-  on ergotropy that may be valid also in the infinite dimensional case
-\item great news: model independent and gives meaning to temperature!
-\end{itemize}
+We have argued above that Gibbs states play a special role. Here, we
+explore the ergotropy of such a state to an arbitrary finite
+dimensional systems. Our goal will be to ensure thermodynamic
+consistency of the global unitary dynamics of such a system.
+
 Let us consider models with the Hamiltonians
 \begin{equation}
   \label{eq:simple_bath_models}
   H = \id_\sys\otimes H_\bath + H_\sys\otimes \id_\bath,
 \end{equation}
-where the system \(\sys\) is finite dimensional and \(H_\bath\) may
+where the system \(\sys\) is finite dimensional and \(H_\bath\) may be
 chosen arbitrarily. Let the initial state of the system be
 \begin{equation}
   \label{eq:simple_initial_state}
   ρ=ρ_\sys\otimes τ_β,
 \end{equation}
-where \(τ_β=\eu^{-β H_\bath}/Z\) and \(ρ_\sys\) is arbitrary.
+where \(τ_β=\eu^{-β H_\bath}/Z\) is a Gibbs state and \(ρ_\sys\) is
+arbitrary.
 
 An interesting question is whether the ergotropy of such a state is
 finite. This amounts to the formulation of the second law: ``No energy
@@ -1543,31 +1594,30 @@ their Hamiltonians are bounded. In the infinite dimensional case, we
 may expect that the ergotropy is still finite for some models, as long
 as the energies of the thermal states for those models is finite. This
 assumption breaks down when we consider infinite baths, whose thermal
-energy is unbounded even for finite temperatures.
+energy is unbounded even for finite temperatures. In terms of finite
+baths we may ask whether the ergotropy of the system can be made
+arbitrarily large by enlarging the bath.
 
-Nevertheless, \fixme{graphics} the ergotropy appears to be
-bounded. Further, the system as if it was in a passive state as soon
-as the limit cycle is reached. In fact, there is a simple and general
-argument that provides and upper bound on the ergotropy of states of
-the form~\cref{eq:simple_initial_state} based on the special form of
-Gibbs states and relative entropy. The latter quantity allows the
-application of quantum informational tools, even in the presence of
-infinite baths if we are careful in taking limits.
+There is a simple and general argument that provides and upper bound
+on the ergotropy of states of the form~\cref{eq:simple_initial_state}
+based on the special form of Gibbs states and relative entropy. The
+latter quantity allows the application of quantum informational tools,
+even in the presence of infinite baths if we are careful in taking
+limits.
 
-The following is adapted
-from~\cite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb} and we limit
+The derivation of the following bound is adapted
+from~\cite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb}. We limit
 ourselves to finite dimensional problems for now.  As unitary
 transformations leave the entropy invariant
 (\(\tr[ρ\ln(ρ)] = \tr[ρ_P\ln(ρ_P)]\)), we have for an arbitrary
-\(β > 0\) and \(ρ_β=\exp(-βH)/Z\)
+\(β > 0\) and \(ρ_β=\exp(-βH)/Z\), \(Z=\tr[\exp(-βH)]\)
 \begin{align}
     \ergo{ρ} &= E(ρ) - E(ρ_P) = \tr[(ρ-ρ_P) H]\nonumber\\
              &= -\frac{1}{β}\tr[(ρ-ρ_P)
                \qty(\ln(ρ_β) + \ln(Z))] \nonumber\\
-             &= -\frac{1}{β}\tr[(ρ-ρ_P) \ln(ρ_β)] =
-               -\frac{1}{β}\tr[(ρ-ρ_P) \qty(\ln(ρ_β))]\nonumber\\
-             &=\frac{1}{β}\qty[\tr[ρ(\ln(ρ) - \ln(ρ_β))] -
-               \tr[ρ_P(\ln(ρ_p) - \ln(ρ_β))]]\nonumber\\
+             &= -\frac{1}{β}\tr[(ρ-ρ_P) \ln(ρ_β)]\nonumber\\
+             &=\frac{1}{β}\qty{\tr[ρ\qty(\ln(ρ) - \ln(ρ_β))] -
+               \tr[ρ_P\qty(\ln(ρ_p) - \ln(ρ_β))]}\nonumber\\
              &\equiv\frac{1}{β}\qty[\qrelent{ρ}{ρ_β} - \qrelent{ρ_P}{ρ_β}]\label{eq:ergo_entro},
 \end{align}
 where we have used \(\tr[ρ]=\tr[ρ_P]=1\).
@@ -1587,7 +1637,7 @@ arrive at
   \ergo{ρ} \leq \frac{1}{β^\ast}\qrelent{ρ}{ρ_{β^\ast}}.
 \end{equation}
 This bound can be saturated for states which are a permutation of a
-thermal state, as their corresponding passive states is the thermal
+thermal state, as their corresponding passive state is the thermal
 state.
 
 For our setting in
@@ -1603,35 +1653,30 @@ in \cref{eq:ergo_entro} we obtain
                         τ_β)_P}{ρ_β\otimes τ_β}]\\
     &=\frac{1}{β}
   \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes
-      τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β}.
+      τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β},
   \end{aligned}
 \end{equation}
+where the positivity of relative entropy has been used.
 
 Remarkably, the bound \cref{eq:thermo_ergo_bound} only depends on the
 system state and ``inherits'' the temperature of the bath. For any
-\(\dim[τ_β] = N\gg 1\) the bound stays valid. It is therefore
-reasonable to expected that it is also valid for an infinite bath. On
-the basis of physical intuition, a very large but finitely sized bath
-may be an arbitrarily good substitute for a continuous one. One might
-even argue, that the continuous bath is a mathematically convenient
-construct and the finite bath is the physical one.  The objection to
-taking the limit outright is that the state \(τ_β\) does not exist as
-trace class operator for an infinite bath.
+\(\dim[τ_β] = N\gg 1\) the bound stays valid and independent of any
+bath properties except the temperature. It is therefore reasonable to
+expected that it is also valid for an infinite bath.
 
 Interestingly, a saturation of \cref{eq:thermo_ergo_bound} is achieved
 in~\cite{Skrzypczyk2014Jun} with a continuous qubit
 bath. In~\cite{Lobejko2021Feb} a more generic argument is made in a
 similar setting. Both propose concrete protocols within the bounds of
-thermal operations and by considering explicit work reservoirs.
+thermal operations and by considering explicit work reservoirs. In
+\cref{sec:explicitergo} we will provide another example which
+asymptotically saturates the bound.
 
 For the term \(\qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes τ_β}\) to vanish
 in \cref{eq:thermo_ergo_bound}, the state bath and system should be as
 close to the product thermal state as possible and so the bath state
 should not change too much. This is achievable with a continuous
-infinite size bath.  As \(ρ_β\otimes τ_β\) is the steady state of GKSL
-dynamics (without modulation) under mild
-assumptions~\cite{Binder2018}, it can be said that in this case
-ergotropy is being lost.
+infinite size bath.
 
 A corollary of \cref{eq:thermo_ergo_bound} is the Clausius form of the
 second law. By setting the system Hamiltonian to \(α \id\) in the
@@ -1641,39 +1686,37 @@ above discussion the ergotropy becomes the change of bath energy
   \begin{aligned}
     \ergo{ρ} &= \max_{U\,\text{unitary}}\tr[\qty(ρ - UρU^\dag)
                (α\id\otimes H_\bath)] \\
-             &=\max_{U\,\text{unitary}}\tr_\bath[\qty(\tr_\sys[ρ-UρU^\dag])
+             &=\max_{U\,\text{unitary}}\tr_\bath\qty[\qty(\tr_\sys[ρ-UρU^\dag])
                H_\bath]\\
-             &\equiv\max_{U\,\text{unitary}}ΔE_\bath\leq \frac{1}{β}\qrelent{ρ}{\frac{\id_N}{N}},
+             &\equiv\max_{U\,\text{unitary}}ΔE_\bath\leq
+               β^{-1}\qrelent{ρ}{\frac{\id_N}{N}}=β^{-1}\pqty{\log(N) - S(ρ)}
+               \leq β^{-1}\log(N),
   \end{aligned}
 \end{equation}
-where \(N\) is the system dimension. No finite amount of energy may
-therefore be extracted from the bath in a periodic manner. If it were
-possible to extract a constant positive amount of energy from the bath
-per cycle, \cref{eq:ergo_bath_change} would be breached in finite
-time.
+where \(N\) is the system dimension and \(α\) is arbitrary. No finite
+amount of energy may therefore be extracted from the bath in a
+periodic manner. If it were possible to extract a constant positive
+amount of energy from the bath per cycle, \cref{eq:ergo_bath_change}
+would be breached in finite time.
 
 
 \subsection{The Ergotropy of a Two
   Level System and a Bath of Identical Oscillators}
 \label{sec:explicitergo}
-\begin{itemize}
-\item as an illustrative example: calculate ergotropy for a concrete
-  model
-\item can show us how good the bound derived earlier is and whether it
-  holds for these infinite dimensional systems
-\end{itemize}
+Before retreating to numerics to explore the bound from
+\cref{sec:ergoonebath}, we will treat an illustrative example and
+explicitly calculate the ergotropy for a simple model. This allows us
+to see an indication how tight the bound can be.
 
-Here, we explicitly calculate the ergotropy of a finite dimensional
-system connected to a bath of identical oscillators. Throughout we
-will set the zero-point energy of the oscillators to zero, meaning
-that \(H=ωa^\dag a\) for a single harmonic oscillator with the usual
-annihilation operator \(a\).
+Consider a two dimensional system connected to a bath of identical
+oscillators. Throughout we will set the zero-point energy of the
+oscillators to zero, meaning that \(H=ωa^\dag a\) for a single
+harmonic oscillator with the usual annihilation operator \(a\).
 
-
-Let us choose \(H_S=α\id_N\)  for simplicity,
-where \(α\) is an arbitrary energy scale. The ergotropy is then equal
-to the maximal energy reduction of the bath under arbitrary cyclic
-modulation.
+Let us choose \(H_S=α\id_N\) as in \cref{eq:ergo_bath_change} for
+simplicity, where \(α\) is an arbitrary energy scale. The ergotropy is
+then equal to the maximal energy reduction of the bath under arbitrary
+cyclic modulation.
 
 The bound \cref{eq:thermo_ergo_bound} further simplifies to
 \begin{equation}
@@ -1681,19 +1724,20 @@ The bound \cref{eq:thermo_ergo_bound} further simplifies to
   \ergo{ρ\otimes τ_β} \leq \frac{1}{β} \qty[\ln(N) - S(ρ)],
 \end{equation}
 where \(S(ρ)=-\tr[ρ\ln(ρ)]\).  For a pure state
-\cref{eq:thermo_ergo_bound_specific} is maximal and we therefore choose
-\(ρ=\ketbra{0}\) as an arbitrary pure state.
+\cref{eq:thermo_ergo_bound_specific} is maximal and we therefore
+choose \(ρ=\ketbra{0}\) as an arbitrary pure state basis state of the
+two level system. The state \(\bra{1}\) is the second basis state,
+orthogonal to \(\ket{0}\).
 
 If we take the system to be a qubit, the right hand side of
 \cref{eq:thermo_ergo_bound_specific} is the Landauer bound
-\(β^{-1}\ln2\). Therefore, up saturation of the bound
+\(β^{-1}\ln2\). Therefore, upon saturation of the bound
 \cref{eq:thermo_ergo_bound_specific} we can extract enough energy from
 the bath to erase one bit in a system of the same temperature as the
 bath. Indeed, owing to \cref{eq:thermo_ergo_bound_specific} the closer
 the qubit state is to the infinite temperature (erased) state the more
 certain we are, that we have extracted the maximum energy out of the
 bath.
-
 
 \paragraph{One Oscillator}
 As a demonstration of the general program, let us first discuss the
@@ -2170,9 +2214,10 @@ energy lowering process to take place.
 Before focusing on the \(λ = 0\) case, we will briefly visit a
 phenomenon coined ``Quantum Friction'', whereby the creation of
 coherences in the system energy basis hinders the performances of
-thermal quantum machines. These coherences raise the ergotropy of the
-system without necessarily raising its energy and can thus not
-contribute to the operation of a machine.
+thermal quantum machines (see
+\cref{sec:quantum_friction_theory}). These coherences raise the
+ergotropy of the system without necessarily raising its energy and can
+thus not contribute to the operation of a machine.
 
 A simple demonstration of this can be observed in
 \cref{fig:quant_frict}. Here the simulation with frictionless
