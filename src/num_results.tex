@@ -1310,6 +1310,22 @@ coupling strengths.
 The interaction strength was chosen linearly spaced and the simulation
 results are presented in \cref{fig:delta_energy_overview}.
 
+As the shape of the BCF is not altered between the simulations, the
+bath energy flows look very similar as do the interaction
+energies. The main difference between the simulations is the magnitude
+of the interaction energy. With increased coupling strength there is
+an increased interaction energy and an increased flow which leads to
+faster energy loss in the system and faster energy gain of the
+bath. The stronger the coupling, the more pronounced is the
+non-monotonicity in time of the interaction energy, which is reflected
+in a non-monotonicity in the bath energy expectation value.
+
+The bath energy reaches a maximum and falls slightly for the strongest
+coupling simulations. If the interaction is strong enough,
+``backflow'' can occur despite finite bath correlation times. In
+\cref{fig:markov_analysis_steady} the bath memory is long,
+additionally to a strong coupling so that multiple oscillations can be
+seen.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/δ_energy_overview}
@@ -1318,20 +1334,6 @@ results are presented in \cref{fig:delta_energy_overview}.
     strengths. The curves are converged out, and the error funnels are
     not visible.}
 \end{figure}
-As the shape of the BCF is not altered between the simulations, the
-bath energy flows look very similar as do the interaction
-energies. The main difference is the magnitude of the interaction
-energy. With increased coupling strength there is an increased
-interaction energy and an increased flow which leads to faster energy
-loss in the system and faster energy gain of the bath. The stronger
-the coupling, the more pronounced as the non-monotonicity in time of
-the interaction energy, which is reflected in a non-monotonicity in
-the bath energy expectation value. The bath energy reaches a maximum
-and falls slightly for the strongest coupling simulations. If the
-interaction is strong enough, ``backflow'' can occur despite finite
-bath correlation times. In \cref{fig:markov_analysis_steady} the bath
-memory is long, additionally to a strong coupling so that multiple
-oscillations can be seen.
 
 Despite these differences for finite times, the approximate steady
 state\footnote{excluding the \(α(0)=0.4\) cases} interaction energies,
@@ -1380,9 +1382,9 @@ found in
 Many central questions in thermodynamics are concerned with energy
 extraction from macroscopic systems. These questions can be framed in
 operational terms that don't require a specific definition of heat and
-just relying on energy change in the total system or its
-constituents. Energy quantities are now accessible to us in a rather
-general settings, making issues related energy extraction a prime
+just rely on the energy change in the total system or its
+constituents. These quantities are now accessible to us in a rather
+general setting, making issues related energy extraction a prime
 application for our method.
 
 Here, we will focus on the closely related problems. The first is
