@@ -1074,65 +1074,90 @@ interaction. The system dynamics are catching up with the bath.
 \end{figure}
 
 To study the effect of the bath memory, we use Ohmic spectral
-densities with varying \(ω_c\) that have been shifted and scaled by
-numerical optimization so that their peaks coincide and the resulting
-maximal absolute interaction energies identical. The rightmost panel
-of \Cref{fig:markov_analysis} shows plots of the spectral densities
-obtained. We can see, that not only the magnitude at resonance point
-enters, as the peak heights are quite different. We will encounter
-this behavior again in \cref{sec:extr_mem}.
+densities with linearly spaced \(τ_{\bath}\equiv ω_c^{-1}\) that have
+been shifted and scaled by numerical optimization so that their peaks
+coincide and the resulting maximal absolute interaction energies
+identical. The rightmost panel of \Cref{fig:markov_analysis} shows
+plots of the spectral densities obtained. We can see, that not only
+the magnitude at resonance point enters, as the peak heights are quite
+different. We will encounter this behavior again in
+\cref{sec:extr_mem}.
 
 The results that can be obtained are very much dependent on the
 timing. \Cref{fig:markov_analysis} has been arrived at by tweaking the
-time point of decoupling so that an extremum in the \(ω_{c}=1\) curve
-is captured. This leads to an advantageous transfer performance with a
-lower system energy and a higher bath energy and similar cost in terms
-of total energy change, although residual system energy is still
-higher than in \cref{fig:resonance_analysis_steady}.
-
-Because the minimum in the interaction energy of the \(ω_{c}=1\) case
-comes last, the residual interaction energy and thus interaction
-strength is strongest when the interaction is turned off. Therefore
-the largest quantity of energy is being introduced into the system in
-this case when the interaction is turned off. In all cases the amount
-of energy introduced is so large, that the bath energy rises during
-the decoupling process instead of falling as in
+time point of decoupling so that an extremum in the system energy of
+the long memory (\(τ_{B}=1\)) case is captured. This leads to an
+advantageous transfer performance with a lower system energy and
+similar cost in terms of total energy change, although residual system
+energy is still higher than in \cref{fig:resonance_analysis_steady}.
+Although initially the system energy falls fastest for the short
+memory case the situation is reversed after about \(τ=.5\).
 \cref{fig:resonance_analysis_steady}.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis}
   \caption{\label{fig:markov_analysis} The same as
     \cref{fig:resonance_analysis} but for shifted spectral densities
-    various cutoff frequencies.}
+    various bath memory times. The long-memory case performs best in
+    this case, exhibiting the lowest final system energy.}
 \end{figure}
 
-For slightly longer coupling times, we find in the exact opposite
-picture as can be ascertained from \Cref{fig:markov_analysis_longer}.
+Because the minimum in the interaction energy of the \(τ_{\bath}=1\)
+case comes last, the residual interaction energy and thus interaction
+strength is strongest when the interaction is turned off. Therefore
+the largest quantity of energy is being introduced into the system in
+this case when the interaction is disabled. In all cases the amount of
+energy introduced is so large, that the bath energy slightly rises
+during the decoupling process instead of falling as in
+\cref{fig:resonance_analysis_steady}.
+
+
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis_longer}
   \caption{\label{fig:markov_analysis_longer} The same as
-    \cref{fig:markov_analysis} but with slightly different timing.}
+    \cref{fig:markov_analysis} but with slightly different timing. The
+    result is exactly the reverse of
+    \cref{fig:markov_analysis_longer}. Longer memories perform worse.}
 \end{figure}
-The increased bath memory time allows for ``back flow'' of energy and
-so the performance of energy transfer is strongly dependent on the
+For slightly longer coupling times but with the same coupling
+strengths, we find in the exact opposite picture as can be ascertained
+from \Cref{fig:markov_analysis_longer}.  The increased bath memory
+time allows for ``back flow'' of energy from the bath into the system
+and so the performance of energy transfer is strongly dependent on the
 precision of control. The oscillations of flow and thus bath energy
 have already been noticed in \cref{sec:oneosccomp} and seem to be a
 robust feature of stronger coupling and long bath
-memories. \fixme{Append tables for model params.}
+memories. \fixme{Append tables for model params.} The total energy
+introduced is slightly less than for the short times as the
+interaction energy is lower when the interaction is turned off.  The
+final bath show an inverse behavior falling as the final system
+energies rise. This is due to the energy transfer behavior, consistent
+with the broadly similar total energy change in all three cases. This
+behavior can also be observed \cref{fig:markov_analysis}.
 
 For even longer times we find a picture similar to
-\cref{fig:markov_analysis_steady}. The \(ω_{C}=3\) case shows hardly
-any backflow and performs slightly better in terms of final system
-energy. For \(ω_{c}=2\) we observe some mild backflow but otherwise
-the energy distribution for \(τ>3\) is broadly similar to the
-high-cutoff case. The simulation with the longest bath memory stands out.
+\cref{fig:markov_analysis_steady}. The short memory case shows hardly
+any backflow and performs best in terms of final system energy which
+is very close to zero. The medium memory case performs worse, but not
+by a large margin. The simulation with the longest bath memory stands
+out and having a very different final state as is exemplified by the
+final system energy and the interaction energy curve.
 \begin{figure}[h]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis_steady}
   \caption{\label{fig:markov_analysis_steady} The same as
-    \cref{fig:markov_analysis} but for long times.}
+    \cref{fig:markov_analysis} but for long times. The results are
+    broadly similar to \cref{fig:markov_analysis_longer} with the
+    \(τ_{\bath}=1\) case standing out.}
 \end{figure}
+
+In the two simulations with shorter memory we find that about half of
+the interaction energy is compensated by the total energy change. The
+rest is accounted for by a lowering of system and bath energy alike,
+an effect that is strongest in the short memory case especially for
+the system energy. A slower, more adiabatic coupling modulation could
+likely further reduce the amount of energy introduced.
 
 In summary we find that the energy dynamics of system, interaction and
 bath depend strongly on the characteristics of the bath.  In the
