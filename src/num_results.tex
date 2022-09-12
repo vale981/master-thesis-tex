@@ -1076,7 +1076,11 @@ interaction. The system dynamics are catching up with the bath.
 To study the effect of the bath memory, we use Ohmic spectral
 densities with varying \(ω_c\) that have been shifted and scaled by
 numerical optimization so that their peaks coincide and the resulting
-maximal absolute interaction energies identical.
+maximal absolute interaction energies identical. The rightmost panel
+of \Cref{fig:markov_analysis} shows plots of the spectral densities
+obtained. We can see, that not only the magnitude at resonance point
+enters, as the peak heights are quite different. We will encounter
+this behavior again in \cref{sec:extr_mem}.
 
 The results that can be obtained are very much dependent on the
 timing. \Cref{fig:markov_analysis} has been arrived at by tweaking the
@@ -1145,7 +1149,7 @@ Note that the short time behaviour discussed here can usually not be
 resolved by GKSL dynamics.
 
 \paragraph{Initial Slip}
-\begin{figure}[h]
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/omega_initial_slip}
   \caption{\label{fig:omega_initial_slip} Left panel: The bath energy
@@ -1158,7 +1162,10 @@ resolved by GKSL dynamics.
     the pure dephasing flow \(J_\mathrm{p.d.}\). The solid vertical
     lines mark the time \(τ_p\) where the normalized deviation from
     pure dephasing is \(10^{-2}\) and the dashed vertical lines show
-    the position of the peak flow at time \(τ_p\).}
+    the position of the peak flow at time \(τ_p\). The divergence from
+    pure dephasing dynamics occurs before the peak flow and the
+    earlier the longer the bath memory. The single trajectory flow
+    matches the converged flow for a longer period.}
 \end{figure}
 
 As the initial peak in the energy flow is also very prominent in the
@@ -1167,30 +1174,36 @@ simulations in this section we return to
 simulations to the pure dephasing case of \cref{sec:pure_deph}.
 
 We see in \cref{fig:omega_initial_slip} that the pure dephasing
-dynamics discussed in \cref{sec:pure_deph} dominate for very short
-time scales, but fail to predict the exact location of the peaks. The
-deviation from the pure dephasing flow occurs before the peak, where
-the time difference between the peak absolute flow and the deviation
-increases with decreasing \(ω_c\), as does the magnitude of the
-maximal relative deviation. This can be ascertained from the legend of
-\cref{fig:omega_initial_slip} where the difference between deviation
-and peak time normalized by peak time is given.
+dynamics are accurate for very short time scales, but fail to predict
+the exact location of the peaks in the bath energy flow. The deviation
+from the pure dephasing flow occurs before the peak, where the time
+difference between the absolute peak flow and the deviation increases
+with increasing bath memory \(\propto 1/ω_c\), as does the magnitude
+of the maximal relative deviation. This can be ascertained from the
+legend of \cref{fig:omega_initial_slip} where the difference between
+deviation and peak time normalized by peak time is given.
 
-For longer bath memories along with weaker
+We can conclude that for longer bath memories along with weaker
 couplings, the role of the system Hamiltonian dynamics in modulating
-the flow becomes increasingly important.
+the flow becomes increasingly important as now the system dynamics
+happen on the same time scale as the bath dynamics.
 
-Remarkably, the flow for a single trajectory does match the converged
-flow even better than the pure dephasing flow. For large \(ω_{c}\) the
-single trajectory matches until after the peak, whereas the deviation
-occurs earlier for the \(ω_{c}=1\) case. For short times the flow is
-mainly influenced by the buildup of the auxiliary states rather than
-the fluctuations of the stochastic process, leading to a similar
-behavior for most trajectories. See \cref{fig:flow_buildup} an
-illustration of this phenomenon. This is useful, as this period of
-rapid dynamics must be resolved very precisely to accurately integrate
-the flow into the bath energy change.
-\begin{figure}[h]
+The flow calculated from a single trajectory matches the converged
+longer than the pure dephasing flow. For large \(ω_{c}\) the single
+trajectory matches until after the peak flow, whereas the deviation
+occurs earlier for the \(ω_{c}=1\) case. The stochastic nature of the
+single trajectory dynamics seems to become important only after a
+finite amount of time, longer than period of pure dephasing
+dynamics.
+
+For short times the flow is mainly influenced by the buildup of the
+auxiliary states rather than the fluctuations of the stochastic
+process, leading to a similar behavior for most trajectories. See
+\cref{fig:flow_buildup} an illustration of this phenomenon. This is
+most useful, as this period of rapid dynamics must be resolved very
+precisely to accurately integrate the flow into the bath energy
+change.
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/flow_buildup}
   \caption{\label{fig:flow_buildup} The total norm of the first
@@ -1200,15 +1213,13 @@ the flow into the bath energy change.
     divergence between one trajectory and the ensemble occurs at
     roughly the same time for the flow and the auxiliary state
     norm. Moreover, flow and mean auxiliary state have the same
-    functional form for very short times, apart from a scaling factor.}
+    functional form for very short times, apart from a scaling
+    factor. The initial dynamics are therefore mainly concerned with
+    populating the auxiliary states.}
 \end{figure}
 
 \subsection{Varying the Coupling Strength}
 \label{sec:one_bathcoup_strength}
-\begin{itemize}
-\item does it pay off to couple more strongly?
-\item very brief discussion
-\end{itemize}
 \begin{wrapfigure}[17]{o}{0.3\textwidth}
   \centering
   \includegraphics{figs/one_bath_syst/final_states_flows}
@@ -1219,11 +1230,11 @@ the flow into the bath energy change.
 After having studied the dependence of the bath energy flow for
 various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
 we now consider the case with fixed cutoff \(ω_c=2\) but varying
-coupling strength. The simulation parameters are the same as in
-\cref{sec:one_bath_cutoff} and again consistent results have been
-obtained as can be gathered from
-\cref{fig:delta_interaction_consistency} throughout the whole range of
-coupling strengths.
+coupling strength. The results presented here are mainly a
+demonstration of the feasibility of high-consistency simulations for a
+range of coupling strengths. We will therefore keep the discussion of
+the physical implications relatively short.
+
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/δ_energy_overview}
@@ -1232,22 +1243,26 @@ coupling strengths.
     strengths. The curves are converged out, and the error funnels are
     not visible.}
 \end{figure}
-
+The chosen simulation parameters are the same as in
+\cref{sec:one_bath_cutoff} and again consistent results have been
+obtained as can be gathered from
+\cref{fig:delta_interaction_consistency} throughout the whole range of
+coupling strengths.
 The interaction strength was chosen linearly spaced and the simulation
 results are presented in \cref{fig:delta_energy_overview}.
 
-As the shape of the BCF is not altered the bath energy flows look very
-similar as do the interaction energies. The main difference is the
-magnitude of the interaction energy. With increased coupling strength
-there is an increased interaction energy and an increased flow which
-leads to faster energy loss in the system and faster energy gain of
-the bath. The stronger the coupling, the more pronounced as the
-non-monotonicity in time of the interaction energy, which is reflected
-in a non-monotonicity in the bath energy expectation value, which
-reaches a maximum and falls slightly for the strongest coupling
-simulations. If the interaction is strong enough, ``backflow'' can
-occur despite finite bath correlation times. In
-\cref{fig:markov_analysis_steady} the bath memory is long,
+As the shape of the BCF is not altered between the simulations, the
+bath energy flows look very similar as do the interaction
+energies. The main difference is the magnitude of the interaction
+energy. With increased coupling strength there is an increased
+interaction energy and an increased flow which leads to faster energy
+loss in the system and faster energy gain of the bath. The stronger
+the coupling, the more pronounced as the non-monotonicity in time of
+the interaction energy, which is reflected in a non-monotonicity in
+the bath energy expectation value, which reaches a maximum and falls
+slightly for the strongest coupling simulations. If the interaction is
+strong enough, ``backflow'' can occur despite finite bath correlation
+times. In \cref{fig:markov_analysis_steady} the bath memory is long,
 additionally to a strong coupling so that multiple oscillations can be
 seen.
 
