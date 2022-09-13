@@ -538,5 +538,97 @@ and
   \mqty(0\\ W(s))\dd{s}.
 \end{equation}
 
+
+\subsection{Detailed Treatment of the Weights in the Normal Ordering
+  of the Interaction}
+\label{sec:normal_powers}
+Notably,
+the \(n\)th moment of \(H_\inter\) will depend on the hierarchy states
+up to the depth \(n\). However, the terms involving similar exponents
+for \(B^\dag\) and \(B\) will have the largest weights, so that the
+hierarchy states of depth \(n/2\) play an important role. Truncating
+the hierarchy will not simply lead to all higher orders moments of the
+interaction being zero. Instead, the dependence upon the hierarchy
+states is nontrivial. The explicit appearance of \(α(0)\) can be
+avoided if we choose \(B\) unitless and \(α(0) = 1\).
+
+Minimizing the coefficient \(l! 2^l k! (n-2l-k)!\) will give us the
+order of \(B\) and thus the hierarchy depth that will contribute the
+most to \cref{{eq:interactionnormal}}.  It suffices to minimize the
+logarithm,
+\begin{equation}
+  \label{eq:logcoeff}
+  Λ=\ln(2)l + \ln(Γ(l+1)) + \ln(Γ(k+1)) + \ln(Γ(n-2l -k + 1)).
+\end{equation}
+
+We begin by minimizing for \(k\)
+\begin{equation}
+  \label{eq:mink}
+  \pdv{Λ}{k} = ψ(k+1)-ψ(n-2l-k+1) \overset{!}{=}0,
+\end{equation}
+where \(ψ\) is the Digamma function~\cite[p. 136]{NISTHandbook}.
+As the Digamma function is strictly monotonic and thus injective,
+\cref{eq:mink} implies \(k+1=n-2l-k+1\) and thus
+\(l=n/2-k\). Note that the optimizing \(k\) is also the order of the
+\(B\) operator associated with the coefficient.
+
+Using this it remains to minimize
+\begin{equation}
+  \label{eq:logcoeff_k}
+  Λ'=\ln(2)\qty(\frac{n}{2}-k) + \ln(Γ\qty(\frac{n}{2}-k+1)) + 2\ln(Γ(k+1)).
+\end{equation}
+yielding
+\begin{equation}
+  \label{eq:minkk}
+  \begin{aligned}
+    \pdv{Λ'}{k} &= 2ψ(k+1) -\ln(2) - ψ\qty(\qty(\frac{n}{2}-k+1))\\
+                &\sim 2 \ln(k+1) - \ln(2) -\ln(\frac{n}{2}-k+1)\\
+                &\overset{!}{=}0
+  \end{aligned}
+\end{equation}
+and finally
+\begin{equation}
+  \label{eq:finalk}
+  k_m=\left\lceil\sqrt{5+n}-2\right\rceil\sim\sqrt{n},
+\end{equation}
+where the ceiling has been chosen to obtain an integer. The error this
+introduces is of the order of one.  We find that the ``most
+important'' order of \(B\) required to calculate \(H_\inter^n\) scales
+with \(\sqrt{n}\).  Note however, that the distribution of weights as
+shown in~\cref{fig:kdist} will become broader with larger \(n\) and
+that a specific \(k\) can occur multiple times, which will slightly
+shift the maximum. A binomial (or Gaussian) distribution centered at
+\(k_m\) as shown in \cref{fig:kdist} appears to be a good fit for the
+relevant parameter space. Such a distribution has a standard deviation
+of \(n^{{1}/{4}}\) for large \(n\). The position tail of the \(k\)
+distribution thus scales like \(n^{1/2} + n^{1/4}\). The coupling
+strength does only enter as a scale that controls which moment of
+\(H_I\) is still relevant, albeit such a discussion should rather be
+made for centered and normalized moments as they are
+dimensionless. Without an a-priori estimate of \(\ev{H_I}\) and the
+norm of the hierarchy states the above discussion has to be taken with
+a grain of salt. Such estimates may possibly be obtained from the
+estimates of the hierarchy state norms in \cref{sec:normest} and
+contain not only the coupling strength, but also the shape of the BCF.
+
+The result to take away is, that the expectation value of \(H_I^n\)
+depends strongly on hierarchy states of order \(\sim \sqrt{n}\).
+
+\begin{figure}[h]
+  \centering
+  \plot{interaction_orders/k_weights}
+  \caption{\label{fig:kdist}The unnormalized distribution of the
+    coefficients in \cref{eq:interactionnormal} with respect to \(k\)
+    for different \(n\). As a particular \(k\) can appear multiple
+    times in the sum, only the maximal coefficient for each \(k\) is
+    being considered in the lines with the triangle markers. The
+    maximum of this distribution is given by \cref{eq:finalk}. The
+    lines with the circle markers show the full distribution and the
+    lines with the triangle markers show only the normalized
+    distribution of the maximum of \(l! 2^l k! (n-2l-k)!\) over \(l\).
+    The dotted lines correspond to binomial distributions centered at
+    \(k_m\).}
+\end{figure}
+
 \subsection{Technical Notes on the Code}
 \label{sec:code}
