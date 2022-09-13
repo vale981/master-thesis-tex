@@ -223,37 +223,7 @@ dynamics~\cite{Rivas2012}. Therefore a system that starts out in some
 entangled state just to reach the perfect product state at \(t=0\) is
 not something that is likely to be applicable to physical questions.
 
-The solution detailed above is only valid for positive times. Because
-we strive to employ the same formalism again for negative times, we
-will concern ourselves with the transformed quantities
-\(\bar{X}(τ) = X(t(τ)) = X(-τ)\) so that \(τ ≥ 0\). It follows that
-\(∂_τ \bar{X}(τ) = \bar{X}'(τ) = -\dot{X}(t(τ))\) so that
-\begin{align}
-  \bar{q}' &= -Ω \bar{p} \label{eq:qtag}\\
-  \bar{p}' &= Ω \bar{q} + ∫_0^τ \Im[α_0(τ-s)] \bar{q}(s)\dd{s} - \bar{W}(τ) \label{eq:ptag}
-  \\
-  \bar{b}'_λ &= \iu g_λ \frac{q'}{2} + \iu\omega_λ b'_λ.
-\end{align}
-This leads to an equation for \(\bar{G}(τ)\), namely
-\begin{equation}
-  \label{eq:eqmotpropbar}
-  \bar{G}'(τ) = -A \bar{G}(τ) + \int_0^τ K(τ-s) \bar{G}(s)\dd{s}.
-\end{equation}
-The solution is obtained from the \(t\geq 0\) case by substituting
-\(A\rightarrow -A\) and \(K\rightarrow -K\).
-We obtain for \(t\leq 0\)
-\begin{equation}
-  \label{eq:gfinalbar}
-  \bar{G}(τ) = G(-τ) = G(t) = \sum_{l=1}^{N+1}\qty[R_l \mqty(\tilde{z}_l & -Ω \\ -\frac{\tilde{z}_l^2}{Ω} & \tilde{z}_l)\eu^{-\tilde{z}_l \cdot
-    t} + \cc]
-\end{equation}
-and
-\begin{equation}
-  \label{eq:qpsolneg}
-  \mqty(q(t)\\ p(t)) = G(t)\mqty(q(0)\\ p(0)) - \int_t^0 G(t-s)
-  \mqty(0\\ W(s))\dd{s}.
-\end{equation}
-
+For the expression see \cref{sec:reverse_time}.
 
 \subsection{Applications}
 \label{sec:applications}
