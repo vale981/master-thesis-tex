@@ -215,7 +215,7 @@ proceed as in \cref{sec:nonlin} by noting
   ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{\vb{z}^\ast=\vb{z}^\ast(t)}
                                                          \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))} \\
     &=
-  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{\vb{z}^\ast=\tilde{\vb{z}}^\ast(0)}
+  ∫_0^t\dd{s}\eval{\pdv{η^\ast_s}{z^\ast_\lambda}}_{\vb{z}^\ast=\vb{z}^\ast(0)}
   \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))},
   \end{aligned}
 \end{equation}
@@ -532,9 +532,11 @@ arbitrary observables of the form
 \end{equation}
 where \(α\) is a two-dimensional multi-index, \(B\) is as
 in~\cref{eq:totalH} and the \(F_α\) are general observables acting on
-the system only. Note that \(f\) is already normal-ordered.  We will
-restrict the discussion to the case of a single bath, as the
-generalization to multiple baths is straight-forward.
+the system only. Note that \(O\) is already normal-ordered so as to
+lead to a result including the hierarchy states instead of the
+stochastic process.  We will restrict the discussion to the case of a
+single bath, as the generalization to multiple baths is
+straight-forward.
 
 To evaluate \(\ev{O}\) we have to find the value of
 \(\ev{\qty(B^†)^a B^b}\). This can be achieved by interjecting the
@@ -637,15 +639,11 @@ BCF in an indirect manner.
 
 \subsection{Interaction Energy}
 \label{sec:intener}
-\begin{itemize}
-\item last missing ``thermodynamic'' quantity
-\item can also be used to quantify how ``strong'' the coupling is
-\item simple application of the above formalism, even simpler than flow
-\end{itemize}
 To access all contributions to the total energy \(\ev{H}\) a way to
 calculate the expectation value of the interaction energy
-\(\ev{H_{\inter}}\) is required.  This is a application of the
-formalism discussed in~\cref{sec:general_obs}.
+\(\ev{H_{\inter}}\) is required. The magnitude of the interaction
+energy is also an effective way to quantify the interaction strength.
+
 
 For zero temperature and the nonlinear method we arrive at
 \begin{equation}
@@ -655,6 +653,9 @@ For zero temperature and the nonlinear method we arrive at
   \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\tilde{D}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
   + \cc.
 \end{equation}
+This is a application of the formalism discussed
+in~\cref{sec:general_obs}.
+
 The expression for the linear method is obtained by
 simply leaving out the normalization.
 
