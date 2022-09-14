@@ -290,7 +290,9 @@ finite temperature counterpart and continue as before
   \eu^{-i ω t}\dd{ω},
   \end{aligned}
 \end{equation}
-where \(\bose\) is the Bose-Einstein distribution.
+where \(\bose\) is the Bose-Einstein distribution. The second line of
+p\cref{eq:finite_bcf} is often called the effective spectral density
+for finite temperatures. Note that negative frequencies are included.
 
 Here we choose another approach however, as it holds for general
 couplings, is well tested by \cite{RichardDiss} and the tools for its
@@ -438,7 +440,12 @@ and therefore
 This is an expression that we can easily evaluate with the HOPS
 method. We will however refrain from doing so, as it turns out in
 \cref{sec:hopsvsanalyt} that consistent results can be obtained using
-the derivative of the stochastic process \(ξ\).
+the derivative of the stochastic process \(ξ\), which avoids the
+numeric time derivative in \cref{eq:gettingarounddot}. This time
+derivative can however be performed after performing the ensemble mean
+on a function that is generally smooth, even for non-differentiable
+\(ξ\).
+
 \section{Generalization to Multiple Baths}
 \label{sec:multibath}
 Another requirement for thermodynamic application is the ability to
