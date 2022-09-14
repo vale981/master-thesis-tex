@@ -396,8 +396,8 @@ corresponding passive state\footnote{Due to the degeneracy of the
   system Hamiltonian, the passive state is not unique.} we have to
 construct a sequence \(λ_{i},\, i \in \NN_{0}\) out of the weights
 \(λ_{0,n}\) such that \(λ_{i}\geq λ_{j}\) for \(i\leq j\) and a
-sequence of states \(\ket{j}\) so that for \(\ev{H}{j} = E_{j}\) we
-have \(E_{i}\leq E_{j}\) for \(i\leq j\). The passive state and its
+sequence of states \(\ket{j}\) so that for \(H\ket{j} = E_{j}\ket{j}\)
+we have \(E_{i}\leq E_{j}\) for \(i\leq j\). The passive state and its
 corresponding energy is then
 \begin{equation}
   \label{eq:specific_passive_state}
@@ -435,9 +435,8 @@ out to be
 
 For low temperatures or large frequencies, the ergotropy of the
 oscillator is just its mean thermal energy \(ω\bose(ωβ)\). In the
-opposite limit we find
-\(\mathcal{W} = \frac{1}{7β}< β^{-1}\ln(2)\)\fixme{check calculations
-  :P}.
+opposite limit we find \(\mathcal{W} = \frac{1}{7β}< β^{-1}\ln(2)\)
+verifying the bound derived in \cref{sec:ergoonebath}.
 
 \paragraph{Many Oscillators}
 For the case of \(N>1\) oscillators with frequency \(ω\) the initial
@@ -451,13 +450,12 @@ oscillator and \(\abs{\vb{n}}=∑_{i=1}^{N}n_{i}\) and \(Z=Z_{1}^{N}\).
 
 In this case we again call the ordered sequence of weights \(λ_{i}\),
 but its construction is somewhat more complicated and we will refrain
-from doing so here explicitly.
-Instead we take an enumeration of state labels
-\(\{\vb{n}^{i}\}_{i\in\NN_{0}}\) such that
+from doing so here explicitly.  Instead we take an enumeration of
+state labels \(\{\vb{n}^{i}\}_{i\in\NN_{0}}\) such that
 \(i<j \implies m_{i} \leq m_{j}\) with
 \(m_{i}\equiv\abs{\vb{n}^{i}}\). The energies of the states
 \(\ket{k,\vb{n}^{i}}\) evaluate to \(E_{k, i} = ω m_{i}\) and the
-weights to \(λ_{0,i}=Z^{-1}\eu^{-βω m_{i}},\,λ_{1,i}=0\).
+initial weights to \(λ_{0,i}=Z^{-1}\eu^{-βω m_{i}},\,λ_{1,i}=0\).
 
 The required enumeration of states and energies is then
 \begin{equation}
@@ -487,7 +485,7 @@ that \(x_{m}=G^{N+1}_{m}=\binom{N+m}{m}\) denotes the index \(i\)
 until which \(m_{i}\) has the value \(m\). Likewise
 \(\qty{y_{m}}_{m\in\NN_{0}}\) is defined so that
 \(y_{m}=\big\lceil G^{N+1}_{m}/2\big\rceil\) denotes the index \(i\)
-until which \(m_{2i}\) has the value \(m\). When using the floor
+until which \(m_{2i}\) retains the value \(m\). When using the floor
 instead of ceil in the definition of \(y_{m}\) we find that this
 sequence \(\qty{z_{m}}_{m\in\NN_{0}}\) fulfills the same purpose but
 for \(m_{2i+1}\).
@@ -511,7 +509,7 @@ The \(Δ^{e}_{m,k}\) denotes the number of indices \(i\) where
 \(m_{i}=m\) and \(m_{2i}=k\) and the \(Δ^{e}_{m,k}\) have the same
 function, but for \(m_{2i+1}\).
 The equations \cref{eq:deltas} lists explicit formulas only for the
-case, where the difference is at most one, but this is sufficient for
+case where the difference is at most one, but this is sufficient for
 the estimate we will discuss now.
 
 We find
@@ -577,9 +575,9 @@ which yields
   \mathcal{W} \leq ω \bose(ωβ) = E_{1}.
 \end{equation}
 
-So the ergotropy of \(N\) oscillators is bounded by the thermal energy
-of a single oscillator. This bound converges to the exact ergotropy as
-\(ωβ\rightarrow ∞\) as the terms left out in
+Thus the ergotropy of \(N\) oscillators is bounded by the thermal
+energy of a single oscillator. This bound converges to the exact
+ergotropy as \(ωβ\rightarrow ∞\) as the terms left out in
 \cref{eq:manhoergoestimate} do not contribute in this limit.
 
 For \(ωβ\ll 1\) we neglect the lower values of \(m\) in
@@ -624,7 +622,7 @@ infinite continous bath is required for the saturation of the bound.
 
 A similar scheme to the one used in \cref{eq:manhoergoestimate} can be
 employed numerically to compute the exact ergotropy efficiently and to verify our
-findings as has been done in.
+findings as has been done in \cref{fig:numeric_n_ho_ergo}.
 \begin{figure}[htp]
   \includegraphics{figs/ergo_calc/ergo_numeric}
   \caption{\label{fig:numeric_n_ho_ergo} Numerical evaluation of
@@ -640,21 +638,22 @@ In conclusion, we have found an upper bound
 thermal state and a two level system in a pure state. The bound
 \cref{eq:thermo_ergo_bound_specific} on ergtropy is still valid and
 also tightest in the infinite bath case with vanishing level distance
-\(ω\to 0\). We find that in order to saturate the bound, a bath of
-infinite size and vanishing level spacing is required. These
-conditions are fulfilled for the baths usually considered in open
-quantum systems, where a continuum of frequencies are present instead
-of a single, very degenerate one.
+\(ω\to 0\). These conditions are fulfilled for the baths usually
+considered in open quantum systems, where a continuum of frequencies
+are present instead of a single, very degenerate one. The energy level
+distance vanishes in this case.
 
-Even for finitely many oscillator the ergtropy bound can be approached
-rather closely for finite \(ω\) as can be seen in
+Even for finitely many oscillators the ergtropy bound can be
+approached rather closely for finite \(ω\) as can be seen in
 \cref{fig:numeric_n_ho_ergo_nonmon}. Remarkably, the ergotropy becomes
-a non-monotonous function of level spacing \(ω\) for larger \(N\)
-while always increasing with \(N\). Also, for large \(N\) the
-transition into the region where the estimate upper bound
-\cref{eq:thermo_ergo_bound} is tight is very close to the crossing
-point of this bound with the \(ω\ll 1\) estimate and the bound is very
-tight as may be expected, because the error one makes in
+a non-monotonous function of the level spacing \(ω\) for larger \(N\)
+even though there is no additional energy scale present to warrant a
+resonance phenomenon.  It is always increasing with \(N\).
+
+Also, for large \(N\) the transition into the region where the upper
+bound \cref{eq:thermo_ergo_bound} is tight is very close to the
+crossing point of this bound with the \(ω\ll 1\) estimate. This bound
+is very tight as may be expected, because the error one makes in
 \cref{eq:manhoergoestimate} becomes negligible in the case \(N\gg 1\).
 \begin{figure}[htp]
   \includegraphics{figs/ergo_calc/ergo_nonmonotonic}
@@ -666,21 +665,22 @@ tight as may be expected, because the error one makes in
 \subsection{A bound on the Energy Change of Multiple Baths in the
   Periodic Steady State}
 \label{sec:operational_thermo}
-\begin{itemize}
-\item for multiple baths of differing temperatures: previous
-  discussions not applicable
-\item nevertheless, there is a limit on the combined energy change of
-  the baths in the PSS
-\item a gibbs like inequality is derived, the left-hand-side may be
-  interpreted as thermodynamic cost, maybe input for future optimizations
-\end{itemize}
-As in the single bath case, some statement about the amount of energy
-that can be expected to be extracted in a cyclic manner. An argument
-based on entropy may be made for the periodic steady state as was
-shown in~\cite{Kato2016Dec} and is reproduced here. We will find the
-Clausius form of the second law.
+The above discussions do not apply to the more interesting case of a
+system coupled to multiple independent baths of differing
+temperatures. Naturally, the ergotropy of such a system cannot be
+expected to be bounded in the infinite bath limit. Instead, as in
+standard thermodynamics, we wish to find some limit to the amount of
+energy that can be extracted out of the system in relation to the
+energy that is simply transferred between the baths.
 
-We consider the situation given by the Hamiltonian for a system
+An argument based on entropy may be made for the periodic steady state
+as was shown in~\cite{Kato2016Dec} and is reproduced here with the
+slight generalization of multiple baths and modulated coupling. We
+will find a Clausius like form of the second law. The left hand side
+of this inequality can then be interpreted as thermodynamic cost of
+the cyclical process.
+
+We consider a situation specified by a Hamiltonian for a system
 coupled to multiple baths under periodic driving
 \begin{equation}
   \label{eq:katoineqsys}
@@ -688,12 +688,12 @@ coupled to multiple baths under periodic driving
 \end{equation}
 Here, \(H_\sys(t)\) is the system Hamiltonian, \(H_\bath^i\) is the
 Hamiltonian of the \(i\)-th bath and \(H_\inter^i(t)\) is the coupling
-to the same. Again, the bath must be treated as finite during the
+to this bath. Again, the bath must be treated as finite during the
 derivation.
 
-The von Neumann entropy \(S(t)=-\tr[ρ\ln ρ]\) of the global state whose
-evolution is generated by \cref{eq:katoineqsys} is
-constant. Additionally \(S\) is sub-additive meaning
+The von Neumann entropy \(S(t)=-\tr[ρ\ln ρ]\) of the global state
+whose evolution is generated by \cref{eq:katoineqsys} is
+constant. Additionally it is sub-additive meaning
 \begin{equation}
   \label{eq:subadd}
   S(t) \leq -\tr[ρ_\sys(t)\ln ρ_\sys(t)] - ∑_i\tr[ρ_{\bath^i}(t)\ln
@@ -727,6 +727,7 @@ where
 \id)]\), \(ρ_{\bath^i}^β=\exp(-β H_{\bath^i})/Z\) and
 \(F_{\bath^i}=-\ln(Z_{\bath^i})/β\) is the equilibrium free energy of
 the bath at (as yet undetermined) inverse temperature \(β\).
+
 The result \cref{eq:bathentro} implies
 \begin{equation}
   \label{eq:bathenergychange}
@@ -734,7 +735,7 @@ The result \cref{eq:bathentro} implies
   \qrelent{ρ_{\bath^i}(t)}{ρ_{\bath^i}^{β_i}} \leq β_i ΔE_{\bath^i}(t).
 \end{equation}
 Note that \(β_i\) is now being fixed through
-\(\qrelent{ρ_{\bath^i}(0)}{ρ_{\bath^i}^{β_i}}\Leftrightarrow
+\(\qrelent{ρ_{\bath^i}(0)}{ρ_{\bath^i}^{β_i}}=0\Leftrightarrow
 {ρ_{\bath^i}(0)}={ρ_{\bath^i}^{β_i}}\).
 
 Combining \cref{eq:bathenergychange,{eq:deltagreat}} yields
@@ -746,12 +747,13 @@ This inequality only contains quantities that can be expected to be
 finite, even in the limit of infinite baths.
 
 As in \cref{sec:ergoonebath} we now demand periodic driving, that is
-\(H(t+τ) = H(t)\) for some \(τ\geq 0\). Now we \emph{Assume} that the
+\(H(t+τ) = H(t)\) for some \(τ\geq 0\). Now we \emph{assume} that the
 system enters a periodic steady state after the time \(n_0τ\) for some
 \(n_0\in\NN\) so that \(ρ_\sys((n + n_0)τ)= ρ_\sys(n_0τ)\) for all
 \(n\in\NN\). This assumption is linked to the notion of a ``finite
-memory'' of the baths. In the same spirit, we \emph{assume} that the
-energy change of each bath
+memory'' of the baths which implies an infinite bath\footnote{Or, as
+  we have remarked earlier, a suitably large bath.}. In the same
+spirit, we \emph{assume} that the energy change of each bath
 \(ΔE_{\bath^i}^\cyc =ΔE_{\bath^i}((n+1)τ)-ΔE_{\bath^i}(nτ) =
 E_{\bath^i}((n+1)τ)-E_{\bath^i}(nτ)\) is constant once the system is
 in the periodic steady state. This behavior, at least on the system
@@ -759,7 +761,7 @@ level, is suggested by the NMQSD equation \cref{{eq:multinmqsd}}.
 
 As the system entropy does not change over a cycle
 \(ΔS_\sys^\cyc = ΔS_\sys(τ (n+n_0)) - ΔS_\sys(τ n_0)=S_\sys(τ (n+n_0)) - S_\sys(τ
-n_0)=0\) vanishes we have
+n_0)=0\) vanishes and we have
 \begin{equation}
   \label{eq:secondlaw_cyclic}
   ∑_iβ_i ΔE_{\bath^i}^\cyc \geq 0,
@@ -767,11 +769,16 @@ n_0)=0\) vanishes we have
 as otherwise the inequality \cref{eq:bathenergyandsystementro} would
 be violated in finite time.
 
+In fact, the requirement that \(ΔE_{\bath^i}^\cyc\) be constant can be
+relaxed, as \cref{eq:secondlaw_cyclic} holds as soon as
+\(ΔS_\sys^\cyc\) vanishes.
+
 The left hand side could be called ``bath entropy production'' as is
 motivated in \cite{Riechers2021Apr}, where heat is identified with
-\(ΔE_{\bath^i}\). There also an entropy production bound that takes
-into account system and bath is being considered and brought into
-connection with information-theoretic quantities.
+\(ΔE_{\bath^i}\). There the entropy production bound
+\cref{eq:bathenergyandsystementro} that takes into account system and
+bath is being considered and brought into connection with
+information-theoretic quantities.
 
 If one defines heat as is done in
 \cite{Kato2016Dec,Riechers2021Apr,Strasberg2021Aug} as the change of
@@ -789,25 +796,14 @@ to be useful.  Assume that the interaction Hamiltonian in
 energy expectation values can be cleanly separated. In the periodic
 steady state the system energy does not change during a cycle and the
 whole energy change amounts to the change in bath energy. In a setting
-with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound.
-
+with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound for
+the efficiency given in \cref{eq:efficiency_definition}.
 
 \section{Modulation of System and Interaction for a Single Bath}
 \label{sec:singlemod}
-\begin{itemize}
-\item again a numerically simple model to apply our findings from
-  \cref{sec:basic_thermo}
-
-\item not clear how tight the bound is and if it is still valid
-\item apply also findings about resonance (modified for modulation)
-  from previous section
-\item despite simplicity: a lot of parameters and we only look at a
-  shallow subset of all possibilities
-\end{itemize}
-
-Because the HOPS allows us to simulate a full dynamical picture of our
-model, let us now turn to a situation where the dynamics are of
-interest.
+Because the HOPS method is best suited to situations where the actual
+finite time dynamics are of interest, let us now turn to such a
+problem.
 
 A classical dictum of thermodynamics is, that it is impossible to
 extract energy from a single bath in a cyclical manner. Indeed, we
@@ -817,8 +813,10 @@ we found, that the bound given on the ergotropy in such a situation
 can be saturated for infinite baths, such as the ones used with
 NMQSD/HOPS. However, it is unclear if such a unitary transformation
 can be implemented without explicit construction of a model. Our goal
-in this section is to extract as much energy from a one-bath system
-as is possible without extensive tuning.
+in this section is to extract as much energy from a one-bath system as
+is possible without extensive tuning. We will applying the results of
+the previous studies of \cref{chap:numres} to produce consistent
+results.
 
 In this section we will focus on the minimal dimensionless model
 \begin{equation}
@@ -839,54 +837,65 @@ from the bath and not the system. To maximize energy flow, we will use
 resonant baths whose spectral densities have been shifted such that
 their maxima coincide with \(1 + Δ\).
 
+Despite the simplicity of the model \cref{eq:one_qubit_model_driven}
+simplicities there too many free parameters. We will narrow down the
+field of possible paramteres in
+\cref{sec:quantum_friction,sec:sys_mod_v_no_sys_mod} and then focus on
+the energy extraction performance in relation to properties of the
+bath and the modulation frequency in
+\cref{sec:extr_mem,sec:speedlim,sec:modcoup_reso}.
+
 For this model the ergotropy bound \cref{eq:ergo_bath_change}
 evaluates to
 \begin{equation}
   \label{eq:ergo_mod_model}
-  \mathcal{W} \leq β^{-1} \ln(1+\eu^{-ωβ})=\mathcal{W}_{\mathrm{max}}.
+  \mathcal{W} \leq β^{-1} \ln(1+\eu^{-β})=\mathcal{W}_{\mathrm{max}}.
 \end{equation}
-For \(ω\to ∞\) we find \(\mathcal{W} = 0\) as the temperature \(T\)
-must be of the order of the system energy gap \(ω\) for any
-energy lowering process to take place.
+For \(β\to ∞\) we find \(\mathcal{W} = 0\) as the temperature \(T\)
+must be of the order of the system energy gap or larger for any energy
+lowering process to take place.
 
 \subsection{Quantum Friction}
 \label{sec:quantum_friction}
-Before focusing on the \(λ = 0\) case, we will briefly visit a
-phenomenon coined ``Quantum Friction'', whereby the creation of
-coherences in the system energy basis hinders the performances of
-thermal quantum machines (see
-\cref{sec:quantum_friction_theory}). These coherences raise the
-ergotropy of the system without necessarily raising its energy and can
-thus not contribute to the operation of a machine.
-
-A simple demonstration of this can be observed in
-\cref{fig:quant_frict}. Here the simulation with frictionless
-modulation \(σ_{f}=σ_{x}\) does extract less energy from the total
-system as \(σ_{f}=σ_{z}\) case. One reason for this is the not
-insignificant buildup of ergotropy in the system state which is being
-reduced to zero periodically, but does retard the energy extraction so
-that less energy is extracted before the periodic steady state is
-being reached which does only increase energy (see
-\cref{sec:operational_thermo}).\fixme{TODO: plot coherences}
-\begin{figure}[h]
+Before focusing on the \(λ = 0\) case, we will briefly revisit the
+phenomenon introduced in \cref{sec:quantum_friction_theory}. The so
+called \emph{Quantum Friction} is the creation of
+coherences\footnote{Or more generally the creation of ergotropy.} in
+the system energy basis and hinders the performances of thermal
+quantum machines. These coherences raise the ergotropy of the system
+consuming that could have been extracted by the external modulation.
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/quantum_friction}
   \caption{\label{fig:quant_frict} Total energy change normalized by
-    the maximal ergotropy in the left panel and the ergotropy of the system
-    state \(ρ_{\sys}\) normalized by the maximal extracted energy
-    (dashed lines in left panel) in the right panel over time. Here
-    \(λ=0.1, Δ=5, T=5\) was chosen. In the ``With Friction'' case
-    \(σ_{f}=σ_{x,y}\) and in the ``Frictionless'' case
-    \(σ_{f}=σ_{z}\).  The solid dots mark the times when \(H_{\inter}
-    = 0\). The horizontal dashed lines mark the minimal
+    the maximal ergotropy in the left panel and the ergotropy of the
+    system state \(ρ_{\sys}\) normalized by the maximal extracted
+    energy (dashed lines in left panel) in the right panel over
+    time. Here \(λ=0.1, Δ=5, T=5\) was chosen. In the ``With
+    Friction'' case \(σ_{f}=σ_{x,y}\) and in the ``Frictionless'' case
+    \(σ_{f}=σ_{z}\).  The solid dots mark the times when
+    \(H_{\inter} = 0\). The horizontal dashed lines mark the minimal
     total energy differences achieved.  For more parameters see
-    \cref{tab:plus_friction}.}
+    \cref{tab:plus_friction}. In the frictionless case the most energy
+    is being extracted. The \(σ_{y}\) modulation that commutes neither
+    with the system Hamiltonian nor with the interaction performs
+    worst.}
 \end{figure}
 
-When choosing \(σ_{f}=σ_{y}\) the situation is even worse, because now
-the system modulation does not even commute with the interaction. The
-extracted energy is smallest and the relative system ergotropy buildup
-is maximal.
+A simple demonstration of this can be observed in
+\cref{fig:quant_frict}. Here the simulation with nondiagonal
+modulation \(σ_{f}=σ_{x}\) does extract less energy from the total
+system as the \(σ_{f}=σ_{z}\) case. One reason for this is the not
+insignificant buildup of ergotropy in the system state which is being
+reduced to zero periodically, but does retard the energy extraction so
+that less energy is extracted before the periodic steady state is
+being reached which does only increase energy as was shown in see
+\cref{sec:operational_thermo}.
+
+When choosing \(σ_{f}=σ_{y}\) the situation becomes even worse because
+now the system modulation does not even commute with the
+interaction. The extracted energy is smallest and the relative system
+ergotropy buildup is much larger than in the \(σ_{f}=σ_{x}\) case.
 
 \subsection{System Modulation}
 \label{sec:sys_mod_v_no_sys_mod}
@@ -898,30 +907,33 @@ ergotropy) generated by the system modulation is much greater than
 without system modulation. However, it is questionable whether this is
 the only reason for the performance advantage of the case without
 system modulation. Another factor is, that the system goes in and out
-of resonance with the bath and therefore hampers energy
-extraction.
-\begin{figure}[h]
+of resonance with the bath and therefore hampers the interaction.
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/system_vs_no_system}
   \caption{\label{fig:quant_frict_sys_no_sys} Similar to
     \cref{fig:quant_frict}, but for (frictionless) system modulation
-    and no system modulation. The parameters were \(λ=0.1, Δ=5, T=5\)
-    and further details can be found in \cref{tab:plus_system}.}
+    and no system modulation. The parameters were
+    \(λ=0.1,\, Δ=5,\, T=5\) and further details can be found in
+    \cref{tab:plus_system}. Less energy is extracted when the system
+    Hamiltonian is being modulated.}
 \end{figure}
 
 In light of this result we shall continue with \(λ=0\), which
-simplifies the situation.
+simplifies the situation. An interesting question for future is
+whether a phase shift in the system modulation may be able to improve
+energy extraction performance.
 
 \subsection{Energy Extraction with different Bath Memories}
 \label{sec:extr_mem}
-To further answer whether a substantial fraction of the maximal
-ergotropy can be extracted from a system we have numerically optimized
-the coupling strengths of the model \cref{eq:one_qubit_model_driven},
-so that over ten modulation periods \(τ_{m} = \frac{2 π}{Δ}\) the
-maximal absolute interaction energy is close to a give value (here
-\(\ev{H_{\inter}}\approx 0.4\) which constitutes quite a strong
-coupling) for various cutoff frequencies \(ω_{c}\).
-\begin{figure}[h]
+To find out whether a substantial fraction of the maximal ergotropy
+can be extracted from a system we have numerically optimized the
+coupling strengths of the model \cref{eq:one_qubit_model_driven}, so
+that over ten modulation periods \(τ_{m} = \frac{2 π}{Δ}\) the maximal
+absolute interaction energy is close to a give value (here
+\(\ev{H_{\inter}}\approx 0.4\)) for various cutoff frequencies
+\(ω_{c}\).
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/omega_interactions}
   \includegraphics{figs/one_bath_mod/omega_sd}
@@ -931,27 +943,25 @@ coupling) for various cutoff frequencies \(ω_{c}\).
     the parameters in \cref{tab:plus_omega}.}
 \end{figure}
 
-The resulting couplings can be found in
+The resulting interaction energies can be found in
 \cref{fig:omega_couplings_and_energies}. They correspond roughly to
 demanding \(α_{β}(0)=1.4\), where \(α_{β}\) is the finite temperature
-bath correlation function.
-\Cref{fig:omega_couplings_and_energies} also shows that for the
-simulations with small \(ω_{c}\) the positive parts of the interaction
-energy are especially large.
+bath correlation function.  \Cref{fig:omega_couplings_and_energies}
+also shows that for the simulations with small \(ω_{c}\) the positive
+parts of the interaction energy are especially large. This is a major
+departure from the pure dephasing regime where the interaction energy
+is always negative.
 
 For very weak coupling \(\ev{H_{\inter}}\approx 0.01\)
 \cref{fig:omega_couplings_weak} shows that this optimization procedure
-yields the normalization of \cref{eq:normohmic}. This is plausible,
-because for weaker coupling the initial slip phase upon which
-\cref{eq:normohmic} is based stays valid for longer times\fixme{do
-  optimization for more periods / slower mod}, albeit that no
-modulation was assumed to derive the normalization. For weak coupling,
-only the peak value of the spectral density is important and therefore
-the peaks must coincide for similar coupling strength.
+yields the normalization of \cref{eq:normohmic} so that the peak
+heights of all spectral densities coincide. For weak coupling, only
+the peak value of the spectral density is important and therefore the
+peaks must coincide for similar coupling strengths.
 
 In \cref{fig:omegas_total} we see the energy extraction behaviour of
 the model for various cutoff frequencies.
-\begin{figure}[h]
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/omegas_total}
   \caption{\label{fig:omegas_total} The total energy differences of
@@ -959,53 +969,56 @@ the model for various cutoff frequencies.
     details of the parameters see
     \cref{fig:omega_couplings_and_energies}. The dots mark the times
     when the interaction is turned off.  The dashed lines show the
-    position of the where the total energy is minimal.}
+    position of the where the total energy is minimal. Lower cutoffs
+    \(ω_{c}\) lead to more extracted energy. For \(ω_{c}=2.1\) no
+    energy is being extracted.}
 \end{figure}
 It is clear, that a lower cutoff frequency is advantageous as the
 minimal total energy is achieved earlier and is of greater
 magnitude. Further, we see that a non-trivial amount of energy is
-being extracted relative to ergotropy bound \cref{eq:ergo_mod_model}.
+being extracted relative to the ergotropy bound
+\cref{eq:ergo_mod_model}.
 
-\begin{figure}
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/omega_energies_and_powers}
   \caption{\label{fig:omegas_energies_and_powers} One shot power
-    (blue) and maximal extracted energy (orange) as a function of
-    the bath memory. The grey vertical line marks one
-    modulation period.}
+    (blue) and maximal extracted energy (orange) as a function of the
+    bath memory. The grey vertical line marks one modulation
+    period. Longer memories lead to greater energy extractions and
+    greater one shot power.}
 \end{figure}
-In \cref{fig:omegas_energies_and_powers} we can see that longer
-bath\fixme{looks like ``phase transition'' but really isn't} memories,
+\Cref{fig:omegas_energies_and_powers} shows that longer bath memories,
 defined as the time point at which \(α(τ_{\bath}) = α(0)/10\), lead to
 both increased energy extraction and increased one shot power. The one
 shot power is defined as
 \begin{equation}
   \label{eq:one_shot_power}
-  P_{\max}=\max_{n\in\NN}\frac{\abs{Δ\ev{H}_{n τ_{m}}}}{n τ_{m}},
+  P_{\max}=\max_{n\in\NN}\frac{\abs{Δ\ev{H}_{n τ_{m}} \cdot Θ(-Δ\ev{H}_{n τ_{m}})}}{n τ_{m}},
 \end{equation}
-where \(Δ\ev{H}_{τ}= \ev{H}_{τ} - \ev{H}_{0}\).  The concrete shape of
-the curve \cref{fig:omegas_energies_and_powers} is hard to discuss
-because of the nontrivial shape and magnitude of the spectral
-densities. However, the abrupt transition to zero for short memories
-is due to the requirement that power and extracted energy have to be
-finite, and the stroboscopic time view induced by the requirement that
-the interaction energy should be zero.
+where \(Δ\ev{H}_{τ}= \ev{H}_{τ} - \ev{H}_{0}\) and \(Θ\) is the
+Heaviside function.  The concrete shape of the curve
+\cref{fig:omegas_energies_and_powers} is hard to discuss because of
+the nontrivial shape and magnitude of the spectral densities. However,
+the abrupt transition to zero for short memories is due to the
+requirement that power and extracted energy have to be positive, and
+the stroboscopic time view induced by the requirement that the
+interaction energy should be zero.
 
-In conclusion we can say that in the cases studied here we can extract
-a finite amount of energy from the system as soon as the bath memory
-is somewhat longer than the modulation period. This statement depends
-on the definition of the memory time \(τ_{\bath}\) and therefore be
-taken as a rule of thumb.
+It can be concluded that in the cases studied here we can extract a
+finite amount of energy from the system as soon as the bath memory is
+somewhat longer than the modulation period. This statement depends on
+the definition of the memory time \(τ_{\bath}\) and therefore be taken
+as a rule of thumb.
 
 \subsection{Modulation Frequency and Speed Limit}
 \label{sec:speedlim}
-
 Another interesting parameter to tune is the modulation frequency
 \(Δ\), or equivalently the modulation period time \(τ_{p}=2π/Δ\). In
-driven systems, there usually appears a ``quantum speed limit'' that
-limits the power output of a driven system at a given coupling
-strength. An example is the transition from engine to refrigerator in
-a continuously coupled two-bath engine in
+driven systems, there usually appears a ``quantum speed
+limit''~\cite{Kurizki2021Dec} that limits the power output of a driven
+system at a given coupling strength. An example is the transition from
+engine to refrigerator in a continuously coupled two-bath engine in
 \cite{Mukherjee2020Jan}. More generally, this issue is connected to
 non-adiabatic changes in the Hamiltonian that can generate non-passive
 states \cite{Binder2018}.
@@ -1023,12 +1036,13 @@ where \(H_{\inter, m} \equiv \ev{B σ_{x}^{†} + \hc}\) constitutes the
 unmodulated interaction Hamiltonian. Increasing the frequency \(Δ\)
 will increase the amplitude of \cref{eq:power_for_onequbit}. On the
 other hand, if the expectation value of \(H_{\inter, m}\) does not
-change much, or on a much slower scale than \(τ_{p}\) because of too
-fast modulation the \(Δ\sin(Δ)\) factor will cause the expression to
-average out to zero (Zeno-like effect, \cite{Kurizki2021Dec}).
+change much or on a much slower scale than \(τ_{p}\) because of too
+fast modulation, the \(Δ\sin(Δ)\) factor will cause the expression to
+average out to zero (Zeno-like effect,~\cite{Kurizki2021Dec}).
 
 Stronger coupling will lead to a greater expectation value of
-\(H_{\inter, m}\) and generically to more power.
+\(H_{\inter, m}\) and generically to more power in the region in
+parameter space we are going to explore.
 
 To assess the behaviour with regard to coupling and modulation speed,
 we simulated the model for \(ω_{c}=1\) up to the time \(τ=20\) and
@@ -1037,7 +1051,7 @@ plotted the one shot power \cref{eq:one_shot_power} in a heatmap in
 value of the thermal bath correlation function \(α_{β}\) a time
 zero. This balances the shifting of the spectral density for the
 different values of \(Δ\).
-\begin{figure}[htb]
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/power_heatmap}
   \caption{\label{fig:power_heatmap} Left panel: The one shot power
@@ -1047,15 +1061,19 @@ different values of \(Δ\).
     \(ω_{c}=1,λ=0.1, T=5\) were used. Right panel: The same, but
     normalized to the maximum power for each \(α_{β}(0)\). In both
     cases \(100\) grid points and Gaussian interpolation have been
-    used.}
+    used. The power output generally increases with the coupling
+    strength, but the optimal modulation frequency becomes more
+    sharply defined (right panel).}
 \end{figure}
-\begin{figure}[htb]
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/power_en_heatmap}
   \caption{\label{fig:power_heatmap_tuned} Like
     \cref{fig:power_heatmap_tuned} but as function of maximal
     interaction energy as in \cref{sec:extr_mem}.  The parameters of
-    the underlying simulations can be found in \cref{tab:plus_mod_en}.}
+    the underlying simulations can be found in
+    \cref{tab:plus_mod_en}. A broadly similar behaviour to
+    \cref{fig:power_heatmap} can be observed.}
 \end{figure}
 
 We find that the best power output is achieved by stronger
@@ -1075,13 +1093,13 @@ was generally not very effective in the weaker coupling regime as is
 quantified in \cref{fig:interaction_tuning_success}. Therefore this
 region should be interpreted with care.
 
-These results have to be taken with a grain of salt however. The grid
+The above results have to be taken with a grain of salt however. The grid
 resolution of 10 by 10 does not allow us to perceive a shift in the
 optimal modulation frequency. Also, the range of interaction strengths
 is rather limited.
 
 
-\begin{figure}[htb]
+\begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/interaction_nontuned}
   \caption{\label{fig:interaction_nontuned} Left panel: Similar to
@@ -1096,8 +1114,8 @@ The maximal absolute interaction energies are shown in
 \cref{fig:power_heatmap} and increase generally with increasing
 coupling strength. The dependence on the coupling strength is linear
 for modulations with \(Δ\geq 5\) but deviates for slower
-modulation. This may be due to the fact, that fewer periods can occur
-in the given time frame.
+modulation. This may be due to the fact, that fewer modulation periods
+can be completed in the given time frame.
 
 The interaction energy also increases for faster modulation,
 especially at greater coupling strengths. Comparing
@@ -1105,16 +1123,16 @@ especially at greater coupling strengths. Comparing
 that the top right region where the interaction energy is strongest
 somewhat coincides with a decrease in power. In this region, the
 dependence of the interaction energy on the modulation frequency is
-also most pronounced.  The \(Δ=1\) case is an outlier and should
-therefore be interpreted with care. It is likely that not enough
-cycles have been simulated to judge this case accurately.
-
+also most pronounced.  The \(Δ=1\) case is an outlier as we already
+noted above and should therefore be interpreted with care. It is
+likely that not enough cycles have been simulated to judge this case
+accurately.
 
 Summarizing, we found that the one shot power output for the model
 \cref{eq:one_qubit_model_driven} has a complex dependence on the
 coupling strength and the modulation frequency. Especially for strong
 coupling, the modulation frequency has to be chosen carefully if
-maximum energy extraction is desired.
+optimal energy extraction is desired.
 
 \subsection{Resonance Behaviour of the One Shot Power}
 \label{sec:modcoup_reso}
