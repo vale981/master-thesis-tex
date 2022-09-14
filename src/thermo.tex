@@ -31,8 +31,8 @@ Here, we will focus on two closely related problems. The first is
 concerned with how much energy can be extracted through a unitary
 transformation from a single infinite thermal bath coupled to an
 arbitrary finite dimensional working medium. We call this energy
-\emph{ergotropy}\footnote{See \cref{eq:ergo_def} for a more precise
-  definition.}.
+\emph{ergotropy}\footnote{see \cref{eq:ergo_def} for a more precise
+  definition}.
 
 In Thermodynamics the second law tells us that in this setting no
 energy can be extracted in a periodic manner.  It turns out that in
@@ -53,8 +53,8 @@ cost. Traditionally this is the entropy production or the amount of
 ``waste heat'' that is being shed into the cold reservoir instead of
 being extracted as work. Both quantities require a proper definition,
 that can usually be given, but which is not unique due to the issue
-of finite interaction energy\footnote{See the discussion in
-  \cref{chap:intro}.}.
+of finite interaction energy\footnote{see the discussion in
+  \cref{chap:intro}}.
 
 Nevertheless, when the system is periodically modulated so that the
 interaction energy expectation value is periodic, we can clearly
@@ -1136,14 +1136,13 @@ optimal energy extraction is desired.
 
 \subsection{Resonance Behaviour of the One Shot Power}
 \label{sec:modcoup_reso}
-
 Finally, after having introduced the shift of the spectral density on
 a rather vague basis, we would like to give a short example of its
 validity.
 
-For this we choose the spectral densities with their peaks slightly
-shifted away from \(1+Δ\) to \(1+Δ+δ\) and normalized so that their
-peak height is fixed.
+To this end we choose the spectral densities with their peaks
+slightly shifted away from \(1+Δ\) to \(1+Δ+δ\) and normalized so that
+their peak height is fixed.
 \begin{figure}[htb]
   \centering
   \includegraphics{figs/one_bath_mod/modulation_tuning}
@@ -1161,35 +1160,35 @@ shot power \cref{eq:one_shot_power} as a function of \(δ\) exhibits a
 clear maximum which demonstrates the resonance effect.
 
 For the stronger coupling case we find in \cref{fig:modulation_tuning}
-that the optimal peak position has moved slightly to the right.
-Also the penalty for being off resonant in the negative \(δ\)
-direction is much more severe than in the weaker case.
+that the optimal peak position has moved slightly to the right.  Note
+also that even though the finite temperature spectral density
+decreases in magnitude for positive shifts so that the observed
+behaviour nontrivial. Also, the penalty for being off resonant in the
+negative \(δ\) direction is much more severe than in the weaker case.
 
-An explanation for the first observation may be, that higher harmonics
-like \(1+ 2 Δ\) become important for stronger coupling. Shifting the
-spectral density slightly to higher frequencies then optimizes the
-coupling.
-
-
+An explanation may be, that higher harmonics like \(1+ 2 Δ\) become
+important for stronger coupling. Shifting the spectral density
+slightly to higher frequencies then optimizes the resonance with those
+harmonics.
 
 \section{Quantum Otto Cycle}
 \label{sec:otto}
-\begin{itemize}
-\item multi bath simulations are resource intensive
-\item we focus therefore on a simple demonstration of HOPSs usefulness
-  in multiple baths
-\item an opportunity to test \cref{sec:operational_thermo}
-\item also: very popular model and good starting point for future work
-\end{itemize}
-As a demonstration of a standard thermodynamic cycle that is a popular
-model in the literature\footnote{See
-  \cite{Wiedmann2021Jun,Karimi2016Nov,Binder2018}.}
-is a cyclic quantum heat engine that inspired by the Otto
-cycle. Similar to expansion and compression of an ideal gas, we
-modulate the level spacing of our working medium. This model servers
-as a good demonstration of HOPS' capabilities in terms of being a
-method that can treat various bath correlation functions and arbitrary
-modulations.
+To exploit the whole range of capabilities of the NMQSD and HOPS we
+now turn to a model with multiple baths of different
+temperatures. This also provides us with an opportunity to demonstrate
+the usefulness and validity of the considerations of
+\cref{sec:operational_thermo}, namely the bound on extractable energy
+per cycle and efficiency, as well as the cost measure introduced there.
+
+A demonstration of a standard thermodynamic cycle that is a popular
+model in the literature\footnote{see
+  \cite{Wiedmann2021Jun,Karimi2016Nov,Binder2018}}  is a quantum heat
+engine that inspired by the Otto cycle. Similar to expansion and
+compression of an ideal gas, we modulate the level spacing of our
+working medium. This model serves as a good demonstration of HOPS'
+capabilities in terms of being a method that can treat various bath
+correlation functions and \emph{arbitrary} modulation system and
+coupling.
 
 Here, we consider a spin boson model much like the one in
 \cref{sec:singlemod} but with two baths
@@ -1200,10 +1199,10 @@ Here, we consider a spin boson model much like the one in
   σ_x a_{λ,i}^†) + ∑_λ ω_{λ,i} a_{λ,i}^\dag a_{λ,i}.}
 \end{equation}
 
-The modulations \(f\) and \(h_{i}\) are periodic and constructed out
-of smoothstep\footnote{See \cref{sec:smoothstep}.} functions. Rather
-than giving the precise formulas, we instead plot all the modulations
-over one period in \cref{fig:ottomod}.
+The modulation functions \(f\) and \(h_{i}\) are periodic and
+constructed out of smoothstep\footnote{see \cref{sec:smoothstep}}
+functions.  Rather than giving the precise formulas, we instead plot
+all the modulations over one period in \cref{fig:ottomod}.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/otto/modulation}
@@ -1217,26 +1216,26 @@ over one period in \cref{fig:ottomod}.
 First, the energy gap is widened from one to two (widening
 stroke). After this, the system is coupled to a hot bath to ``charge''
 for some time and decoupled before the energy gap is being compressed
-from two to one again (shrinking stroke). Finally, the qubit is being
+from two to one again (narrowing stroke). Finally, the qubit is being
 ``reset'' by shedding energy into a low temperature bath.
 
-The effective finite\fixme{explain that?} temperature spectral
-densities with \(ω_{c}=1\) have been shifted, such that their value is
-maximal for a given temperature at the frequency of the system in its
-compressed (cold) or expanded (hot) state. Their magnitudes have been
-chosen so that their values at these points are the same as can be
-seen in \cref{fig:ottomod}.
+The effective finite temperature spectral
+densities\footnote{see \cref{eq:finite_bcf}} with \(ω_{c}=1\) have
+been shifted so that their value is maximal for a given temperature
+at the frequency of the system in its compressed (cold) or expanded
+(hot) state. Their magnitudes have been chosen so that their values at
+these points are the same as can be seen in \cref{fig:ottomod}.
 
-We initialize the system in the \(H_{\sys}\ket{0}=0\) state.  For the
+We initialize the system in the \(H_{\sys}\ket{0}=0\) state.  For this
 demonstration we chose \(T_{c}=1\) and \(T_{h}=20\) so that both
 temperatures are finite but not so high that an unreasonable number of
 samples is required for convergence. The interaction strength has been
 chosen to be relatively weak for the same reason and to be closer to
 the known weak coupling realm.
 
-In comparison to the system time scale, the modulation cycle is rather
+In comparison to the system timescale, the modulation cycle is rather
 slow. On the other hand, the time scales on which \(f\) and \(h_{i}\)
-change are rather short.
+change are not adiabatic.
 
 \begin{figure}[htp]
   \centering
@@ -1244,29 +1243,31 @@ change are rather short.
   \caption{\label{fig:ottopower} The power due to the system and the
     bath modulation of the Otto cycle model \cref{eq:otto_model}. The
     total power is
-    \(\ev{\dot{H}} = \ev{\dot{H}_{\sys}} + \ev{\dot{H}_{\inter}}\). }
+    \(\ev{\dot{H}} = \ev{\dot{H}_{\sys}} +
+    \ev{\dot{H}_{\inter}}\). The interaction power is not negligible
+    and in this case generally detrimental to the performance.}
 \end{figure}
 \Cref{fig:ottopower} shows the power due to the modulation of the
-system and the interaction Hamiltonians. The main contribution to the
-power is the system modulation. The shrinking stroke produces negative
-(usable) power and the widening produces positive power that has to be
-provided externally. More importantly however, we find that also the
-modulation of the interaction, i.e. the coupling and decoupling
-produce predominantly positive power that has to be put in. In a weak
+system and the interaction Hamiltonians, where the major contribution
+to the total power is the system. The narrowing stroke produces
+negative (usable) power and the widening produces positive power that
+has to be supplied externally. More importantly however, we find that
+also the modulation of the interaction, i.e. the coupling and
+decoupling produce predominantly positive power that reduces the energy
+output. In a weak
 coupling scheme, this contribution can be neglected. Not so however in
 the generic case presented here.
 
 The mean power output of this cycle is
-\(\bar{P}=0.002468\pm 0.000021\) with an efficiency of \(η=29\%\),
-where the efficiency is defined as in \cref{eq:efficiency_definition}.
+\(\bar{P}=0.002468\pm 0.000021\) with an efficiency, as defined in
+\cref{eq:efficiency_definition}, of \(η=29\%\).
 
-Neglecting the energy change due to the coupling
-modulation we find instead \(\bar{P}=0.004337\pm 0.000018\) and
-\(η=52\%\).  This efficiency is, maybe coincidentally, close to the
-efficiency given in \cite{Geva1992Feb} for the quantum Otto cycle
-under equilibrium conditions. In any case we are far from the Carnot
-efficiency for the given temperatures \(η_{c}=95\%\), as we are not in
-the adiabatic regime.
+Neglecting the energy change due to the coupling modulation we find
+instead \(\bar{P}=0.004337\pm 0.000018\) and \(η=52\%\).  This
+efficiency is, likely coincidentally, close to the efficiency given in
+\cite{Geva1992Feb} for the quantum Otto cycle under quasistatic
+modulation. In any case we are quite far from the Carnot efficiency
+for the given temperatures \(η_{c}=95\%\).
 
 \begin{figure}[htp]
   \centering
@@ -1276,16 +1277,18 @@ the adiabatic regime.
     \cref{eq:otto_model}. The dots mark the times where one cycle is
     completed.}
 \end{figure}
-
 In \cref{fig:ottoenergy} we show the full energy dynamics. The
 interaction energy for the coupling to the hot bath is almost
 negligible, while the interaction with the cold bath is stronger. The
-system energy change due to the both is of similar magnitude however.
-A periodic steady state is reached after roughly two cycles. In this
-steady state, the system and interaction related quantities are
+system energy change due to the both is of similar magnitude, however.
+A periodic steady state is reached after roughly two cycle periods. In
+this steady state, the system and interaction related quantities are
 constant in the stroboscopic view (the dots in \cref{fig:ottoenergy}),
 while the total energy and the bath energies depend linearly on
-time. We do not see no oscillations in the bath energy which would
+time. The assumptions of \cref{sec:operational_thermo} are being met
+precisely.
+
+We do not see oscillations in the bath energy which would
 indicate the more complicated energy transfer behaviour we found in
 \cref{sec:one_bath_cutoff}, signifying that we are working in a rather
 ``tame'' regime as intended.
@@ -1298,19 +1301,20 @@ We find
   ∑_iβ_i ΔE_{\bath^i}^\cyc = 0.1096\pm 0.0008 ≥ 0,
 \end{equation}
 which does satisfy the inequality to over 100 standard
-deviations. Minimizing this quantity would maximize the efficiency.
+deviations. Minimizing this dimensionless quantity maximizes the
+efficiency.
 
-With this cycle, little coherence is generated\footnote{See
-  \cref{eq:otto_coherences}.} leading so called ``frictionless''
+With this cycle, little coherence is generated\footnote{see
+  \cref{eq:otto_coherences}} leading so called ``frictionless''
 dynamics. See also \cref{eq:otto_bloch} for a plot of the trajectory
 of the system density matrix in the bloch sphere.
 
 Because it requires little additional effort, we can briefly explore a
 continuously coupled version off this model, where the coupling
-modulation is turned of and we have \(h_{1}(τ)=1\). We find in
-\cref{fig:ottoenergy_cont} that work extraction is still possible,
-albeit at a much lower power \(\bar{P}=0.001670\pm 0.000029\) and
-efficiency \(η=5\%\).
+modulation is switched off, and we thus have \(h_{1}(τ)=1\). We find
+in \cref{fig:ottoenergy_cont} that work extraction is still possible,
+albeit at a much lower power output \(\bar{P}=0.001670\pm 0.000029\)
+and efficiency \(η=5\%\).
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/otto/energy_strobe_continuous}
@@ -1329,10 +1333,9 @@ modulation and consequently the gap between the peaks of the spectral
 densities should improve the performance.
 
 The lost efficiency is due to energy flowing ``through'' the system
-unused, a behaviour which is promoted by the continous coupling and
-reflected in the quantity
-\(∑_iβ_i ΔE_{\bath^i}^\cyc = 0.6198\pm 0.0021\) which reflects the
-``entropy production'' of the bath that leads to reduced efficiency.
+unused, a behaviour which is promoted by the continuous coupling and
+reflected in the entropy production
+\(∑_iβ_i ΔE_{\bath^i}^\cyc = 0.6198\pm 0.0021\).
 
 Nevertheless, if the cycle was very fast, the effect of the
 (un)coupling of the baths could be so detrimental that the
@@ -1345,13 +1348,13 @@ optimization for optimal power which leads to the
 Novikov–Curzon–Ahlborn efficiency \(η_{ca}=1-\sqrt{T_{c}/T_{h}}\) is
 interesting in the case of stronger coupling.
 
-Another interesting cycle to study would be a Carnot-type cycle, where
-the modulation of the system and the thermalization with the bath
-occur at the same time. Interpolating between Otto and Carnot, as well
-as studying the effect of overlapping and shifting strokes is a
-fascinating avenue for exploration.
+Another cycle to study would be a Carnot-type cycle, where the
+modulation of the system and the thermalization with the bath occur at
+the same time. Interpolating between Otto and Carnot, as well as
+studying the effect of overlapping and shifting strokes is a
+fascinating avenue for future exploration.
 
-Also more interesting working media, such as a three level system are
+Also, more interesting working media, such as a three level system are
 of interest. In \cite{Uzdin2015Sep} it is shown, that in certain
 regimes quantum coherence can lead to superior power output. In the
 same regime different types heat engines are equivalent. Both these
@@ -1359,8 +1362,6 @@ effects have been observed experimentally in \cite{Klatzow2019Mar}. It
 would be interesting to see if the slight deviations from theory in
 \cite{Klatzow2019Mar} could be explained using HOPS.
 
-
-\newpage
 \section{Anti Zeno Engine}
 \label{sec:antizeno}
 \begin{itemize}
