@@ -4,8 +4,6 @@ This is the $\LaTeX$ source of my master's thesis.
 The main code of the project can be found [[https://github.com/vale981/master-thesis][in a separate repo]].
 Results and graphics will be synchronized from there.
 
-You can view the project on [[https://www.overleaf.com/read/vvrxtcdxtfdx][overleaf]].
-
 ** Building
 Because of ~Microtype~ it is recommended that you use *LuaLaTeX*.  A
 basic ~TeXLive~ install along with the packages listed in ~flake.nix~
