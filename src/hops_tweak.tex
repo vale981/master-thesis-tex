@@ -2,8 +2,10 @@
 \label{chap:hops_notes}
 \section{Normalized HOPS}%
 \label{sec:norm}
+In this short note we introduce a \emph{stable} norm preserving term
+into the HOPS equations.
 
-We introduce full HOPS vector \(Ψ = \qty(ψ, φ)\) which can be
+We introduce the full HOPS vector \(Ψ = \qty(ψ, φ)\) which can be
 decomposed into the zeroth hierarchy order state \(ψ\) and the
 non-zero order states \(φ\).
 
@@ -318,14 +320,14 @@ magnitude can be estimated as follows
   \norm{L} \sum_{μ=1}^M \frac{\abs{G_μ}}{\Re[W_μ]}.
 \end{equation}
 It is unclear how this shift should be treated. Simply adding it to
-the denominator of~\cref{eq:steadynorm} lead to a breakdown of the
+the denominator of~\cref{eq:steadynorm} leads to a breakdown of the
 bound for numerical testing.  A better estimate should account for
 this and also for the coupling to the lower orders foregoing the
 recursive nature of the estimate.
 
-The relation \cref{eq:steadynorm} is recursive
-and break off at \(ψ^0\), the norm of which can be assumed to be unity
-in the nonlinear method.
+The relation \cref{eq:steadynorm} is recursive and breaks off at
+\(ψ^0\), the norm of which can be assumed to be unity in the nonlinear
+method.
 
 These ideas remain to be verified. Especially the assumptions should
 be checked. For time dependent coupling, one may maximize the estimate
@@ -371,7 +373,10 @@ Calculating \(M_{\vb{k}}\) explicitly and demanding it to be small
 truncation scheme below a certain coupling strength.
 Some basic experimentation has shown, that the cutoff parameter has to
 be tuned and is not universally valid which is in accord with the
-findings of \cite{RichardDiss}.
+findings of~\cite{RichardDiss}.
+
+Similarly to~\cite{Shi2009Feb}, a dynamic truncation scheme could also
+be implemented.
 
 \section{Some Mathematical Details}
 \label{math_detail}

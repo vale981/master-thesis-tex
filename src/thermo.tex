@@ -1201,7 +1201,7 @@ Here, we consider a spin boson model much like the one in
 
 The modulation functions \(f\) and \(h_{i}\) are periodic and
 constructed out of smoothstep\footnote{see \cref{sec:smoothstep}}
-functions.  Rather than giving the precise formulas, we instead plot
+functions similar to \cite{Wiedmann2021Jun}.  Rather than giving the precise formulas, we instead plot
 all the modulations over one period in \cref{fig:ottomod}.
 \begin{figure}[htp]
   \centering
@@ -1253,10 +1253,10 @@ to the total power is the system. The narrowing stroke produces
 negative (usable) power and the widening produces positive power that
 has to be supplied externally. More importantly however, we find that
 also the modulation of the interaction, i.e. the coupling and
-decoupling produce predominantly positive power that reduces the energy
-output. In a weak
-coupling scheme, this contribution can be neglected. Not so however in
-the generic case presented here.
+decoupling produce predominantly positive power that reduces the
+energy output. In a weak coupling scheme, this contribution can be
+neglected. Not so however in the generic case presented here. A
+similar result was arrived at in \cite{Wiedmann2021Jun}.
 
 The mean power output of this cycle is
 \(\bar{P}=0.002468\pm 0.000021\) with an efficiency, as defined in
@@ -1342,6 +1342,18 @@ Nevertheless, if the cycle was very fast, the effect of the
 continuously coupled version of the cycle is superior. See also the
 remarks below about \cite{Uzdin2015Sep}.
 
+
+% \section{Anti Zeno Engine}
+% \label{sec:antizeno}
+% \begin{itemize}
+% \item mention concept
+% \item results not reliable in time for thesis
+% \item interesting because: non markovian QUANTUM advantage. a bit
+%   sensational ;P
+% \end{itemize}
+
+\section{Some Proposals for future Work}
+\label{sec:some-prop-future}
 A worthwhile task for future work would be to verify the results
 summarized in \cite{Binder2018} for the Otto cycle. Especially the
 optimization for optimal power which leads to the
@@ -1362,42 +1374,47 @@ effects have been observed experimentally in \cite{Klatzow2019Mar}. It
 would be interesting to see if the slight deviations from theory in
 \cite{Klatzow2019Mar} could be explained using HOPS.
 
-\section{Anti Zeno Engine}
-\label{sec:antizeno}
-\begin{itemize}
-\item mention concept
-\item results not reliable in time for thesis
-\item interesting because: non markovian QUANTUM advantage. a bit
-  sensational ;P
-\end{itemize}
+The so called Anti-Zeno Effect occurring in systems under fast
+modulation has recently received some attention
+\cite{Mukherjee2020Jan,Xu2022Mar}. An advantage is claimed to exist,
+due to the broadening of the resonance criterion which we have
+observed in
+\cref{sec:one_bath_cutoff,sec:modcoup_reso,sec:otto}. Being a
+consequence of the energy time uncertainty it is being argued, that
+the origin of this advantage is truly quantum. The tools for the
+exploitation of this effect and its verification are provided in this
+work. However, a strong coupling analysis has already been performed
+using HEOM in \cite{Xu2022Mar}.
 
-\section{Some Proposals for future Work}
-\begin{itemize}
-\item a list of ideas and some papers I've came across
-\item projects for future theses or papers
-\end{itemize}
+In \cite{Santos2021Jun} a cycle is proposed that first creates states
+of finite ergotropy by letting energy flow through the working medium
+and then extracting this ergotropy in a separate stroke. This work
+could be verified and expanded to the non Markovian regime.
 
+A useful improvement of the method would be the ability to snapshot
+the total state of system and bath and then propagate this state with
+different modulation protocols.
 
-\begin{itemize}
-\item ... list all those nice papers ...
-\item the third law
-\item look more deeply into the peculiarities in \cref{sec:oneosccomp}
-\item verify speculation of energy flow vs non-markvianity: flow
-  between two baths though a system
-\item three level system -> paper
-\item driven spin boson -> paper \cite{Magazzu2018Apr}
-\item flows crossing in one point: robust featureu
-\item linear regeime of steady state energies -> universal, how far
-  does it extend
-\item more detailed parameter scans, universality between different models?
-\item state changes -> is energy difference = heat + work path
-  independent (maybe try different protocols and turn off interaction
-  at for beginning and end in an adiabatic way...)
-\item compare with results from master equation in \cref{sec:prec_sim}
-\item steady state methods, better convergence for long-time
-  simulations
-\item coupling to single bath: although breach of second law forbidden
-  -> cyclical energy transfer for very long bath correlation times
-\item filter mode: \cref{sec:shift_sp}
-\item otto cycle: sensitivity to timing stronger with stronger coupling?
-\end{itemize}
+% \begin{itemize}
+% \item ... list all those nice papers ...
+% \item the third law
+% \item look more deeply into the peculiarities in \cref{sec:oneosccomp}
+% \item verify speculation of energy flow vs non-markvianity: flow
+%   between two baths though a system
+% \item three level system -> paper
+% \item driven spin boson -> paper \cite{Magazzu2018Apr}
+% \item flows crossing in one point: robust featureu
+% \item linear regeime of steady state energies -> universal, how far
+%   does it extend
+% \item more detailed parameter scans, universality between different models?
+% \item state changes -> is energy difference = heat + work path
+%   independent (maybe try different protocols and turn off interaction
+%   at for beginning and end in an adiabatic way...)
+% \item compare with results from master equation in \cref{sec:prec_sim}
+% \item steady state methods, better convergence for long-time
+%   simulations
+% \item coupling to single bath: although breach of second law forbidden
+%   -> cyclical energy transfer for very long bath correlation times
+% \item filter mode: \cref{sec:shift_sp}
+% \item otto cycle: sensitivity to timing stronger with stronger coupling?
+% \end{itemize}
