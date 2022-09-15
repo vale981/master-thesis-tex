@@ -425,3 +425,64 @@ in much the same way, except for the replacements
 \(η\rightarrow \tilde{η}\) in \cref{eq:singlehops}. Throughout this
 work, the nonlinear method is being used, as it offers much superior
 convergence.
+
+\section{A Note on Tooling}
+\label{sec:note-tooling}
+
+The source codes for the simulations presented in this work span
+multiple repositories. They all make heavy use of
+\texttt{Numpy}~\cite{harris2020array} and
+\texttt{Scipy}~\cite{2020SciPy-NMeth}. Further the
+\texttt{Arb}~\cite{Johansson2017arb} is employed for its excellent
+implementation of special functions. A small contribution was made to
+the \texttt{python} bindings in the course of this work.
+
+The main code repository for this work can be found under
+\url{https://github.com/vale981/master-thesis}.
+
+The directory \path{python/energy_flow_proper} contains several
+project subdirectory with literate programming notebooks in the
+\texttt{org} format~\cite{EricSchulte2022Sep}. A detailed listing
+linking subprojects to chapters can be found in
+\cref{tab:code_structure}.
+
+\begin{table}[htp]
+  \centering
+  \begin{tabular}{cc}
+    Directory & Application \\
+    \midrule
+    \path{07_one_bath_systematics} & \cref{sec:prec_sim} \\
+    \path{08_dynamic_one_bath} & \cref{sec:singlemod} \\
+    \path{09_dynamic_two_bath_one_qubit} & \cref{sec:otto} \\
+    \path{10_antizeno_engine} & Reproduction of~\cite{Mukherjee2020Jan}, not in this work. \\
+    \path{11_new_ho_comparison} & \cref{sec:hopsvsanalyt}
+  \end{tabular}
+  \caption{\label{tab:code_structure} The subprojects in the main
+    repository and their application.}
+\end{table}
+
+Code implementing the results of \cref{chap:flow,chap:analytsol} can
+be found under \url{https://github.com/vale981/hopsflow}. The models
+discussed in \cref{chap:numres,sec:therm_results} are implement in
+\url{https://github.com/vale981/two_qubit_model}.
+
+Some modifications were made to the code that generates the stochastic
+processes for HOPS. These modifications can be found under
+\url{https://github.com/vale981/stocproc}, although they are mostly
+merged into the original repository
+\url{https://github.com/cimatosa/stocproc}.
+
+Significant improvements have been made to the HOPS implementation of
+the Theoretical Quantum Optics group\footnote{Available upon
+  reasonable request.}. Documentation, type hints and unit tests have
+been introduced. The parallelization mechanism was overhauled and now
+uses the \texttt{Ray}\footnote{\url{https://www.ray.io}} library. The
+structure of the code was further modularized, allowing for a simple
+implementation of new integration methods. Time dependent couplings
+and multiple baths were added to the implementation.
+
+The source code of this document is available under
+\url{https://github.com/vale981/master-thesis-tex}.
+
+
+
