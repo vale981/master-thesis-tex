@@ -490,7 +490,7 @@ respectively. The Heisenberg equations for the \(a_λ\) yield
 This allows us to calculate
 \begin{equation}
   \label{eq:pureflow}
-  \dot{H}_\bath = - ∑_λ g_λ L(t) \qty[∂_t a_λ(0) \eu^{\iu ω_λ t} - \iu
+  \dot{H}_\bath =\iu\comm{H_{\inter}}{H_{\bath}} = - ∑_λ g_λ L(t) \qty[∂_t a_λ(0) \eu^{-\iu ω_λ t} - \iu
   g_λ^\ast∫_0^t\dd{s} L(s) ∂_t \eu^{-\iu ω_λ (t-s)}] + \hc,
 \end{equation}
 which gives with a state of the form \(ρ=\ketbra{ψ} \otimes ρ_β\)
@@ -551,7 +551,7 @@ For completeness, the interaction energy is given by
 \begin{equation}
   \label{eq:pureinter}
   H_\inter = L(t)\qty[∑_λg_λ\qty(a_λ(0)\eu^{-\i ω_λ t} - \i
-  g^\ast_λ∫_0^t\dd{s} L(s) \eu^{\i ω_λ (t-s)})] + \hc,
+  g^\ast_λ∫_0^t\dd{s} L(s) \eu^{-\i ω_λ (t-s)})] + \hc,
 \end{equation}
 yielding
 \begin{equation}
@@ -1374,3 +1374,84 @@ would be the steady state of weak coupling dynamics.
 
 \fixme{iftime: re-run with same coupling strength, more cutoff freqs,
   less samples, see, longer times for coupling strengths, more coup}
+
+
+\subsection{Moderating the Inital Slip with Modulated Coupling}
+\label{sec:moder-init-slip}
+
+\begin{wrapfigure}[17]{O}{0.4\textwidth}
+  \centering
+  \includegraphics{figs/one_bath_mod/modulation_protocols_init.pdf}
+  \caption{\label{fig:L_mod_init} The interaction is being switched on
+    smoothly over a period of \(8\) time steps by the use of
+    smoothstep functions (\cref{sec:smoothstep}) of different
+    orders. A sudden protocol is being included for reference.}
+\end{wrapfigure}
+In \cref{sec:pure_deph} we derived the short term behavior of the
+interaction dynamics by neglecting the system Hamiltonian. Up to now
+we only have looked at the scenario in which the interaction is
+present from the beginning. Now we will briefly demonstrate a case
+where the interaction is switched on smoothly as in
+\cref{fig:L_mod_init}.
+
+The model is otherwise the same as \cref{eq:one_qubit_model}, where we
+have chosen \(α(0)=1.6\) and \(ω_{c}=1\) for all the simulations. Some
+\(N=10^{4}\) trajectories have been computed for each simulation.
+
+The smoothness parameter \(s\) regulates to which order the derivative
+of the modulation is continuous at \(t=0\) and \(t=8\). The modulation
+of the coupling allows for a change in total energy. This leads to a
+partial compensation for ``initial slip'' of the bath.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_mod/init_overview}
+  \caption{\label{fig:init_energies}The relevant energy quantities for
+    the different modulation protocols.}
+\end{figure}
+An overview over the bath system and interaction energy, as well as
+the bath energy flow can be found in \cref{fig:init_energies}. System
+and interaction energy all converge to the same values after some
+time, but the bath energy is enhanced for the sudden case. This can
+also been ascertained from the flow, which has a far greater magnitude
+for this case.
+
+The simulation with smoothness one exhibits a clear kink in the bath
+energy flow and interaction energy curves at the time point \(τ=8\),
+which reflects the lack of smoothness of the first derivative of the
+modulation.
+
+\cref{fig:init_total} shows that modulation protocols with a shallower
+slope lead to a greater change in the total energy, compensating for
+the negative interaction energy and leading to a shallower initial
+slip flow.
+\begin{figure}[htp]
+
+\end{figure}
+
+The initial slip flow \cref{eq:pureflowexpectation} is valid for short
+times, but the results diverge quite some time before peak flow.
+\Cref{fig:init_slip_mod} demonstrates, that the qualitative properties
+of the flow are still being capture quite well for short times.
+\begin{figure}[htp]
+  \centering
+  \begin{subfigure}[t]{0.49\linewidth}
+    \centering\captionsetup{width=.8\linewidth}
+    \includegraphics{figs/one_bath_mod/total_init}
+    \caption{\label{fig:init_total}The total energy for different
+      modulations. The slower the modulation, the more energy is
+      released and the less energy is gained by the bath (see
+      \cref{fig:init_energies}).}
+  \end{subfigure}%
+  \begin{subfigure}[t]{0.49\linewidth}
+    \centering\captionsetup{width=.8\linewidth}
+    \includegraphics{figs/one_bath_mod/initial_slip_modcoup}
+    \caption{\label{fig:init_slip_mod} The initial slip flow of
+      \cref{eq:pureflowexpectation} and the exact flow. Initially, the
+      flows coincidence, validating the earlier result. The flow peak
+      heights and positions are being predicted incorrectly, but the
+      initial slope and magnitude ordering are correct.}
+  \end{subfigure}
+  \caption{Total energy and flow for different interaction switching
+    protocols.}
+\end{figure}
