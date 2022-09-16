@@ -1012,6 +1012,31 @@ somewhat longer than the modulation period. This statement depends on
 the definition of the memory time \(τ_{\bath}\) and therefore be taken
 as a rule of thumb.
 
+A peculiar observation has been made for the simulations with very low
+cutoff \(ω_{c}\lesssim 1\). \Cref{fig:total_for_steady} shows that we
+don't enter a periodic steady state where a constant amount of energy
+is being introduced into the system. Rather the total energy remains
+constant apart from minor oscillations.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_mod/total_for_steady}
+  \caption{\label{fig:total_for_steady} The \(ω_{c}=0.5\) simulation of
+    \cref{fig:omegas_total} continued for longer times. The total
+    energy remains constant with minor fluctuations.}
+\end{figure}
+This feature must be somewhat robust, as it is also visible for
+\(ω_{c}=0.96\) in \cref{fig:omegas_total}. Such behaviour is not
+forbidden by the results of \cref{sec:therm_results}, but nevertheless
+interesting for future study as it corresponds to a situation where
+modulate the system with no real cost.
+
+Another avenue for exploration would be to exploit the findings here
+to construct a cyclic thermal machine with high power output. An open
+question is, whether energy can then be extracted both during contact
+with the hot and with the cold bath and whether it is better to design
+the cycle stroke based or continuously coupled.
+
+
 \subsection{Modulation Frequency and Speed Limit}
 \label{sec:speedlim}
 Another interesting parameter to tune is the modulation frequency
