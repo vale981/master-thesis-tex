@@ -422,7 +422,7 @@ where \(Ω=Ω_1\) and \(Λ=Ω_2\) for convenience.
 
 Then
 \begin{equation}
-  \label{eq:qpsol}
+  \label{eq:qpsol_two}
   \mqty(q_1(t)\\ p_1(t)\\ q_2(t)\\ p_2(t)) = G(t)\mqty(q_1(0)\\ p_1(0) \\ q_2(0)\\ p_2(0)) + ∫_0^tG(t-s)
   \mqty(0\\ W_1(s)\\ 0 \\ W_2(s))\dd{s}.
 \end{equation}
@@ -478,7 +478,7 @@ functions.
 We ultimately find that \(G\) is a sum of
 exponentials
 \begin{equation}
-  \label{eq:gfinal}
+  \label{eq:gfinal_two}
   G(t) = \sum_{l=1}^{2+N_1+N_2}\qty[R_l \tilde{M}(\tilde{z}_l)\eu^{\tilde{z}_l \cdot
     t} + \cc]
 \end{equation}
