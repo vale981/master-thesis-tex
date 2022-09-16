@@ -1,57 +1,75 @@
 \chapter{Introduction}
 \label{chap:intro}
-\begin{itemize}
-\item this is not finished!! (not event close to being so)
-\item motivate interesting thermodynamical questions and the advantage
-  of the NMQSD/HOPS in this case without repeating \cref{sec:ergo_general}
-\end{itemize}
-
-The exact treatment of strongly coupled and non Markovian open quantum
-systems is a challenging problem.  If no analytical solution is
-available, numerical methods have to be relied upon. Notably there are
-HEOM\fixme{cite more}.
-
-Besides the reduced dynamics of the system, the field of quantum
-thermodynamics has attracted much interest. Quantum thermodynamics is,
-among other issues, concerned with extending the standard
-phenomenological thermodynamic notions to microscopic systems coupled
-to macroscopic baths. This setting may make it possible to make
-rigorous microscopic definitions of thermodynamic quantities such as
-internal energy, heat and work that are consistent with the laws of
-thermodynamics. There is no consensus on this matter yet, as is
-demonstrated by the plethora of proposals and discussions in
+The field of quantum thermodynamics has attracted much
+interest. Quantum thermodynamics is, among other issues, concerned
+with extending the standard phenomenological thermodynamic notions to
+microscopic systems coupled to macroscopic baths. This setting may
+make it possible to make rigorous microscopic definitions of
+thermodynamic quantities such as internal energy, heat and work that
+are consistent with the laws of thermodynamics. There is no consensus
+on this matter yet, as is demonstrated by the plethora of proposals
+and discussions in
 \cite{Rivas2019Oct,Talkner2020Oct,Motz2018Nov,Wiedmann2020Mar,Senior2020Feb,Kato2015Aug,Kato2016Dec,Strasberg2021Aug,Talkner2016Aug,Bera2021Feb,Bera2021Jun,Esposito2015Dec}.
 
 As system and baths may not be regarded as completely separable
 entities in a strong coupling
 regime~\cite{Rivas2019Oct,Esposito2015Dec}, an insight into the
-dynamics of the bath is crucial. In some settings
-\cite{Kato2016Dec,Lobejko2021Feb, Strasberg2021Aug}, such as cyclic
-heat engines, the change in the bath energies is a quite suitable
-definition of heat, as is expounded in
-\cref{sec:basic_thermo,sec:operational_thermo}.
+dynamics of the bath and the interaction is crucial.
 
-As it turns out, the framework of the ``Non Markovian State
-Diffusion'' (NMQSD)~\cite{Diosi1998Mar}, which will be reviewed
-in~\cref{sec:open_systems}, allows access to certain bath related
-observables such as the time derivative of the bath energy expectation
-value and the interaction Hamiltonian expectation value. The
+The exact treatment of strongly coupled and non Markovian open quantum
+systems is a challenging problem.  If no analytical solution is
+available, numerical methods have to be relied upon. Notably there are
+various perturbation methods, such as the Redfield equations and also
+exact methods such as Hierarchical Equations of Motion
+\emph{HEOM}~\cite{Tanimura1990Jun} and the Hierarchy of Pure States
+\emph{HOPS}~\cite{Suess2014Oct}. Although the of these methods is on
+the reduced system dynamics, exact treatments of open systems can
+provide access to the global unitary evolution of the system and the
+baths.
 
-In \cref{sec:basic_thermo}, some operational quantum thermodynamical
-questions will be discussed and some light will be shed on the
-necessity of infinite baths.
+% In some settings
+% \cite{Kato2016Dec,Lobejko2021Feb, Strasberg2021Aug}, such as cyclic
+% heat engines, the change in the bath energies is a quite suitable
+% definition of heat, as is expounded in
+% \cref{sec:basic_thermo,sec:operational_thermo}.
 
-\Cref{chap:flow} presents the main result of this thesis, namely
-formulas to calculate expectation values of bath related
-observables. Finally, we will discuss some numerical applications of
-the result in \cref{chap:numres}. These application include a
-\fixme{references}.
+In this work we will focus on the framework of the ``Non Markovian
+State Diffusion'' (\emph{NMQSD})~\cite{Diosi1998Mar}, which will be
+reviewed in~\cref{sec:open_systems,sec:nmqsd_basics}, allows ready
+access to interaction and bath related quantities as we will show
+\cref{chap:flow}.
 
-In \cref{chap:hops_notes}, some HOPS related subjects are discussed,
-including a derivation of the HOPS for multiple baths embedded in an
-auxiliary bosonic Fock space in \cref{sec:multihops}.
+Based on the NMQSD and inspired by the ideas behind HEOM a numerical
+method, the Hierarchy of Pure States \emph{HOPS} can be formulated. We
+will briefly introduce HOPS in \cref{sec:hops_basics}. The results of
+\cref{chap:flow}, most important the calculation of bath and
+interaction energy expectation values, can be implement within this
+numerical framework. By doing so we will elucidate the role of certain
+features inherent to the method. The most general case we will be able
+to handle is a system coupled to multiple baths of differing
+temperatures under arbitrary modulation, making the method suitable
+for the exploration of thermodynamical settings.
 
-\newpage
+\Cref{chap:analytsol} is concerned with the analytical solution of a
+well known model. This solution will be applied to exactly calculate
+bath related quantities to provide a benchmark for HOPS and the
+results of \cref{chap:flow}.
+
+The implementation and systematic application of this benchmark is
+performed in \cref{chap:numres}. Further, the spin boson model will be
+explored as an example that is not exactly solvable in general.
+
+Finally we will turn to some thermodynamical questions in
+\cref{sec:therm_results} both from a conceptual angle in
+\cref{sec:basic_thermo} as well as through the exploration of concrete
+systems in \cref{sec:singlemod,sec:otto}.
+
+The aim of this work is to demonstrate the validity of the HOPS
+framework and its suitability for thermodynamical applications. In
+this spirit many models are explored to provide an overview of the
+capabilities of the method and ideas for future studies. Although
+those are mentioned throughout the work, some promising avenues are
+being highlighted in \cref{sec:some-prop-future}.
 
 \section{Open Quantum Systems}
 \label{sec:open_systems}
