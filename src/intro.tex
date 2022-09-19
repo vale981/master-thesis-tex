@@ -21,11 +21,13 @@ systems is a challenging problem.  If no analytical solution is
 available, numerical methods have to be relied upon. Notably there are
 various perturbation methods, such as the Redfield equations and also
 exact methods such as Hierarchical Equations of Motion
-\emph{HEOM}~\cite{Tanimura1990Jun} and the Hierarchy of Pure States
-\emph{HOPS}~\cite{Suess2014Oct}. Although the of these methods is on
-the reduced system dynamics, exact treatments of open systems can
-provide access to the global unitary evolution of the system and the
-baths.
+\emph{HEOM}~\cite{Tanimura1990Jun,Tang2015Dec}, multilayer
+MCTDH~\cite{Wang2010May}, TEMPO~\cite{Strathearn2018Aug} and the
+Hierarchy of Pure States \emph{HOPS}~\cite{Suess2014Oct}\footnote{See
+  \cite{RichardDiss} for a detailed account.}. Although the focus of
+these methods is on the reduced system dynamics, exact treatments of
+open systems can provide access to the global unitary evolution of the
+system and the baths.
 
 % In some settings
 % \cite{Kato2016Dec,Lobejko2021Feb, Strasberg2021Aug}, such as cyclic
@@ -41,14 +43,17 @@ access to interaction and bath related quantities as we will show
 
 Based on the NMQSD and inspired by the ideas behind HEOM a numerical
 method, the Hierarchy of Pure States \emph{HOPS} can be formulated. We
-will briefly introduce HOPS in \cref{sec:hops_basics}. The results of
-\cref{chap:flow}, most important the calculation of bath and
-interaction energy expectation values, can be implement within this
-numerical framework. By doing so we will elucidate the role of certain
-features inherent to the method. The most general case we will be able
-to handle is a system coupled to multiple baths of differing
-temperatures under arbitrary modulation, making the method suitable
-for the exploration of thermodynamical settings.
+will briefly introduce HOPS in \cref{sec:hops_basics}. Being a method
+with a very broad range of applicability, it we will find it to be
+well suited to thermodynamical application.
+
+The results of \cref{chap:flow}, most important the calculation of
+bath and interaction energy expectation values, can be implement
+within this numerical framework. By doing so we will elucidate the
+role of certain features inherent to the method. The most general case
+we will be able to handle is a system coupled to multiple baths of
+differing temperatures under arbitrary modulation, making the method
+suitable for the exploration of thermodynamical settings.
 
 \Cref{chap:analytsol} is concerned with the analytical solution of a
 well known model. This solution will be applied to exactly calculate
