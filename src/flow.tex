@@ -1,25 +1,25 @@
-\chapter{Bath Observables in NMQSD and HOPS}
+\chapter{Bath Observables in NMQSD and HOPS}%
 \label{chap:flow}
 After setting the stage for open systems and introducing the prime
 tools of this work, the NMQSD and HOPS, in \cref{chap:intro}, we will
 now return to our original goal, the calculation of bath related
 quantities. Although the NMQSD is a method for the reduced system
 state, we still treat the full unitary dynamics of system and bath and
-may expect that some information about the bath.
+may expect that some information about the bath is retained.
 
 In \cref{sec:flow_lin} we will begin by deriving an expression for the
 bath energy change \(-∂_{t}\ev{H_{B}}\). Subsequently we will
 generalize this result to the nonlinear theory in
 \cref{sec:nonlin_flow} and to finite temperatures in
-\cref{sec:lin_finite}. Yet, a more general class of observables can be
-treated with the methods developed in here as is shown
+\cref{sec:lin_finite}. Yet a more general class of observables can be
+treated with the methods that will be developed as is shown in
 \cref{sec:general_obs}.
 
-The generalization to multiple baths \cref{sec:multibath} and time
-depend Hamiltonians \cref{sec:timedep} will present itself as straight
-forward.
+The generalization to multiple baths (\cref{sec:multibath}) and time
+depend Hamiltonians (\cref{sec:timedep}) will present itself as
+straight forward.
 
-\section{Bath Energy Change of a Zero Temperature Bath}
+\section{Bath Energy Change of a Zero Temperature Bath}%
 \label{sec:flow_lin}
 
 In this section we demonstrate upon the example of the change of the
@@ -47,9 +47,9 @@ system operator \(L\) and the bath coupling bath operator
 Hamiltonian \(H_\inter\).
 
 We do not consider external modulation of the Hamiltonian, finite
-temperatures or multiple baths, as we are interested in the essentials
-of the procedure. With this approach we also follow the ``historical''
-order of derivation.
+temperatures or multiple baths at this stage, as we are interested in
+the essentials of the procedure. With this approach we also follow the
+``historical'' order of derivation.
 
 Working, for now, in the Schr\"odinger picture, the Ehrenfest theorem
 can be employed to find
@@ -60,11 +60,7 @@ can be employed to find
 Thus, we need to calculate
 \begin{eqnarray}
   \label{eq:calccomm}
-  \begin{aligned}
-    [H_\bath,H_\inter] &= [H_\bath, LB^† + L^† B] \\
-    &= L[H_\bath, B^† ] + L^† [H_\bath, B] \\
-    &= L[H_\bath, B^† ] - \hc.
-  \end{aligned}
+    [H_\bath,H_\inter] = L[H_\bath, B^† ] - \hc.
 \end{eqnarray}
 This checks out as the commutator has to be anti-hermitian due to
 \cref{eq:ehrenfest}.
@@ -96,8 +92,8 @@ the \(I\) subscript. The two summands yield different expressions when
 evaluated in terms of the NMQSD.
 
 For use with HOPS with the final goal of utilizing the auxiliary
-states the expression \(\ev{L^†∂_t B(t)}\) should be evaluated.
-We calculate
+states, the expression \(\ev{L^†∂_t B(t)}\) should be evaluated.  We
+calculate
 \begin{equation}
   \label{eq:interactev}
   \ev{L^†∂_t B(t)}=\ev{L^†∂_t B(t)}{\psi(t)} =
@@ -146,7 +142,7 @@ as in~\cite{Suess2014Oct} we find
   J(t) = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
     t)}L^†\dot{D}_t\ket{\psi(η^\ast,t)} + \cc,
 \end{equation}
-where we've used that the integral in \(D_t\) can be expanded over the
+where we have used that the integral in \(D_t\) can be expanded over the
 whole real axis. If we assume \(\alpha = \exp(-w t)\) then
 \begin{equation}
   \label{eq:hopsj}
@@ -166,8 +162,9 @@ This expression is undesirable as it does not exist for all bath
 correlation functions\footnote{Only for BCFs that are smooth at
   \(τ=0\).} and expressions involving the process directly are alleged
 to converge slower. Furthermore, this approach becomes more
-complicated in the nonlinear method.  We will briefly return to this
-issue in \cref{sec:general_obs}.
+complicated in the nonlinear theory due to the shift of the stochastic
+process.  We will briefly return to this issue in
+\cref{sec:general_obs}.
 
 In the language of \cref{sec:hops_basics} we can generalize to
 \(\alpha(t) = ∑_i G_i \eu^{-W_i t}\) obtaining
@@ -181,17 +178,16 @@ where \(\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}\) are the first hierarchy
 states.
 
 Note however, that it is not primarily the first hierarchy states that
-contains the information about the bath. Looking at
+contain the information about the bath. Looking at
 \cref{eq:alternative}, we would require only the zeroth hierarchy
 states and the stochastic process. The latter is no product of the
 actual dynamics, but due to the choice of a concrete \(\vb{z}\) in
-\cref{eq:interactev}. The bath information is discarded, when the
-average over all stochastic processes is being computed, as this is
-equivalent to tracing out the bath. The crucial point here is, that we
-have hooked into the formalism before the trace is performed, still
-having access to the global state. The averaging in
-\cref{eq:final_flow_nmqsd} then discards all the information about the
-bath that we don't neat.
+\cref{eq:interactev}. The bath information is discarded, when
+averaging over all stochastic processes, as this is equivalent to
+tracing out the bath. The crucial point here is, that we have hooked
+into the formalism before the trace is performed, still having access
+to the global state. The averaging in \cref{eq:final_flow_nmqsd} then
+discards all the information about the bath that we don't need.
 
 
 \section{Generalization to the Nonlinear Theory}
