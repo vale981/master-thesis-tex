@@ -232,7 +232,7 @@ A more detailed account of both subjects can be found in
 \section{The Non Markovian Quantum State Diffusion (NMQSD)}
 \label{sec:nmqsd_basics}
 
-We will now introduce the fundamental form of the models that will be
+We will now introduce the most general form of the models that will be
 discussed in this thesis. This model has a wide applicability and many
 microscopic systems can be cast into its form
 \cite{Strunz2001Habil}\cite[chap. 2]{RichardDiss}, although there
@@ -245,12 +245,13 @@ of harmonic oscillators\footnote{For instance, the electromagnetic field.}
   H(t) = H_\sys(t) + ∑_{n=1}^N \qty[L_n^†(t)B_n + \hc] + ∑_{n=1}^NH_B\nth ,
 \end{equation}
 with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
-\(H_B\nth=∑_λω_λ\nth \qty(a_λ\nth)^\dag a_λ\nth\). The \(a_λ\) are
-bosonic annihilation operators and the \(L_n\) are arbitrary not
-necessarily hermitian operators system Hilbert space. Quite general
-baths can be mapped to this model in the thermodynamic limit, when the
-bath consists of an infinite number of independent systems as was
-shown in \cite{Makri1999Apr}.
+\(H_B\nth=∑_λω_λ\nth \qty(a_λ\nth)^\dag a_λ\nth\). The \(a_λ\nth\) are
+bosonic annihilation operators acting on \(n\)th bath Hilbert space
+and the \(L_n\) are arbitrary not necessarily hermitian operators
+acting on the system Hilbert space. Quite general baths can be mapped
+to this model in the thermodynamic limit, when the bath consists of an
+infinite number of independent systems as was shown in
+\cite{Makri1999Apr}.
 
 Despite the simple structure of the baths, \cref{eq:generalmodel} is
 generally very hard to solve beyond weak coupling strengths as has
@@ -258,7 +259,7 @@ been detailed in~\cref{sec:open_systems}. The ``Non Markovian Quantum
 State Diffusion'' (NMQSD)~\cite{Diosi1998Mar} approach allows to
 recast \cref{eq:generalmodel} into a stochastic differential equation
 in which the bath degrees of freedom are accounted for by Gaussian
-stochastic processes.
+stochastic processes and a memory term.
 
 Here we only consider a single zero temperature bath initially in the
 ground state \(\ket{0}\). For more complete and general account see
@@ -266,19 +267,20 @@ ground state \(\ket{0}\). For more complete and general account see
 \cref{sec:hops_multibath}.
 
 The total system-bath state may then be expanded in a Bargmann
-coherent state basis~\cite{klauder1968fundamentals} with respect to
-the bath degrees of freedom
+unnormalized coherent state basis~\cite{klauder1968fundamentals} with
+respect to the bath degrees of freedom
 \begin{equation}
   \label{eq:projected_single}
   \ket{ψ(t)} = ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ket{ψ(t,\vb{z}^\ast)}\ket{\vb{z}},
 \end{equation}
 where \(\vb{z}\) is a vector of coherent state labels \(z_λ\) for each
-environment oscillator. The \(\ket{ψ(t,\vb{z})^{\ast}}\) are
-holomorphic functions of \(\vb{z}^\ast\).
+environment oscillator. The reason for using unnormalized coherent
+states is that this leads to \(\ket{ψ(t,\vb{z}^{\ast})}\) being a
+holomorphic function of \(\vb{z}^\ast\).
 
 
 After transforming \cref{eq:generalmodel} into the interaction picture
-with respect to \(H_B\) and using the properties of the coherent
+with respect to \(H_\bath\) and using the properties of the coherent
 states (\(\mel{z_λ}{a_λ}{ψ}\rightarrow ∂_{z_λ^\ast}\braket{z_λ}{ψ}\),
 \(\mel{z_λ}{a_λ^\dag}{ψ}\rightarrow z_λ^\ast\braket{z_λ}{ψ}\)) we
 arrive at an equation for \(\ket{ψ(t,\vb{z}^{\ast})}\)
@@ -289,16 +291,17 @@ arrive at an equation for \(\ket{ψ(t,\vb{z}^{\ast})}\)
   \ket{ψ(t,\vb{z}^{\ast})} - \iu L^\dag ∑_{λ} g_{λ}\eu^{-\iu ω_{λ} t}\pdv{}{z_{λ}^\ast}\ket{ψ(t,\vb{z}^{\ast})}.
 \end{equation}
 
-From this point on there are multiple avenues to continue. We choose
-the simplest one, but there is also a time-discrete derivation that
-avoids functional derivatives in~\cite{Hartmann2017Dec}.
+From this point on there are multiple avenues open to us. We choose
+the canonical one of \cite{Strunz2001Habil}, but there is also a
+time-discrete derivation that avoids functional derivatives
+in~\cite{Hartmann2017Dec}.
 
 We shift the perspective and define
 \begin{equation}
   \label{eq:single_process}
-  η^\ast_{t} = -\iu ∑_λg_λ^{\ast} z_λ^{\ast}\eu^{\iu ω_λ t},
+  η^\ast_{t} = -\iu ∑_λg_λ^{\ast} z_λ^{\ast}\eu^{\iu ω_λ t}.
 \end{equation}
-using
+Using
 \(\pdv{z_λ^{\ast}}=∫\dd{s}\pdv{η^\ast_{s}}{z_λ^{\ast}}\fdv{η^\ast_{s}}\)
 and interpreting \(\ket{ψ(t,\vb{z}^{\ast})}\) as a functional of
 \(η_{t}^\ast\) we arrive at
@@ -310,7 +313,7 @@ and interpreting \(\ket{ψ(t,\vb{z}^{\ast})}\) as a functional of
 where \(α\) is the zero temperature bath correlation function (BCF)
 \begin{equation}
   \label{eq:bcfdef}
-  α(t-s) = \ev{B(t)B(s)} = ∑_λ \abs{g_λ}^2\eu^{-\iu ω_λ (t-s)}
+  α(t-s) = ∑_λ \abs{g_λ}^2\eu^{-\iu ω_λ (t-s)}
 \end{equation}
 and \(η_t\) is a Gaussian stochastic process obeying
 \begin{equation}
@@ -320,9 +323,12 @@ and \(η_t\) is a Gaussian stochastic process obeying
       & \mathcal{M}(η_tη_s^\ast) &= α(t-s).
   \end{aligned}
 \end{equation}
+The functional \(ψ(η_{t}^\ast)\) is essentially the state of the
+system relative to some coherent bath state, encoded in the value of
+the stochastic process.
 
 The statistics of the process follow from interpreting
-\cref{eq:projected_single} in a Monte-Carlo sense and thus reduced
+\cref{eq:projected_single} in a Monte-Carlo sense and thus the reduced
 system state may then be recovered by averaging over all trajectories
 \begin{equation}
   \label{eq:recover_rho}
@@ -331,28 +337,26 @@ system state may then be recovered by averaging over all trajectories
   \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
 \end{equation}
 
-Note that the BCF \(α\) is usually defined as Fourier transform of the
-spectral density
+Note that the BCF \(α\) relates to the so called spectral density
 \begin{equation}
   \label{eq:specdens}
-  J(ω) = {π} ∑_λ \abs{g_λ}^2 δ(ω-ω_λ).
+  J(ω) = {π} ∑_λ \abs{g_λ}^2 δ(ω-ω_λ)
 \end{equation}
+via the Fourier transform.
+
 One then usually performs a continuum limit so that \(J(ω)\) becomes
 ``smeared out'' to a smooth function and \(α(τ)\) decays to zero for
 \(τ\rightarrow ∞\).
 
-We have found that indeed we can treat an infinite environment with a
-stochastic differential equation in which only objects of system
-dimension appear. Note also, that we can treat explicit time
-dependence of \(L\) and \(H\) without alteration to
-\cref{eq:nmqsd_single}. The functional \(ψ(η_{t}^\ast)\) is
-essentially the state of the system relative to some coherent bath
-state, encoded in the value of the stochastic process.
+The NMQSD formalism shows that we can treat an infinite environment
+with a stochastic differential equation in which only objects of
+system dimension appear. Note also, that we can allow an explicit time
+dependence of \(L\) and \(H\) without alterations to
+the NMQSD.
 
-
-The equation \cref{eq:nmqsd_single} does not preserve the norm of the
+Equation \cref{eq:nmqsd_single} does not preserve the norm of the
 state, leading to suboptimal convergence of \cref{eq:recover_rho}.
-When recovering the system state, we would like to average of
+When recovering the system state, we would like to average over
 normalized states
 \begin{equation}
   \label{eq:norm_av}
@@ -369,7 +373,8 @@ This can be achieved by using a co-moving shifted stochastic process
 where
 \(\ev{L^\dag}_{t}=ψ(\tilde{η}_{t}^\ast)_{t}^\dag L^\dag
 ψ(\tilde{η}_{t}^\ast)_{t}\). The origin of this shift lies in the
-study of the Husimi \(Q\) function of the bath
+study of the Husimi \(Q\) function~\cite{Cartwright1976Jan} of the
+bath
 \(Q_{t}(\vb{z}, \vb{z}^\ast) = \eu^{-\abs{z}^{2}} π^{-N}
 \braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\). Shifting the process, or on
 a deeper level the stochastic state labels, amounts to importance
@@ -382,8 +387,8 @@ This leads to the nonlinear NMQSD equation
   L {η}^\ast_tψ_t(\tilde{η}^\ast_t) - \pqty{L^† -\ev{L^\dag}_{t}}∫_0^t\dd{s}α(t-s)\fdv{ψ_t({η}^\ast_t)}{\tilde{η}^\ast_s}.
 \end{equation}
 There is a subtlety concerning the functional derivative that won't be
-discussed here, but in \cref{sec:nonlin}.
-Crucially, the system state is now recovered through
+discussed here but in \cref{sec:nonlin}.  Crucially, the system state
+is now recovered through
 \begin{equation}
   \label{eq:recover_rho_nonlinear}
   ρ_{\sys}(t) = \mathcal{M}_{η_{t}^\ast}\bqty{\frac{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}{\norm{ψ_t(η_t)}^{2}}},
@@ -405,13 +410,13 @@ There exist analytical approaches to this
 term~\cite{Diosi1998Mar,Strunz2001Habil}, but we keep the approach as
 general as possible and instead choose a numerical avenue.
 
-They key~\cite{Suess2014Oct,Hartmann2017Dec,RichardDiss} is define
-away the complicated term containing the functional derivative as an
+They key~\cite{Suess2014Oct,Hartmann2017Dec,RichardDiss} is cast the
+complicated term containing the functional derivative into an
 auxiliary state. Expanding the BCF into exponentials
 \(α(τ)=∑_{μ}G_{μ=1}^{M}\eu^{-W_{μ}τ}\) and defining
 \begin{equation}
   \label{eq:d_op_one}
-  D_{μ}(t)\equiv ∫_{0}^{t} G_{μ} \eu^{-W_{μ}(t-s)} \fdv{η^\ast_s},\; D^{\vb{k}}(t)\equiv Π_{μ=1}^{M}\sqrt{\frac{k_{μ}!}{G_{μ}^{k_{μ}}}}
+  D_{μ}(t)\equiv ∫_{0}^{t} G_{μ} \eu^{-W_{μ}(t-s)} \fdv{η^\ast_s},\; D^{\vb{k}}(t)\equiv \prod_{μ=1}^{M}\sqrt{\frac{k_{μ}!}{G_{μ}^{k_{μ}}}}
   \frac{1}{i^{k_{μ}}}\pqty{D_{μ}}^{k_{μ}}
 \end{equation}
 we can define the \(\vb{k}th\) hierarchy state
@@ -430,12 +435,12 @@ For this state the following equation of motion can be derived
     \vb{e}_{μ}} ],
 \end{equation}
 where \(\vb{k}=(k_{1}, k_{2}, \ldots, k_{M})\) with \(k_{μ}\geq 0\) is
-a multi index an \(\pqty{\vb{e}_{μ}}_{ν} = δ_{μ,ν}\). The term
+a multi index and \(\pqty{\vb{e}_{μ}}_{ν} = δ_{μ,ν}\). The term
 \({\vb{k} - \vb{e}_{μ}}\) is evaluated only if \(k_{μ}\geq 1\). The
-norm of the multi index \(\vb{k}\) is called
-\(\abs{\vb{k}}=∑_{μ}k_{μ}\) the hierarchy level of \(ψ^{\vb{k}}\). The
-state \(ψ\equiv ψ^{\vb{0}}\) corresponds to the trajectory obeying
-\cref{eq:nmqsd_single}.
+norm of the multi index \(\vb{k}\) is denoted
+\(\abs{\vb{k}}=∑_{μ}k_{μ}\) and called the hierarchy level of
+\(ψ^{\vb{k}}\). The state \(ψ\equiv ψ^{\vb{0}}\) corresponds to the
+trajectory obeying \cref{eq:nmqsd_single}.
 
 
 We call \cref{eq:singlehops} the \emph{Hierarchy of Pure States}
@@ -448,12 +453,13 @@ dimensionality from \(\dim{\hilb_{\sys}}^{2}\) to
 matrices.
 
 By truncating the hierarchy we obtain from \cref{eq:singlehops} a
-linear differential equation that can be solved numerically. By
-choosing a suitable cutoff the method can be made arbitrarily
-exact. For concrete truncation schemes see \cite{RichardDiss} and
-\cref{sec:truncsch}. In most simulations in this work the so called
-\emph{simplex truncation scheme} was used. This scheme amounts to
-only including hierarchy states with \(\abs{\vb{k}} \leq k_{\max}\).
+system of time linear differential equations with time dependent
+coefficients that can be solved numerically. By choosing a suitable
+cutoff the method can be made arbitrarily exact. For concrete
+truncation schemes see \cite{RichardDiss} and \cref{sec:truncsch}. In
+most simulations in this work the so called \emph{simplex truncation
+  scheme} was used. This scheme amounts to only including hierarchy
+states with \(\abs{\vb{k}} \leq k_{\max}\).
 
 Note that the hierarchy states have no physical interpretation, but
 can be thought of as the ``memory'' of the system. We will find in
@@ -463,9 +469,10 @@ of \(ψ=ψ^{\vb{0}}\).
 The nonlinear NMQSD \cref{eq:nmqsd_nonlin_single} can be accommodated
 in much the same way, except for the replacements
 \(L^\dag\rightarrow \pqty{L^\dag-\ev{L^\dag}_{t}}\) and
-\(η\rightarrow \tilde{η}\) in \cref{eq:singlehops}. Throughout this
-work, the nonlinear method is being used, as it offers much superior
-convergence.
+\(η\rightarrow \tilde{η}\) in \cref{eq:singlehops} transforming it
+into a \emph{nonlinear} system of differential equations. Throughout
+this work, the nonlinear method is being used, as it offers much
+superior convergence.
 
 \section{A Note on Tooling}
 \label{sec:note-tooling}
@@ -476,7 +483,7 @@ multiple repositories. They all make heavy use of
 \texttt{Scipy}~\cite{2020SciPy-NMeth}. Further the
 \texttt{Arb}~\cite{Johansson2017arb} is employed for its excellent
 implementation of special functions. A small contribution was made to
-the \texttt{python} bindings in the course of this work.
+\texttt{Arb}s \texttt{python} bindings in the course of this work.
 
 The main code repository for this work can be found under
 \url{https://github.com/vale981/master-thesis}.
@@ -489,7 +496,7 @@ linking subprojects to chapters can be found in
 
 \begin{table}[htp]
   \centering
-  \begin{tabular}{cc}
+  \begin{tabular}{ll}
     Directory & Application \\
     \midrule
     \path{07_one_bath_systematics} & \cref{sec:prec_sim} \\
@@ -511,16 +518,18 @@ Some modifications were made to the code that generates the stochastic
 processes for HOPS. These modifications can be found under
 \url{https://github.com/vale981/stocproc}, although they are mostly
 merged into the original repository
-\url{https://github.com/cimatosa/stocproc}.
+\url{https://github.com/cimatosa/stocproc} of Richard Hartmann
+\orcidlink{0000-0002-8967-6183}.
 
-Significant improvements have been made to the HOPS implementation of
-the Theoretical Quantum Optics group\footnote{Available upon
-  reasonable request.}. Documentation, type hints and unit tests have
-been introduced. The parallelization mechanism was overhauled and now
-uses the \texttt{Ray}\footnote{\url{https://www.ray.io}} library. The
-structure of the code was further modularized, allowing for a simple
-implementation of new integration methods. Time dependent couplings
-and multiple baths were added to the implementation.
+Although the existing HOPS code of the Theoretical Quantum Optics
+group\footnote{Available upon reasonable request.} created by Richard
+Hartmann was already extensive and well tested, some improvements have
+been made due to this work.  Documentation, type hints and unit tests
+have been introduced. The parallelization mechanism was overhauled and
+now uses the \href{https://www.ray.io}{\texttt{Ray}}
+library. The structure of the code was further modularized, allowing
+for a simple implementation of new integration methods. Time dependent
+couplings and multiple baths were added to the implementation.
 
 The source code of this document is available under
 \url{https://github.com/vale981/master-thesis-tex}.

@@ -16,7 +16,7 @@
           pgfplots microtype fancyvrb csquotes setspace newunicodechar hyperref
           cleveref multirow bbold unicode-math biblatex-phys xpatch beamerposter
           type1cm changepage lualatex-math footmisc wrapfig2 curve2e pict2e wrapfig
-          appendixnumberbeamer sidecap;
+          appendixnumberbeamer sidecap appendix orcidlink ncctools bigfoot;
       };
     in rec {
       packages = {

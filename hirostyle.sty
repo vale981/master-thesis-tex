@@ -41,8 +41,14 @@ linkcolor=blue,
 \setmathfont{texgyrepagella-math.otf}
 \KOMAoptions{DIV=last}
 \usepackage[autooneside]{scrlayer-scrpage}
+\usepackage[titletoc]{appendix}
+\usepackage{bigfoot}
+\usepackage{orcidlink}
 
-
+\DeclareNewFootnote{default}    % standard footnotes
+\DeclareNewFootnote{URL}[roman] % href footnotes
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{#2}\footnoteURL{\url{#1}}}
 
 %% Including Results
 \newcommand{\result}[1]{\input{./results/#1}\!}
