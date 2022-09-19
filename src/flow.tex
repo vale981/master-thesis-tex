@@ -180,6 +180,20 @@ In the language of \cref{sec:hops_basics} we can generalize to
 where \(\ket{\psi^{\vb{e}_\mu}(η^\ast,t)}\) are the first hierarchy
 states.
 
+Note however, that it is not primarily the first hierarchy states that
+contains the information about the bath. Looking at
+\cref{eq:alternative}, we would require only the zeroth hierarchy
+states and the stochastic process. The latter is no product of the
+actual dynamics, but due to the choice of a concrete \(\vb{z}\) in
+\cref{eq:interactev}. The bath information is discarded, when the
+average over all stochastic processes is being computed, as this is
+equivalent to tracing out the bath. The crucial point here is, that we
+have hooked into the formalism before the trace is performed, still
+having access to the global state. The averaging in
+\cref{eq:final_flow_nmqsd} then discards all the information about the
+bath that we don't neat.
+
+
 \section{Generalization to the Nonlinear Theory}
 \label{sec:nonlin_flow}
 Due to the inferior convergence of the linear method for stronger
