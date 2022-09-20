@@ -6,8 +6,8 @@ The results of \cref{chap:flow} are promising from a numerical
 perspective but remain to be verified. Previous
 work~\cite{Hartmann2017Dec,Hartmann2021Aug,RichardDiss} has made it
 clear that the reduced system dynamics can be efficiently treated by
-the method, but it is an open question whether bath related quantities
-can be calculated to a similar degree of accuracy.
+the NMQSD/HOPS, but it is an open question whether bath related
+quantities can be calculated to a similar degree of accuracy.
 
 The best possible verification is the comparison with a soluble model,
 ideally treated with a method completely different from the NMQSD. In
@@ -79,8 +79,8 @@ Then
 \end{equation}
 
 Because we are only interested in solutions for \(t\geq 0\) and the
-shape of the convolution in \cref{eq:eqmotprop} the solution may be
-found by virtue of the Laplace transform.
+appearance of the convolution in \cref{eq:eqmotprop} the solution may
+be found by virtue of the Laplace transform.
 
 Setting
 \begin{equation}
@@ -360,7 +360,9 @@ now consider a model with two baths.
 The considerations of~\cref{sec:oneosc} can be straight forwardly
 generalized to the case of two coupled oscillators coupled in turn to
 a bath each. This construction is chosen so that the previous results
-can be reused and the coupling to the baths is not trivial.
+can be reused and the coupling to the baths is not trivial. It is
+therefore the simplest generalization of QBM for the relevant
+applications.
 
 We will not give explicit formulas for the results in terms of sums of
 exponentials, as they are quite extensive and easily obtained via the
@@ -448,7 +450,7 @@ now with a more complicated matrix
 \end{equation}
 which we have to invert.
 
-This can be done easily\footnote{We have use a computer algebra
+This can be done easily\footnote{We have used a computer algebra
   system. There is probably a pattern to the inverse matrix, so that
   the solution for \(N>2\) oscillators may be found.}  and yields
 \begin{equation}
