@@ -310,8 +310,9 @@ and interpreting \(\ket{ψ(t,\vb{z}^{\ast})}\) as a functional of
 \(η_{t}^\ast\) we arrive at
 \begin{equation}
   \label{eq:nmqsd_single}\tag{NMQSD}
-  ∂_tψ_t(η^\ast_t) = -\iu H ψ_t(η^\ast_t) +
-  L {η}^\ast_tψ_t({η}^\ast_t) - L^†∫_0^t\dd{s}α(t-s)\fdv{ψ_t({η}^\ast_t)}{η^\ast_s},
+  ∂_t\ket{ψ(η^\ast_t, t)} = -\iu H \ket{ψ(η^\ast_t, t)} +
+  L {η}^\ast_t\ket{ψ({η}^\ast_t, t)} -
+  L^†∫_0^t\dd{s}α(t-s)\fdv{\ket{ψ({η}^\ast_t, t)}}{η^\ast_s},
 \end{equation}
 where \(α\) is the zero temperature bath correlation function (BCF)
 \begin{equation}
@@ -326,12 +327,9 @@ and \(η_t\) is a Gaussian stochastic process obeying
       & \mathcal{M}(η_tη_s^\ast) &= α(t-s).
   \end{aligned}
 \end{equation}
-The functional \(ψ(η_{t}^\ast)\) is essentially the state of the
+The functional \(\ket{ψ(η_{t}^\ast)}\) is essentially the state of the
 system relative to some coherent bath state, encoded in the value of
-the stochastic process. We have dropped the bra-ket notation to
-conform to the notation of
-\cite{Diosi1997,Diosi1998Mar,Strunz2001Habil} and to underline the
-re-interpretation as a functional of a stochastic process.
+the stochastic process.
 
 The statistics of the process follow from interpreting
 \cref{eq:projected_single} in a Monte-Carlo sense and thus the reduced
@@ -340,7 +338,7 @@ system state may then be recovered by averaging over all trajectories
   \label{eq:recover_rho}
   ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} =
  ∫{\frac{\dd{\vb{z}}}{π^{N}}\eu^{-\abs{\vb{z}}^2}}\ketbra{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}=
-  \mathcal{M}_{η_{t}^\ast}\bqty{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}.
+  \mathcal{M}_{η_{t}^\ast}\bqty{\ketbra{ψ(η_t, t)}{ψ(η^\ast_t, t)}}.
 \end{equation}
 
 Note that the BCF \(α\) relates to the so called spectral density
@@ -378,8 +376,8 @@ co-moving shifted stochastic process
   \tilde{η}_{t}^\ast= η^\ast_{t} + ∫_{0}^{t}\dd{s} α^\ast(t-s) \ev{L^\ast}_{s},
 \end{equation}
 where
-\(\ev{L^\dag}_{t}=ψ(\tilde{η}_{t}^\ast)_{t}^\dag L^\dag
-ψ(\tilde{η}_{t}^\ast)_{t}\). The origin of this shift lies in the
+\(\ev{L^\dag}_{t}=\mel{ψ(\tilde{η}_{t}, t)}{L^\dag}{
+ψ(\tilde{η}_{t}^\ast,t)}\). The origin of this shift lies in the
 study of the Husimi \(Q\) function~\cite{Cartwright1976Jan} of the
 bath
 \(Q_{t}(\vb{z}, \vb{z}^\ast) = \eu^{-\abs{z}^{2}} π^{-N}
@@ -390,8 +388,9 @@ sampling for each time step.
 This leads to the nonlinear NMQSD equation~\cite{Diosi1998Mar}
 \begin{equation}
   \label{eq:nmqsd_nonlin_single}
-  ∂_tψ_t(\tilde{η}^\ast_t) = -\iu H ψ_t(\tilde{η}^\ast_t) +
-  L {\tilde{η}}^\ast_tψ_t(\tilde{η}^\ast_t) - \pqty{L^† -\ev{L^\dag}_{t}}∫_0^t\dd{s}α(t-s)\fdv{ψ_t({\tilde{η}}^\ast_t)}{\tilde{η}^\ast_s}.
+  ∂_t\ket{ψ(\tilde{η}^\ast_t, t)} = -\iu H \ket{ψ(\tilde{η}^\ast_t, t)} +
+  L {\tilde{η}}^\ast_t\ket{ψ(\tilde{η}^\ast_t, t)} - \pqty{L^†
+    -\ev{L^\dag}_{t}}∫_0^t\dd{s}α(t-s)\fdv{\ket{ψ({\tilde{η}}^\ast_t, t)}}{\tilde{η}^\ast_s}.
 \end{equation}
 There is a subtlety concerning the functional derivative that won't be
 discussed here but in \cite{Hartmann2021Aug,RichardDiss} or
@@ -399,7 +398,8 @@ discussed here but in \cite{Hartmann2021Aug,RichardDiss} or
 through
 \begin{equation}
   \label{eq:recover_rho_nonlinear}
-  ρ_{\sys}(t) = \mathcal{M}_{\tilde{η}_{t}^\ast}\bqty{\frac{ψ_t(\tilde{η}_t)^\dag ψ_t(\tilde{η}^\ast_t)}{\norm{ψ_t(\tilde{η}_t)}^{2}}},
+  ρ_{\sys}(t) =
+  \mathcal{M}_{\tilde{η}_{t}^\ast}\bqty{\frac{\ketbra{ψ(\tilde{η}_t, t)}{ψ(\tilde{η}^\ast_t,t)}}{\braket{ψ(\tilde{η}_t, t)}{ψ(\tilde{η}^\ast_t,t)}}},
 \end{equation}
 so that all trajectories contribute with ``equal weight''.
 
@@ -411,7 +411,7 @@ stochastic process and a rather complicated term containing a memory
 integral and a functional derivative
 \begin{equation}
   \label{eq:complicated_term}
-  ∫_0^t\dd{s}α(t-s)\fdv{ψ_t({η}^\ast_t)}{η^\ast_s}.
+  ∫_0^t\dd{s}α(t-s)\fdv{\ket{ψ({η}^\ast_t)}}{η^\ast_s}.
 \end{equation}
 
 There exist analytical approaches to this
@@ -433,25 +433,26 @@ an auxiliary state. Expanding the BCF into exponentials\footnote{See
 we can define the \(\vb{k}th\) hierarchy state
 \begin{equation}
   \label{eq:d_op_hier}
-   ψ^{\vb{k}}\equiv D^{\vb{k}}ψ.
+   \ket{ψ^{\vb{k}}}\equiv D^{\vb{k}}\ket{ψ}.
 \end{equation}
 
 For this state the following equation of motion can be
 derived~\cite{Suess2014Oct,Hartmann2021Aug}
 \begin{equation}
   \label{eq:singlehops}\tag{HOPS}
-  \dot{ψ}^{\vb{k}} = \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
-  ∑_{μ=1}^{M}k_{μ}W_μ]ψ^{\vb{k}} +
-  \iu ∑_{μ=1}^{M}\sqrt{G_μ}\qty[\sqrt{k_{μ}}  L ψ^{\vb{k} -
-    \vb{e}_{μ}} + \sqrt{\qty(k_{μ} + 1)}  L^† ψ^{\vb{k} +
-    \vb{e}_{μ}} ],
+  \ket{\dot{ψ}^{\vb{k}}} = \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
+  ∑_{μ=1}^{M}k_{μ}W_μ]\ket{ψ^{\vb{k}}} +
+  \iu ∑_{μ=1}^{M}\sqrt{G_μ}\qty[\sqrt{k_{μ}}  L \ket{ψ^{\vb{k} -
+    \vb{e}_{μ}}} + \sqrt{\qty(k_{μ} + 1)}  L^† \ket{ψ^{\vb{k} +
+    \vb{e}_{μ}}} ],
 \end{equation}
 where \(\vb{k}=(k_{1}, k_{2}, \ldots, k_{M})\) with \(k_{μ}\geq 0\) is
 a multi index and \(\pqty{\vb{e}_{μ}}_{ν} = δ_{μ,ν}\). The term
 \({\vb{k} - \vb{e}_{μ}}\) is evaluated only if \(k_{μ}\geq 1\). The
 norm of the multi index \(\vb{k}\) is denoted
 \(\abs{\vb{k}}=∑_{μ}k_{μ}\) and called the hierarchy level of
-\(ψ^{\vb{k}}\). The state \(ψ\equiv ψ^{\vb{0}}\) corresponds to the
+\(\ket{ψ^{\vb{k}}}\). The state
+\(\ket{ψ(η_{t}^\ast, t)}\equiv \ket{ψ^{\vb{0}}}\) corresponds to the
 trajectory obeying \cref{eq:nmqsd_single}.
 
 
@@ -477,7 +478,7 @@ including hierarchy states with \(\abs{\vb{k}} \leq k_{\max}\).
 Note that the hierarchy states have no physical interpretation, but
 can be thought of as the ``memory'' of the system. We will find in
 \cref{chap:flow} that they can be of use beyond the mere calculation
-of \(ψ=ψ^{\vb{0}}\).
+of \(\ket{ψ}=\ket{ψ^{\vb{0}}}\).
 
 The nonlinear NMQSD \cref{eq:nmqsd_nonlin_single} can be accommodated
 in much the same way, except for the replacements

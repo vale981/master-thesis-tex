@@ -212,9 +212,11 @@ Following the usual derivation of the nonlinear NMQSD we write
   \frac{\braket{ψ(t)}{\tilde{\vb{z}}}\!\mel{\tilde{\vb{z}}(t)}{L^†\dot{B}(t)}{\psi(t)}}{\braket{\psi}{\tilde{\vb{z}}(t)}\!\braket{\tilde{\vb{z}}(t)}{\psi}},
   \end{aligned}
 \end{equation}
-where \(\tilde{z}_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
-\dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\) and \(\ev{L^\dag}_{t}=ψ(\tilde{η}_{t}^\ast)_{t}^\dag L^\dag
-ψ(\tilde{η}_{t}^\ast)_{t}\) as in \cref{sec:nmqsd_basics}.
+where
+\(\tilde{z}_{\lambda}^{*}(t)=z_{\lambda}^{*}+\i g_{\lambda} ∫_{0}^{t}
+\dd{s} \eu^{-\i ω_{\lambda} s}\ev{L^†}_{s}\) and
+\(\ev{L^\dag}_{t}=\mel{ψ(\tilde{η}_{t},t)}{L^\dag}{ψ(\tilde{η}_{t}^\ast,
+t)}\) as in \cref{sec:nmqsd_basics}.
 
 It has to be shown now, that the term
 \({\braket{\psi}{\tilde{\vb{z}}(t)}\!\braket{\tilde{\vb{z}}(t)}{\psi}}\)
@@ -586,12 +588,12 @@ For zero temperature, we find following the procedures of
     \label{eq:bmel}\mel{z}{B^b(t)}{ψ} &= (-\iu D_t)^b\ket{ψ(η^\ast,t)}
                       = (-\iu)^b
                       ∑_{\abs{\vb{k}}=b}\binom{b}{\vb{k}} \iu^{\vb{k}}
-                      \sqrt{\frac{G^{\vb{k}}}{\vb{k}!}}ψ^{\vb{k}}\\
+                      \sqrt{\frac{G^{\vb{k}}}{\vb{k}!}}\ket{ψ^{\vb{k}}}\\
   \label{eq:bdagmel}\mel{ψ}{\qty(B^†(t))^a}{z} &=
                               \begin{aligned}[t]
                                 \qty(\mel{z}{B^a}{ψ})^†&= \qty((-\iu D_t)^a\ket{ψ(η^\ast,t)})^\dag\\
                                                    &= (\iu)^a∑_{\abs{\vb{k}}=a}\binom{a}{\vb{k}} (-\iu)^{\vb{k}}
-                                                     \sqrt{\frac{\qty(G^{\vb{k}})^\ast}{\vb{k}!}}\qty(ψ^{\vb{k}})^\dag,
+                                                     \sqrt{\frac{\qty(G^{\vb{k}})^\ast}{\vb{k}!}}\bra{ψ^{\vb{k}}},
                               \end{aligned}
 \end{align}
 where \(\vb{k}! = k_1!k_2!\ldots\) and
@@ -608,7 +610,8 @@ Returning to \cref{eq:collective_obs}, we find
   \begin{aligned}
   \ev{O} &= \mathcal{M}_{η^\ast}∑_{α} ∑_{\substack{\abs{γ}=α_1\\\abs{δ}=α_2}}
            \binom{α_1}{γ}\binom{α_2}{δ}(\iu)^{δ+α_1}(-\iu)^{γ+α_2}
-           \sqrt{\frac{\qty(G^γ)^\ast G^δ}{γ!δ!}} \qty(ψ^γ)^\dag F_α ψ^δ.
+    \sqrt{\frac{\qty(G^γ)^\ast G^δ}{γ!δ!}}
+    \mel{ψ^γ}{F_α}{ψ^δ}.
   \end{aligned}
 \end{equation}
 
@@ -631,7 +634,7 @@ manner as was discussed in \cref{sec:multibath}. This allows to
 calculate the expectation value involving multiple bath operators
 \(B^{(n)}\). Interestingly, the generalization of \cref{eq:bmel} to
 multiple baths immediately links hierarchy states of the form
-\(ψ^{\underline{e}_{i,k_i} + \underline{e}_{j,k_j}}\) (see
+\(\ket{ψ^{\underline{e}_{i,k_i} + \underline{e}_{j,k_j}}}\) (see
 \cref{sec:multihops} for notation) with correlations between the baths
 \(\ev{B_i(t)B_j(t)}\). Under the assumption that these correlations
 remain small, one could argue to neglect them when performing
