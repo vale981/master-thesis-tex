@@ -320,11 +320,13 @@ Let us introduce the shift operator
 \begin{equation}
   \label{eq:shiftop}
   \begin{aligned}
-    D(\vb{y}) &= \bigotimes_\lambda \eu^{y_\lambda a_\lambda^†-y^\ast_\lambda a_\lambda},&  D(\vb{y})\ket{0} &= \ket{\vb{y}}
+    D(\vb{y}) &= \bigotimes_\lambda \eu^{y_\lambda a_\lambda^†-y^\ast_\lambda a_\lambda},&  D(\vb{y})\ket{0} &= \ket{\vb{y}}_{\mathrm{n}}
   \end{aligned}
 \end{equation}
 which shifts the ground state of the environment into an arbitrary
-coherent state, where \(\vb{y}=(y_1,y_2,\ldots)\) as usual.
+\emph{normalized} coherent state, where \(\vb{y}=(y_1,y_2,\ldots)\),
+\(a_{λ}\ket{\vb{y}}_{\mathrm{n}}=y_{λ}\ket{\vb{y}}_{\mathrm{n}}\) and
+\(\norm{\ket{\vb{y}}_{\mathrm{n}}}=1\).
 
 This allows us to write the evolution of the global state of system
 and bath for a thermal initial condition as
@@ -716,9 +718,7 @@ stochastic process.
 \label{sec:higher_order_coupling}
 In this section, we address the question of how many hierarchy orders
 have to be included in the simulation to consistently calculate the
-expectation value of powers of the interaction Hamiltonian. Being
-nonessential for the understanding of the rest of the work, this
-section may be skipped.
+expectation value of powers of the interaction Hamiltonian.
 
 For self adjoint coupling operators \(L=L^\dag\) we can use Wick's
 theorem to find a normally ordered expression for
