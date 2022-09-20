@@ -189,6 +189,8 @@ into the formalism before the trace is performed, still having access
 to the global state. The averaging in \cref{eq:final_flow_nmqsd} then
 discards all the information about the bath that we don't need.
 
+Now that we have covered the simplest case, we will endeavor to make
+the result useful in practice.
 
 \section{Generalization to the Nonlinear Theory}
 \label{sec:nonlin_flow}
@@ -230,18 +232,18 @@ proceed as in \cref{sec:nonlin} by noting
   \end{aligned}
 \end{equation}
 which does alter the definition of \(D_t\) but results in the same
-HOPS equations.
-The shifted process \(\tilde{η}^\ast_{t}=
-η_{t}^\ast(\tilde{\vb{z}}^\ast(t),t)=η^\ast_{t} +
-∫_0^t\dd{s}\alpha^\ast(t-s)\ev{L^†}_{\psi_s}\) appears directly
-in the NMQSD equation but results only in a slight change in the
-functional derivative. Note however that
+HOPS equations.  The shifted process
+\(\tilde{η}^\ast_{t}= η_{t}^\ast(\tilde{\vb{z}}^\ast(t),t)=η^\ast_{t}
++ ∫_0^t\dd{s}\alpha^\ast(t-s)\ev{L^†}_{\psi_s}\) appears directly in
+the NMQSD equation but results only in a slight change in the
+functional derivative. The subtlety about the functional derivative is
+that
 \begin{equation}
   \label{eq:fdvclarification}
   \fdv{}{η^\ast_s(\vb{z}^\ast=\tilde{\vb{z}}^\ast(t))} \neq \fdv{}{\tilde{η}^\ast_s}
 \end{equation}
-which is not problematic as we absorb the functional derivative into
-the definition of the hierarchy state.
+which however is not problematic as we absorb the functional
+derivative into the definition of the hierarchy state.
 
 Therefore,
 \begin{equation}
@@ -261,7 +263,11 @@ and in the language of HOPS
 \end{equation}
 
 In essence, the expressions derived in \cref{sec:flow_lin} simply have
-to be normalized.
+to be normalized. This allows us to calculate the flow numerically
+with greatly increased efficiency. The very simple pure initial state
+employed up to now is very restrictive and unfit for thermodynamic
+applications. In \cref{sec:lin_finite} we will therefore turn to the
+finite temperature case.
 
 \section{Generalization to Finite Temperature}
 \label{sec:lin_finite}
@@ -272,10 +278,9 @@ the system rather than a numerical detail. Finite temperature initial
 states of the bath are essential for the physical questions that will
 be discussed in \cref{sec:basic_thermo}.
 
-
-Finite temperatures need some additional considerations as
-we now deal with a mixed global state. Explicitly, the initial state
-in consideration is given by
+Finite temperatures need some additional considerations as we now deal
+with a global mixed state. Explicitly, the initial state in
+consideration is given by
 \begin{equation}
   \label{eq:therm_init}
   ρ_{0}=\ketbra{ψ_{\sys}} \otimes ρ_{β}
@@ -283,14 +288,15 @@ in consideration is given by
 with \(ρ_{β}\) being a Gibbs or KMS state~\cite{Binder2018} of inverse
 temperature \(β\).
 
-However, the previous sections dealt explicitly with pure
-states. There are multiple ways of approaching finite temperature. One
-is to \emph{purify} the bath initial state by introducing additional
-degrees of freedom\footnote{Also called the \emph{thermofield}
-  method.}. This has the advantage of yielding a particularly simple
-result in the case of self-adjoint coupling \(L=L^\dag\). In that
-case, one may simply replace the zero temperature BCF \(α\) with its
-finite temperature counterpart and continue as before
+There are multiple ways of approaching finite
+temperature~\cite{Diosi1997,Diosi1998Mar}. One is to \emph{purify} the
+bath initial state by introducing additional degrees of
+freedom\footnote{Also called the \emph{thermofield}
+  method~\cite{Takahashi1996Jun,Semenoff1983Jun}.}. This has the
+advantage of yielding a particularly simple result in the case of
+self-adjoint coupling \(L=L^\dag\). In that case, one may simply
+replace the zero temperature BCF \(α\) with its finite temperature
+counterpart and continue as before
 \begin{equation}
   \label{eq:finite_bcf}
   \begin{aligned}
@@ -301,11 +307,11 @@ finite temperature counterpart and continue as before
   \end{aligned}
 \end{equation}
 where \(\bose\) is the Bose-Einstein distribution. The second line of
-p\cref{eq:finite_bcf} is often called the effective spectral density
+\cref{eq:finite_bcf} is often called the effective spectral density
 for finite temperatures. Note that negative frequencies are included.
 
 Here we choose another approach however, as it holds for general
-couplings, is well tested by \cite{RichardDiss} and the tools for its
+couplings, is well tested by~\cite{RichardDiss} and the tools for its
 applications are already in place.
 
 Let us introduce the shift operator
@@ -318,7 +324,8 @@ Let us introduce the shift operator
 which shifts the ground state of the environment into an arbitrary
 coherent state, where \(\vb{y}=(y_1,y_2,\ldots)\) as usual.
 
-This allows us to write the global state of system and bath as
+This allows us to write the evolution of the global state of system
+and bath for a thermal initial condition as
 \begin{equation}
   \label{eq:shiftbath}
   \rho(t) =
@@ -326,7 +333,9 @@ This allows us to write the global state of system and bath as
   \frac{\eu^{-\abs{y_\lambda}^2\bose_\lambda}}{\pi\bose_\lambda})
   U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D(\vb{y})^† U(t)^†,
 \end{equation}
-where \(\bose_{λ}=\bose(βω_{λ})\).
+where \(\bose_{λ}=\bose(βω_{λ})\). This is simply the
+Glauber-Sudarshan P representation of the bath state
+\(ρ_{β}={e^{-β H}}/{Z}\).
 
 The system state is then recovered through
 \begin{equation}
@@ -340,7 +349,7 @@ The system state is then recovered through
 The usual step is now to insert \(\id =D(\vb{y})D^†(\vb{y})\) and
 permute one \(D\) operator to the rightmost side in
 \cref{eq:shiftbath_system} when tracing out the bath to arrive at a
-new time translation operator
+new time evolution operator
 \begin{equation}
   \label{eq:utilde}
   \tilde{U}(t) = D^†(\vb{y})U(t)D(\vb{y})
@@ -351,15 +360,18 @@ sense which leads to a stochastic contribution to the system Hamiltonian
   \label{eq:thermalh}
   H_{\mathrm{sys}}^{\mathrm{shift}}=L ξ^{*}(t)+L^{†} ξ(t)
 \end{equation}
-with the stochastic process
+with the Gaussian stochastic process
 \begin{equation}
   \label{eq:xiproc}
   ξ(t)\equiv ∑_{\lambda} g_{\lambda} y_{\lambda} \eu^{-\mathrm{i} ω_{\lambda} t}
 \end{equation}
-with corresponding moments \(\mathcal{M}(ξ(t))=0=\mathcal{M}(ξ(t) ξ(s))\) and
+completely specified through its moments
+\(\mathcal{M}(ξ(t))=0=\mathcal{M}(ξ(t) ξ(s))\) and
 \[
-\mathcal{M}\left(ξ(t) ξ^{*}(s)\right)=\frac{1}{π} ∫_{0}^{∞} \dd{ω} \bose(β ω) J(ω) \eu^{-\iu ω(t-s)}.
+  \mathcal{M}\left(ξ(t) ξ^{*}(s)\right)=\frac{1}{π} ∫_{0}^{∞} \dd{ω}
+  \bose(β ω) J(ω) \eu^{-\iu ω(t-s)}.
 \]
+
 Remember that we want to calculate
 \begin{equation}
   \label{eq:whatreallymatters}
@@ -374,8 +386,8 @@ Remember that we want to calculate
                          \end{aligned}
   \end{aligned}
 \end{equation}
-To connect to the zero temperature results we again insert a \(\id\),
-but have to additionally commute \(D(\vb{y})^†\) past
+To make a connection to the zero temperature results we again insert a
+\(\id\), but have to additionally commute \(D(\vb{y})^†\) past
 \(\dot{B}(t)\). This leads to the expression
 \begin{equation}
   \label{eq:pureagain}
@@ -396,7 +408,7 @@ but have to additionally commute \(D(\vb{y})^†\) past
                          \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†],
   \end{aligned}
 \end{equation}
-which returns us to the zero temperature formalism with a transformed
+which indeed returns us to the zero temperature formalism with a transformed
 Hamiltonian and the replacement
 \begin{eqnarray}
   \label{eq:breplacement}
@@ -405,7 +417,8 @@ Hamiltonian and the replacement
 an expression that plausibly corresponds to the \(L^†\) part of
 \(H_\inter + H_{\sys}^{\mathrm{shift}}\).
 
-We end up with an additive term in our expression for the bath energy change
+We end up with an additive term in our expression for the bath energy
+change
 \begin{equation}
   \label{eq:extra_flow_therm}
   J_{β}(t) = \mathcal{M}_{η^\ast,ξ}\bra{\psi(η,
@@ -413,7 +426,6 @@ We end up with an additive term in our expression for the bath energy change
 \end{equation}
 which constitutes the bath energy change due to the finite bath
 temperature and is equally valid for HOPS.
-
 
 The result of this section may be generalized to the nonlinear method
 in the same way as was shown \cref{sec:nonlin_flow} by applying
@@ -425,16 +437,8 @@ for twice differentiable \(\mathcal{M}(ξ(t)ξ^\ast(s))\) the sample
 trajectories are smooth.  Alternatively we can calculate
 \begin{equation}
   \label{eq:gettingarounddot}
-  \begin{aligned}
-    \ev{\dot{H}_{\mathrm{sys}}^{\mathrm{shift}}} &=
-    \dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
-    \frac{1}{\iu}\qty(\ev{H_{\mathrm{sys}}^{\mathrm{shift}}H} -\ev{H
-      H_{\mathrm{sys}}^{\mathrm{shift}}}) \\
-    &=\dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
-    \frac{1}{\iu}\ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H]} \\
-    &=\dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
+    \ev{\dot{H}_{\mathrm{sys}}^{\mathrm{shift}}} =\dv{\ev{H_{\mathrm{sys}}^{\mathrm{shift}}}}{t} -
     \frac{1}{\iu}\ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter]}.
-  \end{aligned}
 \end{equation}
 Now,
 \begin{equation}
@@ -448,21 +452,20 @@ and therefore
   \ev{[H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter]} = -i \mathcal{M}_{η^\ast}\mel{\psi}{ξ(t)^\ast[L,L^†]D_t}{\psi}.
 \end{equation}
 This is an expression that we can easily evaluate with the HOPS
-method. We will however refrain from doing so, as it turns out in
-\cref{sec:hopsvsanalyt} that consistent results can be obtained using
-the derivative of the stochastic process \(ξ\), which avoids the
+method. Nevertheless, we will refrain from doing so, as it turns out
+in \cref{sec:hopsvsanalyt} that consistent results can be obtained
+using the derivative of the stochastic process \(ξ\), which avoids the
 numeric time derivative in \cref{eq:gettingarounddot}. This time
-derivative can however be performed after performing the ensemble mean
-on a function that is generally smooth, even for non-differentiable
-\(ξ\).
+derivative can however be performed after the ensemble mean on a
+function that is generally smooth, even for non-differentiable \(ξ\).
 
 \section{Generalization to Multiple Baths}
 \label{sec:multibath}
-Another requirement for thermodynamic application is the ability to
+Another requirement for thermodynamic applications is the ability to
 couple to multiple baths of possibly different structure and
 temperature.
 
-Due to the structure of the NMQSD and HOPS the results above can be
+Due to the design of the NMQSD and HOPS the results above can be
 generalized in straight-forward manner to models of the form
 \begin{equation}
   \label{eq:multimodel}
@@ -471,7 +474,7 @@ generalized in straight-forward manner to models of the form
 where \(N\) is the number of baths, \(H_\sys\) is the system
 Hamiltonian, \(H_\bath\nth = ∑_λω_λ\nth a_λ^{(n),†}a_λ\nth\),
 \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and the \(L_n={(\vb{L})}_n\) are
-arbitrary operators in the system Hilbert space.
+arbitrary operators acting on the system Hilbert space.
 
 Note that this models a situation where each bath couples with the
 system through exactly one spectral density and is therefore not fully
@@ -508,13 +511,13 @@ This can be achieved by making the replacements
 in the previous sections, where the quantities involved are as in
 \cref{sec:hops_multibath} and \cref{eq:xiproc}.
 
-Foreshadowing slightly it may be states that in the light of
-\cref{sec:general_obs} it might be an interesting question what impact
-mixed bath hierarchy states have. For a cyclic machine with long
-strokes, where only one bath is coupled to the system at a time, it
-might be efficient to truncate the hierarchy in a way that discards
-mixed bath states more readily than single bath hierarchy states as
-the correlations between the baths are expected to be small.
+It may be states it might be an interesting question what impact mixed
+bath hierarchy states have. For a cyclic machine with long strokes,
+where only one bath is coupled to the system at a time, it might be
+efficient to truncate the hierarchy in a way that discards mixed bath
+states more readily than single bath hierarchy states as the
+correlations between the baths are expected to be
+small~\cite{Zhang2018Apr}.
 
 \section{Generalization to Time Dependent Hamiltonians}
 \label{sec:timedep}
@@ -533,7 +536,7 @@ For the total power we find
   \dv{\ev{H}}{t} = \ev{\pdv{H_\inter}{t}} + \ev{\pdv{H_\sys}{t}},
 \end{equation}
 which can be evaluated as we will find in \cref{sec:intener} by
-replacing \(L(t)\) with \(\dot{L}(t)\).
+replacing \(L(t)\) with \(\dot{L}(t)\) in \cref{eq:interhops}.
 
 \section{General Collective Bath Observables}
 \label{sec:general_obs}
