@@ -349,7 +349,7 @@ The system state is then recovered through
 The usual step is now to insert \(\id =D(\vb{y})D^†(\vb{y})\) and
 permute one \(D\) operator to the rightmost side in
 \cref{eq:shiftbath_system} when tracing out the bath to arrive at a
-new time evolution operator
+new time evolution operator~\cite{RichardDiss,Strunz2001Habil}
 \begin{equation}
   \label{eq:utilde}
   \tilde{U}(t) = D^†(\vb{y})U(t)D(\vb{y})
@@ -457,7 +457,15 @@ in \cref{sec:hopsvsanalyt} that consistent results can be obtained
 using the derivative of the stochastic process \(ξ\), which avoids the
 numeric time derivative in \cref{eq:gettingarounddot}. This time
 derivative can however be performed after the ensemble mean on a
-function that is generally smooth, even for non-differentiable \(ξ\).
+function that is generally smooth, even for non-differentiable
+\(ξ\). However, this entails storing the state in a very high
+temporal resolution or interpolating with a suitable ansatz.
+
+We now have a very capable method at hand, that can already be
+efficiently applied in quite general settings. However, systems with
+multiple heat baths of different temperature still remain to be
+discussed in \cref{sec:multibath}.
+
 
 \section{Generalization to Multiple Baths}
 \label{sec:multibath}
@@ -478,10 +486,8 @@ arbitrary operators acting on the system Hilbert space.
 
 Note that this models a situation where each bath couples with the
 system through exactly one spectral density and is therefore not fully
-general.
-
-We refer to \cref{sec:hops_multibath} for an review of the NMQSD
-theory and HOPS method for multiple baths.
+general.  We refer to \cref{sec:hops_multibath} for an review of the
+NMQSD theory and HOPS method for multiple baths.
 
 Because the bath energy change is being calculated directly and not
 through energy conservation as in~\cite{Kato2016Dec}, we find
@@ -519,6 +525,11 @@ states more readily than single bath hierarchy states as the
 correlations between the baths are expected to be
 small~\cite{Zhang2018Apr}.
 
+Now that we have discussed the multi-bath case, the last ingredient we
+are lacking for thermodynamical applications is the ability to handle
+time dependent Hamiltonians. However, this will pose no great
+challenge as we will find out in \cref{sec:timedep}.
+
 \section{Generalization to Time Dependent Hamiltonians}
 \label{sec:timedep}
 To extract energy from a quantum thermal machine without an explicit
@@ -538,17 +549,21 @@ For the total power we find
 which can be evaluated as we will find in \cref{sec:intener} by
 replacing \(L(t)\) with \(\dot{L}(t)\) in \cref{eq:interhops}.
 
+The bath energy flow can now be computed for the most general model
+\cref{eq:generalmodel} that the NMQSD introduced in
+\cref{sec:nmqsd_basics} can handle. Finally, we depart from the
+concrete observable of the bath energy flow \cref{eq:heatflowdef} and
+introduce a more general class in \cref{sec:general_obs}.
+
 \section{General Collective Bath Observables}
 \label{sec:general_obs}
 Now that we have introduced the formalism using the example of the
 bath energy flow \(J\) in
 \cref{sec:flow_lin,sec:nonlin_flow,sec:lin_finite,sec:multibath,sec:timedep},
-we may proceed to more general observables of the form can be
-generalized to calculate expectation values (and thus moments) of
-arbitrary observables of the form
+we may proceed to more general observables of the form
 \begin{equation}
   \label{eq:collective_obs}
-  O = f(B^†, B) = ∑_{α}F_α\qty(B^†)^{α_1}B^{α_2}
+  O = f(B^†, B) = ∑_{α}F_α\otimes \qty(B^†)^{α_1}B^{α_2}
 \end{equation}
 where \(α\) is a two-dimensional multi-index, \(B\) is as
 in~\cref{eq:totalH} and the \(F_α\) are general observables acting on
@@ -568,11 +583,11 @@ interaction picture with respect to \(H_{\bath}\).
 For zero temperature, we find following the procedures of
 \cref{sec:flow_lin},
 \begin{align}
-    \label{eq:bmel}\mel{z}{B^b}{ψ} &= (-\iu D_t)^b\ket{ψ(η^\ast,t)}
+    \label{eq:bmel}\mel{z}{B^b(t)}{ψ} &= (-\iu D_t)^b\ket{ψ(η^\ast,t)}
                       = (-\iu)^b
                       ∑_{\abs{\vb{k}}=b}\binom{b}{\vb{k}} \iu^{\vb{k}}
                       \sqrt{\frac{G^{\vb{k}}}{\vb{k}!}}ψ^{\vb{k}}\\
-    \label{eq:bdagmel}\mel{ψ}{\qty(B^†)^a}{z} &=
+  \label{eq:bdagmel}\mel{ψ}{\qty(B^†(t))^a}{z} &=
                               \begin{aligned}[t]
                                 \qty(\mel{z}{B^a}{ψ})^†&= \qty((-\iu D_t)^a\ket{ψ(η^\ast,t)})^\dag\\
                                                    &= (\iu)^a∑_{\abs{\vb{k}}=a}\binom{a}{\vb{k}} (-\iu)^{\vb{k}}
@@ -581,7 +596,7 @@ For zero temperature, we find following the procedures of
 \end{align}
 where \(\vb{k}! = k_1!k_2!\ldots\) and
 \(G^{\vb{k}}=G_1^{k_1}G_2^{k_2}\ldots\) following the usual
-conventions of multi-indices. Thus, expressions involving the bath
+conventions for multi-indices. Thus, expressions involving the bath
 operator \(B\) to the \(b\)th power lead to expressions involving the
 hierarchy states of depth \(b\). The truncation of the hierarchy
 corresponds to neglecting the expectation value of all powers of \(B\)
@@ -608,8 +623,8 @@ which may be substituted into the above.
 
 The nonlinear method can be accommodated as in
 \cref{sec:nonlin_flow}. For the expressions like~\cref{eq:f_ex_zero}
-involving the HOPS hierarchy states this reduces to dividing by the
-norm of the zeroth hierarchy state.
+involving the HOPS hierarchy states the method can be implemented by
+dividing by the squared norm of the zeroth hierarchy state.
 
 The generalization to multiple baths may be performed in the same
 manner as was discussed in \cref{sec:multibath}. This allows to
@@ -628,15 +643,15 @@ and inserting the coherent state resolution of unity we find terms of
 the form
 \begin{equation}
   \label{eq:with_process}
-  \mel{z}{\qty(B^\dag)^b}{ψ} \sim \qty(η^\ast_{t})^b\ket{ψ(η^\ast,t)}.
+  \mel{z}{\qty(B^\dag(t))^b}{ψ} \sim \qty(η^\ast_{t})^b\ket{ψ(η^\ast,t)}.
 \end{equation}
-The corresponding version of~\cref{eq:f_ex_zero} would only depend on
-the zeroth order state and the stochastic processes. It has been
-observed that expressions involving the stochastic process directly
-tend to converge slower. However, this statement comes without
-empirical proof and its verification may be left to future study. An
-explanation may be that the first hierarchy states fluctuate about
-their average dynamics whereas the stochastic process fluctuates
+The corresponding version of~\cref{eq:f_ex_zero} would only explicitly
+depend on the zeroth order state and the stochastic processes. It has
+been observed that expressions involving the stochastic process
+directly tend to converge slower. However, this statement comes
+without empirical proof and its verification may be left to future
+study. An explanation may be that the first hierarchy states fluctuate
+about their average dynamics whereas the stochastic process fluctuates
 around zero and does not contain much information about the actual
 dynamics.
 
@@ -652,10 +667,10 @@ dynamics.
 %   \end{cases}
 % \end{equation}
 % so that we end up with a process that is some approximation of white noise.
-Also, this alternative method could be used convergence and
+Also, this alternative method could be used as a convergence and
 consistency check, as expressions of the form~\cref{eq:with_process}
-only involve the hierarchy cutoff and the exponential expansion of the
-BCF in an indirect manner.
+involve the hierarchy cutoff and the exponential expansion of the BCF
+only in an indirect manner.
 
 \subsection{Interaction Energy}
 \label{sec:intener}
@@ -665,19 +680,17 @@ calculate the expectation value of the interaction energy
 energy is also an effective way to quantify the interaction strength.
 
 
-For zero temperature and the nonlinear method we arrive at
+For zero temperature and the linear method we arrive at
 \begin{equation}
   \label{eq:intexp}
   \ev{H_\inter} =
   -\i
-  \mathcal{M}_{\tilde{η}^\ast}\frac{\mel{\psi(\tilde{η},t)}{L^†\tilde{D}_t}{\psi(\tilde{η}^\ast,t)}}{\braket{\psi(\tilde{η},t)}{\psi(\tilde{η}^\ast,t)}}
+  \mathcal{M}_{{η}^\ast}{\mel{\psi({η},t)}{L^†D_t}{\psi({η}^\ast,t)}}
   + \cc.
 \end{equation}
 This is a application of the formalism discussed
-in~\cref{sec:general_obs}.
-
-The expression for the linear method is obtained by
-simply leaving out the normalization.
+in~\cref{sec:general_obs}.  The expression for the nonlinear method is
+obtained simply by normalizing the above expression.
 
 In HOPS terms \cref{eq:intexp} corresponds to
 \begin{equation}
@@ -698,17 +711,16 @@ stochastic process.
 
 \subsection{Higher Orders of the Coupling Hamiltonian}
 \label{sec:higher_order_coupling}
-In this section, the question of how many hierarchy orders have to be
-included in the simulation to consistently calculate the expectation
-value of powers of the interaction Hamiltonian. Being nonessential for
-the understanding of the rest of the work, this section may be
-skipped.
+In this section, we address the question of how many hierarchy orders
+have to be included in the simulation to consistently calculate the
+expectation value of powers of the interaction Hamiltonian. Being
+nonessential for the understanding of the rest of the work, this
+section may be skipped.
 
 For self adjoint coupling operators \(L=L^\dag\) we can use Wick's
-theorem to find a normally ordered expression for \(H_\inter^n=L^n(B^\dag +
-B)^n\).
-
-The relevant contraction of \((B^\dag + B)(B^\dag + B)\) is
+theorem to find a normally ordered expression for
+\(H_\inter^n=L^n(B^\dag + B)^n\).  The relevant contraction of
+\((B^\dag + B)(B^\dag + B)\) is
 \begin{equation}
   \label{eq:contraction_b}
   (B^\dag + B)(B^\dag + B) - \mathopen{:} (B^\dag + B)(B^\dag + B)\mathclose{:} = α(0)
