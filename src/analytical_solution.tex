@@ -3,13 +3,14 @@
 \label{chap:analytsol}
 
 The results of \cref{chap:flow} are promising from a numerical
-perspective remain to be verified. Previous
-work~\cite{Hartmann2017Dec,RichardDiss} has made it clear that the
-reduced system dynamics, but it is an open question whether bath
-related quantities can be calculated to a similar degree of accuracy.
+perspective but remain to be verified. Previous
+work~\cite{Hartmann2017Dec,Hartmann2021Aug,RichardDiss} has made it
+clear that the reduced system dynamics can be efficiently treated by
+the method, but it is an open question whether bath related quantities
+can be calculated to a similar degree of accuracy.
 
 The best possible verification is the comparison with a soluble model,
-ideally solved with a method completely different from the NMQSD. In
+ideally treated with a method completely different from the NMQSD. In
 this chapter we will present the solution to the Heisenberg equations
 of two quantum Brownian motion models for a single (\cref{sec:oneosc})
 and two baths (\cref{sec:twoosc}) and time independent Hamiltonians.
@@ -18,22 +19,32 @@ These solutions will enable us to calculate the bath energy flow \(J\)
 for one or two baths which will be compared with the numerical
 solution in \cref{sec:hopsvsanalyt}.
 
+This chapter is included in the main text, because its study and
+implementation constituted a large part of the analytical work in this
+thesis. As an understanding of the solution to this model is not
+essential, this section may be skipped. One important fact however is,
+that we employ an exponential expansion of the BCF for the solution
+just as in HOPS. However, as the expansion can include more terms than
+is numerically feasible with HOPS, this constitutes no severe
+approximation.
 
 \section{A Harmonic Oscillator coupled to a single Bath}
 \label{sec:oneosc}
-A simple quadratic model that is soluble~\cite{Breuer2002Jun} and of
-the form \cref{eq:totalH} is given by
+A simple quadratic model that is soluble and of the form
+\cref{eq:totalH} is given by
 \begin{equation}
   \label{eq:one_ho_hamiltonian}
   H = \frac{Ω}{4}\qty(p^2+q^2) + \frac{1}{2} q
   \sum_λ\qty(g_λ^\ast b_λ + g_λ
   b^†_λ)+\sum_λ\omega_λ b^†_λ b_λ,
 \end{equation}
-where \(a,a^†\) are the ladder operators of the harmonic
-oscillator, \(q=a+a^†\) and \(p=\frac{1}{\iu}\qty(a-a^†)\) so
-that \([q,p] = 2\iu\).
+where \([q,p] = 2\iu\) which slightly deviates from the usual
+definition. This model and the general form of its solution have been
+adapted from \cite{Breuer2002Jun,Weiss2012}. The discussion here is
+very technical and can be seen as a preparation for the more
+application oriented \cref{chap:numres,sec:therm_results}.
 
-The Heisenberg equations for \cref{eq:one_ho_hamiltonian}
+The Heisenberg equations for \cref{eq:one_ho_hamiltonian} are
 \begin{align}
   \dot{q} &=Ω p \label{eq:qdot}\\
   \dot{p} &= -Ω q - \int_0^t \Im[α_0(t-s)] q(s)\dd{s} + W(t) \label{eq:pdot}
@@ -82,14 +93,12 @@ leads to an algebraic formula
   \mathcal{L}\{G\}(z) = \qty(z-A + \mathcal{L}\{K\}(z))^{-1}.
 \end{equation}
 
-These considerations have been adapted
-from~\cite{Weiss2012,Breuer2002Jun}.
 
 \subsection{Solution}
 \label{sec:solution}
 To solve \cref{eq:eqmotprop} and find the propagator \(G\), we have to
 find an explicit expression for \cref{eq:galgebr}, a simple matrix
-inversion, and then apply the inverse transformation.
+inversion, and then apply the inverse Laplace transformation.
 
 We observe that
 \begin{equation}
@@ -176,14 +185,13 @@ polynomial
   \label{eq:polyp}
   p(z) = p_1(z) + \sum_{n=1}^{N}q_n(z)
 \end{equation}
-of degree \(2(N+1)\) where we \textbf{assume that there are
-  no roots with multiplicity greater than one}.
-With this we can now calculate the inverse laplace transform of
-expressions of the form \(\frac{f_0(z)g(z)}{p(z)}\) where \(g(z)\) is
-any holonomic function so that \(\frac{f_0(z)g(z)}{p(z)} \eu^{z\cdot
-  t}\) falls off fast enough for \(t\geq 0\),
-\(\Re(z)>\max_l{\Re(\tilde{z}_l)}=\Delta\) and \(\Re(z) \rightarrow
--\infty\). Now the contour of the inverse Laplace
+of degree \(2(N+1)\) where we assume that there are no roots with
+multiplicity greater than one.  With this we can now calculate the
+inverse laplace transform of expressions of the form
+\(\frac{f_0(z)g(z)}{p(z)}\) where \(g(z)\) is any holonomic function
+so that \(\frac{f_0(z)g(z)}{p(z)} \eu^{z\cdot t}\) falls off fast
+enough for \(t\geq 0\), \(\Re(z)>\max_l{\Re(\tilde{z}_l)}=\Delta\) and
+\(\Re(z) \rightarrow -\infty\). Now the contour of the inverse Laplace
 transform
 \begin{equation}
   \label{eq:invlap}
@@ -203,8 +211,8 @@ where we assumed that \(g(z)^\ast=g(z^\ast)\) which is the case for
 all our purposes. For completeness we give
 \begin{equation}
   \label{eq:pderiv}
-  p'(z) = 2\mu\sum_{k=1}^{N+1}\qty[(z-\Re(\tilde{z}_k))\prod_{\substack{n=1\\
-    n\neq k}}^{N+1}(z-\tilde{z}_n)(z-\tilde{z}^\ast_n)].
+  p'(z) = 2\mu\sum_{k=1}^{N+1}\qty[\pqty{z-\Re(\tilde{z}_k)}\prod_{\substack{n=1\\
+      n\neq k}}^{N+1}(z-\tilde{z}_n)(z-\tilde{z}^\ast_n)].
 \end{equation}
 
 It can be immediately concluded that all elements of \(G\) are sums of
@@ -292,13 +300,13 @@ bath energy expectation value
     \end{aligned}
   \end{aligned}
 \end{equation}
-where we've used \(\ev{b_λ(0)}=\ev{b_λ^0}=0\),
+where we have used \(\ev{b_λ(0)}=\ev{b_λ^0}=0\),
 \begin{equation}
   \label{eq:blambdadotexp}
   \begin{aligned}
     \ev{b_λ^†\dot{b}_λ}= -\i\ev{b_λ^†\qty(\frac{g_λ}{2}q + ω_λb_λ)} =
     -\i\qty[\frac{g_λ}{2}\ev{b^†_λ(t)q(t)} +
-    \underbrace{ω_λ\ev{b^†_λ(t)b_λ(t)}}_{\in\RR\implies\text{cancels }\cc}].
+    \underbrace{ω_λ\ev{b^†_λ(t)b_λ(t)}}_{\in\RR\implies\text{canceled by }\cc}].
   \end{aligned}
 \end{equation}
 and
@@ -338,19 +346,12 @@ once again employ the exponential expansion for \(α\).
 
 We will arrive at expressions that are weighted sums of exponentials
 whose detailed calculation is quite tedious and can be found
-in\cref{sec:explicit_flow}.
+in \cref{sec:explicit_flow}.
 
 \section{Two coupled Harmonic Oscillators coupled to two Baths}%
 \label{sec:twoosc}
-\begin{itemize}
-\item (future) applications involve thermodynamically interesting case
-  of multiple baths
-\item we chose two HOs because then the coupling to the two baths is
-  not trivially additive and we can reuse the method from
-  \cref{sec:oneosc} without alteration
-\end{itemize}
-As we would like to verify our method also for more than one bath, a
-model with two baths is required.
+As we would like to verify our method also for more than one bath, we
+now consider a model with two baths.
 
 The considerations of~\cref{sec:oneosc} can be straight forwardly
 generalized to the case of two coupled oscillators coupled in turn to
@@ -368,13 +369,13 @@ The model is again given by a quadratic Hamiltonian
   H &= ∑_{i\in\qty{1,2}} \qty[H^{(i)}_O + q_iB^{(i)} + H_B^{(i)}] + \frac{γ}{4}(q_1-q_2)^2,
   \end{aligned}
 \end{equation}
-where \(H_O^{(i)}= \frac{Ω_i}{4}\qty(p_i^2+q_i^2)\), \(B^{(i)}=\sum_λ\qty(g^{(i),\ast}_λb^{(i)}_λ  + g^{(i)}_λ
-  b^{(i),†}_λ)\) and \(H_B^{(i)}=\sum_λ\omega_λ b^{(i),†}_λ b^{(i)}_λ\).
+where \(H_O^{(i)}= \frac{Ω_i}{4}\qty(p_i^2+q_i^2)\),
+\(B^{(i)}=\sum_λ\qty(g^{(i),\ast}_λb^{(i)}_λ + g^{(i)}_λ
+b^{(i),†}_λ)\) and \(H_B^{(i)}=\sum_λ\omega_λ b^{(i),†}_λ b^{(i)}_λ\).
 
-The \(b^{(i)}\) are the usual bosonic ladder operators of the baths.
-The \(a_i^{(i)},a_i^{†}\) are the ladder operators of the harmonic
-oscillators and \(q_i=a_i+a_i^†\) and \(p=\frac{1}{\iu}\qty(a_i-a_i^†)\) so
-that \([q_i,p_j] = 2\iuδ_{ij}\) and \([q_i,q_j] = [p_i,p_j] = 0\).
+The \(b^{(i)}_{λ}\) are the usual bosonic ladder operators of the baths.
+Again we chose a slightly different convention in which
+\([q_i,p_j] = 2\iuδ_{ij}\) and \([q_i,q_j] = [p_i,p_j] = 0\).
 
 The Heisenberg equations for \cref{eq:hamiltonian_two_bath} are
 \begin{align}
@@ -387,8 +388,8 @@ with the operator noise
 \(W_i(t)=-\sum_λ \qty(g_λ^{(i),\ast} b^{(i)}_λ(0)
 \eu^{-\iu\omega^{(i)}_λ t } + g_λ^{(i)} b_λ^{(i),†}(0)
 \eu^{\iu\omega^{(i)}_λ t })\) satisfying \(\ev{W_i(s)}=0\) and
-\(\ev{W_i(t)W_j(s)}=δ_{ij}α^{(i)}(t-s)\). We introduced
-\(α^{(i)}_0 \equiv \eval{α^{(i)}}_{T=0}\).
+\(\ev{W_i(t)W_j(s)}=δ_{ij}α^{(i)}(t-s)\), where
+\(α^{(i)}_0 \equiv \eval{α^{(i)}}_{T=0}\) as in \cref{sec:oneosc}.
 
 We have given most quantities an extra index and accounted for the
 coupling between the two oscillators. Apart from this, the equations
@@ -441,7 +442,7 @@ now with a more complicated matrix
     -\gamma  & 0 & \mathcal{L}\{\Im[α^{(2)}_0]\}(z)+\gamma +\Lambda  & z)
   \end{aligned}
 \end{equation}
-that we have to invert.
+which we have to invert.
 
 This can be done easily\footnote{We have use a computer algebra
   system. There is probably a pattern to the inverse matrix, so that
@@ -453,7 +454,7 @@ This can be done easily\footnote{We have use a computer algebra
 where \(\tilde{M}\) is a matrix containing only polynomials of \(z\)
 and of the Laplace transforms of the bath correlation functions.
 
-The numerator is
+The denominator is
 \begin{equation}
   \label{eq:numerator}
   \begin{aligned}
@@ -470,7 +471,7 @@ where \(a(z)=\mathcal{L}\{\Im[α^{(1)}_0]\}(z)\) and
 
 Using the same approach as in \cref{sec:solution}, we arrive at an
 expression similar to \cref{eq:prefactorrational} for
-\((\det[M](z))^{-1}\). The polynomial \(p\) is now of degree
+\((\det[M](z))^{-1}\). The final polynomial is now of degree
 \(4 + 2 \qty(N^{(1)} + N^{(j)})\) where the \(N^{(i)}\) are the number of
 terms in the expansions of bath correlation functions for each bath
 and the function \(f_0\) now depends on both bath correlation
@@ -532,7 +533,7 @@ Similar to the calculations in \cref{sec:bathflow} we find
 This can be evaluated using the exponential expansions and yields yet
 another sum of exponentials. The steady state flow can then be found
 be setting all exponentials to zero, although care has to be taken, as
-an exponential fit of the BCF may be only valid for finite times.
+an exponential fit of the BCF may only be valid for finite times.
 
 This concludes the calculation. Python code implementing the solution
 can be found under \url{https://github.com/vale981/hopsflow}.
