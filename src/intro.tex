@@ -263,8 +263,8 @@ stochastic processes and a memory term.
 
 Here we only consider a single zero temperature bath initially in the
 ground state \(\ket{0}\). For more complete and general account see
-\cite{RichardDiss,Strunz2001Habil,Diosi1998Mar,Hartmann2017Dec} and
-\cref{sec:hops_multibath}.
+\cite{RichardDiss,Strunz2001Habil,Diosi1998Mar,Hartmann2017Dec,Hartmann2021Aug}
+and \cref{sec:hops_multibath}.
 
 The total system-bath state may then be expanded in a Bargmann
 unnormalized coherent state basis~\cite{klauder1968fundamentals} with
@@ -294,9 +294,9 @@ arrive at an equation for \(\ket{ψ(t,\vb{z}^{\ast})}\)
 From this point on there are multiple avenues open to us. We choose
 the canonical one of \cite{Strunz2001Habil}, but there is also a
 time-discrete derivation that avoids functional derivatives
-in~\cite{Hartmann2017Dec}.
+in~\cite{Hartmann2021Aug}.
 
-We shift the perspective and define
+We shift the perspective and define~\cite{RichardDiss,Strunz2001Habil}
 \begin{equation}
   \label{eq:single_process}
   η^\ast_{t} = -\iu ∑_λg_λ^{\ast} z_λ^{\ast}\eu^{\iu ω_λ t}.
@@ -365,7 +365,8 @@ normalized states
  \braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)} \frac{\ketbra{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}{\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}.
 \end{equation}
 
-This can be achieved by using a co-moving shifted stochastic process
+This can be achieved~\cite{RichardDiss,Suess2014Oct} by using a
+co-moving shifted stochastic process
 \begin{equation}
   \label{eq:shifted_proc}
   \tilde{η}_{t}^\ast= η^\ast_{t} + ∫_{0}^{t}\dd{s} α^\ast(t-s) \ev{L^\ast}_{s},
@@ -380,15 +381,16 @@ bath
 a deeper level the stochastic state labels, amounts to importance
 sampling for each time step.
 
-This leads to the nonlinear NMQSD equation
+This leads to the nonlinear NMQSD equation~\cite{Diosi1998Mar}
 \begin{equation}
   \label{eq:nmqsd_nonlin_single}
   ∂_tψ_t(η^\ast_t) = -\iu H ψ_t(η^\ast_t) +
   L {η}^\ast_tψ_t(\tilde{η}^\ast_t) - \pqty{L^† -\ev{L^\dag}_{t}}∫_0^t\dd{s}α(t-s)\fdv{ψ_t({η}^\ast_t)}{\tilde{η}^\ast_s}.
 \end{equation}
 There is a subtlety concerning the functional derivative that won't be
-discussed here but in \cref{sec:nonlin_flow}.  Crucially, the system
-state is now recovered through
+discussed here but in \cite{Hartmann2021Aug,RichardDiss} or
+\cref{sec:nonlin_flow}.  Crucially, the system state is now recovered
+through
 \begin{equation}
   \label{eq:recover_rho_nonlinear}
   ρ_{\sys}(t) = \mathcal{M}_{η_{t}^\ast}\bqty{\frac{ψ_t(η_t)^\dag ψ_t(η^\ast_t)}{\norm{ψ_t(η_t)}^{2}}},
@@ -410,9 +412,12 @@ There exist analytical approaches to this
 term~\cite{Diosi1998Mar,Strunz2001Habil}, but we keep the approach as
 general as possible and instead choose a numerical avenue.
 
-They key~\cite{Suess2014Oct,Hartmann2017Dec,RichardDiss} is cast the
-complicated term containing the functional derivative into an
-auxiliary state. Expanding the BCF into exponentials
+They
+key~\cite{Suess2014Oct,Hartmann2017Dec,Hartmann2021Aug,RichardDiss} is
+cast the complicated term containing the functional derivative into an
+auxiliary state. Expanding the BCF into exponentials\footnote{See
+  \cite{RichardDiss,Hartmann2021Aug} for a detailed account of the
+  systematics of this expansion.}
 \(α(τ)=∑_{μ}G_{μ=1}^{M}\eu^{-W_{μ}τ}\) and defining
 \begin{equation}
   \label{eq:d_op_one}
@@ -425,7 +430,8 @@ we can define the \(\vb{k}th\) hierarchy state
    ψ^{\vb{k}}\equiv D^{\vb{k}}ψ.
 \end{equation}
 
-For this state the following equation of motion can be derived
+For this state the following equation of motion can be
+derived~\cite{Suess2014Oct,Hartmann2021Aug}
 \begin{equation}
   \label{eq:singlehops}\tag{HOPS}
   \dot{ψ}^{\vb{k}} = \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
@@ -455,11 +461,12 @@ matrices.
 By truncating the hierarchy we obtain from \cref{eq:singlehops} a
 system of time linear differential equations with time dependent
 coefficients that can be solved numerically. By choosing a suitable
-cutoff the method can be made arbitrarily exact. For concrete
-truncation schemes see \cite{RichardDiss} and \cref{sec:truncsch}. In
-most simulations in this work the so called \emph{simplex truncation
-  scheme} was used. This scheme amounts to only including hierarchy
-states with \(\abs{\vb{k}} \leq k_{\max}\).
+cutoff the method can be made arbitrarily
+exact~\cite{Hartmann2021Aug}. For concrete truncation schemes see~
+\cite{RichardDiss,Zhang2018Apr,Hartmann2021Aug} and
+\cref{sec:truncsch}. In most simulations in this work the so called
+\emph{simplex truncation scheme} was used. This scheme amounts to only
+including hierarchy states with \(\abs{\vb{k}} \leq k_{\max}\).
 
 Note that the hierarchy states have no physical interpretation, but
 can be thought of as the ``memory'' of the system. We will find in
@@ -470,9 +477,9 @@ The nonlinear NMQSD \cref{eq:nmqsd_nonlin_single} can be accommodated
 in much the same way, except for the replacements
 \(L^\dag\rightarrow \pqty{L^\dag-\ev{L^\dag}_{t}}\) and
 \(η\rightarrow \tilde{η}\) in \cref{eq:singlehops} transforming it
-into a \emph{nonlinear} system of differential equations. Throughout
-this work, the nonlinear method is being used, as it offers much
-superior convergence.
+into a \emph{nonlinear} system of differential
+equations~\cite{Suess2014Oct}. Throughout this work, the nonlinear
+method is being used, as it offers much superior convergence.
 
 \section{A Note on Tooling}
 \label{sec:note-tooling}
