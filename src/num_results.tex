@@ -16,12 +16,13 @@ visible in all simulations will be discussed and explained in
 
 In the generic case where no analytic solution we nevertheless are
 able to obtain consistent results as is demonstrated upon the example
-of the spin-boson model \cref{sec:prec_sim}. We will also look
-into the characteristics of the energy flow between system and bath
-depending on the shape of the spectral density. As the interaction
-energy is not insubstantial in the regime that will be studied, we
-turn off the interaction smoothly at the end of the evolution to be
-able to adequately discuss our observations.
+of the spin-boson model \cref{sec:prec_sim}. We will also look into
+the characteristics of the energy flow between system and bath
+depending on the shape of the spectral density in
+\cref{sec:energy-transf-char}. As the interaction energy is not
+insubstantial in the regime that will be studied, we turn off the
+interaction smoothly at the end of the evolution to be able to
+adequately discuss our observations.
 
 Finally, in \cref{sec:initial-slip-sb} we will study the short time
 behavior of the spin-boson model, which will prove to be similar to
@@ -193,56 +194,12 @@ flow features some oscillations and decays to zero which is physical
 for the situation of a harmonic oscillator that loses most of its
 energy into a zero temperature bath.
 
-The enhanced short term energy transfer for long bath memories may be
-qualitatively understood. A longer bath correlation time allows for a
-more stable interaction with the degrees of freedom of the bath.
-Assume we are at some sufficiently late point in time \(τ\). The NMQSD
-equation \cref{eq:nmqsd_single} features two terms that model the
-interaction with the bath. The driving term
-\begin{equation}
-  \label{eq:nmqsd_driving}
-  L {η}^\ast_t\ket{ψ({η}^\ast_t, t)}
-\end{equation}
-includes the bath memory in an indirect manner through the stochastic
-process \(η^\ast\). At the time point \(τ\), the process will be
-effectively uncorrelated with itself at \(τ-τ_{\bath}\). Increasing
-\(τ_{\bath}\) will make the fluctuations of \(η^\ast\) slower and
-reduce their magnitude as demonstrated in
-\cref{fig:stocproc_comparison} which in turn reduces the fluctuations
-of the bath energy flow on a trajectory level, an effect that is even
-more evident, when looking at the time derivative of the process. This
-may be best understood by looking at the alternative expression for
-the flow \cref{eq:alternative}
-\(\dot{η}_t^\ast \mel{\psi(η,t)}{L}{\psi(η^\ast,t)}\), which features
-the derivative of this process directly.
-
-The memory term
-\begin{equation}
-  \label{eq:nmqsd_memory_term}
-  L^†∫_0^τ\dd{s}α(t-s)\fdv{\ket{ψ({η}^\ast_t, t)}}{η^\ast_s}
-\end{equation}
-contains the bath correlation time even more explicitly. One may
-choose the integration range in \cref{eq:nmqsd_memory_term} to be
-\((τ-τ_{\bath}, τ)\) in good approximation. This
-
-
-\begin{figure}[htp]
-  \centering
-  \includegraphics{figs/analytic_comp/stocproc_comparison}
-  \caption{\label{fig:stocproc_comparison} The imaginary part of ten
-    realizations the stochastic process \(η^\ast\) for an ohmic bcf
-    with different cutoff frequencies \(ω_{c}\). The process is much
-    smoother and of less magnitude for smaller cutoffs.}
-\end{figure}
-
-When the bath memory is short however,
-new interactions have to be built up continuously which leads to a
-slower energy transfer. Correspondingly, the system energy decays
-slower for shorter bath memories \cref{fig:ho_zero_entropy}. Another
-explanation is a resonance effect due to the peak of the BCF being
-located at \(ω_c\) and the HO energy gap being one. We will discuss
+When the bath memory is short however, the short-term energy flow is
+of less magnitude. Correspondingly, the system energy decays slower
+for shorter bath memories \cref{fig:ho_zero_entropy}. We will discuss
 this point further in \cref{sec:one_bath_cutoff} in the context of
-another model.
+another model as the performance does not only depend on the bath
+memory, but also on its position in frequency space.
 
 \begin{figure}[htp]
   \centering
@@ -982,10 +939,11 @@ function beyond lamb-shift like influences, as we will find below is
 an indicator of the departure from the weak coupling limit.
 \fixme{Here, some master equation comparison would be nice.}.
 
-\paragraph{Energy Transfer Characteristics}
+\subsection{Energy Transfer Characteristics}
+\label{sec:energy-transf-char}
 After focusing on the systematics and achieving very high consistency
 in our simulations, we continue to shed some light on the role of bath
-memory and resonance in the behavior of the energy transfer between
+memory and resonance in the behaviour of the energy transfer between
 system and bath.
 
 \begin{wrapfigure}[13]{O}{0.3\textwidth}
@@ -1212,15 +1170,21 @@ energies rise. This is due to the energy transfer behavior, consistent
 with the broadly similar total energy change in all three cases. This
 behavior can also be observed \cref{fig:markov_analysis}.
 
-For even longer times we find a picture similar to
-\cref{fig:markov_analysis_steady}. The short memory case shows hardly
-any backflow and performs best in terms of final system energy which
-is extremely close to the target value of negative two. The other two
-bath memories perform worse. We observe that simulation with the
-longest bath memory stands out and having a very different final state
-as is exemplified by the final system energy and the interaction
-energy curve which exhibits a greater magnitude and persistent
-oscillations.
+For even longer times we find in \cref{fig:markov_analysis_steady} a
+picture similar to \cref{fig:markov_analysis_longer}. The short memory
+case shows hardly any backflow and performs best in terms of final
+system energy which is extremely close to the target value of negative
+two. The other two bath memories perform worse. We observe that
+simulation with the longest bath memory stands out and having a very
+different final state as is exemplified by the final system energy and
+the interaction energy curve which exhibits a greater magnitude and
+persistent oscillations. These oscillations were not clearly visible
+in the earlier simulations
+(\cref{fig:markov_analysis,fig:markov_analysis_longer}) due to the
+switch off of the interaction. Due to the long memory the bath,
+interaction and to a lesser extend, the system can continue to
+exchange energy, even in the steady state. We will encounter them
+again in a different setting in \cref{sec:extr_mem}.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis_steady}
@@ -1240,8 +1204,8 @@ likely further reduce the amount of energy introduced.
 As the steady state system energies\footnote{Before the interaction is
   switched off.} are greater than the ground state energies in all
 simulations of \cref{fig:markov_analysis_steady} is a token of strong
-coupling. The ground state is not the steady state, as it would be
-with GKSL dynamics~\cite{Binder2018}.
+coupling. The ground state of the two level system is not the steady
+state, as it would be with GKSL dynamics~\cite{Binder2018}.
 
 We have often alluded to the fact that oscillations in the system
 energy, the back-flow of energy into the system, are a token of
@@ -1274,10 +1238,81 @@ called entropy production.
 \Cref{fig:steady_relent} demonstrates that the two simulations with
 longer bathe memories are inconsistent with Markovian dynamics, as
 their entropy production exhibits strong negativity. The
-\(τ_{\bath}=1\) must be taken with care, as the steady state hasn't
-been reached yet.
+\(τ_{\bath}=1\) must be taken with care, as the steady state exhibits
+oscillations which are token of non Markovianity themselves, as
+\cref{eq:spohn} forbids them.
 
-In summary we find that the energy dynamics of system, interaction and
+The enhanced short term energy transfer for long bath memories may be
+understood qualitatively. A longer bath correlation time allows for a
+more stable interaction with the degrees of freedom of the bath. Let
+\(τ^{\ast}\) be the time in which the BCF decays sufficiently. Let us
+choose some point in time \(τ>τ^{\ast}\). The NMQSD equation
+\cref{eq:nmqsd_single} features two terms that model the interaction
+with the bath. The driving term
+\begin{equation}
+  \label{eq:nmqsd_driving}
+  L {η}^\ast_t\ket{ψ({η}^\ast_t, t)}
+\end{equation}
+includes the bath memory in an indirect manner through the stochastic
+process \(η^\ast\). At the time point \(τ\), the process will be
+effectively uncorrelated with itself at \(τ-τ^\ast\). Increasing
+\(τ^\ast\) will make the fluctuations of \(η^\ast\) slower and reduce
+their magnitude as demonstrated in \cref{fig:stocproc_comparison}.
+This allows for steadier dynamics with a slower bath induced change in
+the trajectory and state.
+% This in turn reduces the fluctuations of the bath energy flow on a
+% trajectory level and allows for steadier accumulation.  This effect
+% may be best understood by looking at the alternative expression for
+% the flow \cref{eq:alternative}
+% \(\dot{η}_t^\ast \mel{\psi(η,t)}{L}{\psi(η^\ast,t)}\), which features
+% the derivative of this process directly.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/analytic_comp/stocproc_comparison}
+  \caption{\label{fig:stocproc_comparison} The imaginary part of ten
+    realizations the stochastic process \(η^\ast\) for an ohmic bcf
+    with different cutoff frequencies \(ω_{c}\). The process is much
+    smoother and of less magnitude for smaller cutoffs. The difference
+    between the cutoffs is even more severe for the derivative of the
+    processes.}
+\end{figure}
+
+The memory term
+\begin{equation}
+  \label{eq:nmqsd_memory_term}
+  L^†∫_0^τ\dd{s}α(t-s)\fdv{\ket{ψ({η}^\ast_t, t)}}{η^\ast_s}
+\end{equation}
+contains the bath correlation time even more explicitly. One may
+choose the integration range in \cref{eq:nmqsd_memory_term} to be
+\((τ-τ^\ast, τ)\) in good approximation due to the decay of the
+BCF. Thus, the evolution of the trajectory is not being directly
+influenced by times before \(τ-τ^\ast\). Also, if the stochastic
+process fluctuates more slowly, the trajectory has a stronger
+dependence on its past values, enhancing the magnitude of the
+functional derivative.  We see therefore, that the memory time of the
+bath has a very direct influence on the dependence of the trajectory
+and therefore system dynamics on its earlier states.  As the memory is
+mediated by the bath degrees of freedom, a dependence on ever earlier
+system states must be due to ever longer interaction with specific
+bath degrees of freedom.
+
+This interpretation is corroborated by the time discrete version of
+the NMQSD discussed in \cite{RichardDiss}. There, the
+\emph{Time-Oscillator picture} is introduced, which shows that the
+NMQSD can be formulated as the successive interaction in time of the
+system with mode like degrees of freedom. At each time point, a new
+oscillator is being coupled to the system and the coupling to the
+existing oscillators is weakened according to the bath correlation
+function.
+
+With this in mind, we may conclude that because we interact for a
+longer time with certain ``portions'' of the bath degrees of freedom,
+the energy exchange between the bath and the system can be more rapid,
+as the energy exchange with the individual modes becomes more
+complete.  At the same time, energy may flow back into the system from
+those degrees of freedom if the bath memory is sufficiently long.
+
+In summary, we find that the energy dynamics of system, interaction and
 bath depend strongly on the characteristics of the bath.  In the
 regime studied, optimizing for fast energy loss of the system favors
 longer bath memories, whereas the situation is reversed when longer
