@@ -161,10 +161,27 @@ Interestingly one finds that
 This expression is undesirable as it does not exist for all bath
 correlation functions\footnote{Only for BCFs that are smooth at
   \(τ=0\).} and expressions involving the process directly are alleged
-to converge slower. Furthermore, this approach becomes more
-complicated in the nonlinear theory due to the shift of the stochastic
-process.  We will briefly return to this issue in
-\cref{sec:general_obs}.
+to converge slower, especially for shorter bath memories. This
+convergence problem is due to greater magnitude and shorter
+correlation time of the oscillations of \(\dot{η}_{t}^\ast\), as can
+be seen in \cref{fig:stocproc_comparison}.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/analytic_comp/stocproc_comparison}
+  \caption{\label{fig:stocproc_comparison} The imaginary part of ten
+    realizations the stochastic process \(η^\ast\) for an ohmic BCF
+    with different cutoff frequencies \(ω_{c}\). The process is much
+    smoother and of less magnitude for smaller cutoffs. The difference
+    between the cutoffs is even more severe for the derivative of the
+    processes.}
+\end{figure}
+The derivative of the process is correlated according to
+\(\ev{η_{t}η^\ast_{s}}=\ddot{α}(t-s)\) which has a greater magnitude
+at \(τ=0\) and falls off faster in the Ohmic case.
+
+Furthermore, this approach becomes more complicated in the nonlinear
+theory due to the shift of the stochastic process.  We will briefly
+return to this issue in \cref{sec:general_obs}.
 
 In the language of \cref{sec:hops_basics} we can generalize to
 \(\alpha(t) = ∑_i G_i \eu^{-W_i t}\) obtaining
