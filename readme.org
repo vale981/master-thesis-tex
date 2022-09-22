@@ -1,7 +1,8 @@
 * Valentin Boettcher's Masters Thesis
 This is the $\LaTeX$ source of my master's thesis.
+Download the latest version of the ~pdf~ [[https://github.com/vale981/master-thesis-tex/releases/download/latest/index.pdf][here]].
 
-The main code of the project can be found [[https://github.com/vale981/master-thesis][in a separate repo]].
+The main code of the project can be found [[https://github.com/vale981/master-thesis][in a separate repo]].h
 Results and graphics will be synchronized from there.
 
 ** Building
