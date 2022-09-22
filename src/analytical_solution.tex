@@ -548,3 +548,22 @@ an exponential fit of the BCF may only be valid for finite times.
 
 This concludes the calculation. Python code implementing the solution
 can be found under \url{https://github.com/vale981/hopsflow}.
+
+\section{Conlusion}
+\label{sec:conclusion-analyt}
+
+We have presented the solution to two QBM models and applied them to
+calculate the bath energy flow. The first model consisted of a single
+harmonic oscillator coupled to an infinite oscillator bath. This is a
+standard case, found in textbooks such
+as~\cite{Breuer2002Jun,Weiss2008Mar}. The second model constitutes the
+simplest nontrivial generalization to two baths and consists of the
+oscillators coupled to each other and to a bath each.
+
+The final expressions for the flow are all weighted sums of
+exponentials and require an exponential fit of the BCF as input.
+
+In \cref{chap:numres} we will employ these results to check the
+correctness and numerical accuracy of HOPS. This will give us
+confidence in the method, so that we can use HOPS as a means to
+discover new phenomena in models that aren't soluble analytically.
