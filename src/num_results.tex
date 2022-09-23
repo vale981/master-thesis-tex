@@ -14,22 +14,33 @@ feature of the short time behavior of the bath energy flow that is
 visible in all simulations will be discussed and explained in
 \cref{sec:pure_deph}.
 
-In the generic case where no analytic solution we nevertheless are
-able to obtain consistent results as is demonstrated upon the example
-of the spin-boson model \cref{sec:prec_sim}. We will also look into
-the characteristics of the energy flow between system and bath
-depending on the shape of the spectral density in
-\cref{sec:energy-transf-char}. As the interaction energy is not
-insubstantial in the regime that will be studied, we turn off the
-interaction smoothly at the end of the evolution to be able to
-adequately discuss our observations.
+In the generic case where no analytic solution is known we
+nevertheless are able to obtain consistent results as is demonstrated
+upon the example of the spin-boson model \cref{sec:prec_sim}.
+\Cref{sec:stocproc} investigates influence the precision of the
+stochastic process sampling on the accuracy of the results. The same
+analysis is performed for the hierarchy truncation in
+\cref{sec:trunc}.
 
-Finally, in \cref{sec:initial-slip-sb} we will study the short time
-behavior of the spin-boson model, which will prove to be similar to
-that of the harmonic oscillator discussed earlier. We will relate this
-feature of the dynamics to the discussion in \cref{sec:pure_deph} and
-also to the systematics of HOPS. Further, the effects of slowly and
-smoothly turning on the interaction will be studied.
+Subsequently, we will demonstrate some results with high consistency
+\cref{sec:one_bath_cutoff} for varying bath memories.  Prompted by the
+results of this section we will also look into the characteristics of
+the energy flow between system and bath depending on the shape of the
+spectral density in \cref{sec:energy-transf-char}. As the interaction
+energy is not insubstantial in the regime that will be studied, we
+turn off the interaction smoothly at the end of the evolution to be
+able to adequately discuss our observations.
+
+The feasibility of precision studies is further demonstrated for
+varying coupling strengths in \cref{sec:one_bathcoup_strength}.
+
+Finally, in \cref{sec:initial-slip-sb,sec:moder-init-slip} the short
+time behaviour of the spin-boson model is studied and will prove to be
+similar to that of the harmonic oscillator discussed earlier. We will
+relate this feature of the dynamics to the discussion in
+\cref{sec:pure_deph} and also to the systematics of HOPS. The effects
+of slowly and smoothly turning on the interaction will be studied in
+\cref{sec:moder-init-slip}.
 
 % These results will strengthen the confidence in
 % the method so that we can turn to more complicated applications.
@@ -37,6 +48,11 @@ smoothly turning on the interaction will be studied.
 % thermodynamics is given in \cref{sec:basic_thermo}. Subsequently we
 % will turn to two applications to demonstrate these features in
 % \cref{sec:singlemod,sec:otto}.
+
+However, before we begin in earnest some technical disscusions are in
+order.  \Cref{sec:meth} will explain our measures for the consistency
+of results, as well as the spectral density used throughout the rest
+of this work.
 
 \section{Some Remarks on the Methods}
 \label{sec:meth}
@@ -1404,9 +1420,106 @@ the Redfield master equation does not require the secular
 approximation, but only weak coupling and can therefore capture
 non-Markovian dynamics.
 
+Let us now complete our precision studies of the zero temperature
+spin-boson model energy flow by looking at the effect of different
+coupling strengths in \cref{sec:one_bathcoup_strength}.
+
+\subsection{Varying the Coupling Strength}%
+\label{sec:one_bathcoup_strength}
+\begin{wrapfigure}[-2]{o}{0.3\textwidth}*
+  \centering
+  \includegraphics{figs/one_bath_syst/final_states_flows}
+  \caption{\label{fig:delta_fs_flow} The absolute value difference of
+    the state energies and the maximal flows for the simulations in
+    \cref{fig:delta_energy_overview} from their value at coupling
+    strength \(α(0)=0.40\) normalized by their value at
+    \(α(0)=1.12\).}
+\end{wrapfigure}
+After having studied the dependence of the bath energy flow for
+various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,},
+we now consider the case with fixed cutoff \(ω_c=2\) but varying
+coupling strength. The results presented here are mainly a
+demonstration of the feasibility of high-consistency simulations for a
+range of coupling strengths. We will therefore keep the discussion of
+the physical implications relatively short.
+
+The chosen simulation parameters are the same as in
+\cref{sec:one_bath_cutoff} and again consistent results have been
+obtained throughout the whole range of coupling strengths as can be
+gathered from \cref{fig:delta_interaction_consistency}.  The
+interaction strength was chosen linearly spaced and the simulation
+results are presented in \cref{fig:delta_energy_overview}.
+
+As the shape of the BCF is not altered between the simulations, the
+bath energy flows look very similar as do the interaction
+energies. The main difference between the simulations is the magnitude
+of the interaction energy. With increased coupling strength there is
+an increased interaction energy and an increased flow which leads to
+faster energy loss in the system and faster energy gain of the
+bath. The stronger the coupling, the more pronounced is the
+non-monotonicity in time of the interaction energy, which is reflected
+in a non-monotonicity in the bath energy expectation value.
+
+The bath energy reaches a maximum and falls slightly for the strongest
+coupling simulations (violet and brown lines). If the interaction is
+strong enough, ``backflow'' can occur despite finite bath correlation
+times. Here, the back flow is only occurring between interaction and
+bath energy. In \cref{fig:markov_analysis_steady} the bath memory is
+long, additionally to a strong coupling so that multiple oscillations
+can be seen.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_syst/δ_energy_overview}
+  \caption{\label{fig:delta_energy_overview} Energy overview for the
+    model \cref{eq:one_qubit_model} for various coupling
+    strengths. The curves are converged out, and the error funnels are
+    not visible.}
+\end{figure}
+
+As a task for future work it might be worthwhile to ascertain the
+exact conditions under which system energy might flow back into the
+system. Is resonance required and what role is played by the system
+time scale? Does backflow always occur provided the coupling is strong
+enough?\footnote{The author expects a negative answer to this
+  question.}
+
+Despite these differences for finite times, \cref{fig:delta_fs_flow}
+demonstrates that the approximate steady state\footnote{excluding the
+  \(α(0)=0.4\) case} interaction energies
+\(\ev{H_{\inter}}_{\mathrm{ss}}\) (blue), maximal flows
+\(\abs{J}_{\mathrm{max}}\) (orange), system energies
+\(\ev{H_{\sys}}_{\mathrm{ss}}\) (red) and bath energies
+\(\ev{H_{\bath}}_{\mathrm{ss}}\) (green) are almost linearly dependent
+on the coupling strength \(α(0)\) in the range of coupling strengths
+studied.
+
+We find that we can control the speed of the energy transfer between
+bath and system with the coupling strength at the cost of greater
+steady state interaction energy. Were we to turn off the interaction
+diabatically, we would have to expend this energy in the worst
+case. On the other hand, more adiabatic protocol as the one used in
+\cref{sec:energy-transf-char} would likely be a remedy to this
+drawback.
+
+The cooling performance for a coupling that is being turned off at the
+end would depend on the concrete protocol as we've seen in
+\cref{sec:one_bath_cutoff} and a more detailed study is left to future
+work. The interplay between the interaction time-scale mediated by the
+coupling strength, the bath memory time and the system dynamics allows
+for intricate tuning.
+
+Both the final system and bath energies are increasing with the
+coupling strength, compensating for the interaction energy which is
+the main mechanism that leads to residual system energy in the steady
+state which is further and further away from the ground state, which
+would be the steady state of weak coupling dynamics.
+
 We discussed the short term dynamics for a general model in
 \cref{sec:pure_deph}.  Now, in \cref{sec:initial-slip-sb} we will
 apply them the spin-boson model.
+
+\fixme{iftime: re-run with same coupling strength, more cutoff freqs,
+  less samples, see, longer times for coupling strengths, more coup}
 
 \subsection{Initial Slip}%
 \label{sec:initial-slip-sb}
@@ -1496,7 +1609,7 @@ upon the bath energy change due to the initial slip, is the subject of
 
 \subsection{Moderating the Inital Slip with Modulated Coupling}%
 \label{sec:moder-init-slip}
-\begin{wrapfigure}[-1]{O}{0.4\textwidth}*
+\begin{wrapfigure}[-1]{o}{0.4\textwidth}*
   \centering
   \includegraphics{figs/one_bath_mod/modulation_protocols_init.pdf}
   \caption{\label{fig:L_mod_init} The interaction is being switched on
@@ -1582,105 +1695,6 @@ flow.
     protocols.}
 \end{figure}
 
-
-Let us now complete our precision studies of the zero temperature
-spin-boson model energy flow by looking at the effect of different
-coupling strengths in \cref{sec:one_bathcoup_strength}.
-
-\newpage
-\subsection{Varying the Coupling Strength}%
-\label{sec:one_bathcoup_strength}
-\begin{wrapfigure}[-5]{O}{0.3\textwidth}*
-  \centering
-  \includegraphics{figs/one_bath_syst/final_states_flows}
-  \caption{\label{fig:delta_fs_flow} The absolute value difference of
-    the state energies and the maximal flows for the simulations in
-    \cref{fig:delta_energy_overview} from their value at coupling
-    strength \(α(0)=0.40\) normalized by their value at
-    \(α(0)=1.12\).}
-\end{wrapfigure}
-After having studied the dependence of the bath energy flow for
-various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,},
-we now consider the case with fixed cutoff \(ω_c=2\) but varying
-coupling strength. The results presented here are mainly a
-demonstration of the feasibility of high-consistency simulations for a
-range of coupling strengths. We will therefore keep the discussion of
-the physical implications relatively short.
-
-The chosen simulation parameters are the same as in
-\cref{sec:one_bath_cutoff} and again consistent results have been
-obtained throughout the whole range of coupling strengths as can be
-gathered from \cref{fig:delta_interaction_consistency}.  The
-interaction strength was chosen linearly spaced and the simulation
-results are presented in \cref{fig:delta_energy_overview}.
-
-As the shape of the BCF is not altered between the simulations, the
-bath energy flows look very similar as do the interaction
-energies. The main difference between the simulations is the magnitude
-of the interaction energy. With increased coupling strength there is
-an increased interaction energy and an increased flow which leads to
-faster energy loss in the system and faster energy gain of the
-bath. The stronger the coupling, the more pronounced is the
-non-monotonicity in time of the interaction energy, which is reflected
-in a non-monotonicity in the bath energy expectation value.
-
-The bath energy reaches a maximum and falls slightly for the strongest
-coupling simulations (violet and brown lines). If the interaction is
-strong enough, ``backflow'' can occur despite finite bath correlation
-times. Here, the back flow is only occurring between interaction and
-bath energy. In \cref{fig:markov_analysis_steady} the bath memory is
-long, additionally to a strong coupling so that multiple oscillations
-can be seen.
-\begin{figure}[htp]
-  \centering
-  \includegraphics{figs/one_bath_syst/δ_energy_overview}
-  \caption{\label{fig:delta_energy_overview} Energy overview for the
-    model \cref{eq:one_qubit_model} for various coupling
-    strengths. The curves are converged out, and the error funnels are
-    not visible.}
-\end{figure}
-
-As a task for future work it might be worthwhile to ascertain the
-exact conditions under which system energy might flow back into the
-system. Is resonance required and what role is played by the system
-time scale? Does backflow always occur provided the coupling is strong
-enough?\footnote{The author expects a negative answer to this
-  question.}
-
-Despite these differences for finite times, \cref{fig:delta_fs_flow}
-demonstrates that the approximate steady state\footnote{excluding the
-  \(α(0)=0.4\) case} interaction energies
-\(\ev{H_{\inter}}_{\mathrm{ss}}\) (blue), maximal flows
-\(\abs{J}_{\mathrm{max}}\) (orange), system energies
-\(\ev{H_{\sys}}_{\mathrm{ss}}\) (red) and bath energies
-\(\ev{H_{\bath}}_{\mathrm{ss}}\) (green) are almost linearly dependent
-on the coupling strength \(α(0)\) in the range of coupling strengths
-studied.
-
-We find that we can control the speed of the energy transfer between
-bath and system with the coupling strength at the cost of greater
-steady state interaction energy. Were we to turn off the interaction
-diabatically, we would have to expend this energy in the worst
-case. On the other hand, more adiabatic protocol as the one used in
-\cref{sec:energy-transf-char} would likely be a remedy to this
-drawback.
-
-The cooling performance for a coupling that is being turned off at the
-end would depend on the concrete protocol as we've seen in
-\cref{sec:one_bath_cutoff} and a more detailed study is left to future
-work. The interplay between the interaction time-scale mediated by the
-coupling strength, the bath memory time and the system dynamics allows
-for intricate tuning.
-
-Both the final system and bath energies are increasing with the
-coupling strength, compensating for the interaction energy which is
-the main mechanism that leads to residual system energy in the steady
-state which is further and further away from the ground state, which
-would be the steady state of weak coupling dynamics.
-
-
-\fixme{iftime: re-run with same coupling strength, more cutoff freqs,
-  less samples, see, longer times for coupling strengths, more coup}
 
 \section{Conclusion}%
 \label{sec:conclusion-1}
