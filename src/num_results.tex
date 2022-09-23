@@ -1582,9 +1582,15 @@ flow.
     protocols.}
 \end{figure}
 
-\subsection{Varying the Coupling Strength}
+
+Let us now complete our precision studies of the zero temperature
+spin-boson model energy flow by looking at the effect of different
+coupling strengths in \cref{sec:one_bathcoup_strength}.
+
+\newpage
+\subsection{Varying the Coupling Strength}%
 \label{sec:one_bathcoup_strength}
-\begin{wrapfigure}[-2]{O}{0.3\textwidth}*
+\begin{wrapfigure}[-5]{O}{0.3\textwidth}*
   \centering
   \includegraphics{figs/one_bath_syst/final_states_flows}
   \caption{\label{fig:delta_fs_flow} The absolute value difference of
@@ -1594,8 +1600,9 @@ flow.
     \(α(0)=1.12\).}
 \end{wrapfigure}
 After having studied the dependence of the bath energy flow for
-various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,}, we now consider the case with fixed cutoff \(ω_c=2\)
-but varying coupling strength. The results presented here are mainly a
+various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,},
+we now consider the case with fixed cutoff \(ω_c=2\) but varying
+coupling strength. The results presented here are mainly a
 demonstration of the feasibility of high-consistency simulations for a
 range of coupling strengths. We will therefore keep the discussion of
 the physical implications relatively short.
@@ -1674,3 +1681,28 @@ would be the steady state of weak coupling dynamics.
 
 \fixme{iftime: re-run with same coupling strength, more cutoff freqs,
   less samples, see, longer times for coupling strengths, more coup}
+
+\section{Conclusion}%
+\label{sec:conclusion-1}
+
+In this chapter we have validated the results of \cref{chap:flow} and
+the fitness of the HOPS method for accessing bath related observables
+using a direct comparison with the analytical solution of
+\cref{chap:analytsol} and energy conservation in the spin-boson
+model. We find that HOPS is well suited to obtain precise results
+and that some trust can be placed in simulations that employ less
+severe configurations, if numerical integration of the flow is
+avoided. In all cases, the qualitative features of the energy
+dynamics of the spin-boson model are captured very well.
+
+We also explored the short term dynamics of the bath energy flow and
+found that some light can be shed on it by considering the
+approximation \(H_{\sys} = 0\). Further, the role of resonance and
+bath memory time in the energy transfer performance of the zero
+temperature spin-boson model was explored.
+
+Now that we have built confidence in the method, we will turn to some
+simple quantum-thermodynamical settings in
+\cref{sec:therm_results}. There we will employ the capabilities of
+HOPS to the fullest by treating multiple baths and (non harmonic)
+modulation of the system and coupling.
