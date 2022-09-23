@@ -56,28 +56,25 @@ of this work.
 
 \section{Some Remarks on the Methods}
 \label{sec:meth}
-Before we begin with the applications in earnest, let us review some
-technical details.
-
 The figures presented may feature error funnels whose origin is,
 unless otherwise stated, estimated from the empirical standard
 deviation of the calculated quantities due to the finite sample
 size. As the quantities that are being calculated using HOPS are
 essentially Monte Carlo integrals, those statistical errors scale as
-\(1/\sqrt{N}\) with the sample size \(N\) and are therefore
-controllable besides being simple to estimate. Note however, that a
-certain number of samples is required to estimate the standard
-deviation of a single trajectory correctly.
+\(1/\sqrt{N}\) with the sample size \(N\) and are controllable besides
+being simple to estimate. Note however, that a certain number of
+samples is required to estimate the standard deviation of a single
+trajectory correctly.
 
 To tell whether some vector quantities\footnote{For example a time
-  series.} \(X_1, X_2\) obtained with HOPS or otherwise are compatible
-with each other or an analytical result, we consider the quantity
-\(Δ=X_1 - X_2\). Assuming all numerical errors are negligible, we
-demand that \(\abs{Δ} \leq σ_Δ\) for at least
-\(68\%\)\footnote{Roughly one standard deviation of a Gaussian random
-  variable.}  of the entries of the \(X_i\), where \(σ_Δ\) is the
-standard deviation due to the Monte Carlo sampling. This percentage is
-often displayed in legends as a number in parentheses.
+  series.} \(X_1, X_2\) obtained numerically or otherwise are
+compatible with each other we introduce the quantity \(Δ=X_1 -
+X_2\). Assuming all numerical errors are negligible, we demand that
+\(\abs{Δ} \leq σ_Δ\) for at least \(68\%\)\footnote{Roughly one
+  standard deviation of a Gaussian random variable.}  of the entries
+of the \(X_i\), where \(σ_Δ\) is the standard deviation due to the
+Monte Carlo sampling. This percentage is displayed as a number in
+parentheses in legends of plots in the following sections.
 
 For the estimation of mean and standard deviation from trajectory
 data, Welford's online algorithm is employed to avoid catastrophic
@@ -88,21 +85,19 @@ In all simulations discussed use an Ohmic spectral density
   \label{eq:ohmic_sd}
   J(ω)=η ω \eu^{-\frac{ω}{ω_{c}}}\quad (ω>0)
 \end{equation}
-is used unless otherwise. This spectral density models an environment
-with a physical energy spectrum that is bounded from below and allows
-the application of the finite temperature method described
-in~\cite{RichardDiss} and \cref{sec:lin_finite}. Also, \(J(0) = 0\)
-ensures that there is a unique zero temperature state of the
-bath. In~\cite{Kolar2012Aug} it is argued (under weak coupling
-assumptions), that \(J(ω)\approx ω^γ\) with \(γ<1\) could lead to a
-violation of the third law.  Physically, a scaling of the spectral
-density \(\propto ω\) is connected to acoustic
-phonons~\cite{Kolar2012Aug}.
+is used.  In \cref{eq:ohmic_sd} \(η\) is a scaling constant and
+\(ω_c\) (the cutoff frequency) regulates the decay of the spectral
+density. Due to ambiguities that can arise when using different
+normalization schemes for the BCF as was the case for this work, we
+express the coupling strength in terms of \(α(0)\) rather than giving
+values for \(η\). In the convention used above, the parameter \(η\)
+may be recovered as follows
+\begin{equation}
+  \label{eq:get_eta_back}
+  η=\frac{α(0) π}{ω_{c}^{2}}.
+\end{equation}
 
-In \cref{eq:ohmic_sd} \(η\) is a scaling
-constant and \(ω_c\) (the cutoff frequency) regulates the decay of the
-spectral density. The corresponding bath correlation function (BCF)
-is
+The corresponding bath correlation function (BCF) is
 \begin{equation}
   \label{eq:ohmic_bcf}
   α(τ) = \frac{1}{π} ∫\dd{ω} J(ω) \eu^{-\iu ωτ} =
@@ -111,6 +106,17 @@ is
 We see that higher cutoff frequencies correspond to a faster decay of
 the bath correlation function. This parameter provides control over
 the ``Markovianity'' of the bath.
+
+The ohmic spectral density models an environment with a physical
+energy spectrum that is bounded from below and allows the application
+of the finite temperature method described in~\cite{RichardDiss} and
+\cref{sec:lin_finite}. Also, \(J(0) = 0\) ensures that there is a
+unique zero temperature state of the bath. In~\cite{Kolar2012Aug} it
+is argued (under weak coupling assumptions), that \(J(ω)\approx ω^γ\)
+with \(γ<1\) could lead to a violation of the third law.  Physically,
+a scaling of the spectral density \(\propto ω\) is connected to
+acoustic phonons~\cite{Kolar2012Aug}.
+
 
 It may be remarked, that~\cref{eq:ohmic_bcf} does not correspond to a
 simple sum of exponentials. As such it exercises the HOPS method and
@@ -138,24 +144,26 @@ bath energy flow.
 We begin with the simplest possible model of a harmonic oscillator
 coupled to a single zero temperature bath.  For the simulations with
 HOPS the model \cref{eq:one_ho_hamiltonian} was made dimensionless by
-choosing \(Ω=1\). Simulations were run for both for zero temperature
-and a finite temperature with varying bath correlation functions.
-
+choosing \(Ω=1\). Simulations were run for both zero temperature and
+finite temperature with various parameters of the bath correlation
+function.
 \begin{figure}[t]
   \centering
   \includegraphics{figs/analytic_comp/flow_comp_zero.pdf}
   \caption{\label{fig:comp_zero_t} The bath energy flow \(-J\) for
     different parameters of the ohmic bath correlation function
-    \cref{eq:ohmic_bcf}. The right panel shows the short time behaviour
-    of the flow. The solid lines have been obtained with HOPS and the
-    dashed lines using the analytic solution. A good agreement is
-    evident visually and corroborated by the consistency values in the
-    legend (see \cref{sec:meth} for an explanation).  The simulation
-    with \(ω_{c}=3\) (orange) stands out for its slow long term decay,
+    \cref{eq:ohmic_bcf}. The right panel shows the short time
+    behaviour of the flow. The solid lines have been obtained with
+    HOPS and the dashed lines using the analytic solution. A
+    strikingly good agreement is evident visually and corroborated by
+    the consistency values in parentheses the legend (see
+    \cref{sec:meth} for an explanation).  The simulation with
+    \(ω_{c}=3\) (orange) stands out for its slow long term decay,
     whereas the same simulation with longer bath correlation time
-    (blue) initially decays much slower but falls below its orange
+    (blue) decays much slower initially but falls below its orange
     counterpart for longer times.}
 \end{figure}
+
 \paragraph{Zero Temperature}
 The bath energy flow \(J=-∂_t\ev{H_\bath}\), from here on called
 simply ``the flow'' or ``bath energy flow'', for the zero temperature
@@ -173,13 +181,13 @@ The simulation was run with a hierarchy depth of
 harmonic oscillator Hilbert space was truncated to \(15\) dimensions
 in the energy basis. As the initial state the first excited state of
 the oscillator was chosen so that some nontrivial energy flow would
-occur. Some \(N=5000\) trajectories have been computed and lead to a
-quite satisfactory statistical error that is small enough to be
-invisible in \cref{fig:comp_zero_t}. The normalized standard deviation
-of the bath energy flow follows the usual one-over-square-root rule as
-is illustrated in \cref{fig:sqrt_conv}. Even after just \(N=1000\)
-trajectories the normalized statistical error is on the order of
-\(10^{-3}\).
+occur. A reasonable number of \(N=5000\) trajectories have been
+computed and lead to a quite satisfactory statistical error that is
+small enough to be invisible in \cref{fig:comp_zero_t}. The normalized
+standard deviation of the bath energy flow follows the usual
+one-over-square-root rule as is illustrated in
+\cref{fig:sqrt_conv}. Even after just \(N=1000\) trajectories the
+normalized statistical error is on the order of \(10^{-3}\).
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/analytic_comp/sqrt_convergence.pdf}
@@ -218,18 +226,20 @@ separate fit was made rather than using the fit from
 Interestingly, the solutions using a BCF expansion with three terms or
 fewer lead to an unphysical non-zero steady state bath energy
 flow. Considering specifically the case of one expansion term, this
-may be related to the fact that now the BCF term so that
-\(α(τ)=G \exp(-Wτ)\) is related to a Lorentzian spectral density that
-also includes unphysical negative frequencies. To correctly reproduce
-the steady state, the fit must model the decay of the BCF on the
-appropriate time scales.
+may be related to the fact that now the corresponding spectral density
+of \(α(τ)=G \exp(-Wτ)\) also has a finite value for negative
+frequencies and will have negative parts when \(\Im G \neq 0\), making
+it unphysical.  In general, the fit must model the decay of the BCF on
+the appropriate time scales, to correctly reproduce the steady state.
 
 Although the simulations are primarily intended as a benchmark for
 HOPS and a verification for the results of \cref{chap:flow} some
 observations can be made in \cref{fig:comp_zero_t}.
 
 First, the flows for different parameters all feature the
-characteristic spike in the flow, not unlike an ``initial slip''. As
+characteristic spike in the flow, not unlike the phenomenon known and
+discussed in the literature as ``initial
+slip''~\cite{ChengMarkovianApproximationRelaxation2005,GaspardSlippageInitialConditions1999,HaakeAdiabaticDragInitial1983,SuarezMemoryEffectsRelaxation1992,YuPostMarkovMasterEquation2000}. As
 the initial state is a product state which is unaware of the
 bath-system interaction, the state undergoes some short time dynamics
 to compensate the change of the effective oscillator dynamics due to
@@ -255,10 +265,10 @@ takes the form \cite{Weiss2008Mar}
   H_{\mathrm{C}} \sim ∑_{λ}\frac{\abs{g_{λ}}^{2}}{ω_{λ}} q^{2}.
 \end{equation}
 When \cref{eq:counter_term} is included in \cref{sec:oneosc}, our
-model becomes the Caldiera-Legget Model.  The counter term balances
-the renormalization of the system potential due to the bath. It is
-therefore an interesting question how the initial slip behaves in its
-presence.
+model becomes the Caldiera-Legget Model~\cite{Caldeira1981Jan}.  In
+many cases, the counter term balances the renormalization of the
+system potential due to the bath. It is therefore an interesting
+question how the initial slip behaves in its presence.
 
 The time dependence of the flow also varies both with the shape of the
 BCF and the coupling strength. For longer correlation times
@@ -270,9 +280,9 @@ situation is reversed and the simulation cuttoff frequency \(ω_{c}=3\)
 strengths we can observe a ``backflow'' of energy out of the bath as
 can be observed for the red line in the right panel of
 \cref{fig:comp_zero_t}. In all cases the flow features some
-oscillations and decays to zero which is physical for the situation of
-a harmonic oscillator that loses most of its energy into a zero
-temperature bath.
+oscillations and decays to zero which is physically reasonable for the
+situation of a harmonic oscillator that loses most of its energy into
+a zero temperature bath.
 
 When the bath memory is short however, the short-term energy flow is
 of less magnitude. Correspondingly, the system energy decays slower
@@ -293,17 +303,18 @@ in frequency space.
     dynamics. The strongest coupling simulation (red) converges to a
     markedly different steady state.}
 \end{figure}
-The ``backflow'' observed in \cref{fig:comp_zero_t} for stronger
-coupling seems to diminish the advantage of stronger coupling over
-larger bath memories. The decay of the red curve in the right panel of
-\cref{fig:ho_zero_entropy} is barely faster than the decay of the blue
-curve, despite much larger coupling strength in the red case. This may
-be due to the system interacting ``too long'' with a given portion of
-the bath. Here we observe this behaviour for stronger coupling which
-shortens the timescale of the energy exchange. In
-\cref{sec:one_bath_cutoff} we will see, that these oscillations occur
-generically for long bath memories and stronger coupling and how they
-might be exploited.
+The ``backflow'' of energy out of the bath observed in
+\cref{fig:comp_zero_t} for stronger coupling seems to diminish the
+advantage of stronger coupling over larger bath memories when it comes
+to reducing the system energy. The decay of the system energy of the
+model with the largest coupling strength \(α(0)\) (red curve) in the
+right panel of \cref{fig:ho_zero_entropy} is barely faster than the
+decay of the energy of the more weakly coupled model with longer
+memory (blue curve), despite much larger coupling. Here backflow is
+observed for stronger coupling which shortens the timescale of the
+energy exchange. In \cref{sec:one_bath_cutoff} we will see, that this
+phenomenon generically occurs for long bath memories in combination
+with stronger coupling and learn how they might be exploited.
 
 Note also, that the steady state is not a product state as can be
 determined from the residual entropy in \cref{fig:ho_zero_entropy} for
@@ -317,7 +328,7 @@ qualitatively different steady state than the one with the same cutoff
 but weaker coupling strength (green line). This also manifests in a
 higher expected system energy in the steady state.
 
-\begin{wrapfigure}[18]{o}{0.4\textwidth}
+\begin{wrapfigure}[-4]{O}{0.4\textwidth}*
   \centering
   \includegraphics{figs/analytic_comp/timescale_comparison}
   \caption{\label{fig:timescale_comp} A comparison of bath vs
@@ -326,18 +337,19 @@ higher expected system energy in the steady state.
     in \cref{fig:ho_zero_entropy}. The orange line is set far apart
     from the other simulations.}
 \end{wrapfigure}
-The time dependence of the entropy the expectation value of the system
-energy is markedly different for the cutoff \(ω_c=3\) (orange
-line). Although the coupling strength is similar to the
+The time dependence of the system entropy and the system energy
+expectation value is markedly different for the cutoff \(ω_c=3\)
+(orange line). Although the coupling strength is similar to the
 \(α(0)=0.32,\, ω_c=1\) case (blue line) the energy loss of the system
 is much slower and the initial energy gain is less pronounced. This is
-consistent with the flow in \cref{fig:comp_zero_t}. The case is set
-apart by the long interaction timescale \(τ_{\inter}\) due to the
-weaker coupling strength \(\sim α(0)^{-1/2}\) and the short bath
-timescale \(τ_{\bath}\sim ω_{c}^{-1}\). Of course absolute values of
-these time scales of no great value here. A comparison of relative
-time scales \(\sqrt{α(0)}/ω_{c}\sim τ_{\bath}/τ_{\inter}\) can be
-found in \cref{fig:timescale_comp} supporting the above argument.
+consistent with the flow in \cref{fig:comp_zero_t} which has a smaller
+overall magnitude. The case is set apart by the long interaction
+timescale \(τ_{\inter}\) due to the weaker coupling strength
+\(\sim α(0)^{-1/2}\) and the short bath timescale
+\(τ_{\bath}\sim ω_{c}^{-1}\). Of course absolute values of these time
+scales are of no great value here. A comparison of relative time
+scales \(\sqrt{α(0)}/ω_{c}\sim τ_{\bath}/τ_{\inter}\) can be found in
+\cref{fig:timescale_comp} supporting the above argument.
 
 \paragraph{Finite Temperature}
 \begin{figure}[t]
@@ -445,28 +457,28 @@ and compare the results with the analytical solution.
 For simplicity, the parameters were chosen symmetric so that the
 frequencies of both oscillators are the same \(Ω=Λ=1\). As before,
 \(Ω\) defines the energy unit. The zero temperature bath correlation
-functions of both baths were chosen identically with a cutoff
-frequency \(ω_c=2\). The intra-oscillator coupling was chosen as
-\(γ=0.5\). The hierarchy was truncated so that \(\abs{\vb{k}}\leq 3\)
-and a BCF expansion with five terms was chosen to limit memory demands
-and \(10^{4}\) trajectories were integrated.
+functions of both baths were identical with a cutoff frequency
+\(ω_c=2\) and the intra-oscillator coupling was set to \(γ=0.5\). The
+hierarchy was truncated so that \(\abs{\vb{k}}\leq 3\) and a BCF
+expansion with five terms was employed to limit memory demands.  For
+adequate convergence \(10^{4}\) trajectories were integrated.
 
-To limit the variance the temperature of one of the baths was set to
-zero, so that only one thermal stochastic process was introduced. The
-other bath was chosen to have \(T=0.6\). The ground state of the
-system Hamiltonian \(\ket{0}\otimes \ket{0}\) was chosen as the
-initial state of the oscillators.
+To limit the variance, the temperature of one of the baths was set to
+zero, so that only one thermal stochastic process was introduced.  The
+other bath was initialized with the temperature \(T=0.6\) and the
+initial state of the oscillators was chosen to be the ground state of
+the system Hamiltonian \(\ket{0}\otimes \ket{0}\).
 
 The main challenge of simulating the model
 \cref{eq:hamiltonian_two_bath} is the dimension of the system Hilbert
 space which is constrained by the available memory. In the simulation
 discussed here, each oscillator was truncated at \(9\) levels leading
-to \(9^2 = 81\) dimensions in total\footnote{This is a naive method of
-  truncation, but sufficient for the purposes of this work.}. The
-effect of a too drastic truncation of the system Hilbert space can be
-seen in \cref{fig:insufficient_levels}. At the temperature chosen, the
-mean level occupation of a harmonic oscillator is given by the Bose
-distribution
+to a Hilbert space dimension of \(9^2 = 81\) in total\footnote{This is
+  a naive method of truncation, but sufficient for the purposes of
+  this work.}. The effect of a too drastic truncation of the system
+Hilbert space can be seen in \cref{fig:insufficient_levels}. At the
+temperature chosen, the mean level occupation of a harmonic oscillator
+is given by the Bose distribution
 \begin{equation}
   \label{eq:harm_mean_occ}
   \ev{n} = \frac{1}{\eu^{Ωβ}-1} \approx 0.23 < 1.
@@ -484,12 +496,16 @@ sufficient to corroborate the validity of the results of
 \cref{sec:multibath}. With more computational effort\footnote{Mainly
   more BCF expansion terms.} and fine-tuning of parameters an even
 better agreement between the analytical and the numerical results may
-be achieved.
+be achieved. Note that the consistency figure given for the hot bath
+is higher, as the statistical error bounds are greater due to the
+finite temperature. These increased error bounds allow for more
+deviation.
 \begin{figure}[htp]
   \centering
   \begin{subfigure}[t]{.49\linewidth}
     \includegraphics{figs/analytic_comp/comparison_two_5bcf_5ho.pdf}
-    \caption{\label{fig:insufficient_levels}\(\dim\hilb_\sys=25\).}
+    \caption{\label{fig:insufficient_levels}\(\dim\hilb_\sys=25\).  No
+      agreement between the analytical solution and HOPS.}
   \end{subfigure}
   \begin{subfigure}[t]{.49\linewidth}
     \includegraphics{figs/analytic_comp/comparison_two_ho.pdf}
@@ -528,11 +544,14 @@ deviation of a given observable. In \cref{sec:pure_deph} we will
 discuss the short term dynamics of our general model and explain the
 peak in the flow, as seen in \cref{fig:comp_zero_t}.
 
-For future work there remains the generalization of the work in this
-section and \cref{chap:analytsol} to time dependent couplings and
+For future work there remains the generalization of this section and
+\cref{chap:analytsol} to time dependent couplings and
 Hamiltonians. Because the NMQSD and also HOPS are largely agnostic of
 these factors, we may safely assume that the results of the comparison
 will be similar to the ones presented here.
+
+Let us now turn to the short time behavior of the flow and the initial
+slip in \cref{sec:pure_deph} .
 
 \section{Pure Dephasing and the Initial Slip}
 \label{sec:pure_deph}
