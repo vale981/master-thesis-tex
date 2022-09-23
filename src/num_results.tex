@@ -1408,7 +1408,7 @@ We discussed the short term dynamics for a general model in
 \cref{sec:pure_deph}.  Now, in \cref{sec:initial-slip-sb} we will
 apply them the spin-boson model.
 
-\subsection{Initial Slip}
+\subsection{Initial Slip}%
 \label{sec:initial-slip-sb}
 \begin{figure}[htp]
   \centering
@@ -1430,43 +1430,49 @@ apply them the spin-boson model.
 \end{figure}
 
 As the initial peak in the energy flow is also very prominent in the
-simulations in this section we return to
+simulations in this chapter, we return to
 \cref{fig:omega_systematics_system} and compare the dynamics of those
 simulations to the pure dephasing case of \cref{sec:pure_deph}. A good
-for short times is to be expected, as the system can't take up energy
-in it's initial state, so that all of the interaction energy must
-initially be compensated solely by the bath.
+agreement for short times is to be expected, as the system can't take
+up energy in its initial state (up), so that all of the interaction
+energy must initially be compensated solely by the bath.
 
 We see in \cref{fig:omega_initial_slip} that the pure dephasing
-dynamics are accurate for very short time scales, but fail to predict
-the exact location of the peaks in the bath energy flow. The deviation
-from the pure dephasing flow occurs before the peak, where the time
-difference between the absolute peak flow and the deviation increases
-with increasing bath memory \(\propto 1/ω_c\), as does the magnitude
-of the maximal relative deviation. This can be ascertained from the
-legend of \cref{fig:omega_initial_slip} where the difference between
-deviation and peak time normalized by peak time is given.
+dynamics (dashed lines) are accurate for very short time scales, but
+fail to predict the correct location of the peaks in the absolute
+value of the exact bath energy flow (solid lines).  The deviation
+occurs before the peak, where the time difference between the peak and
+the deviation increases with increasing bath memory \(\propto 1/ω_c\),
+as does the magnitude of the maximal normalized deviation (right
+panel). This can be ascertained from the legend of
+\cref{fig:omega_initial_slip} where the difference between deviation
+and peak time normalized by peak time is given.
 
-We can conclude that for longer bath memories along with weaker
-couplings, the role of the system Hamiltonian dynamics in modulating
+We can conclude that for longer bath memory along with weaker
+coupling, the role of the system Hamiltonian dynamics in modulating
 the flow becomes increasingly important as now the system dynamics
-happen on the same time scale as the bath dynamics.
+happen on the same time scale as the bath dynamics and the
+approximation \(H_{\sys}\approx 0\) is increasingly invalid.
 
-The flow calculated from a single trajectory matches the converged
-longer than the pure dephasing flow. For large \(ω_{c}\) the single
-trajectory matches until after the peak flow, whereas the deviation
-occurs earlier for the \(ω_{c}=1\) case. The stochastic nature of the
-single trajectory dynamics seems to become important only after a
-finite amount of time, longer than period of pure dephasing
-dynamics.
+The flow calculated from a single trajectory (dotted lines in
+\cref{fig:omega_initial_slip}) matches the converged flow longer than
+the pure dephasing approximation. For large cutoffs \(ω_{c}\) (green
+and red) the single trajectory even matches until after the peak flow,
+whereas the deviation occurs earlier for the \(ω_{c}=1\) case
+(blue). The stochastic nature of the single trajectory dynamics seems
+to become important only after a finite amount of time, longer than
+period of pure dephasing dynamics.
 
 For short times the flow is mainly influenced by the buildup of the
 auxiliary states rather than the fluctuations of the stochastic
-process, leading to a similar behavior for most trajectories. See
-\cref{fig:flow_buildup} an illustration of this phenomenon. This is
-most useful, as this period of rapid dynamics must be resolved very
+process, leading to a similar behavior for most trajectories.  This is
+very useful, as this period of rapid dynamics must be resolved very
 precisely to accurately integrate the flow into the bath energy
-change.
+change.  \Cref{fig:flow_buildup} illustrates this phenomenon. The mean
+norm of the auxiliary states (blue solid line) deviates from its
+single-trajectory equivalent (orange dashed line) at the same time as the
+mean flow (green solid line) deviates from the single trajectory flow
+(red dashed line).
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/flow_buildup}
@@ -1474,104 +1480,27 @@ change.
     auxiliary states and the flow for one trajectory and as a mean
     over all trajectories for the \(ω_{c}=4\) simulation. For short
     times the results for one trajectory match the ensemble means. The
-    divergence between one trajectory and the ensemble occurs at
+    divergence between one trajectory and the mean occurs at
     roughly the same time for the flow and the auxiliary state
-    norm. Moreover, flow and mean auxiliary state have the same
+    norm. Moreover, flow and mean auxiliary state norm have the same
     functional form for very short times, apart from a scaling
     factor. The initial dynamics are therefore mainly concerned with
     populating the auxiliary states.}
 \end{figure}
 
-\subsection{Varying the Coupling Strength}
-\label{sec:one_bathcoup_strength}
-\begin{wrapfigure}[17]{O}{0.3\textwidth}
-  \centering
-  \includegraphics{figs/one_bath_syst/final_states_flows}
-  \caption{\label{fig:delta_fs_flow} The absolute difference of the state energies and the
-  maximal flows for the simulations in
-  \cref{fig:delta_energy_overview} relative to their value at \(α(0)=1.12\).}
-\end{wrapfigure}
-After having studied the dependence of the bath energy flow for
-various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
-we now consider the case with fixed cutoff \(ω_c=2\) but varying
-coupling strength. The results presented here are mainly a
-demonstration of the feasibility of high-consistency simulations for a
-range of coupling strengths. We will therefore keep the discussion of
-the physical implications relatively short.
-
-The chosen simulation parameters are the same as in
-\cref{sec:one_bath_cutoff} and again consistent results have been
-obtained as can be gathered from
-\cref{fig:delta_interaction_consistency} throughout the whole range of
-coupling strengths.
-The interaction strength was chosen linearly spaced and the simulation
-results are presented in \cref{fig:delta_energy_overview}.
-
-As the shape of the BCF is not altered between the simulations, the
-bath energy flows look very similar as do the interaction
-energies. The main difference between the simulations is the magnitude
-of the interaction energy. With increased coupling strength there is
-an increased interaction energy and an increased flow which leads to
-faster energy loss in the system and faster energy gain of the
-bath. The stronger the coupling, the more pronounced is the
-non-monotonicity in time of the interaction energy, which is reflected
-in a non-monotonicity in the bath energy expectation value.
-
-The bath energy reaches a maximum and falls slightly for the strongest
-coupling simulations. If the interaction is strong enough,
-``backflow'' can occur despite finite bath correlation times. In
-\cref{fig:markov_analysis_steady} the bath memory is long,
-additionally to a strong coupling so that multiple oscillations can be
-seen.
-\begin{figure}[htp]
-  \centering
-  \includegraphics{figs/one_bath_syst/δ_energy_overview}
-  \caption{\label{fig:delta_energy_overview} Energy overview for the
-    model \cref{eq:one_qubit_model} for various coupling
-    strengths. The curves are converged out, and the error funnels are
-    not visible.}
-\end{figure}
-
-Despite these differences for finite times, the approximate steady
-state\footnote{excluding the \(α(0)=0.4\) cases} interaction energies,
-maximal flows, system energies and bath energies are almost linearly
-dependent on the coupling strength \(α(0)\) in this regime as is
-demonstrated in the log-log plot \cref{fig:delta_fs_flow}.
-
-We find that we can control the speed of the energy transfer between
-bath and system with the coupling strength at the cost of greater
-steady state interaction energy. Were we to turn off the interaction
-very fast, we would have to expend this energy in the worst case. On
-the other hand, more adiabatic protocol as the one used in
-\cref{fig:markov_analysis_steady} would likely be a remedy to this
-drawback.
-
-The cooling performance for a coupling that is being turned off at the
-end would depend on the concrete protocol as we've seen in
-\cref{sec:one_bath_cutoff} and a more detailed study is left to future
-work. The interplay between the interaction time-scale mediated by the
-coupling strength, the bath memory time and the system dynamics allows
-for intricate tuning.
-
-Both the final system and bath energies are increasing with the
-coupling strength, compensating for the interaction energy which is
-the main mechanism that leads to residual system energy in the steady
-state which is further and further away from the ground state, which
-would be the steady state of weak coupling dynamics.
+\Cref{sec:pure_deph} also treated time dependent coupling which we
+haven not encountered so far. The effect of modulating the coupling
+upon the bath energy change due to the initial slip, is the subject of
+\cref{sec:moder-init-slip}.
 
 
-\fixme{iftime: re-run with same coupling strength, more cutoff freqs,
-  less samples, see, longer times for coupling strengths, more coup}
-
-
-\subsection{Moderating the Inital Slip with Modulated Coupling}
+\subsection{Moderating the Inital Slip with Modulated Coupling}%
 \label{sec:moder-init-slip}
-
-\begin{wrapfigure}[17]{O}{0.4\textwidth}
+\begin{wrapfigure}[-1]{O}{0.4\textwidth}*
   \centering
   \includegraphics{figs/one_bath_mod/modulation_protocols_init.pdf}
   \caption{\label{fig:L_mod_init} The interaction is being switched on
-    smoothly over a period of \(8\) time steps by the use of
+    smoothly over a period of \(8\) time units by the use of
     smoothstep functions (\cref{sec:smoothstep}) of different
     orders. A sudden protocol is being included for reference.}
 \end{wrapfigure}
@@ -1589,7 +1518,7 @@ have chosen \(α(0)=1.6\) and \(ω_{c}=1\) for all the simulations. Some
 The smoothness parameter \(s\) regulates to which order the derivative
 of the modulation is continuous at \(t=0\) and \(t=8\). The modulation
 of the coupling allows for a change in total energy. This leads to a
-partial compensation for ``initial slip'' of the bath.
+partial compensation for the ``initial slip'' of the bath.
 
 \begin{figure}[htp]
   \centering
@@ -1599,25 +1528,37 @@ partial compensation for ``initial slip'' of the bath.
 \end{figure}
 An overview over the bath system and interaction energy, as well as
 the bath energy flow can be found in \cref{fig:init_energies}. System
-and interaction energy all converge to the same values after some
-time, but the bath energy is enhanced for the sudden case. This can
-also been ascertained from the flow, which has a far greater magnitude
-for this case.
+\(\ev{H_{\sys}}\) and interaction energy \(\ev{H_{\inter}}\) all
+converge to the same values after some time, but the flows \(J\) and
+bath energies are the greater, the faster we switch the coupling
+on. The sudden switching of the interaction (blue) is the extreme case
+set apart by much greater interaction energies and a greater final
+bath energy, as well as a much steeper initial peak in the flow.
 
-The simulation with smoothness one exhibits a clear kink in the bath
-energy flow and interaction energy curves at the time point \(τ=8\),
-which reflects the lack of smoothness of the first derivative of the
-modulation.
+The simulation with smoothness zero (yellow) exhibits a clear kink in
+the bath energy flow and interaction energy curves at the time point
+\(τ=8\), which reflects the lack of smoothness of the first derivative
+of the modulation.
 
 \cref{fig:init_total} shows that modulation protocols with a shallower
 slope lead to a greater change in the total energy, compensating for
 the negative interaction energy and leading to a shallower initial
-slip flow.
+slip flow. Activating the coupling adiabatically will likely lead to a
+complete avoidance of the initial slip. On the other hand, the system
+and interaction dynamics will be intermingled increasingly with the
+interaction buildup.
+
+An interesting future application would be to simulate an adiabatic
+transition from the non-interacting ground state into the interacting
+ground state and a study of energy released in this way, especially
+for strong coupling.
 
 The initial slip flow \cref{eq:pureflowexpectation} is valid for short
-times, but the results diverge quite some time before peak flow.
-\Cref{fig:init_slip_mod} demonstrates, that the qualitative properties
-of the flow are still being capture quite well for short times.
+times.  \Cref{fig:init_slip_mod} demonstrates that the qualitative
+properties of the flow are still being capture quite well for short
+times. The actual flow (solid lines) and the pure dephasing flow
+(dashed lines) agree initially but diverge quite some time before peak
+flow.
 \begin{figure}[htp]
   \centering
   \begin{subfigure}[t]{0.49\linewidth}
@@ -1640,3 +1581,96 @@ of the flow are still being capture quite well for short times.
   \caption{Total energy and flow for different interaction switching
     protocols.}
 \end{figure}
+
+\subsection{Varying the Coupling Strength}
+\label{sec:one_bathcoup_strength}
+\begin{wrapfigure}[-2]{O}{0.3\textwidth}*
+  \centering
+  \includegraphics{figs/one_bath_syst/final_states_flows}
+  \caption{\label{fig:delta_fs_flow} The absolute value difference of
+    the state energies and the maximal flows for the simulations in
+    \cref{fig:delta_energy_overview} from their value at coupling
+    strength \(α(0)=0.40\) normalized by their value at
+    \(α(0)=1.12\).}
+\end{wrapfigure}
+After having studied the dependence of the bath energy flow for
+various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,}, we now consider the case with fixed cutoff \(ω_c=2\)
+but varying coupling strength. The results presented here are mainly a
+demonstration of the feasibility of high-consistency simulations for a
+range of coupling strengths. We will therefore keep the discussion of
+the physical implications relatively short.
+
+The chosen simulation parameters are the same as in
+\cref{sec:one_bath_cutoff} and again consistent results have been
+obtained throughout the whole range of coupling strengths as can be
+gathered from \cref{fig:delta_interaction_consistency}.  The
+interaction strength was chosen linearly spaced and the simulation
+results are presented in \cref{fig:delta_energy_overview}.
+
+As the shape of the BCF is not altered between the simulations, the
+bath energy flows look very similar as do the interaction
+energies. The main difference between the simulations is the magnitude
+of the interaction energy. With increased coupling strength there is
+an increased interaction energy and an increased flow which leads to
+faster energy loss in the system and faster energy gain of the
+bath. The stronger the coupling, the more pronounced is the
+non-monotonicity in time of the interaction energy, which is reflected
+in a non-monotonicity in the bath energy expectation value.
+
+The bath energy reaches a maximum and falls slightly for the strongest
+coupling simulations (violet and brown lines). If the interaction is
+strong enough, ``backflow'' can occur despite finite bath correlation
+times. Here, the back flow is only occurring between interaction and
+bath energy. In \cref{fig:markov_analysis_steady} the bath memory is
+long, additionally to a strong coupling so that multiple oscillations
+can be seen.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_syst/δ_energy_overview}
+  \caption{\label{fig:delta_energy_overview} Energy overview for the
+    model \cref{eq:one_qubit_model} for various coupling
+    strengths. The curves are converged out, and the error funnels are
+    not visible.}
+\end{figure}
+
+As a task for future work it might be worthwhile to ascertain the
+exact conditions under which system energy might flow back into the
+system. Is resonance required and what role is played by the system
+time scale? Does backflow always occur provided the coupling is strong
+enough?\footnote{The author expects a negative answer to this
+  question.}
+
+Despite these differences for finite times, \cref{fig:delta_fs_flow}
+demonstrates that the approximate steady state\footnote{excluding the
+  \(α(0)=0.4\) case} interaction energies
+\(\ev{H_{\inter}}_{\mathrm{ss}}\) (blue), maximal flows
+\(\abs{J}_{\mathrm{max}}\) (orange), system energies
+\(\ev{H_{\sys}}_{\mathrm{ss}}\) (red) and bath energies
+\(\ev{H_{\bath}}_{\mathrm{ss}}\) (green) are almost linearly dependent
+on the coupling strength \(α(0)\) in the range of coupling strengths
+studied.
+
+We find that we can control the speed of the energy transfer between
+bath and system with the coupling strength at the cost of greater
+steady state interaction energy. Were we to turn off the interaction
+diabatically, we would have to expend this energy in the worst
+case. On the other hand, more adiabatic protocol as the one used in
+\cref{sec:energy-transf-char} would likely be a remedy to this
+drawback.
+
+The cooling performance for a coupling that is being turned off at the
+end would depend on the concrete protocol as we've seen in
+\cref{sec:one_bath_cutoff} and a more detailed study is left to future
+work. The interplay between the interaction time-scale mediated by the
+coupling strength, the bath memory time and the system dynamics allows
+for intricate tuning.
+
+Both the final system and bath energies are increasing with the
+coupling strength, compensating for the interaction energy which is
+the main mechanism that leads to residual system energy in the steady
+state which is further and further away from the ground state, which
+would be the steady state of weak coupling dynamics.
+
+
+\fixme{iftime: re-run with same coupling strength, more cutoff freqs,
+  less samples, see, longer times for coupling strengths, more coup}
