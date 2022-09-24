@@ -10,7 +10,7 @@ The roadmap is the following. Using \cref{chap:analytsol} we will
 verify the results of \cref{chap:flow} in
 \cref{sec:hopsvsanalyt}. Excellent consistency of the analytical and
 numeric solutions for the QBM models will be demonstrated.  A common
-feature of the short time behavior of the bath energy flow that is
+feature of the short time behaviour of the bath energy flow that is
 visible in all simulations will be discussed and explained in
 \cref{sec:pure_deph}.
 
@@ -550,17 +550,17 @@ Hamiltonians. Because the NMQSD and also HOPS are largely agnostic of
 these factors, we may safely assume that the results of the comparison
 will be similar to the ones presented here.
 
-Let us now turn to the short time behavior of the flow and the initial
-slip in \cref{sec:pure_deph} .
+Let us now turn to the short time behaviour of the flow and the
+initial slip in \cref{sec:pure_deph} .
 
 \section{Pure Dephasing and the Initial Slip}
 \label{sec:pure_deph}
 As evidenced in
 \cref{fig:comp_finite_t,fig:comp_zero_t,fig:comp_two_bath}, the short
-time behavior of the bath energy flow is dominated by a characteristic
-peak. Because this peak occurs at very short time scales, it may in
-part be explained by a simple calculation which neglects the system
-dynamics by setting \(H_\sys=0\).
+time behaviour of the bath energy flow is dominated by a
+characteristic peak. Because this peak occurs at very short time
+scales, it may in part be explained by a simple calculation which
+neglects the system dynamics by setting \(H_\sys=0\).
 
 We solve the model with the Hamiltonian (Schr\"odinger picture)
 \begin{equation}
@@ -921,9 +921,9 @@ less focus on the systematics.
 \subsection{Varying the Cutoff Frequency}
 \label{sec:one_bath_cutoff}
 The lessons learned in \cref{sec:stocproc,sec:trunc} will now be
-applied to simulate \cref{eq:one_qubit_model} with high consistency
-for various parameter choices of the cutoff \(ω_{c}\) of the Ohminc
-BCF (see \cref{sec:meth})
+applied to simulate the spin-boson model \cref{eq:one_qubit_model}
+with high consistency for various parameter choices of the cutoff
+frequency \(ω_{c}\in\{1,2,3,4\}\) of the Ohminc BCF (see \cref{sec:meth})
 \begin{equation}
   \label{eq:ohmic_bcf_repeat}
   α(τ) =
@@ -931,18 +931,35 @@ BCF (see \cref{sec:meth})
 \end{equation}
 Guided by these demonstrations, we'll turn to a more detailed analysis
 of the role of non-Markovianity in the energy transfer characteristics
-of our model. The quantification of the initial slip dynamics in
+of the model. The quantification of the initial slip dynamics in
 \cref{sec:pure_deph} will also be verified.
 
 To make the interaction energies comparable to each other, the BCF
-normalization of \cref{sec:pure_deph} is being used. Because
-of the small size of the Hilbert space, we were able to choose a HOPS
+normalization of \cref{sec:pure_deph} is being used. Because of the
+small size of the Hilbert space, we were able to choose a HOPS
 configuration\footnote{\(\norm{\vb{k}}\leq 7\), seven BCF terms,
-  \(\varsigma = 10^{-6}\)} that yields high-accuracy
-results\footnote{A detailed account of the consistency is given in
-  \cref{fig:omega_interaction_consistency}.}, based on the results of
-the previous section. The only problematic result is the one for cutoff
-\(ω_c=1\), but there is good qualitative consistency in this case.
+  \(\varsigma = 10^{-6}\)} that yields high-accuracy results, based on
+the results of the previous section. The only problematic result is
+the one for the cutoff \(ω_c=1\), but there is good qualitative
+consistency in this case. The failing of the consistency check may be
+due to insufficient time resolution, or simply because the bath memory
+is so long, that the hierarchy depth was insufficient despite the
+rather weak coupling. The normalized difference between the two
+interaction energies for this simulation (blue line, right panel of
+\cref{fig:omega_interaction_consistency}) is of the order of
+\(10^{-3}\) and thus quite acceptable. The consistency test is a very
+high bar to cross.
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_syst/omega_interaction_consistency}
+  \caption{\label{fig:omega_interaction_consistency}Interaction
+    consistency plot for \cref{sec:one_bath_cutoff}, similar to
+    \cref{fig:stocproc_systematics}. Good consistency is being
+    achieved. The \(ω_{c}=1\) case (blue) does not pass the
+    consistency test. Nevertheless, the qualitative agreement of the
+    direct and indirect interaction energies (left panel) is quite
+    good.}
+\end{figure}
 
 For all simulations \(N=5\cdot 10^{5}\) trajectories were integrated
 to produce the results that are summarized in
@@ -950,72 +967,72 @@ to produce the results that are summarized in
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/omega_energy_overview}
-  \caption{\label{fig:omega_systematics_system} Energy overview for the
-    model \cref{eq:one_qubit_model} for various coupling strengths and
-     cutoff frequencies. The curves are converged, and the error
-    funnels are not visible.}
+  \caption{\label{fig:omega_systematics_system} Energy overview for
+    the spin-boson model \cref{eq:one_qubit_model} for various
+    coupling strengths and cutoff frequencies. The curves are
+    converged, and the error funnels are not visible. The \(ω_{c}=1\)
+    stands apart from the others due to its long bath memory. The
+    system energy loss is the fastest of all cases despite the weaker
+    coupling as gauged by the magnitude of the interaction energy.}
 \end{figure}
+The interaction energy expectation values \(\ev{H_{\inter}}\)
+(\cref{fig:omega_systematics_system}, upper left panel) differ
+significantly, despite being roughly of the same order of magnitude
+and not in the weak coupling regime. This illustrates the limitation
+of the estimate in \cref{sec:pure_deph} and exemplifies the
+nontriviality of the open system dynamics. Better estimates of the
+interaction energy and thus interaction strength may be derived from
+ideas similar to the ones discussed in \cref{sec:normest}.  Besides
+their magnitude, the qualitative time dependence of the interaction
+energies varies, especially between the configuration with the cuoff
+frequency \(ω_c=1\) (blue) and the others.
 
-Let us preface the following discussion with a note of caution. All
-the discussed phenomena are specific to the minimal model
-\cref{eq:one_qubit_model}, although sometimes similarities to
-phenomena observed in \cref{sec:hopsvsanalyt} can be seen. Whether
-there is some universality to the results obtained is an interesting
-question for a more detailed future detailed study.\fixme{Remove this?}
-
-The interaction energy expectation values, despite being in the same
-order of magnitude and not in the weak coupling regime, differ
-significantly. This illustrates the limitation of the estimate in
-\cref{sec:pure_deph} and exemplifies the nontriviality of the open
-system dynamics. Better estimates of the interaction energy and thus
-interaction strength may be derived from ideas similar to the ones
-discussed in \cref{sec:normest}.  Besides the magnitude, the
-qualitative time dependence of the interaction energies varies,
-especially between the configuration with the cuoff frequency
-\(ω_c=1\) (blue) and the others.
-
-The curve with the cuoff frequency \(ω_c=1\) (blue) exhibits two
-pronounced turning points in contrast to the other simulations. This
-behaviour is a symptom of the very long bath memory, as we will
-discuss below. Further, despite having the weakest overall coupling
-strength \(α(0)=0.4\) the system energy falls off the fastest after a
-short period where it is above the other configurations. This
+The interaction energy curve of the simulation with the cutoff
+frequency \(ω_c=1\) (blue) in \cref{fig:omega_systematics_system}
+exhibits two pronounced turning points in contrast to the other
+simulations. This behaviour is a symptom of the very long bath memory,
+as we will discuss below. Further, despite having the weakest overall
+coupling strength \(α(0)=0.4\) the system energy falls off the fastest
+after a short period where it is above the other configurations. This
 behaviour is also visible in the bath energy expectation value, where
 this simulation almost reaches the same levels as the \(ω_c=2\)
 configuration (orange) for \(τ\gtrsim 5\).
 
-The flow is generally negative (the bath gains energy) and decays
-after an initial peak. All the flow graphs appear to be crossing in
-about the same point \(τ\approx 7.7\) after which their ordering by
-magnitude is reversed.  The inset shows that the crossing is not
-precisely at the same point, nevertheless further investigation of
-this phenomenon may of interest in the future.  Due to the pure
-dephasing behavior discussed in \cref{sec:pure_deph}, a greater cutoff
-coupled with a greater coupling strengths leads to a higher peak in
-the flow for short times. After the peak the flow decays the faster,
-the higher the cutoff. The situation is reversed after some time so
-that the flow of higher cutoffs decays slower.  This is due to the
-fact that still more system energy is left to be transmitted to the
-bath.
+The flow \(J\) is generally negative (the bath gains energy) and
+decays after an initial peak. All the flow graphs appear to be
+crossing in about the same point \(τ\approx 7.7\) after which their
+ordering by magnitude is reversed.  The inset shows that this isn't
+precisely the case, nevertheless further investigation of this
+phenomenon may of interest in the future.  Due to the pure dephasing
+behaviour discussed in \cref{sec:pure_deph}, a greater cutoff coupled
+with a greater coupling strengths leads to a higher peak in the flow
+for short times. After the peak the flow decays the faster, the higher
+the cutoff. The situation is reversed after some time.  This is due to
+the fact that still more system energy is left to be transmitted to
+the bath.
 
 The presentation in \cref{fig:omega_systematics_system} is not
 conducive to comparing the actual performance of the energy transfer,
 due to the variable shape of the spectral density and the chosen
 coupling strengths. Because the maximum of the Ohmic spectral density
 is located at \(ω_c\), the special observed energy transfer behaviour
-for \(ω_c=1\) is likely due to a resonance effect (see above) as the
-system energy level spacing is unity.
+for \(ω_c=1\) is likely due to a resonance effect as the system energy
+level spacing coincides with the maximum and the coupling is on the
+weaker side.
 
 The dissipator of the master equation for this two level system only
-depends on the value of the spectral density at the level
+depends on the value of the spectral density at the qubit level
 spacing~\cite[p. 66]{Rivas2012}\footnote{There \(L=σ_{+}\), but this
-  has no bearing on the connection to \(ω_{0}\).}  (\(ω_{0}=1\) here),
-so that it is reasonable to expect, that there may be variations
-whenever its magnitude at this point changes.  On the other hand, a
-strong dependence of the flow on the shape of the bath correlation
-function beyond lamb-shift like influences, as we will find below, is
-an indicator of the departure from the weak coupling limit.
-\fixme{Here, some master equation comparison would be nice.}
+  has no bearing on the connection to \(ω_{0}\).}  \(ω_{0}=1\), so
+that it is reasonable to expect, that there may be variations whenever
+its magnitude at this point changes.  On the other hand, a strong
+dependence of the flow on the shape of the bath correlation function
+beyond lamb-shift like influences is an indicator of the departure
+from the weak coupling limit.  \fixme{Here, some master equation
+  comparison would be nice.}
+
+For these reasons, we now perform a more detailed analysis in
+\cref{sec:energy-transf-char}.
 
 \subsection{Energy Transfer Characteristics}
 \label{sec:energy-transf-char}
@@ -1024,56 +1041,76 @@ in our simulations, we continue to shed some light on the role of bath
 memory and resonance between system and bath in the behaviour of the
 energy transfer between system and bath.
 
-\begin{wrapfigure}{o}{0.3\textwidth}*
+
+For a systematic study of resonance, we first compare the flow for
+frequency shifted ohmic spectral densities\footnote{See
+  \cref{sec:shift_sp} for details.} with identical scaling \(α(0)\)
+and cutoff frequency \(ω_c=2\). The shifted spectral density is given
+by
+\begin{equation}
+  \label{eq:shift_sd}
+  J_{\mathrm{s}}(ω_{s})= J(ω - ω_{s}),
+\end{equation}
+where \(ω_{s} > 0\).
+
+\begin{wrapfigure}[-1]{O}{0.3\textwidth}*
   \centering
   \includegraphics{figs/one_bath_syst/L_mod}
   \caption{\label{fig:L_mod} The smooth modulation of the coupling
     operator \(L(τ)\).}
 \end{wrapfigure}
-For a systematic study of resonance, we first compare the flow for
-shifted ohmic spectral densities\footnote{See \cref{sec:shift_sp} for
-  details.} with identical scaling \(α(0)\) and cutoff frequency
-\(ω_c=2\). We turn off the interaction smoothly\footnote{A smoothstep
+Also, we turn off the interaction smoothly\footnote{A smoothstep
   function of order two with a transition period of two. See
-  \cref{sec:smoothstep}.} over two time units before the system has
-reached its steady state and compare how much energy has been
-transferred in terms of the final bath
+  \cref{sec:smoothstep}.} over two time units (see \cref{fig:L_mod})
+before the system has reached its steady state and compare how much
+energy has been transferred in terms of the final bath
 \(\ev{H_{\bath}}\)\footnote{This is actually a slight misnomer, as we
   consider the \emph{change} of bath energy. The bath energy itself is
   infinite.} and system energies and the total energy change
 \(Δ\ev{H}\) due to the modulated coupling.
 
-The less energy the system has at the end of the process and the
-faster the process concludes, the better the performance of
-transfer. If the interaction energies are on the same scale, the
-decoupling costs should be roughly the same in terms of total energy
-change. Otherwise, they may lead to an additional change of system and
-bath energies between the different simulations. Ideally the bath
-energy changes to take up any energy introduced into the system by the
-decoupling rather than the system energy.
+This is the first time we make use of time dependent coupling. Despite
+adding complexity to the method, this strategy simplifies our
+discussion. Residual interaction energy is eliminated, making a
+comparison of different simulations possible. Shifting the spectral
+densities, another technical trick, allows us to study resonance
+behaviour without altering the \emph{shape} of the spectral density,
+again simplifying a comparison.
 
 To make space for the shifted bath correlation functions in frequency
-space, the system energy gap has been set to the value four so that
-\(α(0)=8\) represents a quite reasonable coupling strength for our
-purposes here.
+space, the qubit energy gap has been set to the value four so that
+\(α(0)=8\) represents a quite reasonable coupling strength for the
+purpose of studying energy transfer out of the system on a suitable
+timescale.
 
-The results for three shifts are presented in
-\cref{fig:resonance_analysis}. For all shifts the spectral density has
-a finite value at the value of system level spacing, but only in the
-case with the cutoff \(ω_s=2\) (orange), the resonance condition is
-fulfilled. Indeed, the energy transfer out of the system is the best
-for the resonant case (see \cref{fig:resonance_analysis}, middle
-panel), as the final system energy is the lowest.
+We now define our measure of energy transfer performance.  The less
+energy the system retains at the end of the protocol the better
+performance of transfer. In other words, we want to transfer as much
+energy out of the qubit as possible minimizing
+\(\abs{\ev{H_{\sys}} + 2}\).  If the interaction energies
+\(\ev{H_{\inter}}\) are on the same scale, the decoupling costs should
+be roughly the same in terms of total energy change. Otherwise, they
+may lead to an additional change of system and bath energies between
+the different simulations.
 
-The change in total energy due to the decoupling of the bath is
-moderately higher than in the resonant (orange) case than for cutoff
-\(ω_s=1\) (blue) and seems to be somewhat proportional to the
-interaction energy which is reasonable. The decoupling process appears
-to affect the bath energy curves in this case. As can be gathered from
-\cref{fig:resonance_analysis}, the bath energies generally decreases
-when decoupling, compensating for the negative interaction energy. The
-effect on the system energy is masked by the much greater energy loss
-to the bath.
+Simulations for three values of the shift \(ω_{s}\in\{1,2,3\}\) are
+being presented in \cref{fig:resonance_analysis}. For all shifts the
+spectral density has a finite value at the value of system level
+spacing, but only in the case with the cutoff \(ω_s=2\) (orange), the
+resonance condition is fulfilled. Indeed, the energy transfer out of
+the system \(\abs{\ev{H_{\sys}} + 2}\) is the best for the resonant
+case (see \cref{fig:resonance_analysis}, middle panel), as the final
+system energy is the lowest.
+
+The change in total energy \(Δ\ev{H}\) (\cref{fig:resonance_analysis},
+middle panel) due to the decoupling of the bath is moderately higher
+than in the resonant (orange) case than for cutoff \(ω_s=1\) (blue)
+and seems to be somewhat proportional to the interaction energy, which
+is reasonable. The decoupling process appears to affect mainly the
+bath energy curves (dashed lines, left panel) in this case. Bath
+energies \(\ev{H_{\bath}}\) generally decrease during decoupling,
+compensating for the negative interaction energy. The effect on the
+system energy is masked by the energy loss to the bath.
 
 Were the interaction switched off abruptly, the system and bath
 energies would remain untouched. Turning the interaction off in finite
@@ -1086,40 +1123,40 @@ as we shall see below.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/resonance_analysis}
-  \caption{\label{fig:resonance_analysis} Left
-    panel: The system, bath and interaction energies for various Ohmic
-    BFCs with \(α(0)=8,\,ω_c=2\) shifted by \(ω_s\). Mid panel: The
-    difference in total energy, the distance of the system energy to
-    the ground state energy and the distance of the bath energy to the
-    initial system energy. Right panel: The spectral density for the
-    three shift values. \(\norm{H_\sys}\) does mean in this case, that
-    the energy level spacing of the system is \(4\). There resonant
-    case has the best energy transfer behaviour as gauged by the final
-    system energy.}
+  \caption{\label{fig:resonance_analysis} Left panel: The system, bath
+    and interaction energies for various Ohmic BFCs with
+    \(α(0)=8,\,ω_c=2\) shifted by \(ω_s\). Middle panel: The
+    difference in total energy \(Δ\ev{H}\), the distance of the system
+    energy to the ground state energy \(\abs{\ev{H_{\sys}} + 2}\) and
+    the difference of the bath energy change and the initial system
+    energy \(\ev{H_{\bath}} - 4\). Right panel: The spectral density
+    for the three shift values \(ω_{s}\). \(\norm{H_\sys}\) does mean
+    in this case, that the energy level spacing of the system is
+    \(4\). The resonant case has the best energy transfer behaviour as
+    gauged by the final system energy.}
 \end{figure}
 
 The third simulation with cutoff \(ω_s=3\) (green) exhibits the worst
-energy transfer with the highest residual system energy and the
-highest change in total energy due the large magnitude of the
-interaction energy.  The lowering of the final bath is most pronounced
-as the interaction energy is largest. As very much energy is shed into
-interaction initially, the bath energy can't decay as much as in the
-situation with cutoff \(ω_{s}=1\) (blue).
+energy transfer performance with the highest residual system energy
+and the highest change in total energy due the large magnitude of the
+interaction energy.  The lowering of the final bath energy is most
+pronounced as the interaction energy is largest. As very much energy
+is shed into to bath to build up the interaction, the bath energy
+can't decay as much as in the simulation with cutoff \(ω_{s}=1\)
+(blue).
 
 
 Due to the asymmetry of the spectral density, the simulations for
 \(ω_s=1\) and \(ω_s=3\) are not directly comparable. A repetition of
-this investigation with a (pseudo~\cite{Mukherjee2020Jan}) Lorentzian
-spectral density and for different interaction
-time-frames\footnote{steady state vs. transient states} is left for
-future work.
+this investigation with a (pseudo) Lorentzian spectral density is left
+to future work.
 
-Interestingly, if we modulate the system periodically with angular
-frequency \(Δ\), also bath frequencies of \(ω_{0} + n Δ\)
-(\(n\in\NN\)) become important, so that shifting the spectral density
-to higher frequencies is advantageous, albeit for the completely
-different objective of extracting energy from system and bath, as we
-will find out in \cref{sec:modcoup_reso}.
+% Interestingly, also bath frequencies of \(ω_{0} + n Δ\) (\(n\in\NN\))
+% become important if we modulate the system periodically with angular
+% frequency \(Δ\), so that shifting the spectral density to higher
+% frequencies is advantageous, albeit for the completely different
+% objective of extracting energy from system and bath, as we will find
+% out in \cref{sec:modcoup_reso}.
 
 % Turning of the interaction leads mostly to a reduction of the final
 % bath energy (see the middle panel).  This effect will also appear in
@@ -1153,42 +1190,32 @@ will find out in \cref{sec:modcoup_reso}.
     frequency shifts of the spectral density lead to a higher
     magnitude of the interaction energy and faster dynamics.}
 \end{wrapfigure}
-In general, the maximal absolute interaction energy is roughly
-proportional to the shift \(ω_{s}\) of the spectral density, so that
-the short term interaction strength as measured by the interaction
-energy expectation value is not only dependent on the width and total
-norm of the spectral density, but also on its absolute distribution in
-frequency space. The shift adds a phase factor \(\eu^{-\i ω_{s} τ}\)
-to the BCF which makes the imaginary part steeper for short
-times. This in turn leads to faster initial slip dynamics and a speeds
-up buildup of interaction energy as demonstrated in
-\cref{fig:initial_slip_resonance}. The observed effect is sensible on
-an intuitive level as higher frequency oscillators are being excited
-in the bath leading to faster dynamics.
+As a heuristic observation, the maximal absolute interaction energy
+is roughly proportional to the shift \(ω_{s}\) of the spectral
+density, so that the short term interaction strength as measured by
+the interaction energy expectation value is not only dependent on the
+width and total norm of the spectral density, but also on its absolute
+distribution in frequency space. The shift adds a phase factor
+\(\eu^{-\i ω_{s} τ}\) to the BCF which makes the imaginary part
+steeper for short times. This in turn leads to faster initial slip
+dynamics and a speeds up buildup of interaction energy as demonstrated
+in \cref{fig:initial_slip_resonance}. The observed effect is sensible
+on an intuitive level as higher frequency oscillators are being
+excited in the bath leading to faster dynamics.
 
-The longer term picture is being studied in
+Turning the interaction off later leads to the results of
 \cref{fig:resonance_analysis_steady}. We see broadly similar energy
 transfer characteristics for the cutoffs \(ω_{s}=1\) (solid blue line)
-and \(ω_{s}=2\) (solid orange line), where the off-resonant case
-(blue) may be slightly advantageous. The left panel shows, that
-although the system energy before the decoupling is lower in the
-resonant case (orange), the situation is reversed during the
-decoupling as now also the system energy is affected by the modulation
-and the interaction energy of the off-resonant case is slightly larger
-in magnitude. However these effects are quite marginal and should be
-taken with care. The system energy difference amounts to
-\(\Delta\langle H_\mathrm{S}\rangle=0.00397\pm 0.00010\), but only the
-statistical error has been taken into account. The simulations were
-run with \(N=10^{4}\) trajectories and the same HOPS settings as in
-the discussion above, so that some confidence may be placed in them.
+and \(ω_{s}=2\) (solid orange line).
 
 For \(ω_{s}=3\) (green lines) the approximate steady state has not
 been reached yet and the energy transfer is incomplete so that the
-residual system energy is the highest. As remarked earlier, th fast
+residual system energy is the highest. As remarked earlier, the fast
 growth of the interaction energy leads to a slower initial loss of
 system energy. On longer time scales we see a slow, almost linear
 transfer of energy from the system (solid line) into the interaction
-(dotted line). The system dynamics are catching up with the bath.
+(dotted line) as there is still is system energy left to be
+transferred.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/resonance_analysis_steady}
@@ -1201,24 +1228,29 @@ transfer into the bath.  To study the effect of the bath memory, we
 use Ohmic spectral densities with linearly spaced
 \(τ_{\bath}\equiv ω_c^{-1}\) that have been shifted and scaled by
 numerical optimization so that their peaks coincide and the resulting
-maximal absolute interaction energies identical. The rightmost panel
-of \Cref{fig:markov_analysis} shows plots of the spectral densities
-obtained. We can see, that not only the magnitude at resonance point
-enters, as the peak heights are quite different. We will encounter
-this behavior again in \cref{sec:extr_mem}\footnote{Performing the
-  optimization in the weak coupling regime will actually yield
-  matching peak heights for the spectral densities.}.
+maximal absolute interaction energies identical. This makes the
+simulations more comparable, as otherwise very different energy
+transfer speeds would be observed.
 
-The results that can be obtained are very much dependent on the time
-when the interaction is switched off. \Cref{fig:markov_analysis} has
-been arrived at by tweaking the time point of decoupling so that an
-extremum in the system energy of the long memory (\(τ_{B}=1\)) case
-(green) is captured. This leads to an advantageous transfer
-performance with a lower system energy and similar cost in terms of
-total energy change, although residual system energy is still higher
-than in \cref{fig:resonance_analysis_steady}.  Despite the system
-energy initially fall off the fastest for the short memory case (blue)
-the situation is reversed after about \(τ=0.5\).
+The rightmost panel of \Cref{fig:markov_analysis} shows plots of the
+spectral densities obtained by the optimization. We can see, that not
+only the magnitude at resonance point enters into the dynamics, as the
+peak heights of the final spectral densities (right panel) are quite
+different. We will encounter this behavior again in
+\cref{sec:extr_mem}\footnote{Performing the optimization in the weak
+  coupling regime will actually yield matching peak heights for the
+  spectral densities.}.
+
+The obtained results are very much dependent on the time when the
+interaction is switched off. \Cref{fig:markov_analysis} has been
+produced by tweaking the time point of decoupling so that an extremum
+in the system energy of the long memory (\(τ_{B}=1\)) case (green) is
+captured. This leads to an advantageous transfer performance with a
+lower system energy and similar cost in terms of total energy change,
+although residual system energy is still higher than in
+\cref{fig:resonance_analysis_steady}.  Despite the system energy
+initially fall off the fastest for the short memory case (blue) the
+situation is reversed after about \(τ=0.5\).
 \cref{fig:resonance_analysis_steady}.
 \begin{figure}[htp]
   \centering
