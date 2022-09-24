@@ -555,18 +555,19 @@ slip in \cref{sec:pure_deph} .
 
 \section{Pure Dephasing and the Initial Slip}
 \label{sec:pure_deph}
-As seen in \cref{fig:comp_finite_t,fig:comp_zero_t,fig:comp_two_bath},
-the short time behavior of the bath energy flow is dominated by
-characteristic peak at short times. Because this peak occurs at very
-short time scales, it may in part be explained by a simple calculation
-which neglects the system dynamics by setting \(H_\sys=0\).
+As evidenced in
+\cref{fig:comp_finite_t,fig:comp_zero_t,fig:comp_two_bath}, the short
+time behavior of the bath energy flow is dominated by a characteristic
+peak. Because this peak occurs at very short time scales, it may in
+part be explained by a simple calculation which neglects the system
+dynamics by setting \(H_\sys=0\).
 
 We solve the model with the Hamiltonian (Schr\"odinger picture)
 \begin{equation}
   \label{eq:puredeph}
   H = L^†(t) B + L(t) B^† + H_\bath
 \end{equation}
-with \(L(t)=L(t)^†\), \([L(t), L(s)] = 0\;\forall t,s\) (so that
+with \(L(t)=L(t)^†\), \([L(t), L(s)] = 0\;\forall t,s\) (so that the
 Heisenberg Hamiltonian matches \cref{eq:puredeph}) and \(B,\,H_\bath\)
 as in \cref{sec:nmqsd_basics}.
 
@@ -586,22 +587,23 @@ This allows us to calculate
   g_λ^\ast∫_0^t\dd{s} L(s) ∂_t \eu^{-\iu ω_λ (t-s)}] + \hc,
 \end{equation}
 which gives with a state of the form \(ρ=\ketbra{ψ} \otimes ρ_β\)
-(\(ρ_β\) being a thermal state of inverse temperature \(β\))
 \begin{equation}
   \label{eq:pureflowexpectation}
-  \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)].
+  \ev{\dot{H}_\bath } = -2 ∫_0^t\dd{s}\ev{L(t)L(s)} \Im[\dot{α}(t-s)],
 \end{equation}
+where \(ρ_β\) is a Gibbs state of inverse temperature \(β\).
 For time independent \(L\) this becomes
 \begin{equation}
   \label{eq:pureflowtimeindep}
   \ev{\dot{H}_\bath } = -2 \ev{L^2} \Im[α(t)].
 \end{equation}
+Note that \(α\) is the zero temperature BCF.
 
 The proportionality to the imaginary BCF \(α\) does explain the
-initial peak in the bath energy flow. The imaginary part of the BCF is
-zero for \(t=0\) and then usually features a peak at rather short
-times (assuming finite correlation times). For the ohmic BCF used here
-and shown in \cref{fig:ohm_bcf_ex}, this feature is very prominent.
+initial peak in the bath energy flow. The imaginary part is zero for
+\(t=0\) and then usually features a peak at rather short times
+(assuming finite correlation times). For the Ohmic BCF used here and
+plotted in \cref{fig:ohm_bcf_ex} this feature is very prominent.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/misc/ohmic_bcf_example.pdf}
@@ -613,12 +615,12 @@ Generically, the imaginary part of the BCF is negative at least for
 short times as it takes the form
 \begin{equation}
   \label{eq:negtive_imag}
-  \Im[α(τ)] = -\frac{1}{π}∫_{0}^{τ}J(ω) \sin(ωτ)\dd{ω}
+  \Im[α(τ)] = -\frac{1}{π}∫_{0}^{∞}J(ω) \sin(ωτ)\dd{ω}
 \end{equation}
 which is negative for \(τ\leq π/ω_{\mathrm{max}}\), where
 \(ω_{\mathrm{max}}\) is a characteristic cutoff frequency of the
 system. The direction of the initial slip flow for unmodulated systems
-will therefore be always be into the bath compensating for negative
+will therefore always be into the bath compensating for negative
 interaction energy.
 
 Interestingly, \cref{eq:pureflowexpectation} does not contain any
@@ -628,15 +630,14 @@ match the zero temperature case in which the bath has minimal energy
 in the initial state.
 
 A thermodynamically useful model should feature significant system
-dynamics which is always given assuming that the coupling is no too
-strong. Coupling that is not self-adjoint \fixme{plot: if time, i
-  could do the energy shovel with non-hermitian} may also have this
-effect, but in the literature most effective qubit models tend to
-favour Hermitian couplings
+dynamics which is always given, assuming that the coupling is no too
+strong. Non hermitian coupling may also have this effect, but in the
+literature most effective qubit models tend to favour Hermitian
+couplings
 \cite{Aurell2019Apr,Hita-Perez2021Nov,Hita-Perez2021Aug,MacQuarrie2020Sep,Andersen2017Feb,Mezzacapo2014Jul}. For
-the spin-boson model, non Hermitian coupling it is the result of the
-rotating wave approximation assuming that system and bath scales are
-quite different, which however does not imply weak
+the spin-boson model, non Hermitian coupling is the result of the
+rotating wave approximation under the assumption that system and bath
+time scales are quite different, which however does not imply weak
 coupling~\cite{Irish2007Oct}.
 
 For completeness, the interaction energy is given by
@@ -683,13 +684,14 @@ here the convention in which \(α\) is dimensionless is used.
 The Ohmic-type BCF is
 \begin{equation}
   \label{eq:normohmic}
-  α(τ)=\frac{ω_c  s }{ (\max_t\norm{H})(1+\iu ω_c τ)^{s+1}},
+  α(τ)=\frac{ω_c}{\max_t\norm{H} (1+\iu ω_c τ)^{2}},
 \end{equation}
 in this normalization.
 
-After this brief detour we will again concentrate on the numerical
-aspects and the phenomenology of the energy flow of the spin-boson
-model in \cref{sec:prec_sim}.
+
+This concludes the discussion, and we will move on to concentrate on
+the numerical aspects and the phenomenology of the energy flow of the
+spin-boson model in \cref{sec:prec_sim}.
 
 \section{Precision Simulations of the Zero Temperature Spin-Boson Model}
 \label{sec:prec_sim}
