@@ -698,22 +698,23 @@ spin-boson model in \cref{sec:prec_sim}.
 Despite being soluble analytically, the models from
 \cref{sec:hopsvsanalyt} are numerically cumbersome, as their system
 Hilbert space is infinite dimensional and has to be truncated. In this
-section we concern ourselves with a very simple model that poses
-lesser numerical challenges and still exhibits interesting behaviour.
+section we concern ourselves with a very fundamental model that poses
+lesser numerical challenges and still exhibits interesting
+behaviour~\cite{RichardDiss,Link2022Feb}.
 
 Both the performance of the HOPS method itself
 (\cref{sec:stocproc,sec:trunc}) and the characteristics of the flow
 mediated by the concrete form of the bath correlation function
-(\cref{sec:one_bath_cutoff,sec:one_bathcoup_strength}) will be
-investigated. We will find that the numerics do indeed yield very
-consistent results and that the specifics of the energy flow depend
-very much on the spectral density.
+(\cref{sec:one_bath_cutoff,sec:energy-transf-char,sec:one_bathcoup_strength})
+will be investigated. We will find that the numerics do indeed yield
+very consistent results and that the specifics of the energy flow
+depend very much on the spectral density.
 
 As an analytical solution to a given open system is generally not
 known, another indicator of the proper choice of HOPS parameters is
 required. Upon the example of a single qubit coupled to a single zero
-temperature bath, we will study the convergence behaviour of the
-interaction energy.  The corresponding Hamiltonian is
+temperature bath, we will study the precision of the HOPS method.  The
+corresponding Hamiltonian is
 \begin{equation}
   \label{eq:one_qubit_model}
   H = \frac{1}{2} σ_z + \frac{1}{2} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
@@ -741,14 +742,14 @@ Sources of systematic deviations for the model
 \cref{eq:one_qubit_model} are the quality of the sampling of the
 stochastic process and the truncation of the hierarchy. The first
 becomes important when the cutoff frequency is large and the BCF
-vanishes rapidly necessitating it to be resolved on shorter time
+vanishes rapidly, necessitating a resolution of shorter time
 scales. The hierarchy truncation is important when the cutoff
 frequency is smaller and the bath has a longer memory.
 
 \subsection{Stochastic Process}
 \label{sec:stocproc}
-For studying the convergence behaviour regarding the sampling of the
-stochastic process we chose the cutoff \(\norm{\vb{k}} \leq 4\)
+For studying the convergence behaviour in reference to the sampling of
+the stochastic process we chose the cutoff \(\norm{\vb{k}} \leq 4\)
 (simplex truncation\footnote{see \cref{sec:hops_basics}}),
 \(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=1.6\)
 and \(ω_c=4\).  The sampling method uses the ``Fast Fourier
@@ -760,9 +761,9 @@ The main parameter of this method is the accuracy of the FFT. The
 implementation compares the BCF and its FFT approximation on the time
 interval of the simulation to choose the internal
 parameters\footnote{The number of time grid points and the integral
-  boundaries in frequency space.} so that the difference normalized by
-\(α(0)\) of the FFT transformed spectral density and the exact BCF is
-smaller than a given value \(ς\).
+  boundaries in frequency space.} so that the difference of the FFT
+transformed spectral density and the exact BCF normalized by \(α(0)\)
+is smaller than a given value \(ς\).
 
 \begin{figure}[htp]
   \centering
@@ -772,29 +773,31 @@ smaller than a given value \(ς\).
     \(α(0)=1.6\) and \(ω_c=4\) using different precisions for the
     sampling of the stochastic process. The dashed lines are obtained
     using energy conservation while the solid lines are obtained
-    directly as in \cref{sec:intener}. The consistency between the two
-    is given in the legend of the right panel. An inset shows the
-    curves for the final three time units. Right panel: The difference
-    of the interaction energies obtained using energy conservation and
-    directly. The values are normalized by the maximal absolute value
-    of the interaction energy. The \(\varsigma = 10^{-6}\) case gives
-    the most accurate results in terms of energy conservation, but
-    when using the direct method of calculating \(\ev{H_{\inter}}\)
-    all parameter choices yield the same results.}
+    directly through the use of \cref{sec:intener}. The consistency between
+    the two is given in the legend of the right panel. An inset shows
+    the curves for the final three time units. Right panel: The
+    difference of the interaction energies obtained using energy
+    conservation and directly. The values are normalized by the
+    maximal absolute value of the interaction energy. The
+    \(\varsigma = 10^{-6}\) case gives the most accurate results in
+    terms of energy conservation, but when using the direct method of
+    calculating \(\ev{H_{\inter}}\) all parameter choices yield the
+    same results.}
 \end{figure}
 \Cref{fig:stocproc_systematics} illustrates the effect of this
 parameter. We find very good qualitative agreement for all values of
-\(ς\). The indirectly calculated value (dashed lines) of the
-interaction energy shows some fluctuation between the settings, but
-the value calculated directly (solid lines) is very stable as can be
-seen in the inset of \Cref{fig:stocproc_systematics}.
+\(ς\). The indirectly calculated values (dashed lines) of the
+interaction energy exhibit some fluctuations between the settings, but
+the directly calculated quantities (solid lines) are very stable as can
+be witnessed in the inset of \Cref{fig:stocproc_systematics}.
 
-Only in the case with precision \(\varsigma=10^{-6}\) (blue) however,
-compatibility is satisfied at the given sample count. This is due to
-the fact that here multiple values that are obtained in different
-ways, namely system energy and the flow. The system energy can be
-calculated directly from the system state whereas the flow has to be
-numerically integrated to obtain the total bath energy change.
+Only in the simulation with precision \(\varsigma=10^{-6}\) (blue)
+however, the compatibility condition of \cref{sec:meth} is satisfied
+for the given trajectory count. This is due to the fact that multiple
+quantities are being obtained in different ways, namely system energy
+and the flow. The system energy can be calculated directly from the
+system state whereas the flow has to be integrated numerically to
+obtain the total bath energy change.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/stocproc_systematics_bath_energy}
