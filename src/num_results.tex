@@ -822,8 +822,7 @@ precision (blue) case good consistency is given continually. For lower
 precision (green, orange), the consistency fluctuates and only
 occasionally surpasses \(68\%\). Initially compatibility is being
 demonstrated (until about \(N=10^4\)) but a divergence diverge from
-the most precise\footnote{The result that demonstrates compatibility
-  consistently.} result occurs. It is therefore important to consider
+the most precise result occurs. It is therefore important to consider
 the dependence of the compatibility on the sample count \(N\) to judge
 the veracity of the simulation results.
 \begin{figure}[htp]
@@ -850,22 +849,25 @@ the veracity of the simulation results.
 
 Apart from being closer to the correct result, the direct computation
 of the interaction energy has the advantage of providing faster
-convergence as demonstrated in \cref{fig:stocproc_consistency_dev}.
+convergence as is also demonstrated in
+\cref{fig:stocproc_consistency_dev} (lower right panel).
 
 \subsection{Hierarchy Truncation}
 \label{sec:trunc}
-As the effect truncation depth has already been studied thoroughly
-in~\cite{RichardDiss}, we will keep the discussion short.  We chose
-\(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=0.8\)
-and \(ω_c=2\). Again, seven a BCF expansion with seven terms have been
-used. The coupling strength has been chosen with the help of
-\cref{sec:pure_deph}, so that the interaction energy is of a similar
-order of magnitude as in the discussion
-above. \Cref{fig:k_systematics} suggests that there seems to be no
-improvement in accuracy or even change in the value of the flow for
-\(\norm{\vb{k}}\geq 4\). However, the inset in the left panel
+As the systematics of the truncation depth has already been studied
+thoroughly in~\cite{RichardDiss,Hartmann2021Aug}, we will keep the
+discussion short.  We chose \(N=4.5 \cdot 10^5\) trajectories and an
+Ohmic BCF with \(α(0)=0.8\) and \(ω_c=2\). Again, a BCF expansion with
+seven terms has been used. The coupling strength has been chosen with
+the help of \cref{sec:pure_deph}, so that the interaction energy is of
+a similar order of magnitude as in the discussion above. The
+simulation was run with \(k=\norm{\vb{k}}\in \{2,4,6\}\).
+
+\Cref{fig:k_systematics} suggests that there is to be no improvement
+in accuracy or even change in the value of the flow for
+\(k\geq 4\). However, the inset in the left panel
 demonstrates that the direct result differs slightly for
-\(\norm{\vb{k}} = 2\), which demonstrates that an adequate choice of
+\(k = 2\), which demonstrates that an adequate choice of
 truncation depth is important.
 \begin{figure}[htp]
   \centering
@@ -875,19 +877,19 @@ truncation depth is important.
     \(ω_c=2\) and for various truncation depths \(k=\norm{\vb{k}}_{\mathrm{max}}\).}
 \end{figure}
 
-
 We see in \cref{fig:k_systematics_system} that the difference of the
-\(\norm{\vb{k}} = 2\) (blue lines) case from the \(\norm{\vb{k}} = 6\)
-is on the same order of magnitude for system energy (solid line) and
-interaction energy (dashed line). The bath energy (dotted line), being
-an integrated quantity, accumulates errors and deviates the
-most. Also, the results for \(\norm{\vb{k}} = 4,6\) (orange line)
-agree perfectly in all cases.
+\(k = 2\) (blue lines) and the \(k = 6\) is on the same order of
+magnitude for system energy (solid line) and interaction energy
+(dashed line). The bath energy (dotted line), being an integrated
+quantity, accumulates errors and deviates the most. Also, the results
+for \(k = 4,6\) (orange line) appear to agree perfectly in all cases.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/k_systematics_system}
-  \caption{\label{fig:k_systematics_system} Left panel: The norm of
-    the difference of a single trajectory to the \(\norm{\vb{k}} = 6\)
+  \caption{\label{fig:k_systematics_system} Legends: The legend in the
+    left panel applies to both panels, whereas the legend in the right
+    panel only applies to the right panel.  Left panel: The norm of the
+    difference of a single trajectory to the \(k = 6\)
     case. The solid lines show the difference of the zeroth hierarchy
     states and the dashed lines show the same for the first hierarchy
     states.  There is still a slight difference on the trajectory
@@ -900,8 +902,8 @@ agree perfectly in all cases.
 \end{figure}
 The left panel of \cref{fig:k_systematics_system} demonstrates, that
 there is still a difference greater than the machine epsilon on the
-level the trajectories. This difference however, is small enough not
-to impact observables much.
+level of the trajectories. This difference however, is small enough
+not to impact observables much.
 
 Summarizing, we conclude that the HOPS parameters have to be chosen
 carefully for precision simulations, but that a more relaxed choice of
@@ -913,8 +915,8 @@ where possible.
   terms, check whether there is a mistake} It remains for future work
 to perform a detailed study of the systematics of the finite
 temperature flow and modulated Hamiltonians. In the following sections
-we will look at some examples of physically interesting systems with
-less focus on the systematics of convergence.
+we will look at some examples of physically interesting settings with
+less focus on the systematics.
 
 \subsection{Varying the Cutoff Frequency}
 \label{sec:one_bath_cutoff}
