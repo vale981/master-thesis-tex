@@ -1256,47 +1256,53 @@ situation is reversed after about \(τ=0.5\).
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis}
   \caption{\label{fig:markov_analysis} The same as
-    \cref{fig:resonance_analysis} but for shifted spectral densities
-    various bath memory times. The long-memory case performs best in
-    this case, exhibiting the lowest final system energy.}
+    \cref{fig:resonance_analysis} but for spectral densities of
+    differing widths. The interaction was turned off smoothly over two
+    time units beginning at \(τ=0\). The long-memory case performs
+    best in this case, exhibiting the lowest final system energy. }
 \end{figure}
 
 Because the minimum in the interaction energy of the case with bath
 memory \(τ_{\bath}=1\) (green) comes last, the residual interaction
 energy and thus interaction strength is strongest when the interaction
-is turned off. Therefore the largest quantity of energy is being
-introduced into the system in this case when the interaction is
-disabled. In all cases the amount of energy introduced is so large,
-that the bath energy slightly rises during the decoupling process
-instead of falling as in \cref{fig:resonance_analysis_steady}.
+is turned off smoothly beginning at \(τ=0\). Therefore, the largest
+quantity of energy is being introduced into the system in this case
+due to the modulation of the coupling. In all cases the amount of
+energy introduced is so large, that the bath energy slightly rises
+during the decoupling process instead of falling as in
+\cref{fig:resonance_analysis_steady}.
 
 
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis_longer}
   \caption{\label{fig:markov_analysis_longer} The same as
-    \cref{fig:markov_analysis} but with slightly different timing. The
-    result is exactly the reverse of
+    \cref{fig:markov_analysis} but with slightly different timing.
+    The interaction was turned off smoothly over two time units
+    beginning at \(τ=1\). The result is exactly the reverse of
     \cref{fig:markov_analysis_longer}. Longer memories perform worse.}
 \end{figure}
-For slightly longer coupling times but with the same coupling
-strengths, we find in the exact opposite picture as can be ascertained
-from \Cref{fig:markov_analysis_longer}.  The increased bath memory
-time allows for ``back flow'' of energy from the bath into the system
-(blue and orange solid lines) and thus the performance of energy
-transfer is strongly dependent on the precision of control. The
-oscillations of flow and thus bath energy have already been noticed in
+For slightly longer coupling times when the coupling is turned off
+beginning at \(τ=1\) but with the same coupling strengths, we find in
+the exact opposite picture as can be ascertained from
+\Cref{fig:markov_analysis_longer}.  The increased bath memory time
+allows for ``back flow'' of energy from the bath into the system (blue
+and orange solid lines) and thus the performance of energy transfer is
+strongly dependent on the precision of control. The oscillations of
+flow and thus bath energy have already been noticed in
 \cref{sec:oneosccomp} and seem to be a robust feature of stronger
 coupling and long bath memories.
 
 The total energy introduced is slightly less than in the earlier
 simulation as the interaction energy is lower when the interaction is
-switched off. The final bath energies show an inverse behavior,
-falling as the final system energies rise. This is due to the similar
+switched off. The final bath energy shows an inverse behaviour,
+falling as the final system energy rise. This is due to the similar
 total energy change \(Δ\ev{H}\) in all three cases (blue line, right
-panel). Such behavior can also be observed \cref{fig:markov_analysis}.
+panel). Similar correlations can also be observed in
+\cref{fig:markov_analysis}.
 
-For even longer times we find in \cref{fig:markov_analysis_steady} a
+For even longer times (the interaction was turned off smoothly
+beginning at \(τ=18\)) we find in \cref{fig:markov_analysis_steady} a
 picture similar to \cref{fig:markov_analysis_longer}. The short memory
 case (blue) exhibits hardly any backflow and performs best in terms of
 final system energy which is extremely close to the target value of
@@ -1309,14 +1315,15 @@ oscillations. These oscillations were not clearly visible in the
 earlier simulations
 (\cref{fig:markov_analysis,fig:markov_analysis_longer}) due to the
 modulation of the interaction. Because of the long memory the bath,
-interaction and, to a lesser extend, the system can continue to
+interaction and, to a lesser extent, the system can continue to
 exchange energy, even in the steady state. We will encounter them
 again in a different setting in \cref{sec:extr_mem}.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/markov_analysis_steady}
   \caption{\label{fig:markov_analysis_steady} The same as
-    \cref{fig:markov_analysis} but for long times. The results are
+    \cref{fig:markov_analysis} but for long times.  The interaction was turned off smoothly over two
+    time units beginning at \(τ=18\). The results are
     broadly similar to \cref{fig:markov_analysis_longer} with the
     \(τ_{\bath}=1\) case standing out.}
 \end{figure}
@@ -1325,17 +1332,18 @@ In the two simulations with shorter memory (blue and orange lines) we
 find that about half of the interaction energy is compensated by the
 total energy change. The rest is accounted for by a lowering of system
 and bath energy alike, an effect that is strongest in the short memory
-case especially for the system energy. A slower, more adiabatic
-coupling modulation could likely further reduce the amount of energy
-introduced.
+\(τ_{\bath}\) case especially for the system energy. A slower, more
+adiabatic coupling modulation could likely further reduce the amount
+of energy introduced.
 
-That the steady state system energies\footnote{Before the interaction is
-  switched off.} are greater than the ground state energy of the
+That the steady state system energies\footnote{Before the interaction
+  is switched off.} are greater than the ground state energy of the
 system in all simulations of \cref{fig:markov_analysis_steady} is a
 token of strong coupling. The ground state of the two level system is
-not the steady state, as it would be with GKSL
-dynamics~\cite{Binder2018}.
+not the steady state, as it would be in the weak coupling
+limit~\cite{Binder2018}.
 
+\paragraph{Non-Markovianity}
 We have often alluded to the fact that oscillations in the system
 energy, the back-flow of energy into the system, are a token of
 departure from the Markovian regime. An explicit demonstration of this
@@ -1343,15 +1351,15 @@ fact is given in \cref{fig:steady_relent}.
 
 Spohn's theorem~\cite{Breuer2002Jun} states that the negative time
 derivative of the relative entropy of system state and steady state
-must be positive if the dynamics are generated by GKSL dynamics.
-In mathematical terms Spohn's theorem can be formulated as
+must be positive if the dynamics are generated by a Markovian master
+equation.  In mathematical terms Spohn's theorem can be formulated as
 \begin{equation}
   \label{eq:spohn}
   -\dv{\qrelent{ρ_{\sys}(t)}{ρ_{\sys}(∞)}}{t} \geq 0,
 \end{equation}
 where \(\qrelent{ρ}{σ}=\tr[ρ \log_{2} ρ - ρ \log_{2} σ]\) is the
 quantum relative entropy. The left hand side of \cref{eq:spohn} is
-called entropy production.
+often called entropy production~\cite{Breuer2002Jun,Binder2018}.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/steady_relent}
@@ -1359,17 +1367,12 @@ called entropy production.
     the relative entropy of system state and the approximate steady
     state (before the interaction is switched off) of the simulations shown in
     \cref{fig:markov_analysis_steady}. The short memory case does not
-    violate Spohn's inequality, but the other two cases do. Note
-    however, that the \(τ_{\bath}=1\) case has not yet reached a
-    steady state and should therefore be treated with care.}
+    violate Spohn's inequality, but the other two cases do.}
 \end{figure}
 
 \Cref{fig:steady_relent} demonstrates that the two simulations with
-longer bathe memories are inconsistent with Markovian dynamics, as
-their entropy production exhibits strong negativity. The
-\(τ_{\bath}=1\) must be taken with care, as the steady state exhibits
-oscillations. Then again, those are token of non Markovianity
-themselves, as \cref{eq:spohn} forbids them.
+longer bath (green, orange) memories are inconsistent with Markovian
+dynamics, as their entropy production exhibits strong negativity.
 
 The enhanced short term energy transfer for long bath memories may be
 understood qualitatively through the NMQSD equation.%   Let \(τ^{\ast}\)
@@ -1428,36 +1431,37 @@ greater influence of the memory term and smoother processes.
   \centering
   \includegraphics{figs/one_bath_syst/memory_term}
   \caption{\label{fig:memory_term} The norm of the memory term
-    \cref{eq:nmqsd_memory_term} averaged over \(N=500\)
-    trajectories. The longer the bath memory \(τ_{\bath}\), the
-    greater the influence of the memory term.}
+    \cref{eq:nmqsd_memory_term} averaged over \(N=500\) trajectories
+    from the simulations shown in
+    \cref{fig:markov_analysis_steady}. The longer the bath memory
+    \(τ_{\bath}\), the greater the influence of the memory term.}
 \end{figure}
 
-As the memory is mediated by the bath degrees of freedom, a
-dependence on ever earlier system states must be due to ever longer
-interaction with specific bath degrees of freedom.
+As the memory is mediated by the bath degrees of freedom, a dependence
+on ever earlier system states must be due to ever longer interaction
+with specific bath degrees of freedom which are independent themselves
+except for their interaction with the system.
 
-This interpretation is corroborated by the time discrete version of
-the NMQSD discussed in \cite{RichardDiss}. There, the
-\emph{Time-Oscillator picture} is introduced, which shows that the
-NMQSD can be formulated as the successive interaction in time of the
-system with mode like degrees of freedom. At each time point, a new
-oscillator is being coupled to the system and the coupling to the
-existing oscillators is weakened according to the bath correlation
-function.
+This interpretation is corroborated by a time discrete version of the
+NMQSD discussed in \cite{RichardDiss}. There, the
+\emph{Time-Oscillator picture} is introduced, which shows that a
+variant of the NMQSD can be formulated as the successive interaction
+in time of the system with mode like degrees of freedom. At each time
+step, a new oscillator is being coupled to the system and the coupling
+to the existing oscillators is weakened according to the bath
+correlation function.
 
 With this in mind, we may conclude that because we interact for a
 longer time with certain ``portions'' of the bath degrees of freedom,
-the energy exchange between the bath and the system can be more rapid,
-as the energy exchange with the individual modes becomes more
-complete.  At the same time, energy may flow back into the system from
-those degrees of freedom if the bath memory is sufficiently long. On
-the other hand, energy can only be lost to a zero temperature bath
-when the memory is short.
+the energy exchange between the bath and the system can be greatly
+affected, as the energy exchange with the individual modes becomes
+more complete.  At the same time, energy may flow back into the system
+from those degrees of freedom if the bath memory is sufficiently
+long.
 
-In summary, we find that the energy dynamics of system, interaction and
-bath depend strongly on the characteristics of the bath.  In the
-regime studied, optimizing for fast energy loss of the system favors
+In summary, we find that the energy dynamics of system, interaction
+and bath depend strongly on the characteristics of the bath.  In the
+regime studied, optimizing for fast energy loss of the system favours
 longer bath memories, whereas the situation is reversed when longer
 coupling times are allowed.
 
@@ -1467,15 +1471,15 @@ dependence of the dynamics upon the shape of the whole spectral
 density.
 
 Note that the short time behaviour discussed here can usually not be
-resolved by GKSL dynamics. This is due to the fact, that the bath
-timescale \(\sim 1/ω_{c}\) must be by far the shortest
-timescale. Another demonstration of this fact is given in
-\cite{Link2022Feb}, where Markovian dynamics are compared with the
-Redfield and exact dynamics for the spin-boson model coupled to a
-squeezed bath. As in \cite{Xu2022Mar}, the Redfield description is
-found to be adequate for weak coupling. This is due to the fact, that
-the Redfield master equation does not require the secular
-approximation, but only weak coupling and can therefore capture
+resolved by the usual Markovian master equations. This is due to the
+fact, that the bath timescale \(\sim 1/ω_{c}\) must be by far the
+shortest, which often isn't the case here. Another demonstration of
+this fact is given in \cite{Link2022Feb}, where Markovian dynamics are
+compared with the Redfield and exact dynamics for the spin-boson model
+coupled to a squeezed bath. As in \cite{Xu2022Mar}, the Redfield
+description is found to be adequate for weak coupling. This is due to
+the Redfield master equation not requiring the secular approximation,
+but only weak coupling. It can therefore faithfully capture
 non-Markovian dynamics.
 
 Let us now complete our precision studies of the zero temperature
@@ -1494,7 +1498,7 @@ coupling strengths in \cref{sec:one_bathcoup_strength}.
     \(α(0)=1.12\).}
 \end{wrapfigure}
 After having studied the dependence of the bath energy flow for
-various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff,},
+various cutoff frequencies of the BCF in \cref{sec:one_bath_cutoff},
 we now consider the case with fixed cutoff \(ω_c=2\) but varying
 coupling strength. The results presented here are mainly a
 demonstration of the feasibility of high-consistency simulations for a
@@ -1503,28 +1507,30 @@ the physical implications relatively short.
 
 The chosen simulation parameters are the same as in
 \cref{sec:one_bath_cutoff} and again consistent results have been
-obtained throughout the whole range of coupling strengths as can be
-gathered from \cref{fig:delta_interaction_consistency}.  The
-interaction strength was chosen linearly spaced and the simulation
+obtained throughout the whole range of coupling
+strengths.\footnote{see \cref{sec:intercons} for details} The
+interaction strength was chosen linearly spaced, and the simulation
 results are presented in \cref{fig:delta_energy_overview}.
 
 As the shape of the BCF is not altered between the simulations, the
-bath energy flows look very similar as do the interaction
-energies. The main difference between the simulations is the magnitude
-of the interaction energy. With increased coupling strength there is
-an increased interaction energy and an increased flow which leads to
-faster energy loss in the system and faster energy gain of the
-bath. The stronger the coupling, the more pronounced is the
-non-monotonicity in time of the interaction energy, which is reflected
-in a non-monotonicity in the bath energy expectation value.
+bath energy flow curves are of very similar shape, as are the
+interaction energy curves. The main difference between the simulations
+is the magnitude of the interaction energy. With increased coupling
+strength there is an increased interaction energy and an increased
+flow, which leads to faster energy loss in the system and faster
+energy gain of the bath. The stronger the coupling becomes, the more
+pronounced is the non-monotonicity in time of the interaction energy,
+which is reflected in a non-monotonicity in the bath energy
+expectation value.
 
 The bath energy reaches a maximum and falls slightly for the strongest
 coupling simulations (violet and brown lines). If the interaction is
 strong enough, ``backflow'' can occur despite finite bath correlation
-times. Here, the back flow is only occurring between interaction and
-bath energy. In \cref{fig:markov_analysis_steady} the bath memory is
-long, additionally to a strong coupling so that multiple oscillations
-can be seen.
+times. Here we can't witness any backflow of energy into the
+system. The falling bath energy is likely an effect of energy
+conservation. As the interaction energy rises after its initial
+minimum, the bath energy falls to compensate in the strong coupling
+cases.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/δ_energy_overview}
@@ -1537,7 +1543,7 @@ can be seen.
 As a task for future work it might be worthwhile to ascertain the
 exact conditions under which system energy might flow back into the
 system. Is resonance required and what role is played by the system
-time scale? Does backflow always occur provided the coupling is strong
+timescale? Does backflow always occur provided the coupling is strong
 enough?\footnote{The author expects a negative answer to this
   question.}
 
@@ -1548,8 +1554,7 @@ demonstrates that the approximate steady state\footnote{excluding the
 \(\abs{J}_{\mathrm{max}}\) (orange), system energies
 \(\ev{H_{\sys}}_{\mathrm{ss}}\) (red) and bath energies
 \(\ev{H_{\bath}}_{\mathrm{ss}}\) (green) are almost linearly dependent
-on the coupling strength \(α(0)\) in the range of coupling strengths
-studied.
+on the coupling strength \(α(0)\) in the range we studied.
 
 We find that we can control the speed of the energy transfer between
 bath and system with the coupling strength at the cost of greater
@@ -1557,24 +1562,18 @@ steady state interaction energy. Were we to turn off the interaction
 diabatically, we would have to expend this energy in the worst
 case. On the other hand, more adiabatic protocol as the one used in
 \cref{sec:energy-transf-char} would likely be a remedy to this
-drawback.
-
-The cooling performance for a coupling that is being turned off at the
-end would depend on the concrete protocol as we've seen in
-\cref{sec:one_bath_cutoff} and a more detailed study is left to future
-work. The interplay between the interaction time-scale mediated by the
-coupling strength, the bath memory time and the system dynamics allows
-for intricate tuning.
+drawback. In fact, the system energy is most likely lowered even
+further when then interaction is turned off as we witnessed in
+\cref{fig:markov_analysis_steady}.
 
 Both the final system and bath energies are increasing with the
-coupling strength, compensating for the interaction energy which is
+coupling strength, compensating for the interaction energy. This is
 the main mechanism that leads to residual system energy in the steady
-state which is further and further away from the ground state, which
-would be the steady state of weak coupling dynamics.
+state which is further and further away from the ground state.
 
 We discussed the short term dynamics for a general model in
 \cref{sec:pure_deph}.  Now, in \cref{sec:initial-slip-sb} we will
-apply them the spin-boson model.
+study them in the case of the spin-boson model.
 
 \fixme{iftime: re-run with same coupling strength, more cutoff freqs,
   less samples, see, longer times for coupling strengths, more coup}
@@ -1596,8 +1595,8 @@ apply them the spin-boson model.
     pure dephasing is \(10^{-2}\) and the dashed vertical lines show
     the position of the peak flow at time \(τ_p\). The divergence from
     pure dephasing dynamics occurs before the peak flow and the
-    earlier the longer the bath memory. The single trajectory flow
-    matches the converged flow for a longer period.}
+    earlier the longer the bath memory is. The single trajectory flow
+    matches the exact flow for a longer period.}
 \end{figure}
 
 As the initial peak in the energy flow is also very prominent in the
@@ -1608,25 +1607,25 @@ agreement for short times is to be expected, as the system can't take
 up energy in its initial state (up), so that all of the interaction
 energy must initially be compensated solely by the bath.
 
-We see in \cref{fig:omega_initial_slip} that the pure dephasing
-dynamics (dashed lines) are accurate for very short time scales, but
-fail to predict the correct location of the peaks in the absolute
-value of the exact bath energy flow (solid lines).  The deviation
-occurs before the peak, where the time difference between the peak and
-the deviation increases with increasing bath memory \(\propto 1/ω_c\),
-as does the magnitude of the maximal normalized deviation (right
-panel). This can be ascertained from the legend of
-\cref{fig:omega_initial_slip} where the difference between deviation
-and peak time normalized by peak time is given.
+In \cref{fig:omega_initial_slip} we plotted a comparison of the exact
+dynamics and the pure dephasing solution. The pure dephasing dynamics
+(dashed lines) are accurate for the very short time scales, but fail
+to predict the correct location of the peaks in the absolute value of
+the exact bath energy flow (solid lines).  The deviation occurs before
+the peak, where the time difference between the peak and the deviation
+increases with increasing bath memory \(\propto 1/ω_c\), as does the
+magnitude of the maximal deviation (right panel). This can be
+ascertained from the legend of \cref{fig:omega_initial_slip} where the
+difference between deviation and peak time normalized by peak time is
+given.
 
 We can conclude that for longer bath memory along with weaker
 coupling, the role of the system Hamiltonian dynamics in modulating
-the flow becomes increasingly important as now the system dynamics
-happen on the same time scale as the bath dynamics and the
-approximation \(H_{\sys}\approx 0\) is increasingly invalid.
+the flow becomes increasingly important as the approximation
+\(H_{\sys}\approx 0\) becomes increasingly invalid.
 
 The flow calculated from a single trajectory (dotted lines in
-\cref{fig:omega_initial_slip}) matches the converged flow longer than
+\cref{fig:omega_initial_slip}) matches the exact flow longer than
 the pure dephasing approximation. For large cutoffs \(ω_{c}\) (green
 and red) the single trajectory even matches until after the peak flow,
 whereas the deviation occurs earlier for the \(ω_{c}=1\) case
@@ -1634,6 +1633,21 @@ whereas the deviation occurs earlier for the \(ω_{c}=1\) case
 to become important only after a finite amount of time, longer than
 period of pure dephasing dynamics.
 
+\begin{figure}[htp]
+  \centering
+  \includegraphics{figs/one_bath_syst/flow_buildup}
+  \caption{\label{fig:flow_buildup} The norm of the auxiliary
+    states of hierarchy depth one
+    (\(\sqrt{∑_{i}\braket{ψ^{\vb{e}_{i}}}}\)) and the flow for
+    one trajectory and as a mean over all trajectories for the
+    \(ω_{c}=4\) simulation. For short times the results for one
+    trajectory match the ensemble means. The divergence between one
+    trajectory and the mean occurs at roughly the same time for the
+    flow and the auxiliary state norm. Moreover, flow and mean
+    auxiliary state norm have the same functional form for very short
+    times, apart from a scaling factor. The initial dynamics are
+    therefore mainly concerned with populating the auxiliary states.}
+\end{figure}
 For short times the flow is mainly influenced by the buildup of the
 auxiliary states rather than the fluctuations of the stochastic
 process, leading to a similar behavior for most trajectories.  This is
@@ -1644,30 +1658,15 @@ norm of the auxiliary states (blue solid line) deviates from its
 single-trajectory equivalent (orange dashed line) at the same time as the
 mean flow (green solid line) deviates from the single trajectory flow
 (red dashed line).
-\begin{figure}[htp]
-  \centering
-  \includegraphics{figs/one_bath_syst/flow_buildup}
-  \caption{\label{fig:flow_buildup} The total norm of the first
-    auxiliary states and the flow for one trajectory and as a mean
-    over all trajectories for the \(ω_{c}=4\) simulation. For short
-    times the results for one trajectory match the ensemble means. The
-    divergence between one trajectory and the mean occurs at
-    roughly the same time for the flow and the auxiliary state
-    norm. Moreover, flow and mean auxiliary state norm have the same
-    functional form for very short times, apart from a scaling
-    factor. The initial dynamics are therefore mainly concerned with
-    populating the auxiliary states.}
-\end{figure}
 
 \Cref{sec:pure_deph} also treated time dependent coupling which we
-haven not encountered so far. The effect of modulating the coupling
+have not encountered so far. The effect of modulating the coupling
 upon the bath energy change due to the initial slip, is the subject of
 \cref{sec:moder-init-slip}.
 
-
 \subsection{Moderating the Inital Slip with Modulated Coupling}%
 \label{sec:moder-init-slip}
-\begin{wrapfigure}[-1]{o}{0.4\textwidth}*
+\begin{wrapfigure}[-2]{o}{0.4\textwidth}*
   \centering
   \includegraphics{figs/one_bath_mod/modulation_protocols_init.pdf}
   \caption{\label{fig:L_mod_init} The interaction is being switched on
@@ -1689,7 +1688,7 @@ have chosen \(α(0)=1.6\) and \(ω_{c}=1\) for all the simulations. Some
 The smoothness parameter \(s\) regulates to which order the derivative
 of the modulation is continuous at \(t=0\) and \(t=8\). The modulation
 of the coupling allows for a change in total energy. This leads to a
-partial compensation for the ``initial slip'' of the bath.
+partial compensation for the ``initial slip'' energy gain of the bath.
 
 \begin{figure}[htp]
   \centering
@@ -1697,14 +1696,14 @@ partial compensation for the ``initial slip'' of the bath.
   \caption{\label{fig:init_energies}The relevant energy quantities for
     the different modulation protocols.}
 \end{figure}
-An overview over the bath system and interaction energy, as well as
+An overview over the bath, system and interaction energy, as well as
 the bath energy flow can be found in \cref{fig:init_energies}. System
 \(\ev{H_{\sys}}\) and interaction energy \(\ev{H_{\inter}}\) all
 converge to the same values after some time, but the flows \(J\) and
 bath energies are the greater, the faster we switch the coupling
-on. The sudden switching of the interaction (blue) is the extreme case
-set apart by much greater interaction energies and a greater final
-bath energy, as well as a much steeper initial peak in the flow.
+on. The sudden switching of the interaction (blue) is the extreme
+case, set apart by much greater interaction energies and a greater
+final bath energy, as well as a much steeper initial peak in the flow.
 
 The simulation with smoothness zero (yellow) exhibits a clear kink in
 the bath energy flow and interaction energy curves at the time point
@@ -1713,7 +1712,7 @@ of the modulation.
 
 \cref{fig:init_total} shows that modulation protocols with a shallower
 slope lead to a greater change in the total energy, compensating for
-the negative interaction energy and leading to a shallower initial
+the negative interaction energy and leading to less initial
 slip flow. Activating the coupling adiabatically will likely lead to a
 complete avoidance of the initial slip. On the other hand, the system
 and interaction dynamics will be intermingled increasingly with the
@@ -1724,12 +1723,11 @@ transition from the non-interacting ground state into the interacting
 ground state and a study of energy released in this way, especially
 for strong coupling.
 
-The initial slip flow \cref{eq:pureflowexpectation} is valid for short
-times.  \Cref{fig:init_slip_mod} demonstrates that the qualitative
-properties of the flow are still being capture quite well for short
-times. The actual flow (solid lines) and the pure dephasing flow
-(dashed lines) agree initially but diverge quite some time before peak
-flow.
+Circling back to the results of \cref{sec:pure_deph}, we can observe
+in the right panel of \cref{fig:init_slip_mod} that the initial slip
+flow is still valid for short times.  The actual flow (solid lines)
+and the pure dephasing flow (dashed lines) agree initially but diverge
+quite some time before peak flow.
 \begin{figure}[htp]
   \centering
   \begin{subfigure}[t]{0.49\linewidth}
@@ -1743,7 +1741,7 @@ flow.
   \begin{subfigure}[t]{0.49\linewidth}
     \centering\captionsetup{width=.8\linewidth}
     \includegraphics{figs/one_bath_mod/initial_slip_modcoup}
-    \caption{\label{fig:init_slip_mod} The initial slip flow of
+    \caption{\label{fig:init_slip_mod} The pure dephasing flow of
       \cref{eq:pureflowexpectation} and the exact flow. Initially, the
       flows coincidence, validating the earlier result. The flow peak
       heights and positions are being predicted incorrectly, but the
@@ -1756,7 +1754,6 @@ flow.
 
 \section{Conclusion}%
 \label{sec:conclusion-1}
-
 In this chapter we have validated the results of \cref{chap:flow} and
 the fitness of the HOPS method for accessing bath related observables
 using a direct comparison with the analytical solution of
@@ -1771,7 +1768,9 @@ We also explored the short term dynamics of the bath energy flow and
 found that some light can be shed on it by considering the
 approximation \(H_{\sys} = 0\). Further, the role of resonance and
 bath memory time in the energy transfer performance of the zero
-temperature spin-boson model was explored.
+temperature spin-boson model was explored. The precise characteristics
+of the energy flow depend strongly on the coupling strength and the
+spectral density of the bath.
 
 Now that we have built confidence in the method, we will turn to some
 simple quantum-thermodynamical settings in
