@@ -2,21 +2,21 @@
 \label{sec:therm_results}
 After the precision studies of \cref{sec:hopsvsanalyt,sec:prec_sim} we
 turn to applications of the formalism developed in \cref{chap:flow}
-that are related to thermodynamic questions\fixme{add some
-  citations}. Because the NMQSD HOPS provide access to the global
-unitary dynamics of system (working medium) and bath, it is
-predestined to be put to use in this field.
+that are related to the thermodynamic task of extracting energy from
+systems connected to heat baths. Because the NMQSD and HOPS provide
+access to the global unitary dynamics of system (working medium) and
+bath, it is predestined to be put to use in this field.
 
-We will begin with some theoretical notions in \cref{sec:basic_thermo}
-and then continue to apply them to some very simple cases in
-\cref{sec:singlemod,sec:otto}.
+We will begin by reviewing some theoretical notions in
+\cref{sec:basic_thermo} and then continue to apply them to some
+exemplary systems in \cref{sec:singlemod,sec:otto}.
 
 \section{Some Theoretical Notions}
 \label{sec:basic_thermo}
 The field of quantum thermodynamics is a complex one and we will
 restrict the account given here to the minimum required for the
-presentation of the subsequent results. A comprehensive account can be
-found in
+presentation of the subsequent results. A more comprehensive picture
+can be obtained from
 \cite{Binder2018,Kurizki2021Dec,Talkner2020Oct,Vinjanampathy2016Oct}.
 
 Many central questions in thermodynamics are concerned with energy
@@ -24,36 +24,39 @@ extraction from macroscopic systems. These questions can be framed in
 operational terms that don't require a specific definition of heat and
 just rely on the energy change in the total system or its
 constituents. These quantities are now accessible to us in a rather
-general setting, making issues related energy extraction a prime
-application for our method.
+general setting, making issues related to energy extraction a prime
+application for the HOPS method developed in
+\cref{sec:hops_basics,chap:flow}.
 
-Here, we will focus on two closely related problems. The first is
-concerned with how much energy can be extracted through a unitary
-transformation from a single infinite thermal bath coupled to an
-arbitrary finite dimensional working medium. We call this energy
+We will focus on two closely related problems. The first is concerned
+with how much energy can be extracted through a unitary transformation
+from a single infinite thermal bath coupled to an arbitrary finite
+dimensional working medium. We call this energy
 \emph{ergotropy}\footnote{see \cref{eq:ergo_def} for a more precise
   definition}.
 
-In Thermodynamics the second law tells us that in this setting no
-energy can be extracted in a periodic manner.  It turns out that in
-the full quantum case such a result can be obtained by studying bounds
-on the ergotropy of the system as is done in
+In thermodynamics the second law tells us that in this setting no
+energy can be extracted indefinitely in a periodic manner.  It turns
+out, that in the full quantum case such a result can be obtained by
+studying bounds on the ergotropy of the system as is done in
 \cref{sec:ergo_general}. Remarkably these bounds will turn out to be
 finite. We will review a general bound for single bath systems in
 \cref{sec:ergoonebath} and study an explicit calculation for a simple
-case in \cref{sec:explicitergo}. The latter study will elucidate under
-which conditions we may expect the bound to be tight.
+case in \cref{sec:explicitergo} after briefly discussing the subject
+of quantum friction in \cref{sec:quantum_friction_theory}. The
+explicit ergotropy calculation will elucidate under which conditions
+the bound of \cref{sec:ergoonebath} may be expected to be tight.
 
 The second problem is a generalization of the above considerations to
-systems coupled to multiple baths of different temperature. Here,
-naturally, the ergotropy is generally not bounded. However, there is a
-limit to how efficiently energy can be extracted. To quantify
-efficiency one has to introduce a notion of thermodynamic
+systems coupled to multiple baths of different temperature. In this
+case the ergotropy is generally not bounded. However, there is a limit
+to how efficiently energy can be extracted from the system. To
+quantify efficiency one has to introduce a notion of thermodynamic
 cost. Traditionally this is the entropy production or the amount of
 ``waste heat'' that is being shed into the cold reservoir instead of
 being extracted as work. Both quantities require a proper definition,
-that can usually be given, but which is not unique due to the issue
-of finite interaction energy\footnote{see the discussion in
+that can usually be given, but which is not unique due to the issue of
+finite interaction energy\footnote{see the discussion in
   \cref{chap:intro}}.
 
 Nevertheless, when the system is periodically modulated so that the
@@ -70,15 +73,18 @@ over one cycle and \({Δ\ev{H}_{\mathrm{cyc}}}\) is the total energy
 change over one cycle.
 
 In \cref{sec:operational_thermo} a Gibbs like inequality for an
-arbitrary number of baths is derived as a very slight generalization
-of the derivation in~\cite{Kato2016Dec}. The left hand side of this
+arbitrary number of baths is derived as a slight generalization of the
+derivation in~\cite{Kato2016Dec}. The left hand side of this
 inequality can be associated with a thermodynamic cost that should be
 minimized for optimal efficiency.
 
+Let us now continue to properly define ergotropy in
+\cref{sec:ergo_general}.
+
 \subsection{The Ergotropy of Open Quantum Systems}
 \label{sec:ergo_general}
-The ergotropy of a quantum system is defined\fixme{mention paper that
-  uses ergo for heat}
+The ergotropy~\cite{Allahverdyan2004Aug} of a quantum system is
+defined\fixme{mention paper that uses ergo for heat}
 as~\cite{Binder2018}
 \begin{equation}
   \label{eq:ergo_def}
@@ -87,11 +93,13 @@ as~\cite{Binder2018}
 which is the maximal energy that can be extracted from a system
 through cyclic modulation of the Hamiltonian \(H\). A state is called
 passive iff the maximizing \(U\) \cref{eq:ergo_def} is the identity
-\(\id\) and its ergotropy vanishes. In other words, a state is passive
-if it's energy can not be reduced through unitary transformations.
+\(\id\). In other words, a state is passive if its energy can not be
+reduced through unitary transformations and its ergotropy vanishes.
 
-The immediate appeal of this quantity for later applications is, that
-it is formulated with respect to the full unitary dynamics which is
+In \cite{Niedenzu2018Jan} the ergotropy of the system is employed for
+the definition of heat to derive a tighter second law.  The immediate
+appeal of this quantity for the purposes of this work however is its
+to the full unitary dynamics of system \emph{and} bath which is
 accessible to us through HOPS.
 
 A passive state \(ρ_P\) is always diagonal in the eigenbasis of \(H\)
@@ -104,7 +112,7 @@ condition~\cite{Lenard1978Dec}
 where \(n<∞\) is the Hilbert space dimension. This condition is both
 necessary and sufficient. Examples of passive states are the state of
 the micro-canonical ensemble or Gibbs states. Gibbs states are further
-distinguished by additional features as described
+distinguished by additional features described
 in~\cite{Lenard1978Dec}, which can be connected to formulations of the
 zeroth and second laws of thermodynamics.
 
@@ -113,13 +121,13 @@ states remain passive under the transformation \(ρ\to\otimes^Nρ\) (and
 an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore no
 energy can be extracted from multiple identical systems in equilibrium
 at the same temperature.  For finite dimensional systems, the complete
-passivity even implies the the Gibbs state.
+passivity even implies the form of the Gibbs state.
 
 The open-systems case differs as here a ``small'' system is coupled to
-a bath of infinite size. If the system state is not a Gibbs state, the
-whole system becomes non-passive, even if the system state is passive
-with respect to the system Hamiltonian\footnote{for example being the
-  ground state}.
+a bath of infinite size. If system and bath are not in Gibbs states
+of the same temperature, the whole system becomes non-passive, even if
+the system state is passive with respect to the system
+Hamiltonian\footnote{for example being the ground state}.
 
 For systems of infinite size, states fulfilling the
 Kubo–Martin–Schwinger (KMS) condition have been proposed as the
@@ -146,13 +154,13 @@ temperatures.
 In the following we will restrict our discussions to finite
 dimensional systems, taking the thermodynamic limit when it is
 appropriate. KMS states only enter the NMQSD/HOPS formalism
-indirectly, as they predict the expression for negative frequency part
-of the finite temperature spectral density. Due to the formulation of
-the NMQSD which only relies on bath correlation functions, the problem
-of non-existing states is circumvented.
+indirectly, as they predict the expression for the spectral density of
+the finite temperature noise in \cref{sec:lin_finite}. Due to the
+formulation of the NMQSD which only relies on bath correlation
+functions, the problem of non-existing states is circumvented.
 
 In fact, we see in \cref{fig:bcf_approx} that the BCF of an infinite
-bath can be approximate very well by a finite number of evenly spaced
+bath can be approximated very well by a finite number of evenly spaced
 oscillators for finite times\footnote{Finite times include the
   lifetime of the universe.}. For such a bath the thermal state is
 trace class, albeit not finite dimensional. However, for finite
@@ -163,11 +171,11 @@ finite dimensional treatment in the following.
   \centering
   \includegraphics{figs/misc/bcf_approx}
   \caption{\label{fig:bcf_approx} An ohmic BCF with \(ω_{c}=η=1\)
-    approximated by the BCF of linearly spaced oscillators. The figure
-    plots the relative difference between an approximation with \(N\)
-    oscillators and the exact BCF over time. An order of magnitude
-    more oscillators give an approximation which is valid for an order
-    of longer dimensionless period.}
+    approximated by the BCF of a finite number of linearly spaced
+    oscillators. The figure plots the relative difference between an
+    approximation with \(N\) oscillators and the exact BCF over
+    time. An order of magnitude more oscillators give an approximation
+    which is valid for an order of magnitude longer.}
 \end{figure}
 
 The Hamiltonian of a finite dimensional system is bounded and
@@ -175,16 +183,19 @@ therefore the ergotropy of such a system is finite. However, in the
 following we will find that the ergotropy cannot even be made
 arbitrarily large by enlarging the bath.
 
+Now, we briefly introduce a simple application of quantum friction in
+\cref{sec:quantum_friction_theory}.
 
 \subsection{Quantum Friction}
 \label{sec:quantum_friction_theory}
 A simple application of the notion ergotropy is an explanation for so
 called \emph{quantum
-  friction}~\cite{Binder2018,Mukherjee2020Jan}. This is an
-unfortunate term. From it one would expect that quantum friction has
-some connection to dissipation. In fact the reverse is true in most
+  friction}~\cite{Binder2018,Mukherjee2020Jan}, a phenomenon with an
+unfortunate name. From it one would expect that quantum friction has
+some connection to dissipation. In fact, the reverse is true in most
 cases where it is a concept applied to the reduced state of the
 system.
+
 
 Consider a modulated open quantum system.  The buildup of energy basis
 coherence in the system state makes it non-passive.  Thus additional
@@ -192,18 +203,23 @@ energy which cannot be extracted by modulating of the energy level
 gaps of the system\footnote{This is the usual mechanism of energy
   extraction in a quantum Otto
   cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec} is tied up in the
-system state, reducing power output.  The reduction of power output in
-through quantum coherence general has been termed quantum
+system state, reducing power output.  The reduction of power output
+through quantum coherence in general has been termed quantum
 friction. However, the occurrence of coherence is not necessarily
 detrimental\fixme{do more research on that.refer to simulations}, if
 the system is restored to a diagonal state\footnote{Shortcuts to
   adiabaticity, see for example~\cite{Chen2010Feb}.}.
 
+We will briefly demonstrate the effect of quantum friction in
+\cref{sec:quantum_friction}. For now we will stay on a more general
+track and turn to the ergotropy of an open quantum system coupled to a
+thermal bath in \cref{sec:ergoonebath}.
+
 \subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
 \label{sec:ergoonebath}
 We have argued above that Gibbs states play a special role. Here, we
-explore the ergotropy of such a state to an arbitrary finite
-dimensional systems. Our goal will be to ensure thermodynamic
+explore the ergotropy of such a state coupled to an arbitrary finite
+dimensional system. Our goal will be to ensure thermodynamic
 consistency of the global unitary dynamics of such a system.
 
 Let us consider models with the Hamiltonians
@@ -215,29 +231,29 @@ where the system \(\sys\) is finite dimensional and \(H_\bath\) may be
 chosen arbitrarily. Let the initial state of the system be
 \begin{equation}
   \label{eq:simple_initial_state}
-  ρ=ρ_\sys\otimes τ_β,
+  ρ=ρ_\sys\otimes \varsigma_β,
 \end{equation}
-where \(τ_β=\eu^{-β H_\bath}/Z\) is a Gibbs state and \(ρ_\sys\) is
+where \(\varsigma_β=\eu^{-β H_\bath}/Z\) is a Gibbs state and \(ρ_\sys\) is
 arbitrary.
 
 An interesting question is whether the ergotropy of such a state is
 finite. This amounts to the formulation of the second law: ``No energy
-may be extracted from a single bath in a cyclical manner''.
-For systems obeying GKSL dynamics connected to a KMS state heat bath,
-thermodynamic laws can be derived in certain situations\footnote{very
-  slow or very fast modulation of the system
-  hamiltonian}\cite{Binder2018}, which imply the answer ``yes'' for the
-above questions. In the non-Markovian case, those arguments do not
-hold anymore.
+may be extracted from a single bath in a cyclical manner''.  For
+systems obeying weak coupling dynamics, thermodynamic laws can be
+derived in certain situations\footnote{very slow or very fast
+  modulation of the system hamiltonian}\cite{Binder2018}, which imply
+the answer ``yes'' for the above questions. In the non-Markovian case
+however, those arguments do not hold anymore.
 
 For finite dimensional baths, we always have finite ergotropies, as
 their Hamiltonians are bounded. In the infinite dimensional case, we
 may expect that the ergotropy is still finite for some models, as long
 as the energies of the thermal states for those models is finite. This
 assumption breaks down when we consider infinite baths, whose thermal
-energy is unbounded even for finite temperatures. In terms of finite
-baths we may ask whether the ergotropy of the system can be made
-arbitrarily large by enlarging the bath.
+energy is unbounded even for finite temperatures. We therefore
+slightly reformulate our problem. The question is now, whether the
+ergotropy can be made arbitrarily large by enlarging the bath. This is
+consistent with approaching the infinite bath case as a limit.
 
 There is a simple and general argument that provides and upper bound
 on the ergotropy of states of the form~\cref{eq:simple_initial_state}
@@ -248,8 +264,9 @@ limits.
 
 The derivation of the following bound is adapted
 from~\cite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb}. We limit
-ourselves to finite dimensional problems for now.  As unitary
-transformations leave the entropy invariant
+ourselves to finite dimensional problems for now.  Let \(ρ\) be an
+arbitrary state and \(ρ_{p}\) the corresponding passive state.  As
+unitary transformations leave the entropy invariant
 (\(\tr[ρ\ln(ρ)] = \tr[ρ_P\ln(ρ_P)]\)), we have for an arbitrary
 \(β > 0\) and \(ρ_β=\exp(-βH)/Z\), \(Z=\tr[\exp(-βH)]\)
 \begin{align}
@@ -284,24 +301,24 @@ state.
 For our setting in
 \cref{eq:simple_bath_models,eq:simple_initial_state} we find a still
 better way to bound the ergotropy and fix the
-temperature~\cite{Lobejko2021Feb}. Substituting \(ρ\to ρ \otimes τ_β\)
+temperature~\cite{Lobejko2021Feb}. Substituting \(ρ\to ρ \otimes \varsigma_β\)
 in \cref{eq:ergo_entro} we obtain
 \begin{equation}
   \label{eq:thermo_ergo_bound}
   \begin{aligned}
-  \ergo{ρ\otimes τ_β} &= \frac{1}{β}
-  \qty[\qrelent{ρ\otimes τ_β}{ρ_β\otimes τ_β} - \qrelent{(ρ\otimes
-                        τ_β)_P}{ρ_β\otimes τ_β}]\\
+  \ergo{ρ\otimes \varsigma_β} &= \frac{1}{β}
+  \qty[\qrelent{ρ\otimes \varsigma_β}{ρ_β\otimes \varsigma_β} - \qrelent{(ρ\otimes
+                        \varsigma_β)_P}{ρ_β\otimes \varsigma_β}]\\
     &=\frac{1}{β}
-  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes
-      τ_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β},
+  \qty[\qrelent{ρ}{ρ_β} - \qrelent{(ρ\otimes \varsigma_β)_P}{ρ_β\otimes
+      \varsigma_β}] \leq \frac{1}{β} \qrelent{ρ}{ρ_β},
   \end{aligned}
 \end{equation}
 where the positivity of relative entropy has been used.
 
 Remarkably, the bound \cref{eq:thermo_ergo_bound} only depends on the
 system state and ``inherits'' the temperature of the bath. For any
-\(\dim[τ_β] = N\gg 1\) the bound stays valid and independent of any
+\(\dim[\varsigma_β] = N\gg 1\) the bound stays valid and independent of any
 bath properties except the temperature. It is therefore reasonable to
 expected that it is also valid for an infinite bath.
 
@@ -313,15 +330,16 @@ thermal operations and by considering explicit work reservoirs. In
 \cref{sec:explicitergo} we will provide another example which
 asymptotically saturates the bound.
 
-For the term \(\qrelent{(ρ\otimes τ_β)_P}{ρ_β\otimes τ_β}\) to vanish
-in \cref{eq:thermo_ergo_bound}, the state bath and system should be as
-close to the product thermal state as possible and so the bath state
-should not change too much. This is achievable with a continuous
-infinite size bath.
+In order for the term
+\(\qrelent{(ρ\otimes \varsigma_β)_P}{ρ_β\otimes \varsigma_β}\) to
+vanish in \cref{eq:thermo_ergo_bound}, the state of bath and system
+should be as close to the product thermal state as possible and thus
+the bath state should not change too much during the time
+evolution. This is achievable with a continuous infinite size bath.
 
-A corollary of \cref{eq:thermo_ergo_bound} is the Clausius form of the
-second law. By setting the system Hamiltonian to \(α \id\) in the
-above discussion the ergotropy becomes the change of bath energy
+A corollary of \cref{eq:thermo_ergo_bound} is a form of the second law
+of thermodynamics. By setting the system Hamiltonian to \(α \id\) in
+the above discussion the ergotropy becomes the change of bath energy
 \begin{equation}
   \label{eq:ergo_bath_change}
   \begin{aligned}
@@ -340,6 +358,8 @@ periodic manner. If it were possible to extract a constant positive
 amount of energy from the bath per cycle, \cref{eq:ergo_bath_change}
 would be breached in finite time.
 
+Let us now illustrate the concept of ergotropy and the above bound by
+an explicit calculation in \cref{sec:explicitergo}.
 
 \subsection{The Ergotropy of a Two
   Level System and a Bath of Identical Oscillators}
@@ -357,18 +377,17 @@ harmonic oscillator with the usual annihilation operator \(a\).
 Let us choose \(H_S=α\id_N\) as in \cref{eq:ergo_bath_change} for
 simplicity, where \(α\) is an arbitrary energy scale. The ergotropy is
 then equal to the maximal energy reduction of the bath under arbitrary
-cyclic modulation.
-
-The bound \cref{eq:thermo_ergo_bound} further simplifies to
+cyclic modulation.  Then, the bound \cref{eq:thermo_ergo_bound}
+further simplifies to
 \begin{equation}
   \label{eq:thermo_ergo_bound_specific}
-  \ergo{ρ\otimes τ_β} \leq \frac{1}{β} \qty[\ln(N) - S(ρ)],
+  \ergo{ρ\otimes \varsigma_β} \leq \frac{1}{β} \qty[\ln(N) - S(ρ)],
 \end{equation}
 where \(S(ρ)=-\tr[ρ\ln(ρ)]\).  For a pure state
 \cref{eq:thermo_ergo_bound_specific} is maximal and we therefore
-choose \(ρ=\ketbra{0}\) as an arbitrary pure state basis state of the
-two level system. The state \(\bra{1}\) is the second basis state,
-orthogonal to \(\ket{0}\).
+choose \(ρ=\ketbra{0}\) as an arbitrary pure state of the two level
+system. We call the second orthogonal state of the two level system
+\(\ket{1}\).
 
 If we take the system to be a qubit, the right hand side of
 \cref{eq:thermo_ergo_bound_specific} is the Landauer bound
@@ -377,28 +396,31 @@ If we take the system to be a qubit, the right hand side of
 the bath to erase one bit in a system of the same temperature as the
 bath. Indeed, owing to \cref{eq:thermo_ergo_bound_specific} the closer
 the qubit state is to the infinite temperature (erased) state the more
-certain we are, that we have extracted the maximum energy out of the
-bath.
+certain we can be, that we have extracted the maximum energy out of
+the bath.
 
 \paragraph{One Oscillator}
 As a demonstration of the general program, let us first discuss the
-ergotropy of a single harmonic oscillator with frequency \(ω\) as a
-bath.  The initial state is given by
+ergotropy of a single harmonic oscillator with frequency \(ω\) coupled
+to a qubit.  Consider a state of qubit and oscillator given by
 \begin{equation}
   \label{eq:onehoinit}
   ρ_{0} = ∑_{n=0}^{∞} \underbrace{Z^{-1}\eu^{-βωn}}_{λ_{0,n}} \ketbra{{0,n}},
 \end{equation}
 where \(Z=Z_{1}=\frac{1}{1-\eu^{-βω}}\) is the partition sum of one
-bosonic mode with frequency \(ω\).
+bosonic mode with frequency \(ω\). The \(a\) in
+\(\ket{a,b}=\ket{a}\ket{b}\) labels the qubit state and \(b\) labels
+the state the harmonic oscillator.
 
-In contrast to the state characterized by \cref{eq:passive_diag} we
-only fill every second level with \cref{eq:onehoinit}. To construct a
-corresponding passive state\footnote{Due to the degeneracy of the
-  system Hamiltonian, the passive state is not unique.} we have to
-construct a sequence \(λ_{i},\, i \in \NN_{0}\) out of the weights
-\(λ_{0,n}\) such that \(λ_{i}\geq λ_{j}\) for \(i\leq j\) and a
-sequence of states \(\ket{j}\) so that for \(H\ket{j} = E_{j}\ket{j}\)
-we have \(E_{i}\leq E_{j}\) for \(i\leq j\). The passive state and its
+In contrast to the passive state characterized by
+\cref{eq:passive_diag} we only fill every second level with
+\cref{eq:onehoinit}. To construct a corresponding passive
+state\footnote{Due to the degeneracy of the system Hamiltonian, the
+  passive state is not unique.} we have to construct a sequence
+\(λ_{i},\, i \in \NN_{0}\) out of the weights \(λ_{0,n}\) such that
+\(λ_{i}\geq λ_{j}\) for \(i\leq j\) and a sequence of states
+\(\ket{j}\) so that for \(H\ket{j} = E_{j}\ket{j}\) we have
+\(E_{i}\leq E_{j}\) for \(i\leq j\). The passive state and its
 corresponding energy is then
 \begin{equation}
   \label{eq:specific_passive_state}
@@ -418,7 +440,7 @@ and
   \end{cases}
 \end{equation}
 
-Thus, we find a passive state
+Thus, we find the passive state
 \begin{equation}
   \label{eq:one_ho_pass}
   ρ_{p} = \frac{1}{Z} \qty[∑_{i} \eu^{-2i βω} \ketbra{0, i} +
@@ -434,14 +456,14 @@ out to be
     \rightarrow ∞} \frac{ω}{\eu^{βω} - 1}.
 \end{equation}
 
-For low temperatures or large frequencies, the ergotropy of the
-oscillator is just its mean thermal energy \(ω\bose(ωβ)\). In the
-opposite limit we find \(\mathcal{W} = \frac{1}{7β}< β^{-1}\ln(2)\)
-verifying the bound derived in \cref{sec:ergoonebath}.
+For low temperatures or large frequencies, the ergotropy is just the
+mean thermal energy \(ω\bose(ωβ)\) of the oscillator. In the opposite
+limit we find \(\mathcal{W} = \frac{1}{7β}< β^{-1}\ln(2)\) verifying
+the bound derived in \cref{sec:ergoonebath}.
 
 \paragraph{Many Oscillators}
-For the case of \(N>1\) oscillators with frequency \(ω\) the initial
-state is
+For the case of \(N>1\) oscillators with frequency \(ω\) we consider
+the initial state
 \begin{equation}
   \label{eq:manyhoinit}
   ρ_{0} = ∑_{\vb{n}\in\ZZ_{0}^{n}} \underbrace{Z^{-1}\eu^{-βω\abs{\vb{n}}}}_{λ_{0,\vb{n}}} \ketbra{{0,\vb{n}}},
@@ -449,16 +471,16 @@ state is
 with the \(n_{i}=(\vb{n})_{i}\) labeling the state of the \(i\)th
 oscillator and \(\abs{\vb{n}}=∑_{i=1}^{N}n_{i}\) and \(Z=Z_{1}^{N}\).
 
-In this case we again call the ordered sequence of weights \(λ_{i}\),
-but its construction is somewhat more complicated and we will refrain
-from doing so here explicitly.  Instead we take an enumeration of
-state labels \(\{\vb{n}^{i}\}_{i\in\NN_{0}}\) such that
+In this case we once again want to calculate the ordered sequence of
+weights \(λ_{i}\), but its construction is somewhat more complicated
+and we will refrain from doing so here explicitly.  Instead we take an
+enumeration of state labels \(\{\vb{n}^{i}\}_{i\in\NN_{0}}\) such that
 \(i<j \implies m_{i} \leq m_{j}\) with
 \(m_{i}\equiv\abs{\vb{n}^{i}}\). The energies of the states
 \(\ket{k,\vb{n}^{i}}\) evaluate to \(E_{k, i} = ω m_{i}\) and the
 initial weights to \(λ_{0,i}=Z^{-1}\eu^{-βω m_{i}},\,λ_{1,i}=0\).
 
-The required enumeration of states and energies is then
+The required sequence of states and energies is then
 \begin{equation}
   \label{eq:many_enum}
   \begin{aligned}
@@ -470,7 +492,8 @@ The required enumeration of states and energies is then
     & E_{i} &= ω m_{\lfloor{i/2}\rfloor}
   \end{aligned}
 \end{equation}
-and the enumeration of weights is \(λ_{i} = λ_{0,i} =Z^{-1}\eu^{-βω m_{i}}\).
+and the sequence of weights is
+\(λ_{i} = λ_{0,i} =Z^{-1}\eu^{-βω m_{i}}\).
 
 
 The corresponding passive state energy will be
@@ -487,9 +510,9 @@ until which \(m_{i}\) has the value \(m\). Likewise
 \(\qty{y_{m}}_{m\in\NN_{0}}\) is defined so that
 \(y_{m}=\big\lceil G^{N+1}_{m}/2\big\rceil\) denotes the index \(i\)
 until which \(m_{2i}\) retains the value \(m\). When using the floor
-instead of ceil in the definition of \(y_{m}\) we find that this
-sequence \(\qty{z_{m}}_{m\in\NN_{0}}\) fulfills the same purpose but
-for \(m_{2i+1}\).
+instead of ceiling in the definition of \(y_{m}\) we find that this
+sequence \(\qty{z_{m}}_{m\in\NN_{0}}\) fulfills the same purpose for
+\(m_{2i+1}\).
 
 Now, let
 \begin{equation}
@@ -506,12 +529,11 @@ Now, let
   \end{aligned}
 \end{equation}
 
-The \(Δ^{e}_{m,k}\) denotes the number of indices \(i\) where
-\(m_{i}=m\) and \(m_{2i}=k\) and the \(Δ^{e}_{m,k}\) have the same
-function, but for \(m_{2i+1}\).
-The equations \cref{eq:deltas} lists explicit formulas only for the
-case where the difference is at most one, but this is sufficient for
-the estimate we will discuss now.
+The \(Δ^{e}_{m,k}\) denote the number of indices \(i\) where
+\(m_{i}=m\) and \(m_{2i}=k\). The \(Δ^{e}_{m,k}\) have the same
+function, but for \(m_{2i+1}\).  The equations \cref{eq:deltas} list
+explicit formulas only for the case where the difference is at most
+one, but this is sufficient for the estimate we will discuss now.
 
 We find
 \begin{equation}
@@ -628,23 +650,24 @@ findings as has been done in \cref{fig:numeric_n_ho_ergo}.
   \includegraphics{figs/ergo_calc/ergo_numeric}
   \caption{\label{fig:numeric_n_ho_ergo} Numerical evaluation of
     \cref{eq:many_ho_pass} and the estimates
-    \cref{eq:many_ho_ergo_bound,eq:ergo_esti_high_t} for \(N=110\)
-    and \(β=1\). Good agreement can be found and the bound
-    \(β^{-1}\ln2\) is approximately saturated.}
+    \cref{eq:many_ho_ergo_bound,eq:ergo_esti_high_t} for \(N=110\) and
+    \(β=1\). Good agreement can be found and the bound \(β^{-1}\ln2\)
+    is approximately saturated. The general bound on the ergotropy
+    \(β^{-1}\ln2\) is valid.}
 \end{figure}
 
 In conclusion, we have found an upper bound
 \cref{eq:many_ho_ergo_bound} for and a high temperature estimate
-\cref{eq:ergo_esti_high_t} of the ergotropy to \(N\) oscillators in a
-thermal state and a two level system in a pure state. The bound
-\cref{eq:thermo_ergo_bound_specific} on ergtropy is still valid and
-also tightest in the infinite bath case with vanishing level distance
-\(ω\to 0\). These conditions are fulfilled for the baths usually
-considered in open quantum systems, where a continuum of frequencies
-are present instead of a single, very degenerate one. The energy level
-distance vanishes in this case.
+\cref{eq:ergo_esti_high_t} of the ergotropy to \(N\) oscillators
+initially in a thermal state and a two level system initially in a
+pure state. The bound \cref{eq:thermo_ergo_bound_specific} on
+ergotropy is still valid and also tightest in the infinite bath case
+with vanishing level distance \(ω\to 0\). These conditions are
+fulfilled for the baths usually considered in open quantum systems,
+where a continuum of frequencies are present instead of a single, very
+degenerate one. The energy level distance vanishes in this case.
 
-Even for finitely many oscillators the ergtropy bound can be
+Even for finitely many oscillators the ergotropy bound can be
 approached rather closely for finite \(ω\) as can be seen in
 \cref{fig:numeric_n_ho_ergo_nonmon}. Remarkably, the ergotropy becomes
 a non-monotonous function of the level spacing \(ω\) for larger \(N\)
@@ -653,15 +676,23 @@ resonance phenomenon.  It is always increasing with \(N\).
 
 Also, for large \(N\) the transition into the region where the upper
 bound \cref{eq:thermo_ergo_bound} is tight is very close to the
-crossing point of this bound with the \(ω\ll 1\) estimate. This bound
-is very tight as may be expected, because the error one makes in
-\cref{eq:manhoergoestimate} becomes negligible in the case \(N\gg 1\).
+crossing point of this bound with the \(ω\ll 1\) estimate
+\cref{eq:ergo_esti_high_t}. This bound is very tight as may be
+expected, because the error one makes in \cref{eq:manhoergoestimate}
+becomes negligible in the case \(N\gg 1\).
+
 \begin{figure}[htp]
   \includegraphics{figs/ergo_calc/ergo_nonmonotonic}
-  \caption{\label{fig:numeric_n_ho_ergo_nonmon} Numerical evaluation of
-    \cref{eq:many_ho_pass} for different \(N\) and \(β=1\).}
+  \caption{\label{fig:numeric_n_ho_ergo_nonmon} Numerical evaluation
+    of \cref{eq:many_ho_pass} for different \(N\) and \(β=1\). With a
+    rising number of oscillators \(N\) the ergotropy always increases
+    and becomes more non-monotonous, but never surpasses the bounds.}
 \end{figure}
 
+
+After validating the bound of \cref{sec:ergoonebath} for a concrete
+example, we now return to a more generic setting in
+\cref{sec:operational_thermo}.
 
 \subsection{A bound on the Energy Change of Multiple Baths in the
   Periodic Steady State}
@@ -798,7 +829,7 @@ thermodynamical quantities is required for \cref{eq:secondlaw_cyclic}
 to be useful.  Assume that the interaction Hamiltonian in
 \cref{eq:katoineqsys} vanishes periodically, so that system and bath
 energy expectation values can be cleanly separated. In the periodic
-steady state the system energy does not change during a cycle and the
+steady state the system energy does not change after a cycle and the
 whole energy change amounts to the change in bath energy. In a setting
 with two baths \cref{eq:secondlaw_cyclic} implies the Carnot bound for
 the efficiency given in \cref{eq:efficiency_definition}.
