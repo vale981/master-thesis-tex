@@ -968,11 +968,11 @@ energy is being extracted before the periodic steady state is
 reached. In the periodic steady state energy can only increase, as was
 shown in \cref{sec:operational_thermo}.
 
-When choosing \(σ_{f}=σ_{y}\) the situation becomes even worse because
-the system modulation does not even commute with the interaction. The
-extracted energy is the smallest and the relative system ergotropy
-buildup (right panel, orange line) is much larger than in the
-\(σ_{f}=σ_{x}\) (blue) case.
+When choosing \(σ_{f}=σ_{y}\) the situation becomes even worse. The
+system modulation now does not commute with the coupling Hamiltonian
+which appears to lead to a much larger system ergotropy buildup (right
+panel, orange line) than in the \(σ_{f}=σ_{x}\) (blue) case.  This
+negatively affects the energy extraction.
 
 The frictionless protocol (green) does not exhibit system ergotropy
 buildup and consequently is able to extract the most energy from the
@@ -1014,15 +1014,18 @@ simplifies the situation. An interesting question for future is
 whether a phase or frequency shift in the system modulation may be
 able to improve energy extraction performance.
 
+As in \cref{sec:energy-transf-char} we will now turn to a study of the
+behavior of the model for different bath memories in
+\cref{sec:extr_mem}.
+
 \subsection{Energy Extraction with different Bath Memories}
 \label{sec:extr_mem}
-To find out whether a substantial fraction of the maximal ergotropy
-can be extracted from a system we have numerically optimized the
-coupling strengths of the model \cref{eq:one_qubit_model_driven}, so
-that over ten modulation periods \(τ_{m} = \frac{2 π}{Δ}\) the maximal
-absolute interaction energy is close to a give value (here
-\(\ev{H_{\inter}}\approx 0.4\)) for various cutoff frequencies
-\(ω_{c}\).
+To find out how the bath memory is affecting energy extraction we have
+numerically optimized the coupling strengths of the model
+\cref{eq:one_qubit_model_driven}, so that over ten modulation periods
+\(τ_{m} = \frac{2 π}{Δ}\) the maximal absolute interaction energy is
+close to a give value (here \(\ev{H_{\inter}}\approx 0.4\)) for
+various cutoff frequencies \(ω_{c}\).
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/omega_interactions}
@@ -1034,7 +1037,7 @@ absolute interaction energy is close to a give value (here
 \end{figure}
 
 The resulting interaction energies can be found in
-\cref{fig:omega_couplings_and_energies}. They correspond roughly to
+\cref{fig:omega_couplings_and_energies}. They roughly correspond to
 demanding \(α_{β}(0)=1.4\), where \(α_{β}\) is the finite temperature
 bath correlation function.  \Cref{fig:omega_couplings_and_energies}
 also shows that for the simulations with small \(ω_{c}\) the positive
@@ -1043,30 +1046,31 @@ departure from the pure dephasing regime where the interaction energy
 is always negative.
 
 For very weak coupling \(\ev{H_{\inter}}\approx 0.01\)
-\cref{fig:omega_couplings_weak} shows that this optimization procedure
-yields the normalization of \cref{eq:normohmic} so that the peak
-heights of all spectral densities coincide. For weak coupling, only
-the peak value of the spectral density is important and therefore the
-peaks must coincide for similar coupling strengths.
+\cref{fig:omega_couplings_weak} in \cref{sec:extra_single_plots} on
+\cpageref{fig:omega_couplings_weak} shows that this optimization
+procedure yields the normalization of \cref{eq:normohmic} so that the
+peak heights of all spectral densities coincide. For weak coupling,
+only the peak value of the spectral density is important and therefore
+the peaks must coincide for similar coupling strengths.
 
-In \cref{fig:omegas_total} we see the energy extraction behaviour of
-the model for various cutoff frequencies.
+In \cref{fig:omegas_total} we see the total energy curves of the model
+for various cutoff frequencies.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/omegas_total}
   \caption{\label{fig:omegas_total} The total energy differences of
-    \cref{eq:one_qubit_model_driven} for various \(ω_{c}\). For
-    details of the parameters see
+    \cref{eq:one_qubit_model_driven} for various cutoffs
+    \(ω_{c}\). For details on the parameters see
     \cref{fig:omega_couplings_and_energies}. The dots mark the times
-    when the interaction is turned off.  The dashed lines show the
+    when the interaction Hamiltonian vanishes.  The dashed lines show the
     position of the where the total energy is minimal. Lower cutoffs
-    \(ω_{c}\) lead to more extracted energy. For \(ω_{c}=2.1\) no
-    energy is being extracted.}
+    \(ω_{c}\) lead to more extracted energy. For \(ω_{c}=2.1\) (pink) no
+    energy is being extracted at all.}
 \end{figure}
 It is clear, that a lower cutoff frequency is advantageous as the
 minimal total energy is achieved earlier and is of greater
-magnitude. Further, we see that a non-trivial amount of energy is
-being extracted relative to the ergotropy bound
+magnitude. Further, we see that a non-trivial amount of energy
+\(\sim 35\%\) is being extracted relative to the ergotropy bound
 \cref{eq:ergo_mod_model}.
 
 \begin{figure}[htp]
@@ -1078,53 +1082,59 @@ being extracted relative to the ergotropy bound
     period. Longer memories lead to greater energy extractions and
     greater one shot power.}
 \end{figure}
-\Cref{fig:omegas_energies_and_powers} shows that longer bath memories,
-defined as the time point at which \(α(τ_{\bath}) = α(0)/10\), lead to
-both increased energy extraction and increased one shot power. The one
-shot power is defined as
+\Cref{fig:omegas_energies_and_powers} plots the maximal extracted
+energy (orange) and one shot power (blue) as a function of bath memory
+time.  The bath memory time is defined here as the time point at which
+\(α(τ_{\bath}) = α(0)/10\) which leads to \(τ_{\bath}=3/ω_{c}\) for
+the Ohmic BCF. The one shot power is defined as
 \begin{equation}
   \label{eq:one_shot_power}
   P_{\max}=\max_{n\in\NN}\frac{\abs{Δ\ev{H}_{n τ_{m}} \cdot Θ(-Δ\ev{H}_{n τ_{m}})}}{n τ_{m}},
 \end{equation}
 where \(Δ\ev{H}_{τ}= \ev{H}_{τ} - \ev{H}_{0}\) and \(Θ\) is the
-Heaviside function.  The concrete shape of the curve
-\cref{fig:omegas_energies_and_powers} is hard to discuss because of
-the nontrivial shape and magnitude of the spectral densities. However,
-the abrupt transition to zero for short memories is due to the
-requirement that power and extracted energy have to be positive, and
-the stroboscopic time view induced by the requirement that the
-interaction energy should be zero.
+Heaviside function.
+
+The plot shows that longer bath memories, lead to both increased
+energy extraction and increased one shot power.  The concrete shape of
+the curve \cref{fig:omegas_energies_and_powers} is hard to discuss
+because of the nontrivial shape and magnitude of the spectral
+densities. However, the abrupt transition to zero for short memories
+is due to the requirement that power and extracted energy have to be
+positive and the stroboscopic time view induced by the requirement
+that the interaction energy has to be zero.
 
 It can be concluded that in the cases studied here we can extract a
 finite amount of energy from the system as soon as the bath memory is
 somewhat longer than the modulation period. This statement depends on
-the definition of the memory time \(τ_{\bath}\) and therefore be taken
-as a rule of thumb.
+the definition of the memory time \(τ_{\bath}\) and has therefore to
+be taken as a rule of thumb.
 
 A peculiar observation has been made for the simulations with very low
 cutoff \(ω_{c}\lesssim 1\). \Cref{fig:total_for_steady} shows that we
-don't enter a periodic steady state where a constant amount of energy
-is being introduced into the system. Rather the total energy remains
-constant apart from minor oscillations.
+don not enter a periodic steady state where a constant amount of
+energy is being introduced into the system. Rather the total energy
+remains constant apart from minor oscillations.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/total_for_steady}
-  \caption{\label{fig:total_for_steady} The \(ω_{c}=0.5\) simulation of
-    \cref{fig:omegas_total} continued for longer times. The total
-    energy remains constant with minor fluctuations.}
+  \caption{\label{fig:total_for_steady} The \(ω_{c}=0.5\) simulation
+    of \cref{fig:omegas_total} continued for longer times. The total
+    energy remains constant apart from minor fluctuations.}
 \end{figure}
 This feature must be somewhat robust, as it is also visible for
 \(ω_{c}=0.96\) in \cref{fig:omegas_total}. Such behaviour is not
 forbidden by the results of \cref{sec:therm_results}, but nevertheless
 interesting for future study as it corresponds to a situation where
-modulate the system with no real cost.
+modulate the system indefinitely without having to put in energy.
 
 Another avenue for exploration would be to exploit the findings here
-to construct a cyclic thermal machine with high power output. An open
-question is, whether energy can then be extracted both during contact
-with the hot and with the cold bath and whether it is better to design
-the cycle stroke based or continuously coupled.
+to construct a cyclic thermal machine with high power output. An
+interesting question is, whether energy can then be extracted both
+during contact with the hot and with the cold bath and whether it is
+better to design the cycle stroke based or continuously coupled.
 
+For now, we stick to our model and explore the effect of changing the
+modulation frequency \(Δ\) in \cref{sec:speedlim}.
 
 \subsection{Modulation Frequency and Speed Limit}
 \label{sec:speedlim}
