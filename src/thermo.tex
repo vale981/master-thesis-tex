@@ -1136,10 +1136,10 @@ better to design the cycle stroke based or continuously coupled.
 For now, we stick to our model and explore the effect of changing the
 modulation frequency \(Δ\) in \cref{sec:speedlim}.
 
-\subsection{Modulation Frequency and Speed Limit}
+\subsection{Modulation Frequency and Speed Limit}%
 \label{sec:speedlim}
 Another interesting parameter to tune is the modulation frequency
-\(Δ\), or equivalently the modulation period time \(τ_{p}=2π/Δ\). In
+\(Δ\) or, equivalently, the modulation period \(τ_{p}=2π/Δ\). In
 driven systems, there usually appears a ``quantum speed
 limit''~\cite{Kurizki2021Dec} that limits the power output of a driven
 system at a given coupling strength. An example is the transition from
@@ -1150,7 +1150,10 @@ states \cite{Binder2018}.
 
 Intuitively speaking, slower modulation allows more time for the
 system-bath interaction that enables energy extraction from the
-initially passive bath state in the first place.
+initially passive bath state in the first place. Fast modulation can
+dominate the action of the bath in the interaction term of
+\cref{eq:one_qubit_model_driven}, leading to an increase in total
+energy.
 
 The continuous power is given by
 \begin{equation}
@@ -1170,25 +1173,37 @@ Stronger coupling will lead to a greater expectation value of
 parameter space we are going to explore.
 
 To assess the behaviour with regard to coupling and modulation speed,
-we simulated the model for \(ω_{c}=1\) up to the time \(τ=20\) and
-plotted the one shot power \cref{eq:one_shot_power} in a heatmap in
-\cref{fig:power_heatmap}. The coupling strength is quantified by the
-value of the thermal bath correlation function \(α_{β}\) a time
-zero. This balances the shifting of the spectral density for the
-different values of \(Δ\).
+we simulated the model for \(ω_{c}=1\) up to the time \(τ=20\) for
+various coupling strengths and modulation frequencies. To ease
+interpretation, we plotted the resulting one shot powers
+\cref{eq:one_shot_power} in a heatmap in \cref{fig:power_heatmap}. The
+coupling strength is quantified by the value of the thermal bath
+correlation function \(α_{β}\)
+\begin{equation}
+  \label{eq:finite_bcf_1}
+  \begin{aligned}
+  α_{β}(τ)&=\frac{1}{π}∫_{0}^{∞} J(ω) \bqty{2\bose(βω) \cos(ω (t-s)) - \iu
+        \sin(ω (t-s))} \dd{ω}\\
+    &= \frac{1}{π} ∫_{-∞}^{∞} \bqty{\bose(\abs{βω})+Θ(ω)} J(\abs{ω})
+  \eu^{-i ω t}\dd{ω},
+  \end{aligned}
+\end{equation}
+at time zero. This choice balances the shifting of the spectral
+density for the different values of \(Δ\).
+
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/power_heatmap}
   \caption{\label{fig:power_heatmap} Left panel: The one shot power
-    \cref{eq:one_shot_power} for the model
-    \cref{eq:one_qubit_model_driven} for various modulation
+    \cref{eq:one_shot_power} of the model
+    \cref{eq:one_qubit_model_driven} is plotted for various modulation
     frequencies \(Δ\) and coupling strengths. The parameters
     \(ω_{c}=1,λ=0.1, T=5\) were used. Right panel: The same, but
-    normalized to the maximum power for each \(α_{β}(0)\). In both
-    cases \(100\) grid points and Gaussian interpolation have been
-    used. The power output generally increases with the coupling
-    strength, but the optimal modulation frequency becomes more
-    sharply defined (right panel).}
+    normalized to the maximum power for each coupling strength
+    \(α_{β}(0)\). In both cases \(100\) grid points and Gaussian
+    interpolation have been used. The power output generally increases
+    with the coupling strength, but the optimal modulation frequency
+    becomes more sharply defined (right panel).}
 \end{figure}
 \begin{figure}[htp]
   \centering
@@ -1201,28 +1216,31 @@ different values of \(Δ\).
     \cref{fig:power_heatmap} can be observed.}
 \end{figure}
 
-We find that the best power output is achieved by stronger
-coupling. The dependence on the modulation frequency is more
-nuanced. If the power output is normalized by its maximum value for
-each \(α_{β}(0)\) it can be seen, that the optimal power output is
-achieved at roughly the same modulation frequency. However, with
-increasing coupling strength, the system becomes more sensitive to the
-modulation frequency, exhibiting a clear maximum. This constitutes the
-``speed limit'' discussed above.
+We find that a larger power output is achieved by stronger
+coupling. The dependence on the modulation frequency exhibits more
+nuances. If the power output is normalized by its maximum value for
+each coupling strength \(α_{β}(0)\) it can be observed that the
+optimal power output is achieved at roughly the same modulation
+frequency for all coupling strengths. However, with increasing
+coupling, the system becomes more sensitive to the modulation
+frequency, exhibiting a clear maximum. This constitutes the ``speed
+limit'' discussed above. Intuitively speaking, a stronger coupling
+increases the time resolution of the interaction, making it more
+sensitive to the modulation frequency.
 
 Running the simulations with a peak interaction energy target like in
-\cref{sec:extr_mem} the results are broadly similar on the level of
-detail available to us as can be ascertained from
+\cref{sec:extr_mem} gives broadly similar results on the level of
+detail available to us, as can be ascertained from
 \cref{fig:power_heatmap_tuned}. For the \(Δ=1\) case the optimization
 was generally not very effective in the weaker coupling regime as is
-quantified in \cref{fig:interaction_tuning_success}. Therefore this
-region should be interpreted with care.
+quantified in \cref{fig:interaction_tuning_success} on
+\cpageref{fig:interaction_tuning_success}. Therefore this region
+should be interpreted with care.
 
-The above results have to be taken with a grain of salt however. The grid
-resolution of 10 by 10 does not allow us to perceive a shift in the
-optimal modulation frequency. Also, the range of interaction strengths
-is rather limited.
-
+The above results have to be taken with a grain of salt however. The
+grid resolution of 10 by 10 does not allow us to perceive a possible
+small shift in the optimal modulation frequency. Also, the range of
+interaction strengths is rather limited.
 
 \begin{figure}[htp]
   \centering
@@ -1234,13 +1252,13 @@ is rather limited.
     line is a linear reference curve.}
 \end{figure}
 
-The maximal absolute interaction energies are shown in
+The maximal absolute values of the interaction energy are shown in
 \cref{fig:interaction_nontuned} for the non-optimized case of
-\cref{fig:power_heatmap} and increase generally with increasing
-coupling strength. The dependence on the coupling strength is linear
-for modulations with \(Δ\geq 5\) but deviates for slower
-modulation. This may be due to the fact, that fewer modulation periods
-can be completed in the given time frame.
+\cref{fig:power_heatmap}. Generally, the energy increases with
+increasing coupling strength as is sensible. The dependence on the
+coupling strength is linear for modulations with \(Δ\geq 5\) but
+deviates for slower modulation. This may be due to the fact, that
+fewer modulation periods can be completed in the given time frame.
 
 The interaction energy also increases for faster modulation,
 especially at greater coupling strengths. Comparing
@@ -1256,45 +1274,58 @@ accurately.
 Summarizing, we found that the one shot power output for the model
 \cref{eq:one_qubit_model_driven} has a complex dependence on the
 coupling strength and the modulation frequency. Especially for strong
-coupling, the modulation frequency has to be chosen carefully if
-optimal energy extraction is desired.
+coupling the modulation frequency has to be chosen carefully if
+optimal energy extraction is to be achieved.
+
+The resonance criterion that motivated the shift of the spectral
+density of the bath has not been substantiated as of now. Therefore we
+will briefly discuss its systematics in \cref{sec:modcoup_reso}.
 
 \subsection{Resonance Behaviour of the One Shot Power}
 \label{sec:modcoup_reso}
 Finally, after having introduced the shift of the spectral density on
-a rather vague basis, we would like to give a short example of its
-validity.
+a rather vague basis, we would like to give a short demonstration of
+its validity.
 
-To this end we choose the spectral densities with their peaks
-slightly shifted away from \(1+Δ\) to \(1+Δ+δ\) and normalized so that
-their peak height is fixed.
+To this end we choose the zero temperature spectral densities with
+their peaks slightly shifted away from \(1+Δ\) to \(1+Δ+δ\) and
+normalized so that their peak height is fixed.
 \begin{figure}[htb]
   \centering
   \includegraphics{figs/one_bath_mod/modulation_tuning}
   \caption{\label{fig:modulation_tuning} Left panel: The one shot
-    power \cref{eq:one_shot_power} normalized for multiple values of
-    the detuning \(δ\) and two peak heights. Right panel: The spectral
-    densities for the peak height \(J_{\mathrm{peak}} = 0.5\). The
-    dotted lines are the positive frequency parts of the effective
-    finite temperature spectral density. The detailed model and
-    simulation parameters can be found in \cref{tab:plus_tune}.}
+    power \cref{eq:one_shot_power} for multiple values of the detuning
+    \(δ\) and three peak heights of the zero temperature spectral
+    density. Right panel: The spectral densities for the peak height
+    \(J_{\mathrm{peak}} = 0.5\). The dotted lines are the positive
+    frequency parts of the effective finite temperature spectral
+    density \(\bqty{\bose(\abs{βω})+Θ(ω)} J(\abs{ω})\) (see also
+    \cref{eq:finite_bcf_1}). The detailed model and simulation
+    parameters can be found in \cref{tab:plus_tune}.}
 \end{figure}
 
-\Cref{fig:modulation_tuning} shows the result. In all cases, the one
-shot power \cref{eq:one_shot_power} as a function of \(δ\) exhibits a
-clear maximum which demonstrates the resonance effect.
+\Cref{fig:modulation_tuning} shows the one shot power
+\cref{eq:one_shot_power} as a function of the detuning for different
+coupling strengths as quantified by the spectral density peak
+height. In all cases, the one shot power exhibits a clear maximum
+which demonstrates the resonance effect.
 
-For the stronger coupling case we find in \cref{fig:modulation_tuning}
-that the optimal peak position has moved slightly to the right.  Note
-also that even though the finite temperature spectral density
-decreases in magnitude for positive shifts so that the observed
-behaviour nontrivial. Also, the penalty for being off resonant in the
-negative \(δ\) direction is much more severe than in the weaker case.
+For the strongest coupling case (green) we find in
+\cref{fig:modulation_tuning} that the optimal peak position has moved
+slightly to the right.  Note also that even though the finite
+temperature spectral density decreases in magnitude for positive
+shifts the power increases, so that the observed behaviour is not
+explained by finite temperature. Also, the penalty for being off
+resonant in the negative \(δ\) direction is much more severe than in
+the weaker coupling cases (orange, blue).
 
 An explanation may be, that higher harmonics like \(1+ 2 Δ\) become
 important for stronger coupling. Shifting the spectral density
 slightly to higher frequencies then optimizes the resonance with those
-harmonics.
+harmonics. In general, we find that the behavior of the model also
+depends on the shape of the spectral density and not only on its value
+at the peak. This is consistent with \cref{sec:energy-transf-char}
+and~\cite{Xu2022Mar}, where a similar behavior was observed.
 
 \section{Quantum Otto Cycle}
 \label{sec:otto}
