@@ -870,31 +870,42 @@ qubit interacting with a bath in a spin-boson like manner, however
 with periodically modulated system and coupling
 \begin{equation}
   \label{eq:one_qubit_model_driven}
-  H = \frac{1}{2} \bqty{(σ_z+1)+λΔ \sin(Δτ) σ_{f}} + \frac{1}{2}
+  H(τ) = \frac{1}{2} \bqty{(σ_z+1)+λΔ \sin(Δτ) σ_{f}} + \frac{1}{2}
   {\sin[2](\frac{Δ}{2}τ)}  σ_x ∑_k\qty(g_k a_k + g_k^\ast
   a_k^†) + ∑_k ω_k a_k^\dag a_k,
 \end{equation}
-where \(λ,Δ\geq 0\) and \(f\in \{z, y\}\). The form of the system
-Hamiltonian has been chosen similar to \cite{Mukherjee2020Jan}, where
+where \(λ,Δ\geq 0\) and \(f\in \{x, y, z\}\). The form of the system
+Hamiltonian has been chosen similar to~\cite{Mukherjee2020Jan} where
 Floquet theory was used, and it was shown that the relevant quantities
 are scaling with \(λ\). For \(λ=0\) the system Hamiltonian is positive
 semi-definite with the energies zero and one.  The modulation of the
 interaction has been chosen heuristically to always act in the same
-``direction'' and vanish periodically. We choose the ``down state''
-with \(H(0)\ket{0}=0\) as initial state, as we want to extract energy
-from the bath and not the system. To maximize energy flow, we will use
-resonant baths whose spectral densities have been shifted such that
-their maxima coincide with \(1 + Δ\).
+``direction'' and vanish periodically. The last fact is important, as
+we will be interested in the behavior of the system before it has
+reached the steady state. The energy extracted from a system should be
+gauged in such a way, that an additional decoupling is not necessary.
 
-Despite the simplicity of the model \cref{eq:one_qubit_model_driven}
-simplicities there too many free parameters. We will narrow down the
-field of possible paramteres in
-\cref{sec:quantum_friction,sec:sys_mod_v_no_sys_mod} and then focus on
-the energy extraction performance in relation to properties of the
-bath and the modulation frequency in
+We choose the ``down state'' with \(H(0)\ket{0}=0\) as initial state,
+as we want to extract energy from the bath and not the system. To
+maximize the energy flow, we will use resonant baths whose spectral
+densities have been shifted such that their maxima coincide with
+\(1 + Δ\) which relates to \cref{sec:energy-transf-char}. The
+resonance criterion for modulated systems is derived from Floquet
+theory~\cite{Kurizki2021Dec} which once again is a weak coupling
+result, that carries over to other regimes. In \cite{Xu2022Mar} it is
+shown, that for stronger coupling the situation is more complicated
+but that, just like in \cref{sec:energy-transf-char}, the resonance
+criterion is still a good starting point.
+
+Despite the apparent simplicity of the model
+\cref{eq:one_qubit_model_driven} the situation is complicated by its
+many free parameters. We will narrow down the field of possible
+paramteres in \cref{sec:quantum_friction,sec:sys_mod_v_no_sys_mod} and
+then focus on the energy extraction performance in relation to
+properties of the bath and the modulation in
 \cref{sec:extr_mem,sec:speedlim,sec:modcoup_reso}.
 
-For this model the ergotropy bound \cref{eq:ergo_bath_change}
+For the current model the ergotropy bound \cref{eq:ergo_bath_change}
 evaluates to
 \begin{equation}
   \label{eq:ergo_mod_model}
@@ -904,59 +915,89 @@ For \(β\to ∞\) we find \(\mathcal{W} = 0\) as the temperature \(T\)
 must be of the order of the system energy gap or larger for any energy
 lowering process to take place.
 
-\subsection{Quantum Friction}
+The task is now to assess the model \cref{eq:one_qubit_model_driven}
+with respect to energy extraction due to the modulation of the
+Hamiltonian. A central question will be how much energy we are able to
+extract from a system coupled to a single bath in relation to the
+bound \cref{eq:ergo_mod_model}.
+
+Our first step will be to justify the specific choice of
+modulation in later sections by demonstrating the phenomenon know as
+quantum friction in \cref{sec:quantum_friction}.
+
+\subsection{Quantum Friction}%
 \label{sec:quantum_friction}
-Before focusing on the \(λ = 0\) case, we will briefly revisit the
-phenomenon introduced in \cref{sec:quantum_friction_theory}. The so
-called \emph{Quantum Friction} is the creation of
-coherences\footnote{Or more generally the creation of ergotropy.} in
-the system energy basis and hinders the performances of thermal
-quantum machines. These coherences raise the ergotropy of the system
-consuming that could have been extracted by the external modulation.
+To justify the choice \(λ = 0\) for the model
+\cref{eq:one_qubit_model_driven}, we will briefly revisit a phenomenon
+introduced in \cref{sec:quantum_friction_theory}. The so called
+\emph{Quantum Friction} is the creation of coherences\footnote{Or more
+  generally the creation of ergotropy.} in the system energy basis
+which affects the performances of thermal quantum machines. These
+coherences raise the ergotropy of the system consuming energy that
+could have been extracted by the external modulation.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/quantum_friction}
-  \caption{\label{fig:quant_frict} Total energy change normalized by
-    the maximal ergotropy in the left panel and the ergotropy of the
-    system state \(ρ_{\sys}\) normalized by the maximal extracted
-    energy (dashed lines in left panel) in the right panel over
-    time. Here \(λ=0.1, Δ=5, T=5\) was chosen. In the ``With
-    Friction'' case \(σ_{f}=σ_{x,y}\) and in the ``Frictionless'' case
-    \(σ_{f}=σ_{z}\).  The solid dots mark the times when
-    \(H_{\inter} = 0\). The horizontal dashed lines mark the minimal
-    total energy differences achieved.  For more parameters see
+  \caption{\label{fig:quant_frict} Total energy change \(Δ\ev{H}\)
+    normalized by the maximal ergotropy \cref{eq:ergo_mod_model} of
+    the system is shown in the left panel. The horizontal dashed lines
+    mark the minimal total energy differences achieved. The right
+    panel displays the ergotropy of the system state \(ρ_{\sys}\)
+    normalized by the maximal extracted energy time. Here
+    \(λ=0.1, Δ=5, T=5\) were chosen. In the ``With Friction'' case we
+    have \(σ_{f}=σ_{x,y}\) and in the ``Frictionless'' case
+    \(σ_{f}=σ_{z}\).  The dots in the left panel mark the times when
+    \(H_{\inter} = 0\).  For more parameters see
     \cref{tab:plus_friction}. In the frictionless case the most energy
     is being extracted. The \(σ_{y}\) modulation that commutes neither
     with the system Hamiltonian nor with the interaction performs
-    worst.}
+    worst. Although the system ergotropy (right panel) vanishes
+    periodically, it still hampers the energy extractions by delaying
+    dynamics. Quantum friction appears to be especially important for
+    short times as it decays with time.}
 \end{figure}
 
-A simple demonstration of this can be observed in
+A simple demonstration of this fact can be observed in
 \cref{fig:quant_frict}. Here the simulation with nondiagonal
-modulation \(σ_{f}=σ_{x}\) does extract less energy from the total
-system as the \(σ_{f}=σ_{z}\) case. One reason for this is the not
-insignificant buildup of ergotropy in the system state which is being
-reduced to zero periodically, but does retard the energy extraction so
-that less energy is extracted before the periodic steady state is
-being reached which does only increase energy as was shown in see
-\cref{sec:operational_thermo}.
+modulation \(σ_{f}=σ_{x}\) (blue) does extract less energy from the
+total system than the frictionless \(σ_{f}=σ_{z}\) (green) case. One
+reason for this is the not insignificant buildup of ergotropy in the
+system state (right panel) which is being reduced to zero
+periodically, but does retard the energy extraction so that less
+energy is being extracted before the periodic steady state is
+reached. In the periodic steady state energy can only increase, as was
+shown in \cref{sec:operational_thermo}.
 
 When choosing \(σ_{f}=σ_{y}\) the situation becomes even worse because
-now the system modulation does not even commute with the
-interaction. The extracted energy is smallest and the relative system
-ergotropy buildup is much larger than in the \(σ_{f}=σ_{x}\) case.
+the system modulation does not even commute with the interaction. The
+extracted energy is the smallest and the relative system ergotropy
+buildup (right panel, orange line) is much larger than in the
+\(σ_{f}=σ_{x}\) (blue) case.
+
+The frictionless protocol (green) does not exhibit system ergotropy
+buildup and consequently is able to extract the most energy from the
+system.
+
+It is not clear yet, whether modulating the system Hamiltonian does
+improve energy extraction at all. This question is the subject of
+\cref{sec:sys_mod_v_no_sys_mod}.
 
 \subsection{System Modulation}
 \label{sec:sys_mod_v_no_sys_mod}
-As it turns out, the modulation generically leads to a deterioration
-of energy extraction performance for the model
+As it turns out, modulation of the system Hamiltonian leads to a
+deterioration of energy extraction performance for the model
 \cref{eq:one_qubit_model_driven} as is demonstrated in
-\cref{fig:quant_frict_sys_no_sys}. Again, the ``friction'' (system
-ergotropy) generated by the system modulation is much greater than
-without system modulation. However, it is questionable whether this is
-the only reason for the performance advantage of the case without
-system modulation. Another factor is, that the system goes in and out
-of resonance with the bath and therefore hampers the interaction.
+\cref{fig:quant_frict_sys_no_sys}. There, the total energy curves of a
+simulation with (orange) and without (blue) system modulation is
+plotted.
+
+Again, the ``friction'' (system ergotropy) generated by the system
+modulation is much greater than without system modulation. However,
+due to the small magnitude of the generated system ergotropy it is
+questionable whether this is the only reason for the performance
+advantage of the case without system modulation. Another factor is
+that the system Hamiltonian goes in and out of (static) resonance with
+the bath which may hamper energy extraction.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/system_vs_no_system}
@@ -970,8 +1011,8 @@ of resonance with the bath and therefore hampers the interaction.
 
 In light of this result we shall continue with \(λ=0\), which
 simplifies the situation. An interesting question for future is
-whether a phase shift in the system modulation may be able to improve
-energy extraction performance.
+whether a phase or frequency shift in the system modulation may be
+able to improve energy extraction performance.
 
 \subsection{Energy Extraction with different Bath Memories}
 \label{sec:extr_mem}
