@@ -458,20 +458,20 @@ we can define the \(\vb{k}th\) hierarchy state
 
 The origin of the normalization chosen in \cref{eq:d_op_hier} is the
 desire to give all hierarchy states the same unit and to formulate the
-final hops equations unified into one equation in an enlarged Hilbert
+final HOPS equations unified into one equation in an enlarged Hilbert
 space~\cite{Gao2021Sep}. We refrain from going into details here and
 refer to \cref{sec:multihops} instead.
 
 For this state the following equation of motion can be
 derived~\cite{Suess2014Oct,Hartmann2021Aug}
-\begin{equation}
+\begin{multline}
   \label{eq:singlehops}\tag{HOPS}
   \ket{\dot{ψ}^{\vb{k}}} = \qty[-\iu H_\sys + \vb{L}\cdot\vb{η}^\ast -
-  ∑_{μ=1}^{M}k_{μ}W_μ]\ket{ψ^{\vb{k}}} +
-  \iu ∑_{μ=1}^{M}\sqrt{G_μ}\qty[\sqrt{k_{μ}}  L \ket{ψ^{\vb{k} -
+  ∑_{μ=1}^{M}k_{μ}W_μ]\ket{ψ^{\vb{k}}} \\
+  + \iu ∑_{μ=1}^{M}\sqrt{G_μ}\qty[\sqrt{k_{μ}}  L \ket{ψ^{\vb{k} -
     \vb{e}_{μ}}} + \sqrt{\qty(k_{μ} + 1)}  L^† \ket{ψ^{\vb{k} +
     \vb{e}_{μ}}} ],
-\end{equation}
+\end{multline}
 where \(\vb{k}=(k_{1}, k_{2}, \ldots, k_{M})\) with \(k_{μ}\geq 0\) is
 a multi index and \(\pqty{\vb{e}_{μ}}_{ν} = δ_{μ,ν}\). The term
 \({\vb{k} - \vb{e}_{μ}}\) is evaluated only if \(k_{μ}\geq 1\). The
@@ -529,7 +529,7 @@ The main code repository for this work can be found under
 \url{https://github.com/vale981/master-thesis}.
 
 The directory \path{python/energy_flow_proper} contains several
-project subdirectory with literate programming notebooks in the
+project subdirectories with literate programming notebooks in the
 \texttt{org} format~\cite{EricSchulte2022Sep}. A detailed listing
 linking subprojects to chapters can be found in
 \cref{tab:code_structure}.
@@ -564,7 +564,7 @@ merged into the original repository
 The extensive and well tested existing HOPS code of the Theoretical
 Quantum Optics group\footnote{Available upon reasonable request.} was
 created by Richard Hartmann. Some improvements have been made in the
-course of this work this work.  Documentation, type hints and unit
+course of this work.  Documentation, type hints and unit
 tests have been introduced. The parallelization mechanism was
 overhauled and now uses the \href{https://www.ray.io}{\texttt{Ray}}
 library. The structure of the code was further modularized, allowing

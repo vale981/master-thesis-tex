@@ -11,7 +11,7 @@ verify the results of \cref{chap:flow} in
 \cref{sec:hopsvsanalyt}. Excellent consistency of the analytical and
 numeric solutions for the QBM models will be demonstrated.  A common
 feature of the short time behaviour of the bath energy flow that is
-visible in all simulations will be discussed and explained in
+visible in all simulations that will be discussed and explained in
 \cref{sec:pure_deph}.
 
 In the generic case where no analytic solution is known we
@@ -80,7 +80,7 @@ For the estimation of mean and standard deviation from trajectory
 data, Welford's online algorithm is employed to avoid catastrophic
 numerical cancellation~\cite{Welford1962Aug,Knuth1997}.
 
-In all simulations discussed use an Ohmic spectral density
+In all simulations, we will use an Ohmic spectral density
 \begin{equation}
   \label{eq:ohmic_sd}
   J(ω)=η ω \eu^{-\frac{ω}{ω_{c}}}\quad (ω>0)
@@ -567,7 +567,7 @@ We solve the model with the Hamiltonian (Schr\"odinger picture)
   \label{eq:puredeph}
   H = L^†(t) B + L(t) B^† + H_\bath
 \end{equation}
-with \(L(t)=L(t)^†\), \([L(t), L(s)] = 0\;\forall t,s\) (so that the
+with \(L(t)=L^†(t)\), \([L(t), L(s)] = 0\;\forall t,s\) (so that the
 Heisenberg Hamiltonian matches \cref{eq:puredeph}) and \(B,\,H_\bath\)
 as in \cref{sec:nmqsd_basics}.
 
@@ -630,9 +630,9 @@ match the zero temperature case in which the bath has minimal energy
 in the initial state.
 
 A thermodynamically useful model should feature significant system
-dynamics which is always given, assuming that the coupling is no too
+dynamics which is always given, assuming that the coupling is not too
 strong. Non hermitian coupling may also have this effect, but in the
-literature most effective qubit models tend to favour Hermitian
+literature most effective two-level models tend to favour Hermitian
 couplings
 \cite{Aurell2019Apr,Hita-Perez2021Nov,Hita-Perez2021Aug,MacQuarrie2020Sep,Andersen2017Feb,Mezzacapo2014Jul}. For
 the spin-boson model, non Hermitian coupling is the result of the
@@ -793,11 +793,11 @@ be witnessed in the inset of \Cref{fig:stocproc_systematics}.
 
 Only in the simulation with precision \(\varsigma=10^{-6}\) (blue)
 however, the compatibility condition of \cref{sec:meth} is satisfied
-for the given trajectory count. This is due to the fact that multiple
-quantities are being obtained in different ways, namely system energy
-and the flow. The system energy can be calculated directly from the
-system state whereas the flow has to be integrated numerically to
-obtain the total bath energy change.
+for the given trajectory count.  The system energy can be calculated
+directly from the system state whereas the flow has to be integrated
+numerically to obtain the total bath energy change and depends
+directly on the first hierarchy states. The accuracy must be high for
+the results to be consistent.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_syst/stocproc_systematics_bath_energy}
@@ -821,7 +821,7 @@ plotted in \cref{fig:stocproc_consistency_dev}. Only for the highest
 precision (blue) case good consistency is given continually. For lower
 precision (green, orange), the consistency fluctuates and only
 occasionally surpasses \(68\%\). Initially compatibility is being
-demonstrated (until about \(N=10^4\)) but a divergence diverge from
+demonstrated (until about \(N=10^4\)) but a divergence from
 the most precise result occurs. It is therefore important to consider
 the dependence of the compatibility on the sample count \(N\) to judge
 the veracity of the simulation results.
@@ -854,7 +854,7 @@ convergence as is also demonstrated in
 
 \subsection{Hierarchy Truncation}
 \label{sec:trunc}
-As the systematics of the truncation depth has already been studied
+As the systematics of the truncation depth have already been studied
 thoroughly in~\cite{RichardDiss,Hartmann2021Aug}, we will keep the
 discussion short.  We chose \(N=4.5 \cdot 10^5\) trajectories and an
 Ohmic BCF with \(α(0)=0.8\) and \(ω_c=2\). Again, a BCF expansion with

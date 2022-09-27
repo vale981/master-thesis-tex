@@ -16,7 +16,7 @@ treated with the methods that will be developed as is shown in
 \cref{sec:general_obs}.
 
 The generalization to multiple baths in \cref{sec:multibath} and time
-depend Hamiltonians in \cref{sec:timedep} will present itself as
+dependent Hamiltonians in \cref{sec:timedep} will present itself as
 straight forward.
 
 \section{Bath Energy Change of a Zero Temperature Bath}%
@@ -161,7 +161,7 @@ Interestingly one finds that
 This expression is undesirable as it does not exist for all bath
 correlation functions\footnote{Only for BCFs that are smooth at
   \(τ=0\).} and expressions involving the process directly are alleged
-to converge slower, especially for shorter bath memories. This
+to converge more slowly, especially for shorter bath memories. This
 convergence problem is due to greater magnitude and shorter
 correlation time of the oscillations of \(\dot{η}_{t}^\ast\), as can
 be seen in \cref{fig:stocproc_comparison}.
@@ -169,7 +169,7 @@ be seen in \cref{fig:stocproc_comparison}.
   \centering
   \includegraphics{figs/analytic_comp/stocproc_comparison}
   \caption{\label{fig:stocproc_comparison} The imaginary part of ten
-    realizations the stochastic process \(η^\ast\) for an ohmic BCF
+    realizations of the stochastic process \(η^\ast\) for an ohmic BCF
     with different cutoff frequencies \(ω_{c}\). The process is much
     smoother and of less magnitude for smaller cutoffs. The difference
     between the cutoffs is even more severe for the derivative of the
@@ -352,7 +352,7 @@ and bath for a thermal initial condition as
   \rho(t) =
   \prod_\lambda\qty(∫\dd[2]{y_\lambda}
   \frac{\eu^{-\abs{y_\lambda}^2\bose_\lambda}}{\pi\bose_\lambda})
-  U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D(\vb{y})^† U(t)^†,
+  U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D^†(\vb{y}) U^†(t),
 \end{equation}
 where \(\bose_{λ}=\bose(βω_{λ})\). This is simply the
 Glauber-Sudarshan P representation of the bath state
@@ -364,7 +364,7 @@ The system state is then recovered through
   \rho_{\sys}(t) =
   \prod_\lambda\qty(∫\dd[2]{y_\lambda}
   \frac{\eu^{-\abs{y_\lambda}^2\bose_\lambda}}{\pi\bose_\lambda})
-  \tr_{\bath}\bqty{U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D(\vb{y})^† U(t)^†}.
+  \tr_{\bath}\bqty{U(t)D(\vb{y})\bqty{\ketbra{\psi}\otimes\ketbra{0}}D^†(\vb{y}) U^†(t)}.
 \end{equation}
 
 The usual step is now to insert \(\id =D(\vb{y})D^†(\vb{y})\) and
@@ -402,13 +402,13 @@ Remember that we want to calculate
                          \begin{aligned}
                            \prod_\lambda&\qty(∫\dd[2]{y_\lambda}
                                           \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
-                                        &\tr[L^†\dot{B}(t)
-                                          U(t)D(\vb{y})\ketbra{\psi}\otimes\ketbra{0}D(\vb{y})^† U(t)^†].
+                                        &\times\tr[L^†\dot{B}(t)
+                                          U(t)D(\vb{y})\ketbra{\psi}\otimes\ketbra{0}D^†(\vb{y}) U^†(t)].
                          \end{aligned}
   \end{aligned}
 \end{equation}
 To make a connection to the zero temperature results we again insert a
-\(\id\), but have to additionally commute \(D(\vb{y})^†\) past
+\(\id\), but have to additionally commute \(D^†(\vb{y})\) past
 \(\dot{B}(t)\). This leads to the expression
 \begin{equation}
   \label{eq:pureagain}
@@ -419,14 +419,14 @@ To make a connection to the zero temperature results we again insert a
                          \begin{aligned}
                            L^†(\dot{B}(t) + \dot{ξ}(t))
                            D^†(\vb{y}) &U(t)D(\vb{y})\ketbra{\psi}\\
-                                       &\otimes\ketbra{0}D^†(\vb{y})U(t)^†D(\vb{y})
+                                       &\otimes\ketbra{0}D^†(\vb{y})U^†(t)D(\vb{y})
                          \end{aligned}
                          ] \\
                        &=\prod_\lambda
                        \qty(∫\dd[2]{y_\lambda}
                          \frac{\eu^{-\abs{y_\lambda}^2\bar{n}_\lambda}}{\pi\bar{n}_\lambda})\\
                        &\qquad\times\tr[L^†\qty{\dot{B}(t) + \dot{ξ}(t)}
-                         \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}(t)^†],
+                         \tilde{U}(t)\ketbra{\psi}\otimes\ketbra{0} \tilde{U}^†(t)],
   \end{aligned}
 \end{equation}
 which indeed returns us to the zero temperature formalism with a transformed
@@ -465,7 +465,7 @@ Now,
 \begin{equation}
   \label{eq:hshcomm}
   [H_{\mathrm{sys}}^{\mathrm{shift}}, H_\inter] = ξ(t) [L^†, L]
-  B(t)^† + ξ^\ast(t) [L, L^†] B
+  B^†(t) + ξ^\ast(t) [L, L^†] B
 \end{equation}
 and therefore
 \begin{equation}
@@ -670,7 +670,7 @@ the form
 The corresponding version of~\cref{eq:f_ex_zero} would only explicitly
 depend on the zeroth order state and the stochastic processes. It has
 been observed that expressions involving the stochastic process
-directly tend to converge slower. However, this statement comes
+directly tend to converge more slowly. However, this statement comes
 without empirical proof and its verification may be left to future
 study. An explanation may be that the first hierarchy states fluctuate
 about their average dynamics whereas the stochastic process fluctuates
