@@ -31,26 +31,6 @@ headinclude=true,footinclude=false,BCOR=.5cm]{scrbook}
 % }
 
 
-\usepackage[switch*]{lineno}
-\renewcommand\linenumberfont{\normalfont\tiny\color{gray}}
-\linenumbers
-
-
-%% Patch 'normal' math environments:
-\newcommand*\linenomathpatch[1]{%
-  \cspreto{#1}{\linenomath}%
-  \cspreto{#1*}{\linenomath}%
-  \csappto{end#1}{\endlinenomath}%
-  \csappto{end#1*}{\endlinenomath}%
-}
-
-\linenomathpatch{equation}
-\linenomathpatch{gather}
-\linenomathpatch{multline}
-\linenomathpatch{align}
-\linenomathpatch{alignat}
-\linenomathpatch{flalign}
-
 \addbibresource{references.bib} \synctex=1 \title{Accessing the Global
   Unitary Dynamics of Open Quantum Systems with the Hierarchy of Pure
   States} \author{Valentin Boettcher} \date{\today}
