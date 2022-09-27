@@ -1,5 +1,65 @@
-\chapter{Conclusion and Ideas for future Work}
+\chapter{Conclusion and Outlook}
 \label{cha:concl-ideas-future}
+
+In this work, we set out to find a way of accessing bath related
+observables, such as the expected bath energy change and the
+interaction energy expectation value, using the
+NMQSD\footnote{Non-Markovian Quantum State
+  Diffusion}/HOPS\footnote{Hierarchy of Pure States} framework which
+we introduced in \cref{chap:intro}.  This endeavor was indeed
+successful as was laid out in \cref{chap:flow}.
+
+In \cref{chap:flow} we presented a solution to a well known model for
+quantum Brownian motion. Using this solution, we were able to derive
+expressions for the bath energy change \(∂_{t}\ev{H_{\bath}}\).
+
+This enabled us to verify the results of \cref{chap:flow} in
+\cref{chap:numres} by solving the same model numerically using
+HOPS. Excellent agreement was found in
+\cref{sec:hopsvsanalyt}.
+
+Turning to the spin-boson model in \cref{sec:prec_sim}, we used energy
+conservation to verify again, that we can consistently and efficiently
+compute bath related observables with HOPS. In the cases where the
+consistency condition was not met, we nevertheless found that
+qualitatively correct results had been reached. The direct calculation
+of the interaction energy by the use of \cref{sec:intener} gives
+results that are more precise than the ones obtained through energy
+conservation.
+
+We continued to explore the energy transfer behavior of the zero
+temperature spin-boson model and found that energy transfer
+performance for strong coupling has a complicated dependence on the
+spectral density of the bath. Energy transfer performance can be
+optimized longer bath memories and resonant baths when the interaction
+is turned off at the right time.
+
+The short time dynamics of the bath energy change can be explained by
+neglecting the system Hamiltonian, which we verified for the
+spin-boson model. It was also found, that this short time behaviour is
+already present on the trajectory level so that there are no
+stochastic fluctuations for short times. During this initial period,
+the auxiliary states of the HOPS are being populated.
+
+In \cref{sec:singlemod} we turned to issues of quantum
+thermodynamics. We reviewed some general analytical results that
+bounded energy extraction from open systems in
+\cref{sec:basic_thermo}, both for the single-bath and the multi-bath
+case. We then turned to some more challenging applications of the HOPS
+method. First, a driven spin-boson model was considered. We found that
+a not insignificant fraction of the theoretical maximum of energy can
+be extracted by modulating the coupling and providing a bath with long
+memory time. We also demonstrated quantum friction, a quantum speed
+limit and a bath resonance phenomenon.
+
+Finally, we treated a model with multiple baths in \cref{sec:otto} and
+non-harmonic smooth modulation. A cyclic modulation protocol was
+implemented upon a two level system coupled to two baths in a
+spin-boson like fashion. We achieved finite power with finite
+efficiency and verified a Gibbs-like inequality
+\cref{sec:operational_thermo}. When disabling the coupling modulation,
+the power and efficiency were much reduced.
+
 A worthwhile task for future work would be to verify the results
 summarized in \refcite{Binder2018} for the Otto cycle. Especially the
 optimization for optimal power which leads to the
