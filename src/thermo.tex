@@ -19,7 +19,7 @@ presentation of the subsequent results. A more comprehensive picture
 can be obtained from
 \cite{Binder2018,Kurizki2021Dec,Talkner2020Oct,Vinjanampathy2016Oct}.
 
-Many central questions in thermodynamics are concerned with energy
+Many central questions in thermodynamics are concerned with work
 extraction from macroscopic systems. These questions can be framed in
 operational terms that don't require a specific definition of heat and
 just rely on the energy change in the total system or its
@@ -42,8 +42,7 @@ studying bounds on the ergotropy of the system as is done in
 \cref{sec:ergo_general}. Remarkably these bounds will turn out to be
 finite. We will review a general bound for single bath systems in
 \cref{sec:ergoonebath} and study an explicit calculation for a simple
-case in \cref{sec:explicitergo} after briefly discussing the subject
-of quantum friction in \cref{sec:quantum_friction_theory}. The
+case in \cref{sec:explicitergo}. The
 explicit ergotropy calculation will elucidate under which conditions
 the bound of \cref{sec:ergoonebath} may be expected to be tight.
 
@@ -118,7 +117,7 @@ zeroth and second laws of thermodynamics.
 
 One of these properties is complete passivity. Completely passive
 states remain passive under the transformation \(ρ\to\otimes^Nρ\) (and
-an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore no
+an \(N\)-fold sum of the Hamiltonian) for finite \(N\). Therefore, no
 energy can be extracted from multiple identical systems in equilibrium
 at the same temperature.  For finite dimensional systems, the complete
 passivity even implies the form of the Gibbs state.
@@ -170,7 +169,7 @@ finite dimensional treatment in the following.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/misc/bcf_approx}
-  \caption{\label{fig:bcf_approx} An ohmic BCF with \(ω_{c}=η=1\)
+  \caption{\label{fig:bcf_approx} An Ohmic BCF with \(ω_{c}=η=1\)
     approximated by the BCF of a finite number of linearly spaced
     oscillators. The figure plots the relative difference between an
     approximation with \(N\) oscillators and the exact BCF over
@@ -179,41 +178,8 @@ finite dimensional treatment in the following.
 \end{figure}
 
 The Hamiltonian of a finite dimensional system is bounded and
-therefore the ergotropy of such a system is finite. However, in the
-following we will find that the ergotropy cannot even be made
+therefore the ergotropy of such a system is finite. However, in \cref{sec:ergoonebath} we will find that the ergotropy cannot even be made
 arbitrarily large by enlarging the bath.
-
-Now, we briefly introduce a simple application of quantum friction in
-\cref{sec:quantum_friction_theory}.
-
-\subsection{Quantum Friction}
-\label{sec:quantum_friction_theory}
-A simple application of the notion ergotropy is an explanation for so
-called \emph{quantum
-  friction}~\cite{Binder2018,Mukherjee2020Jan}, a phenomenon with an
-unfortunate name. From it one would expect that quantum friction has
-some connection to dissipation. In fact, the reverse is true in most
-cases where it is a concept applied to the reduced state of the
-system.
-
-
-Consider a modulated open quantum system.  The buildup of energy basis
-coherence in the system state makes it non-passive.  Thus additional
-energy which cannot be extracted by modulating of the energy level
-gaps of the system\footnote{This is the usual mechanism of energy
-  extraction in a quantum Otto
-  cycle~\cite{Geva1992Feb}.}~\cite{Kurizki2021Dec} is tied up in the
-system state, reducing power output.  The reduction of power output
-through quantum coherence in general has been termed quantum
-friction. However, the occurrence of coherence is not necessarily
-detrimental\fixme{do more research on that.refer to simulations}, if
-the system is restored to a diagonal state\footnote{Shortcuts to
-  adiabaticity, see for example~\cite{Chen2010Feb}.}.
-
-We will briefly demonstrate the effect of quantum friction in
-\cref{sec:quantum_friction}. For now we will stay on a more general
-track and turn to the ergotropy of an open quantum system coupled to a
-thermal bath in \cref{sec:ergoonebath}.
 
 \subsection{The Ergotropy of Finite Systems Coupled to a Thermal Bath}
 \label{sec:ergoonebath}
@@ -928,13 +894,14 @@ quantum friction in \cref{sec:quantum_friction}.
 \subsection{Quantum Friction}%
 \label{sec:quantum_friction}
 To justify the choice \(λ = 0\) for the model
-\cref{eq:one_qubit_model_driven}, we will briefly revisit a phenomenon
-introduced in \cref{sec:quantum_friction_theory}. The so called
-\emph{Quantum Friction} is the creation of coherences\footnote{Or more
-  generally the creation of ergotropy.} in the system energy basis
-which affects the performances of thermal quantum machines. These
-coherences raise the ergotropy of the system consuming energy that
-could have been extracted by the external modulation.
+\cref{eq:one_qubit_model_driven}, we will briefly visit a phenomenon
+dubbed \emph{Quantum
+  Friction}~\cite{Binder2018,Mukherjee2020Jan}. This is creation
+coherences\footnote{Or more generally the creation of ergotropy.} in
+the system energy basis affects the performance of thermal quantum
+machines. These coherences raise the ergotropy of the system state,
+all the while consuming energy that could have been extracted by the
+external modulation.
 \begin{figure}[htp]
   \centering
   \includegraphics{figs/one_bath_mod/quantum_friction}
