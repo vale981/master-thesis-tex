@@ -110,7 +110,7 @@ introducing some elementary notions in~\cref{sec:open_systems}.
 \label{sec:open_systems}
 Quantum physics' most important equation, the Schr\"odinger equation,
 allows us to predict the future of a system knowing its initial state
-if restrict ourself to pure states. Writing it down
+if we restrict ourselves to pure states. Writing it down
 \begin{equation}
   \label{eq:schroedinger}
   \iu ∂_{t} \ket{ψ(t)} = H \ket{ψ(t)},
@@ -126,7 +126,7 @@ Given any time independent Hamiltonian we may write down the time
 evolution operator to solve the Schr\"odinger equation
 \begin{equation}
   \label{eq:time_evo_op}
-  U(t, t_{0})=\eu^{-\iu H (t-t_{0})},\; U(t, t_{0})^\dag U(t, t_{0}) =
+  U(t, t_{0})=\eu^{-\iu H (t-t_{0})},\; U^\dag(t, t_{0})U(t, t_{0}) =
   \id,\; U(t, t_{0})\ket{ψ(t_{0})} = \ket{ψ(t)}.
 \end{equation}
 
@@ -194,7 +194,7 @@ freedom and removes them from explicit consideration. This is a very
 useful device, as the environment usually has a Hilbert space
 dimension that is much too large for practical
 calculations. Especially in numerics this fact is important, as even
-an environment consisting of \(40\) two level systems would consume
+an environment consisting of \(40\) two-level systems would consume
 \(16\) tebibytes of memory when stored as double precision complex
 floating point numbers.
 
