@@ -175,7 +175,7 @@ deviation.
 
 
 The simulation was run with a hierarchy depth of
-\(\norm{\vb{k}} \leq 5\) (simplex truncation\footnote{see
+\(\abs{\vb{k}} \leq 5\) (simplex truncation\footnote{see
   \cref{sec:hops_basics}}) and a BCF fit with \(7\) terms taken from
 \cite{RichardDiss} which was also used in the analytical solution. The
 harmonic oscillator Hilbert space was truncated to \(15\) dimensions
@@ -749,7 +749,7 @@ frequency is smaller and the bath has a longer memory.
 \subsection{Stochastic Process}
 \label{sec:stocproc}
 For studying the convergence behaviour in reference to the sampling of
-the stochastic process we chose the cutoff \(\norm{\vb{k}} \leq 4\)
+the stochastic process we chose the cutoff \(\abs{\vb{k}} \leq 4\)
 (simplex truncation\footnote{see \cref{sec:hops_basics}}),
 \(N=4.5 \cdot 10^5\) trajectories and an Ohmic BCF with \(α(0)=1.6\)
 and \(ω_c=4\).  The sampling method uses the ``Fast Fourier
@@ -861,7 +861,7 @@ Ohmic BCF with \(α(0)=0.8\) and \(ω_c=2\). Again, a BCF expansion with
 seven terms has been used. The coupling strength has been chosen with
 the help of \cref{sec:pure_deph}, so that the interaction energy is of
 a similar order of magnitude as in the discussion above. The
-simulation was run with \(k=\norm{\vb{k}}\in \{2,4,6\}\).
+simulation was run with \(k=\abs{\vb{k}}=∑_{i}k_{i}=\in \{2,4,6\}\).
 
 \Cref{fig:k_systematics} suggests that there is to be no improvement
 in accuracy or even change in the value of the flow for
@@ -874,7 +874,7 @@ truncation depth is important.
   \includegraphics{figs/one_bath_syst/k_systematics_interaction}
   \caption{\label{fig:k_systematics} The same as
     \cref{fig:stocproc_systematics} but for \(α(0)=0.8\) and
-    \(ω_c=2\) and for various truncation depths \(k=\norm{\vb{k}}_{\mathrm{max}}\).}
+    \(ω_c=2\) and for various truncation depths \(k=\abs{\vb{k}}_{\mathrm{max}}\).}
 \end{figure}
 
 We see in \cref{fig:k_systematics_system} that the difference of the
@@ -937,7 +937,7 @@ of the model. The quantification of the initial slip dynamics in
 To make the interaction energies comparable to each other, the BCF
 normalization of \cref{sec:pure_deph} is being used. Because of the
 small size of the Hilbert space, we were able to choose a HOPS
-configuration\footnote{\(\norm{\vb{k}}\leq 7\), seven BCF terms,
+configuration\footnote{\(\abs{\vb{k}}\leq 7\), seven BCF terms,
   \(\varsigma = 10^{-6}\)} that yields high-accuracy results, based on
 the results of the previous section. The only problematic result is
 the one for the cutoff \(ω_c=1\), but there is good qualitative
