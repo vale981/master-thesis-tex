@@ -199,9 +199,9 @@ an environment consisting of \(40\) two-level systems would consume
 floating point numbers.
 
 We will discover in \cref{chap:flow} that although it is impractical
-to work with the bath state directly, it is still possible gain access
-to bath-global observables such as the change in the expectation value
-of the bath energy.
+to work with the bath state directly, it is still possible to gain
+access to bath-global observables such as the change in the
+expectation value of the bath energy.
 
 Under certain assumptions, most importantly that of weak coupling
 \(\ev{H_{\inter}}\approx 0\), a pertubative treatment of the
@@ -212,7 +212,7 @@ irreversible non unitary dynamics.
 
 A special master equation often called
 Gorini–Kossakowski–Sudarshan–Lindblad equation, or GKSL equation in
-short, and has the form
+short, has the form
 \begin{equation}
   \label{eq:gksl}
   \dot{ρ}_{\sys} = -\iu \comm{H}{ρ_{\sys}} + \mathcal{D}[ρ_{\sys}] = \mathcal{L}[ρ_{\sys}],
@@ -271,19 +271,19 @@ of harmonic oscillators\footnote{For instance, the electromagnetic field.}
 \end{equation}
 with \(B_n=∑_{λ} g_λ\nth a_λ\nth\) and
 \(H_B\nth=∑_λω_λ\nth \qty(a_λ\nth)^\dag a_λ\nth\). The \(a_λ\nth\) are
-bosonic annihilation operators acting on \(n\)th bath Hilbert space
-and the \(L_n\) are arbitrary not necessarily hermitian operators
-acting on the system Hilbert space. Quite general baths can be mapped
-to this model in the thermodynamic limit, when the bath consists of an
-infinite number of independent systems as was shown in
+bosonic annihilation operators acting on the \(n\)th bath Hilbert
+space and the \(L_n\) are arbitrary, not necessarily hermitian
+operators acting on the system Hilbert space. Quite general baths can
+be mapped to this model in the thermodynamic limit, when the bath
+consists of an infinite number of independent systems as was shown in
 \cite{Makri1999Apr}.
 
 Despite the simple structure of the baths, \cref{eq:generalmodel} is
 generally very hard to solve beyond weak coupling strengths as has
 been detailed in~\cref{sec:open_systems}. The ``Non-Markovian Quantum
-State Diffusion'' \cite{Diosi1998Mar} approach allows to
-recast \cref{eq:generalmodel} into a stochastic differential equation
-in which the bath degrees of freedom are accounted for by Gaussian
+State Diffusion'' approach~\cite{Diosi1998Mar} allows us to recast
+\cref{eq:generalmodel} into a stochastic differential equation in
+which the bath degrees of freedom are accounted for by Gaussian
 stochastic processes and a memory term.
 
 Here we only consider a single zero temperature bath initially in the
@@ -318,7 +318,7 @@ arrive at an equation for \(\ket{ψ(t,\vb{z}^{\ast})}\)
 
 From this point on there are multiple avenues open to us. We choose
 the canonical one of \cite{Strunz2001Habil}, but there is also a
-time-discrete derivation that avoids functional derivatives
+time-discrete derivation, that avoids functional derivatives,
 in~\cite{Hartmann2021Aug}.
 
 We shift the perspective and define~\cite{RichardDiss,Strunz2001Habil}
@@ -376,9 +376,8 @@ One then usually performs a continuum limit so that \(J(ω)\) becomes
 
 The NMQSD formalism shows that we can treat an infinite environment
 with a stochastic differential equation in which only objects of
-system dimension appear. Note also, that we can allow an explicit time
-dependence of \(L\) and \(H\) without alterations to
-the NMQSD.
+system dimension appear. Note also, that we can allow for an explicit
+time dependence of \(L\) and \(H\) without alterations to the NMQSD.
 
 Equation \cref{eq:nmqsd_single} does not preserve the norm of the
 state, leading to suboptimal convergence of \cref{eq:recover_rho}.
@@ -391,21 +390,20 @@ normalized states
  \braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)} \frac{\ketbra{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}{\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}}.
 \end{equation}
 
-This can be achieved~\cite{RichardDiss,Suess2014Oct} by using a
-co-moving shifted stochastic process
+This can be achieved by using a co-moving shifted stochastic process
 \begin{equation}
   \label{eq:shifted_proc}
   \tilde{η}_{t}^\ast= η^\ast_{t} + ∫_{0}^{t}\dd{s} α^\ast(t-s) \ev{L^\ast}_{s},
 \end{equation}
 where
 \(\ev{L^\dag}_{t}=\mel{ψ(\tilde{η}_{t}, t)}{L^\dag}{
-ψ(\tilde{η}_{t}^\ast,t)}\). The origin of this shift lies in the
-study of the Husimi \(Q\) function~\cite{Cartwright1976Jan} of the
-bath
+  ψ(\tilde{η}_{t}^\ast,t)}\)~\cite{RichardDiss,Suess2014Oct}. The
+origin of this shift lies in the study of the Husimi \(Q\) function of
+the bath
 \(Q_{t}(\vb{z}, \vb{z}^\ast) = \eu^{-\abs{z}^{2}} π^{-N}
-\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\). Shifting the process, or on
-a deeper level the stochastic state labels, amounts to importance
-sampling for each time step.
+\braket{ψ(t,\vb{z})}{ψ(t,\vb{z}^\ast)}\)~\cite{Cartwright1976Jan}
+. Shifting the process, or on a deeper level the stochastic state
+labels, amounts to importance sampling for each time step.
 
 This leads to the nonlinear NMQSD equation~\cite{Diosi1998Mar}
 \begin{equation}
