@@ -82,30 +82,4 @@ linkcolor=blue,
 % cursive bold in maths
 \unimathsetup{math-style=TeX,bold-style=ISO}
 
-%% citing "in ref"
-\NewBibliographyString{refname}
-\NewBibliographyString{refsname}
-\DefineBibliographyStrings{english}{%
-  refname = {Ref\adddot},
-  refsname = {Refs\adddot}
-}
-
-\DeclareCiteCommand{\refcite}
-  {%
-  \ifnum\thecitetotal=1
-    \bibstring{refname}%
-  \else%
-    \bibstring{refsname}%
-  \fi%
-  \addspace\bibopenbracket%
-  \usebibmacro{cite:init}%
-   \usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \usebibmacro{cite:comp}}
-  {}
-  {\usebibmacro{cite:dump}%
-   \usebibmacro{postnote}%
-   \bibclosebracket}
-
-
 \recalctypearea

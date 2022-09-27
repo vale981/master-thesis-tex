@@ -93,7 +93,7 @@
 \def\hilb{\ensuremath{\mathcal{H}}}
 
 % fixme
-\newcommand{\fixme}[1]{\marginpar{\tiny\textcolor{red}{#1}}}
+\newcommand{\fixme}[1]{} %{\marginpar{\tiny\textcolor{red}{#1}}}
 
 % HOPS/NMQSD
 \def\sys{\ensuremath{\mathrm{S}}}
@@ -140,3 +140,28 @@
 \newcommand{\plot}[1]{%
   \includegraphics[draft=false]{./figs/#1.pdf}}
 \newcommand{\tval}[1]{{\input{./values/#1.tex}}}
+
+%% citing "in ref"
+\NewBibliographyString{refname}
+\NewBibliographyString{refsname}
+\DefineBibliographyStrings{english}{%
+  refname = {Ref\adddot},
+  refsname = {Refs\adddot}
+}
+
+\DeclareCiteCommand{\refcite}
+  {%
+  \ifnum\thecitetotal=1
+    \bibstring{refname}%
+  \else%
+    \bibstring{refsname}%
+  \fi%
+  \addspace\bibopenbracket%
+  \usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}%
+   \bibclosebracket}
