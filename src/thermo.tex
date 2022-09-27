@@ -801,11 +801,11 @@ to be useful.  Assume that the interaction Hamiltonian in
 system and bath energy expectation values can be cleanly separated. In
 the periodic steady state the system energy does not change after a
 cycle and the whole energy change amounts to the change in bath
-energies. The energy changes in the individual baths are then well
-defined and useful (macroscopic) quantities, whether one calls them
-heat or not.  In a setting with two baths \cref{eq:secondlaw_cyclic}
-implies the Carnot bound for the efficiency given in
-\cref{eq:efficiency_definition}.
+energies. The energy changes in the individual baths are then
+well-defined and useful (macroscopic) quantities, whether one calls
+them heat or not.  In a setting with two baths
+\cref{eq:secondlaw_cyclic} implies the Carnot bound for the efficiency
+given in \cref{eq:efficiency_definition}.
 
 Let us now proceed to simulations of systems to which the
 considerations of \cref{sec:basic_thermo} are applicable. This will
@@ -824,12 +824,11 @@ found in \cref{sec:ergoonebath} that this also holds for a finite
 quantum system coupled to a thermal bath. In \cref{sec:explicitergo}
 we found, that the bound given on the ergotropy in such a situation
 can be saturated for infinite baths, such as the ones used with
-NMQSD/HOPS. However, it is unclear if such a unitary transformation
-can be implemented without explicit construction of a model. Our goal
-in this section is to extract as much energy from a one-bath system as
-is possible without extensive tuning. We will applying the results of
-the previous studies of \cref{chap:numres} to produce consistent
-results.
+NMQSD/HOPS. However, it is unclear how such a unitary transformation
+can be implemented concretely. Our goal in this section is to extract
+as much energy from a one-bath system as is possible without extensive
+tuning. We will be applying the results of the previous studies of
+\cref{chap:numres} to produce consistent results.
 
 In this section we will focus on the minimal dimensionless model of a
 qubit interacting with a bath in a spin-boson like manner, however
@@ -847,9 +846,12 @@ are scaling with \(λ\). For \(λ=0\) the system Hamiltonian is positive
 semi-definite with the energies zero and one.  The modulation of the
 interaction has been chosen heuristically to always act in the same
 ``direction'' and vanish periodically. The last fact is important, as
-we will be interested in the behavior of the system before it has
+we will be interested in the behaviour of the system before it has
 reached the steady state. The energy extracted from a system should be
 gauged in such a way, that an additional decoupling is not necessary.
+
+The goal is now to extract as much energy as possible from the total
+system.
 
 We choose the ``down state'' with \(H(0)\ket{0}=0\) as initial state,
 as we want to extract energy from the bath and not the system. To
