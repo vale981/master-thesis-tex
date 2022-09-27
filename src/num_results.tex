@@ -992,11 +992,11 @@ frequency \(ω_c=1\) (blue) in \cref{fig:omega_systematics_system}
 exhibits two pronounced turning points in contrast to the other
 simulations. This behaviour is a symptom of the very long bath memory,
 as we will discuss below. Further, despite having the weakest overall
-coupling strength \(α(0)=0.4\) the system energy falls off the fastest
-after a short period where it is above the other configurations. This
-behaviour is also visible in the bath energy expectation value, where
-this simulation almost reaches the same levels as the \(ω_c=2\)
-configuration (orange) for \(τ\gtrsim 5\).
+coupling strength \(α(0)=0.4\), the system energy falls off the
+fastest after a short period where it is above the other
+configurations. This behaviour is also visible in the bath energy
+expectation value, where this simulation almost reaches the same
+levels as the \(ω_c=2\) configuration (orange) for \(τ\gtrsim 5\).
 
 The flow \(J\) is generally negative (the bath gains energy) and
 decays after an initial peak. All the flow graphs appear to be
@@ -1104,13 +1104,13 @@ system energy is the lowest.
 
 The change in total energy \(Δ\ev{H}\) (\cref{fig:resonance_analysis},
 middle panel) due to the decoupling of the bath is moderately higher
-than in the resonant (orange) case than for cutoff \(ω_s=1\) (blue)
-and seems to be somewhat proportional to the interaction energy, which
-is reasonable. The decoupling process appears to affect mainly the
-bath energy curves (dashed lines, left panel) in this case. Bath
-energies \(\ev{H_{\bath}}\) generally decrease during decoupling,
-compensating for the negative interaction energy. The effect on the
-system energy is masked by the energy loss to the bath.
+in the resonant (orange) case than for cutoff \(ω_s=1\) (blue) and
+seems to be somewhat proportional to the interaction energy, which is
+reasonable. The decoupling process appears to affect mainly the bath
+energy curves (dashed lines, left panel) in this case. Bath energies
+\(\ev{H_{\bath}}\) generally decrease during decoupling, compensating
+for the negative interaction energy. The effect on the system energy
+is masked by the energy loss to the bath.
 
 Were the interaction switched off abruptly, the system and bath
 energies would remain untouched. Turning the interaction off in finite
@@ -1190,18 +1190,18 @@ to future work.
     frequency shifts of the spectral density lead to a higher
     magnitude of the interaction energy and faster dynamics.}
 \end{figure}
-As a heuristic observation, the maximal absolute interaction energy
-is roughly proportional to the shift \(ω_{s}\) of the spectral
-density, so that the short term interaction strength as measured by
-the interaction energy expectation value is not only dependent on the
+As a heuristic observation, the maximal absolute interaction energy is
+roughly proportional to the shift \(ω_{s}\) of the spectral density,
+so that the short term interaction strength as measured by the
+interaction energy expectation value is not only dependent on the
 width and total norm of the spectral density, but also on its absolute
 distribution in frequency space. The shift adds a phase factor
 \(\eu^{-\i ω_{s} τ}\) to the BCF which makes the imaginary part
 steeper for short times. This in turn leads to faster initial slip
-dynamics and a speeds up buildup of interaction energy as demonstrated
-in \cref{fig:initial_slip_resonance}. The observed effect is sensible
-on an intuitive level as higher frequency oscillators are being
-excited in the bath leading to faster dynamics.
+dynamics and speeds up the buildup of interaction energy as
+demonstrated in \cref{fig:initial_slip_resonance}. The observed effect
+is sensible on an intuitive level as higher frequency oscillators are
+being excited in the bath leading to faster dynamics.
 
 Turning the interaction off later leads to the results of
 \cref{fig:resonance_analysis_steady}. We see broadly similar energy
@@ -1209,7 +1209,7 @@ transfer characteristics for the cutoffs \(ω_{s}=1\) (solid blue line)
 and \(ω_{s}=2\) (solid orange line).
 
 For \(ω_{s}=3\) (green lines) the approximate steady state has not
-been reached yet and the energy transfer is incomplete so that the
+been reached yet, and the energy transfer is incomplete so that the
 residual system energy is the highest. As remarked earlier, the fast
 growth of the interaction energy leads to a slower initial loss of
 system energy. On longer time scales we see a slow, almost linear
@@ -1228,7 +1228,7 @@ transfer into the bath.  To study the effect of the bath memory, we
 use Ohmic spectral densities with linearly spaced
 \(τ_{\bath}\equiv ω_c^{-1}\) that have been shifted and scaled by
 numerical optimization so that their peaks coincide and the resulting
-maximal absolute interaction energies identical. This makes the
+maximal absolute interaction energies are identical. This makes the
 simulations more comparable, as otherwise very different energy
 transfer speeds would be observed.
 
@@ -1314,7 +1314,7 @@ energy curve which exhibits a greater magnitude and persistent
 oscillations. These oscillations were not clearly visible in the
 earlier simulations
 (\cref{fig:markov_analysis,fig:markov_analysis_longer}) due to the
-modulation of the interaction. Because of the long memory the bath,
+modulation of the interaction. Because of the long memory, the bath,
 interaction and, to a lesser extent, the system can continue to
 exchange energy, even in the steady state. We will encounter them
 again in a different setting in \cref{sec:extr_mem}.
@@ -1352,7 +1352,8 @@ fact is given in \cref{fig:steady_relent}.
 Spohn's theorem~\cite{Breuer2002Jun} states that the negative time
 derivative of the relative entropy of system state and steady state
 must be positive if the dynamics are generated by a Markovian master
-equation.  In mathematical terms Spohn's theorem can be formulated as
+equation with a constant Hamiltonian.  In mathematical terms Spohn's
+theorem can be formulated as
 \begin{equation}
   \label{eq:spohn}
   -\dv{\qrelent{ρ_{\sys}(t)}{ρ_{\sys}(∞)}}{t} \geq 0,
