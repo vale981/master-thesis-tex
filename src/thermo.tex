@@ -39,12 +39,14 @@ In thermodynamics the second law tells us that in this setting no
 energy can be extracted indefinitely in a periodic manner.  It turns
 out, that in the full quantum case such a result can be obtained by
 studying bounds on the ergotropy of the system as is done in
-\cref{sec:ergo_general}. Remarkably these bounds will turn out to be
-finite. We will review a general bound for single bath systems in
+\cref{sec:ergo_general}. Remarkably, these bounds, originating from
+\refcite{Biswas2022May,Alicki2013Apr,Lobejko2021Feb}, will turn out to
+be finite for finite dimensional systems coupled to infinite baths. We
+will review a general bound for single bath systems in
 \cref{sec:ergoonebath} and study an explicit calculation for a simple
-case in \cref{sec:explicitergo}. The
-explicit ergotropy calculation will elucidate under which conditions
-the bound of \cref{sec:ergoonebath} may be expected to be tight.
+case in \cref{sec:explicitergo}. The explicit ergotropy calculation
+will elucidate under which conditions the bound of
+\cref{sec:ergoonebath} may be expected to be tight.
 
 The second problem is a generalization of the above considerations to
 systems coupled to multiple baths of different temperature. In this
@@ -91,9 +93,10 @@ as~\cite{Binder2018}
 \end{equation}
 which is the maximal energy that can be extracted from a system
 through cyclic modulation of the Hamiltonian \(H\). A state is called
-passive iff the maximizing \(U\) \cref{eq:ergo_def} is the identity
+passive iff the maximizing \(U\) in \cref{eq:ergo_def} is the identity
 \(\id\). In other words, a state is passive if its energy can not be
-reduced through unitary transformations and its ergotropy vanishes.
+reduced through unitary transformations and thus its ergotropy
+vanishes.
 
 In \refcite{Niedenzu2018Jan} the ergotropy of the system is employed
 for the definition of heat to derive a tighter second law.  The
@@ -110,9 +113,9 @@ condition~\cite{Lenard1978Dec}
 \end{equation}
 where \(n<∞\) is the Hilbert space dimension. This condition is both
 necessary and sufficient. Examples of passive states are the state of
-the micro-canonical ensemble or Gibbs states. Gibbs states are further
-distinguished by additional features described
-in \refcite{Lenard1978Dec}, which can be connected to formulations of the
+the micro-canonical ensemble and also Gibbs states. Gibbs states are
+further distinguished by additional features described in
+\refcite{Lenard1978Dec}, which can be connected to formulations of the
 zeroth and second laws of thermodynamics.
 
 One of these properties is complete passivity. Completely passive
@@ -156,7 +159,8 @@ appropriate. KMS states only enter the NMQSD/HOPS formalism
 indirectly, as they predict the expression for the spectral density of
 the finite temperature noise in \cref{sec:lin_finite}. Due to the
 formulation of the NMQSD which only relies on bath correlation
-functions, the problem of non-existing states is circumvented.
+functions, the problem of formally non-existing states is
+circumvented.
 
 In fact, we see in \cref{fig:bcf_approx} that the BCF of an infinite
 bath can be approximated very well by a finite number of evenly spaced
@@ -207,7 +211,7 @@ finite. This amounts to the formulation of the second law: ``No energy
 may be extracted from a single bath in a cyclical manner''.  For
 systems obeying weak coupling dynamics, thermodynamic laws can be
 derived in certain situations\footnote{very slow or very fast
-  modulation of the system hamiltonian}\cite{Binder2018}, which imply
+  modulation of the system hamiltonian}~\cite{Binder2018}, which imply
 the answer ``yes'' for the above questions. In the non-Markovian case
 however, those arguments do not hold anymore.
 
@@ -215,16 +219,17 @@ For finite dimensional baths, we always have finite ergotropies, as
 their Hamiltonians are bounded. In the infinite dimensional case, we
 may expect that the ergotropy is still finite for some models, as long
 as the energies of the thermal states for those models is finite. This
-assumption breaks down when we consider infinite baths, whose thermal
-energy is unbounded even for finite temperatures. We therefore
-slightly reformulate our problem. The question is now, whether the
-ergotropy can be made arbitrarily large by enlarging the bath. This is
-consistent with approaching the infinite bath case as a limit.
+assumption breaks down when we consider baths consisting of an
+infinite number of subsystems, whose thermal energy is unbounded even
+for finite temperatures. We therefore slightly reformulate our
+problem. The question is now, whether the ergotropy can be made
+arbitrarily large by enlarging the bath. This is consistent with
+approaching the infinite bath case as a limit.
 
 There is a simple and general argument that provides an upper bound on
 the ergotropy of states of the form~\cref{eq:simple_initial_state}
 based on the special form of Gibbs states and relative entropy. The
-latter quantity allows the application of quantum informational tools,
+latter quantity allows the application of quantum informational tools
 even in the presence of infinite baths if we are careful in taking
 limits.
 
@@ -677,8 +682,8 @@ energy that can be extracted out of the system in relation to the
 energy that is simply transferred between the baths.
 
 An argument based on entropy may be made for the periodic steady state
-as was shown in \refcite{Kato2016Dec} and is reproduced here with the
-slight generalization of multiple baths and modulated coupling. We
+as was shown in \refcite{Kato2016Dec} and is reproduced here with a
+slight generalization to multiple baths and modulated coupling. We
 will find a Clausius-like form of the second law. The left-hand side
 of this inequality can then be interpreted as thermodynamic cost of
 the cyclical process.
@@ -790,11 +795,11 @@ motivated in \refcite{Riechers2021Apr}, where heat is identified with
 bath is being considered and brought into connection with
 information-theoretic quantities.
 
-If one defines heat in this
-way~\cite{Kato2016Dec,Riechers2021Apr,Strasberg2021Aug},
+If one defines heat in this way as is done in
+\refcite{Kato2016Dec,Riechers2021Apr,Strasberg2021Aug},
 \cref{eq:secondlaw_cyclic} amounts to the Clausius inequality. The
-definition of heat as bath energy change is corroborated
-in \refcite{Esposito2015Dec} where it is shown, ableit for fermionic
+definition of heat as bath energy change is corroborated in
+\refcite{Esposito2015Dec} where it is shown, ableit for fermionic
 baths, that a definition of heat involving any nonzero fraction of the
 interaction energy will lead to the internal energy (as defined by the
 first law) not being an exact differential.
