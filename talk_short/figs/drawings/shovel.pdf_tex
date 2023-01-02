@@ -50,7 +50,7 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.35954775)%
+  \begin{picture}(1,0.37945925)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{shovel.pdf}}%
@@ -60,9 +60,10 @@
     \put(0.12164526,0.01205317){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$H_{\sys}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{shovel.pdf}}%
     \put(0.77664512,0.00523803){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$H_{\bath}$\end{tabular}}}}%
-    \put(0.44471097,0.14486942){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L(τ)$\end{tabular}}}}%
+    \put(0.44471097,0.14486941){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L(τ)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{shovel.pdf}}%
     \put(0.84038056,0.30920962){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$J(\omega)$\end{tabular}}}}%
     \put(0.96273157,0.27894832){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$\omega$}\end{tabular}}}}%
+    \put(0.80201217,0.35851968){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$T>0$}\end{tabular}}}}%
   \end{picture}%
 \endgroup%
