@@ -323,11 +323,11 @@ labelformat=brace, position=top]{subcaption}
   \begin{block}{}
     \begin{equation}
       \label{eq:one_qubit_model}
-      H = \frac{1}{2} σ_z + \frac{1}{2} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
+      H = \frac{1}{2} σ_z + \frac{f(τ)}{2} ∑_λ\qty(g_λ σ_x^† a_λ + g_λ^\ast
       σ_x a_λ^†) + ∑_λ ω_λ a_λ^\dag a_λ,\;\ket{ψ_{0}}_{\sys} = \ket{\downarrow}
     \end{equation}
     \begin{itemize}
-    \item \(L(τ) = \sin^2(\frac{Δ}{2} τ)σ_x\)
+    \item \(f(τ) = \sin^2(\frac{Δ}{2} τ)\)
     \item initial state of total system: \(ρ_{0} = \ketbra{\downarrow}
       \otimes \frac{\eu^{-β H_{\bath}}}{Z}\)
     \item Shifted SD for resonance
@@ -343,17 +343,28 @@ labelformat=brace, position=top]{subcaption}
   \end{itemize}
   \begin{figure}[h]
     \centering
-    \only<1>{\includegraphics[height=.65\textheight]{figs/modcoup/omegas_total}}
-    \only<2>{\includegraphics[height=.65\textheight]{figs/modcoup/omega_energies_and_powers}}
+    \includegraphics[height=.65\textheight]{figs/modcoup/omegas_total}
   \end{figure}
   \note[item]{energy normalized to ergo}
   \note[item]{vert lines bath memory time}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Speed Limit}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[height=.65\textheight]{figs/modcoup/power_en_heatmap}
+  \end{figure}
+\end{frame}
+
 
 \subsection{Otto Cycle}
 \begin{frame}
-  \frametitle{Otto Cycle (proof of concept)}
+  \frametitle{Quantum Otto Cycle}
+  \begin{figure}
+    \centering
+    \input{figs/drawings/otto.pdf_tex}
+  \end{figure}
   \begin{block}{Model}
     Spin-Boson model with compression of \(H_{\sys}\) and modulation
     of \(L\).
@@ -361,109 +372,49 @@ labelformat=brace, position=top]{subcaption}
   \begin{itemize}
   \item classical toy model of the quantum heat engine community\footcite{Geva1992Feb}
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Modulation and Spectral Densities}
   \begin{figure}[h]
     \centering
     \includegraphics{figs/otto/modulation}
+    \includegraphics{figs/otto/spectral_densities}
   \end{figure}
 \end{frame}
-\begin{frame}
-  \begin{figure}[h]
-    \centering
-    \includegraphics{figs/otto/energy_cont}
-  \end{figure}
-\end{frame}
-\begin{frame}
+
+\begin{frame}{Full Energy Overview}
   \begin{figure}[h]
     \centering
     \includegraphics{figs/otto/energy_strobe}
   \end{figure}
 \end{frame}
-\begin{frame}
+
+\begin{frame}{Power Contributions}
   \begin{figure}[h]
     \centering
     \includegraphics{figs/otto/power}
   \end{figure}
   \begin{itemize}
-  \item \(\bar{P} = 1.98 \cdot 10^{-3} \pm 2.3 \cdot 10^{-5}\),
-    \(η\approx 20\%\), \(T_{c}=1\), \(T_{h}=20\)
+  \item \(\bar{P} = .0025\),
+    \(η\approx 29\%\), \(T_{c}=1\), \(T_{h}=20\)
   \item no tuning of parameters, except for resonant coupling
   \item long bath memory \(ω_{c}=1\), but weak-ish coupling
   \end{itemize}
 \end{frame}
-\begin{frame}{Questions (for the future)}
-  \begin{itemize}
-  \item better performance through ``overlapping'' phases?
-  \item strong coupling any good?
-  \item non-Markovianity + strong coupling any good?
-  \item what is the optimal efficiency and power? (probably no
-    advantage here)
-  \end{itemize}
-\end{frame}
 
-\subsection{Anti-Zeno Engine}
-\begin{frame}
-  \frametitle{Anti-Zeno Engine}
-  \begin{block}{Question}
-    Is there a use for non-Markovianity in quantum heat engines?
-  \end{block}
-  \begin{itemize}
-  \item \cite{Mukherjee2020Jan} claims that one can exploit the
-    time-energy uncertainty for quantum advantage\footnote{I'd be
-      careful to call this quantum advantage.}
-  \end{itemize}
-
-  \begin{block}{Model}
-    Qubit coupled to two baths of different
-      temperatures (\(T_c, T_h\))
-      \begin{equation}
-        \label{eq:antizenomodel}
-        H_\sys= \frac12  \qty[ω_0 + γ Δ\sin(Δ t)]σ_z,\, L_{c,h}=\frac12 σ_x
-      \end{equation}
-      \note[item]{frictionless dynamics}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-    \begin{figure}[h]
-    \centering
-    \includegraphics{figs/anti_zeno/with_gap_coupling_diagram}
-  \end{figure}
-  \begin{itemize}
-  \item couple for \(n\) modulation periods slightly of resonance
-  \item for smaller \(n\) the \(\sin((ω-(ω_{0}\pm Δ))τ)/((ω-(ω_{0}\pm
-    Δ)) τ)\) has a greater overlap
-    \(\implies\) controls power output
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
+\begin{frame}{Continuously Coupled Version}
   \begin{figure}
     \centering
-    \begin{subfigure}[t]{.49\linewidth}
-      \centering
-      \includegraphics[width=\linewidth]{anti_zeno/anti_zeno_without_cool}
-      \caption{\tval{anti_zeno/power_without_cool}}
-    \end{subfigure}
-    \begin{subfigure}[t]{.49\linewidth}
-      \centering
-      \includegraphics[width=\linewidth]{anti_zeno/anti_zeno_with_cool}
-      \caption{
-        \tval{anti_zeno/power_with_cool}}
-    \end{subfigure}
+    \includegraphics{figs/otto/energy_strobe_continuous}
   \end{figure}
-  \begin{exampleblock}{Parameters}
-    {\tval{anti_zeno/delta}, \tval{anti_zeno/gamma}, \tval{anti_zeno/omega_alpha},
-      \tval{anti_zeno/omega_zero}, \tval{anti_zeno/tc}, \tval{anti_zeno/th}}
-  \end{exampleblock}
+\end{frame}
+\begin{frame}{Current Work}
   \begin{itemize}
-  \item this is not properly converged yet \(\rightarrow\) newer
-    results: no advantage at these temperatures / coupling strengths
-  \item new simulations with temperatures from paper
-    (\(β_{h(c)}=0.0005(0.005)\)) are promising
-    \begin{itemize}
-    \item interesting \(\rightarrow\) no good steady state power in this case
-      (insufficient samples?)
-    \end{itemize}
+  \item better performance through ``overlapping'' and shifting strokes?
+  \item stronger coupling any good?
+  \item non-Markovianity + strong coupling any good?
+  \item what is the optimal efficiency and power?
   \end{itemize}
 \end{frame}
 

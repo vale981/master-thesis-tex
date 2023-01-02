@@ -1,0 +1,84 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'otto.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{373.00828829bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.22901652)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{otto.pdf}}%
+    \put(0.51009675,0.15478323){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ket{\uparrow}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{otto.pdf}}%
+    \put(0.51009672,0.08531793){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ket{\downarrow}$\end{tabular}}}}%
+    \put(0.46988315,0.00727451){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$H_{\sys}$\end{tabular}}}}%
+    \put(0.47172632,0.1024687){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \tiny{$\tau$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{otto.pdf}}%
+    \put(0.6861509,0.1265969){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \tiny{$\tau$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{otto.pdf}}%
+    \put(0.27195099,0.12659689){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \tiny{$\tau$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{otto.pdf}}%
+    \put(0.66486426,0.08743361){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_h(τ)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{otto.pdf}}%
+    \put(0.25859785,0.08701964){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_c(τ)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{otto.pdf}}%
+    \put(0.86519777,0.00316134){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$H^h_{\bath}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{otto.pdf}}%
+    \put(0.90366426,0.1866185){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$J(\omega)$\end{tabular}}}}%
+    \put(0.97750724,0.16835478){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$\omega$}\end{tabular}}}}%
+    \put(0.88050764,0.21637879){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$T_h$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{otto.pdf}}%
+    \put(0.0625777,0.01101301){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$H^c_{\bath}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{otto.pdf}}%
+    \put(0.1010442,0.19447017){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$J(\omega)$\end{tabular}}}}%
+    \put(0.17488718,0.17620645){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$\omega$}\end{tabular}}}}%
+    \put(0.07788758,0.22423046){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\tiny{$T_c$}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{otto.pdf}}%
+  \end{picture}%
+\endgroup%
