@@ -151,8 +151,6 @@ labelformat=brace, position=top]{subcaption}
   \end{block}
   \pause{}
   \begin{itemize}[<+->]
-  \item won't call this \emph{heat-flow} because it isn't
-    \emph{the} thermodynamic heat flow
   \item nevertheless: may be interesting \emph{qualitative} measure
     for energy flow
   \end{itemize}
@@ -176,6 +174,7 @@ labelformat=brace, position=top]{subcaption}
   \item \(B_n=∑_{λ} g_λ\nth a_λ\nth\).
   \end{itemize}
 \end{frame}
+
 \begin{frame}{What remains of the Bath?}
   \begin{block}{Bath Correlation Function}
     \[α(t-s) = \ev{B(t)B(s)} \qty(\overset{T=0}{=} ∑_λ
@@ -191,6 +190,7 @@ labelformat=brace, position=top]{subcaption}
     \end{itemize}
   \end{block}
 \end{frame}
+
 % \begin{frame}
 %   \begin{tikzpicture}
 %     \def\xmin{-.9}
@@ -215,46 +215,8 @@ labelformat=brace, position=top]{subcaption}
 % \end{frame}
 
 
-\begin{frame}{NMQSD (Zero Temperature)}
-  Open system dynamics formulated as a \emph{stochastic} differential equation:
-  \begin{equation}
-    \label{eq:multinmqsd}
-    ∂_t\ket{ψ_t(\vb{η}^\ast_t)} = -\iu H(t) \ket{ψ_t(\vb{η}^\ast_t)} +
-    \vb{L}\cdot\vb{η}^\ast_t\ket{ψ_t(\vb{η}^\ast_t)} - ∑_{n=1}^N L_n^†(t)∫_0^t\dd{s}α_n(t-s)\fdv{\ket{ψ_t(\vb{η}^\ast_t)}}{η^\ast_n(s)},
-  \end{equation}
-  with
-  \begin{equation}
-    \label{eq:processescorr}
-    \begin{aligned}
-      \mathcal{M}(η_n(t)) &=0, & \mathcal{M}(η_n(t)η_m(s)) &= 0,
-      & \mathcal{M}(η_n(t)η_m(s)^\ast) &= δ_{nm}α_n(t-s),
-    \end{aligned}
-  \end{equation}
-  by projecting on coherent bath states.\footnote{For details see:
-    \cite{Diosi1998Mar}}
-
-  System state can be recovered by averaging over \(η\)
-  \begin{equation}
-  \label{eq:recover_rho}
-  ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} =
-  \mathcal{M}_{\vb{η}_{t}^\ast}\bqty{\ketbra{ψ_t(\vb{η}_t)}{ψ_t(\vb{η}^\ast_t)}}.
-\end{equation}
-\end{frame}
-
 \begin{frame}{HOPS}
   Using  \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\) we define
-  \begin{equation}
-    \label{eq:dops}
-    D_μ\nth(t) \equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth (t-s)}\fdv{η^\ast_n(s)}
-  \end{equation}
-  and
-  \(
-    D^{\underline{\vb{k}}} \equiv
-    ∏_{n=1}^N∏_{μ=1}^{M_n}
-    {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
-    \frac{1}{i^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\),
-  \(
-    ψ_{t}^{\kmat} \equiv D^\kmatψ_{t}\)
   we find
   \begin{multline}
     \label{eq:multihops}
@@ -275,14 +237,6 @@ labelformat=brace, position=top]{subcaption}
     J = - \dv{\ev{H_\bath}}{t}  = \ev{L^†∂_t B(t) + L∂_t B^†(t)}_\inter.
   \end{equation}
   \pause{} \ldots some manipulations \ldots{}\pause{}
-  \begin{block}{Result (NMQSD)}
-    \begin{equation}
-      \label{eq:final_flow_nmqsd}
-      J(t) = -\i \mathcal{M}_{η^\ast}\bra{\psi(η,
-        t)}L^†\dot{D}_t\ket{\psi(η^\ast,t)} + \cc
-    \end{equation}
-  \end{block}
-  with \(\dot{D}_t = ∫_0^t\dd{s} \dot{\alpha}(t-s)\fdv{η^\ast_s}\).\pause{}
   \begin{block}{Result (HOPS)}
     \begin{equation}
       \label{eq:hopsflowfock}
@@ -396,7 +350,7 @@ labelformat=brace, position=top]{subcaption}
     \includegraphics{figs/otto/power}
   \end{figure}
   \begin{itemize}
-  \item \(\bar{P} = .0025\),
+  \item \(\bar{P} = 0.0025\),
     \(η\approx 29\%\), \(T_{c}=1\), \(T_{h}=20\)
   \item no tuning of parameters, except for resonant coupling
   \item long bath memory \(ω_{c}=1\), but weak-ish coupling
@@ -807,6 +761,71 @@ labelformat=brace, position=top]{subcaption}
       \plot{06/convergence}
     \end{figure}
   \end{itemize}
+\end{frame}
+
+\begin{frame}{What remains of the Bath?}
+  \begin{block}{Bath Correlation Function}
+    \[α(t-s) = \ev{B(t)B(s)} \qty(\overset{T=0}{=} ∑_λ
+      \abs{g_λ}^2\,\eu^{-\iu ω_λ (t-s)})= \frac{1}{π} ∫J(ω) \eu^{-\iu ω
+        t}\dd{ω}\]
+  \end{block}
+  \pause
+  \begin{block}{Spectral Density}
+    \[J(ω) = π ∑_{λ} \abs{g_{λ}}^{2}δ(ω-ω_{λ})\]
+    \begin{itemize}
+    \item in thermodynamic limit \(\to\) smooth function
+    \item here usually: Ohmic SD \(J(ω)=η ω \eu^{-ω/ω_c}\) (think phonons)
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}{NMQSD (Zero Temperature)}
+  Open system dynamics formulated as a \emph{stochastic} differential equation:
+  \begin{equation}
+    \label{eq:multinmqsd}
+    ∂_t\ket{ψ_t(\vb{η}^\ast_t)} = -\iu H(t) \ket{ψ_t(\vb{η}^\ast_t)} +
+    \vb{L}\cdot\vb{η}^\ast_t\ket{ψ_t(\vb{η}^\ast_t)} - ∑_{n=1}^N L_n^†(t)∫_0^t\dd{s}α_n(t-s)\fdv{\ket{ψ_t(\vb{η}^\ast_t)}}{η^\ast_n(s)},
+  \end{equation}
+  with
+  \begin{equation}
+    \label{eq:processescorr}
+    \begin{aligned}
+      \mathcal{M}(η_n(t)) &=0, & \mathcal{M}(η_n(t)η_m(s)) &= 0,
+      & \mathcal{M}(η_n(t)η_m(s)^\ast) &= δ_{nm}α_n(t-s),
+    \end{aligned}
+  \end{equation}
+  by projecting on coherent bath states.\footnote{For details see:
+    \cite{Diosi1998Mar}}
+
+  System state can be recovered by averaging over \(η\)
+  \begin{equation}
+  \label{eq:recover_rho}
+  ρ_{\sys}(t) = \tr_{\bath}\bqty{\ketbra{ψ(t)}} =
+  \mathcal{M}_{\vb{η}_{t}^\ast}\bqty{\ketbra{ψ_t(\vb{η}_t)}{ψ_t(\vb{η}^\ast_t)}}.
+\end{equation}
+\end{frame}
+\begin{frame}{HOPS}
+  Using  \(α_n(τ)=∑_{\mu}^{M_n}G_μ\nth\eu^{-W_μ\nth τ}\) we define
+  \begin{equation}
+    \label{eq:dops}
+    D_μ\nth(t) \equiv ∫_0^t\dd{s}G_μ\nth\eu^{-W_μ\nth (t-s)}\fdv{η^\ast_n(s)}
+  \end{equation}
+  and
+  \(
+    D^{\underline{\vb{k}}} \equiv
+    ∏_{n=1}^N∏_{μ=1}^{M_n}
+    {\sqrt{\frac{\underline{\vb{k}}_{n,μ}!}{\qty(G\nth_μ)^{\underline{\vb{k}}_{n,μ}}}}
+    \frac{1}{i^{\underline{\vb{k}}_{n,μ}}}}\qty(D_μ\nth)^{\underline{\vb{k}}_{n,μ}}\),
+  \(
+    ψ_{t}^{\kmat} \equiv D^\kmatψ_{t}\)
+  we find
+  \begin{multline}
+    \label{eq:multihops}
+    \dot{ψ}_{t}^\kmat = \qty[-\iu H_\sys(t) + \vb{L}(t)\cdot\vb{η}_{t}^\ast -
+    ∑_{n=1}^N∑_{μ=1}^{M_n}\kmat_{n,μ}W\nth_μ]ψ_{t}^\kmat \\+
+    \iu ∑_{n=1}^N∑_{μ=1}^{M_n}\sqrt{G\nth_μ}\qty[\sqrt{\kmat_{n,μ}}  L_n(t)ψ_{t}^{\kmat -
+      \mat{e}_{n,μ}} + \sqrt{\qty(\kmat_{n,μ} + 1)}  L^†_n(t)ψ_{t}^{\kmat +
+      \mat{e}_{n,μ}} ].
+  \end{multline}
 \end{frame}
 
 \end{document}
